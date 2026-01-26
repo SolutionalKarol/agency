@@ -4,53 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- SEO & AI Optimization (Meta Tags) -->
-    <title>NCNI.AGENCY | Systemy AI • Neurotechnologia • Imersja VR</title>
-    <meta name="description" content="NCNI.AGENCY to lider w wdrażaniu systemów AI, neurodesignu i technologii immersyjnych. Tworzymy przyszłość mediów, medycyny i reklamy wykorzystując twarde dane i inżynierię kognitywną.">
-    <meta name="keywords" content="AI Agency, Sztuczna Inteligencja Wrocław, Neurotechnologia, Virtual Production, Immersive Web, Machine Learning, R&D, Innowacje, VR Medyczny">
-    <meta name="author" content="NCNI Agency">
-    <meta name="robots" content="index, follow">
+    <!-- SEO & Identity -->
+    <title>Kiszlo Studio | Marketing & Imersja</title>
+    <meta name="description" content="Kiszlo Studio – marketing, komunikacja i doświadczenia imersyjne. Łączymy strategię z technologią VR i web.">
+    <meta name="author" content="Karol Kiszło">
     
-    <!-- Open Graph / Social Media -->
-    <meta property="og:title" content="NCNI.AGENCY - Intelligence & Technology">
-    <meta property="og:description" content="Architekci systemów AI i rzeczywistości wirtualnej. Łączymy naukę z designem przyszłości.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ncni.agency">
-    
-    <!-- Schema.org JSON-LD -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "NCNI.AGENCY",
-      "url": "https://ncni.agency",
-      "logo": "https://ncni.agency/logo.png",
-      "sameAs": [
-        "https://www.linkedin.com/company/ncni",
-        "https://twitter.com/ncni"
-      ],
-      "founder": {
-        "@type": "Person",
-        "name": "Karol Kiszło",
-        "jobTitle": "CEO & Founder",
-        "image": "kk.jpg"
-      },
-      "employee": {
-        "@type": "Person",
-        "name": "dr hab. inż. Sebastian Kraszewski",
-        "jobTitle": "Chief Scientific Officer & Tech Lead",
-        "honorificPrefix": "Dr hab. inż.",
-        "image": "sk.jpg",
-        "description": "Ekspert w dziedzinie algorytmów kognitywnych i architektury systemów neuronowych."
-      },
-      "description": "Agencja technologiczna specjalizująca się w AI, VR i Neurobiologii."
-    }
-    </script>
-
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@200;400;700;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@200;300;400;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -62,10 +24,14 @@
                         'neon-blue': '#00f3ff',
                         'neon-purple': '#bc13fe',
                         'deep-bg': '#030305',
+                        'glass-border': 'rgba(255, 255, 255, 0.08)',
                     },
                     fontFamily: {
                         'sans': ['Manrope', 'sans-serif'],
                         'tech': ['Space Grotesk', 'monospace'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     }
                 }
             }
@@ -83,7 +49,7 @@
             --bg-color: #030305;
             --text-main: #FAFAFA;
             --accent-glow: #00f3ff;
-            --accent-sec: #bc13fe;
+            --cursor-size: 20px;
         }
 
         body {
@@ -95,503 +61,515 @@
             margin: 0;
             padding: 0;
         }
+
+        /* --- BACKGROUND FX --- */
         
-        /* Video Background */
-        .video-wrapper {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            z-index: -2;
-            overflow: hidden;
-            opacity: 0.4;
-        }
-        .video-wrapper video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        /* Fallback gradient if video fails or loads slow */
-        .video-overlay {
-            position: absolute;
+        /* Noise Texture */
+        .noise-overlay {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 50% 50%, rgba(3,3,5,0.2) 0%, rgba(3,3,5,1) 90%);
-            z-index: -1;
+            pointer-events: none;
+            z-index: 9000;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
 
-        /* WebGL Canvas */
+        /* Subtle Grid */
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: 50px 50px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            z-index: -2;
+            pointer-events: none;
+            mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+            -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+        }
+
         #canvas-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100vh;
-            z-index: -1; /* Behind content, above video */
-            opacity: 0.7; 
+            z-index: -1;
+            opacity: 0.8; 
             mix-blend-mode: screen;
             pointer-events: none;
         }
 
-        /* Custom Cursor */
-        .cursor-dot, .cursor-outline {
+        /* --- CURSOR --- */
+        .cursor-dot {
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent-glow);
             position: fixed;
-            top: 0;
-            left: 0;
+            top: 0; left: 0;
             transform: translate(-50%, -50%);
             border-radius: 50%;
             z-index: 9999;
             pointer-events: none;
-        }
-        .cursor-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--accent-glow);
-            box-shadow: 0 0 10px var(--accent-glow);
+            box-shadow: 0 0 15px var(--accent-glow);
         }
         .cursor-outline {
-            width: 50px;
-            height: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: width 0.2s, height 0.2s, background-color 0.2s, border-color 0.2s;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            position: fixed;
+            top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9998;
+            pointer-events: none;
+            transition: width 0.3s, height 0.3s, background-color 0.3s;
         }
 
+        /* --- UI COMPONENTS --- */
+
+        /* Glitch Text Effect */
+        .glitch-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        .glitch-text {
+            position: relative;
+            z-index: 1;
+        }
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-color);
+        }
+        .glitch-text::before {
+            left: 2px;
+            text-shadow: -1px 0 #ff00c1;
+            clip-path: inset(44% 0 61% 0);
+            animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
+        }
+        .glitch-text::after {
+            left: -2px;
+            text-shadow: -1px 0 #00fff9;
+            clip-path: inset(58% 0 43% 0);
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+        @keyframes glitch-anim-1 {
+            0% { clip-path: inset(20% 0 80% 0); }
+            20% { clip-path: inset(60% 0 10% 0); }
+            40% { clip-path: inset(40% 0 50% 0); }
+            60% { clip-path: inset(80% 0 5% 0); }
+            80% { clip-path: inset(10% 0 70% 0); }
+            100% { clip-path: inset(30% 0 20% 0); }
+        }
+        @keyframes glitch-anim-2 {
+            0% { clip-path: inset(10% 0 60% 0); }
+            20% { clip-path: inset(80% 0 5% 0); }
+            40% { clip-path: inset(30% 0 20% 0); }
+            60% { clip-path: inset(10% 0 80% 0); }
+            80% { clip-path: inset(50% 0 30% 0); }
+            100% { clip-path: inset(70% 0 10% 0); }
+        }
+
+        /* Spotlight Cards */
+        .spotlight-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .spotlight-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.06), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .spotlight-card:hover::before {
+            opacity: 1;
+        }
+        .spotlight-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        
         /* Typography */
         .text-hero {
-            font-size: clamp(3.5rem, 9vw, 11rem);
-            line-height: 0.85;
+            font-size: clamp(3rem, 8vw, 7rem);
+            line-height: 0.95;
             font-weight: 800;
-            letter-spacing: -0.04em;
-            text-transform: uppercase;
-            background: linear-gradient(to right, #fff, #aaa);
+            letter-spacing: -0.03em;
+            font-family: 'Space Grotesk', sans-serif;
+            background: linear-gradient(180deg, #fff 0%, #aaa 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            padding-bottom: 0.1em;
         }
         
         .gradient-text {
-            background: linear-gradient(90deg, var(--accent-glow), #fff);
+            background: linear-gradient(90deg, var(--accent-glow), #a855f7);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        /* Glassmorphism & Neon */
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        }
-        .glass-panel:hover {
-            border-color: var(--accent-glow);
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.15);
-            transform: translateY(-5px) scale(1.01);
-            background: rgba(255, 255, 255, 0.04);
-        }
-
-        /* Image styling */
-        .team-img-container {
-            width: 100%;
-            aspect-ratio: 1/1;
-            overflow: hidden;
-            border-radius: 0.5rem;
-            position: relative;
-            background-color: #111;
-        }
-        .team-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.7s ease;
-            filter: grayscale(100%);
-        }
-        .glass-panel:hover .team-img {
-            transform: scale(1.1);
-            filter: grayscale(0%);
-        }
-
-        /* Separator */
-        .line-separator {
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent-glow), transparent);
-            opacity: 0.3;
-            transform-origin: left;
-        }
-
-        /* Marquee */
-        .marquee-container {
-            width: 100%;
-            overflow: hidden;
-            white-space: nowrap;
-            background: #000;
-            color: var(--accent-glow);
-            border-top: 1px solid rgba(0, 243, 255, 0.2);
-            border-bottom: 1px solid rgba(0, 243, 255, 0.2);
-        }
-        .marquee-content {
-            display: inline-block;
-            animation: marquee 30s linear infinite;
-        }
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* Reveal Animations */
+        /* Utilities */
         .reveal-mask { overflow: hidden; display: block; }
         .reveal-text-inner { display: block; transform: translateY(110%); }
+        
+        /* Mobile Menu */
+        #mobile-menu { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        #mobile-menu.open { transform: translateX(0%); }
+        #mobile-menu.closed { transform: translateX(100%); }
 
-        ::selection {
-            background: var(--accent-glow);
-            color: #000;
-        }
+        ::selection { background: var(--accent-glow); color: #000; }
         
         @media (max-width: 768px) {
             .cursor-dot, .cursor-outline { display: none; }
             body { cursor: auto; }
+            .text-hero { font-size: 13vw; }
         }
     </style>
 </head>
 <body class="antialiased selection:bg-neon-blue selection:text-black">
 
+    <!-- FX Layers -->
+    <div class="noise-overlay"></div>
+    <div class="grid-bg"></div>
+    <div id="canvas-container"></div>
+    
     <!-- Custom Cursor -->
     <div class="cursor-dot"></div>
     <div class="cursor-outline"></div>
 
-    <!-- Backgrounds -->
-    <div class="video-wrapper">
-        <video autoplay muted loop playsinline poster="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=">
-            <!-- <source src="video-bg.mp4" type="video/mp4"> -->
-        </video>
-        <div class="video-overlay"></div>
-    </div>
-    <div id="canvas-container"></div>
-
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 px-6 py-6 md:px-12 md:py-8 flex justify-between items-center bg-gradient-to-b from-black/80 to-transparent backdrop-blur-sm border-b border-white/5">
-        <div class="text-xl md:text-2xl font-bold tracking-tighter cursor-hover-trigger flex items-center gap-2">
-            <span class="w-3 h-3 bg-neon-blue rounded-full animate-pulse"></span>
-            NCNI<span class="text-white/50">.AGENCY</span>
+    <nav class="fixed top-0 w-full z-50 px-6 py-6 md:px-12 md:py-8 flex justify-between items-center bg-black/80 backdrop-blur-md border-b border-white/5 transition-all duration-300" id="navbar">
+        <div class="text-xl md:text-2xl font-bold tracking-tighter cursor-hover-trigger flex items-center gap-3 relative z-50 font-tech">
+            <div class="relative w-4 h-4">
+                <span class="absolute inset-0 bg-neon-blue rounded-full animate-ping opacity-75"></span>
+                <span class="relative block w-4 h-4 bg-neon-blue rounded-full shadow-[0_0_15px_#00f3ff]"></span>
+            </div>
+            <span class="text-white">KISZLO</span><span class="text-white/40">.STUDIO</span>
         </div>
         
-        <div class="hidden md:flex gap-10 text-xs font-tech font-medium uppercase tracking-widest text-white/70">
-            <a href="#misja" class="hover:text-neon-blue transition-colors cursor-hover-trigger relative group">
-                Misja
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center gap-12 text-xs font-tech font-bold uppercase tracking-widest text-white/60">
+            <a href="#about" class="hover:text-neon-blue transition-colors cursor-hover-trigger relative group">
+                <span class="mr-1 text-neon-blue/50">01.</span> Zespół
                 <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-neon-blue transition-all group-hover:w-full"></span>
             </a>
-            <a href="#team" class="hover:text-neon-blue transition-colors cursor-hover-trigger relative group">
-                Zespół
+            <a href="portfolio.html" class="hover:text-neon-blue transition-colors cursor-hover-trigger relative group">
+                <span class="mr-1 text-neon-blue/50">02.</span> Portfolio
                 <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-neon-blue transition-all group-hover:w-full"></span>
             </a>
-            <a href="#expertise" class="hover:text-neon-blue transition-colors cursor-hover-trigger relative group">
-                Technologia
+            <a href="oferta.html" class="hover:text-neon-blue transition-colors cursor-hover-trigger relative group">
+                <span class="mr-1 text-neon-blue/50">03.</span> Oferta
                 <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-neon-blue transition-all group-hover:w-full"></span>
             </a>
             <a href="#contact" class="hover:text-neon-blue transition-colors cursor-hover-trigger relative group">
-                Kontakt
+                <span class="mr-1 text-neon-blue/50">04.</span> Kontakt
                 <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-neon-blue transition-all group-hover:w-full"></span>
             </a>
+            
+            <div class="flex items-center gap-2 border-l border-white/10 pl-6 lang-switch">
+                <span class="active cursor-default text-white">PL</span>
+                <span class="text-white/20">/</span>
+                <a href="eng.html" class="inactive cursor-hover-trigger hover:text-neon-blue transition-colors">EN</a>
+            </div>
         </div>
 
-        <a href="#contact" class="text-xs font-tech border border-neon-blue/30 px-6 py-2 rounded-none hover:bg-neon-blue hover:text-black transition-all duration-300 cursor-hover-trigger shadow-[0_0_15px_rgba(0,243,255,0.1)] hover:shadow-[0_0_25px_rgba(0,243,255,0.4)]">
-            STREFA KLIENTA
-        </a>
+        <!-- Mobile Menu Toggle -->
+        <button id="menu-toggle" class="md:hidden text-white cursor-pointer relative z-50 p-2 focus:outline-none">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
     </nav>
+
+    <!-- Mobile Fullscreen Menu -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-black flex flex-col justify-center items-center gap-8 closed md:hidden">
+        <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
+        <a href="#about" class="mobile-link text-4xl font-tech font-bold text-white hover:text-neon-blue transition-colors">Zespół</a>
+        <a href="portfolio.html" class="mobile-link text-4xl font-tech font-bold text-white hover:text-neon-blue transition-colors">Portfolio</a>
+        <a href="oferta.html" class="mobile-link text-4xl font-tech font-bold text-white hover:text-neon-blue transition-colors">Oferta</a>
+        <a href="#contact" class="mobile-link text-4xl font-tech font-bold text-white hover:text-neon-blue transition-colors">Kontakt</a>
+        <div class="w-12 h-[1px] bg-white/20 my-4"></div>
+        <a href="eng.html" class="text-xl font-tech text-gray-500 hover:text-white transition-colors">EN (USA)</a>
+    </div>
 
     <main>
         
         <!-- Hero Section -->
-        <section class="min-h-screen w-full flex flex-col justify-center px-6 md:px-12 relative pt-20">
-            <div class="z-10 mt-10 md:mt-0">
-                <div class="reveal-mask">
-                    <h1 class="text-hero reveal-text-inner">Intelligence</h1>
+        <section class="min-h-[100dvh] w-full flex flex-col justify-center px-6 md:px-12 relative pt-20">
+            <div class="z-10 mt-10 md:mt-0 max-w-6xl">
+                <!-- Glitch Header -->
+                <div class="reveal-mask mb-6">
+                    <div class="glitch-wrapper reveal-text-inner">
+                        <h1 class="text-hero glitch-text break-words" data-text="KISZLO STUDIO">
+                            KISZLO STUDIO
+                        </h1>
+                    </div>
                 </div>
-                <div class="reveal-mask">
-                    <h1 class="text-hero reveal-text-inner text-white/30">Technology</h1>
+                
+                <!-- Subtitle -->
+                <div class="reveal-mask mb-8 pb-2">
+                    <h2 class="text-xl md:text-3xl font-tech text-neon-blue reveal-text-inner leading-tight tracking-wide">
+                        // Marketing • Komunikacja • Imersja
+                    </h2>
                 </div>
-                <div class="reveal-mask">
-                    <h1 class="text-hero reveal-text-inner gradient-text">Immersion</h1>
+                
+                <!-- Lead Text -->
+                <div class="max-w-2xl reveal-fade opacity-0 border-l border-neon-blue/50 pl-6 py-2 bg-gradient-to-r from-neon-blue/5 to-transparent">
+                    <p class="text-sm md:text-lg text-gray-300 font-sans leading-relaxed">
+                        Pomagamy firmom łączyć strategię marketingową z technologią: tworzymy skuteczną komunikację, nowoczesne strony internetowe i środowiska imersyjne dla aplikacji VR oraz rozwiązań cyfrowych.
+                    </p>
                 </div>
             </div>
             
-            <div class="absolute bottom-12 left-6 right-6 md:left-12 md:right-12 flex flex-col md:flex-row justify-between items-end z-10 border-t border-white/10 pt-6">
-                <div class="max-w-xl mb-6 md:mb-0">
-                    <p class="text-sm md:text-lg text-gray-300 font-tech leading-relaxed reveal-fade opacity-0">
-                        <span class="text-neon-blue">>></span> Architektura systemów AI. Rzeczywistość wirtualna. Neuropsychologia. 
-                        Tworzymy rozwiązania, które nie tylko działają, ale <span class="text-white italic">czują</span> i <span class="text-white italic">rozumieją</span>.
-                    </p>
-                </div>
-                <div class="flex flex-col items-end text-right">
-                    <div class="flex items-center gap-2 mb-2 reveal-fade opacity-0">
-                        <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                        <span class="text-xs font-tech text-neon-blue">SYSTEMS OPERATIONAL</span>
+            <!-- Bottom Indicator -->
+            <div class="absolute bottom-8 left-6 right-6 md:bottom-12 md:left-12 md:right-12 flex justify-between items-end z-10 border-t border-white/10 pt-4 md:pt-6">
+                <div class="flex items-center gap-3 reveal-fade opacity-0">
+                    <div class="flex gap-1">
+                        <span class="w-1 h-3 bg-neon-blue animate-pulse"></span>
+                        <span class="w-1 h-3 bg-neon-blue animate-pulse delay-75"></span>
+                        <span class="w-1 h-3 bg-neon-blue animate-pulse delay-150"></span>
                     </div>
-                    <div class="text-sm font-bold text-white reveal-fade opacity-0">WROCŁAW HQ / GLOBAL REACH</div>
+                    <span class="text-[10px] md:text-xs font-tech text-neon-blue tracking-widest uppercase">System Online</span>
                 </div>
-            </div>
-        </section>
-
-        <!-- Mission Section -->
-        <section id="misja" class="py-32 px-6 md:px-12 relative z-10">
-            <div class="line-separator mb-16 scale-x-0 scroll-line"></div>
-            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12">
-                <div class="md:col-span-4">
-                    <span class="text-xs font-tech text-neon-blue uppercase tracking-widest mb-4 block">01 / Misja</span>
-                    <h3 class="text-2xl font-bold text-white mb-4">Porządkujemy Chaos</h3>
-                    <p class="text-gray-400 leading-relaxed text-sm">
-                        W erze nadmiaru informacji, NCNI działa jako filtr i akcelerator. Nie wdrażamy technologii dla samej technologii. Budujemy ekosystemy, które rozwiązują realne problemy biznesowe i społeczne.
-                    </p>
-                </div>
-                <div class="md:col-span-8">
-                    <h2 class="text-3xl md:text-6xl font-light leading-[1.1] text-gray-400 manifesto-text">
-                        Jesteśmy <span class="text-white font-semibold">operacyjnym ramieniem przyszłości</span>. Wykorzystując <span class="text-neon-blue">modele generatywne</span> i badania nad mózgiem, tworzymy przewagę konkurencyjną, która jest mierzalna, skalowalna i odporna na upływ czasu.
-                    </h2>
+                <div class="text-[10px] md:text-xs font-tech text-gray-600 uppercase tracking-widest reveal-fade opacity-0">
+                    Scroll to Explore
                 </div>
             </div>
         </section>
 
         <!-- Team Section -->
-        <section id="team" class="py-24 px-6 md:px-12 relative z-10 bg-gradient-to-b from-transparent to-black/50">
-            <div class="flex justify-between items-end mb-16">
-                <h2 class="text-4xl md:text-6xl font-bold tracking-tight text-white">LIDERZY<br><span class="text-gray-600">INNOWACJI</span></h2>
-                <div class="hidden md:block text-right">
-                    <p class="text-xs font-tech text-neon-blue uppercase tracking-widest">Core Team</p>
+        <section id="about" class="py-20 md:py-32 px-6 md:px-12 relative z-10">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex items-center gap-4 mb-16">
+                    <span class="text-xs font-tech text-neon-blue uppercase tracking-widest">01 / Zespół</span>
+                    <div class="h-[1px] w-24 bg-white/10"></div>
                 </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
                 
-                <!-- Creator Profile -->
-                <div class="glass-panel p-6 rounded-xl group cursor-hover-trigger">
-                    <div class="flex flex-col md:flex-row gap-6 items-start">
-                        <div class="w-full md:w-48 shrink-0">
-                            <div class="team-img-container">
-                                <img src="kk.jpg" alt="Karol Kiszło" class="team-img" onerror="this.src='https://ui-avatars.com/api/?name=Karol+K&background=111&color=fff&size=200'">
+                <h2 class="text-3xl md:text-6xl font-bold font-tech text-white mb-20 leading-tight max-w-5xl">
+                    Strategia spotyka się tu z <br>
+                    <span class="gradient-text">Technologią i Nauką.</span>
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                    
+                    <!-- Karol Kiszło Card -->
+                    <div class="spotlight-card p-8 rounded-2xl group cursor-hover-trigger">
+                        <div class="flex flex-col sm:flex-row gap-8 items-start relative z-10">
+                            <div class="w-full sm:w-32 shrink-0">
+                                <div class="team-img-container grayscale group-hover:grayscale-0 transition-all duration-500">
+                                    <img src="kk.jpg" alt="Karol Kiszło" class="team-img" onerror="this.src='https://ui-avatars.com/api/?name=Karol+Kiszlo&background=111&color=fff&size=400'">
+                                </div>
                             </div>
-                        </div>
-                        <div>
-                            <span class="text-xs font-tech text-neon-blue border border-neon-blue/20 px-2 py-1 rounded mb-2 inline-block">FOUNDER / CEO</span>
-                            <h3 class="text-2xl font-bold text-white mb-2">Karol Kiszło</h3>
-                            <p class="text-gray-400 text-sm mb-4">
-                                Wizjoner i strateg. Twórca koncepcji NCNI. Łączy światy biznesu, sztuki i zaawansowanych technologii. Odpowiedzialny za kierunek rozwoju agencji i implementację kluczowych partnerstw.
-                            </p>
-                            <div class="flex gap-2">
-                                <div class="h-1 w-8 bg-neon-blue"></div>
-                                <div class="h-1 w-2 bg-gray-700"></div>
+                            <div>
+                                <span class="text-[10px] font-tech text-neon-blue border border-neon-blue/30 px-2 py-1 rounded mb-3 inline-block bg-neon-blue/5">FOUNDER & STRATEGIST</span>
+                                <h3 class="text-2xl font-bold text-white mb-3 font-tech">Karol Kiszło</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed border-l-2 border-white/10 pl-4 group-hover:border-neon-blue transition-colors">
+                                    Łączę światy biznesu i technologii. Odpowiadam za strategię marketingową i wizję projektów. Projektuję komunikację, która działa.
+                                </p>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Sebastian Profile -->
-                <div class="glass-panel p-6 rounded-xl group cursor-hover-trigger">
-                    <div class="flex flex-col md:flex-row gap-6 items-start">
-                        <div class="w-full md:w-48 shrink-0">
-                            <div class="team-img-container">
-                                <img src="sk.jpg" alt="Sebastian" class="team-img" onerror="this.src='https://ui-avatars.com/api/?name=Sebastian+K&background=111&color=fff&size=200'">
+                    <!-- Sebastian Kraszewski Card -->
+                    <div class="spotlight-card p-8 rounded-2xl group cursor-hover-trigger">
+                        <div class="flex flex-col sm:flex-row gap-8 items-start relative z-10">
+                            <div class="w-full sm:w-32 shrink-0">
+                                <div class="team-img-container grayscale group-hover:grayscale-0 transition-all duration-500">
+                                    <img src="sk.jpg" alt="Sebastian Kraszewski" class="team-img" onerror="this.src='https://ui-avatars.com/api/?name=Sebastian+K&background=111&color=fff&size=400'">
+                                </div>
                             </div>
-                        </div>
-                        <div>
-                            <span class="text-xs font-tech text-neon-purple border border-neon-purple/20 px-2 py-1 rounded mb-2 inline-block">TECH LEAD / SCIENCE</span>
-                            <h3 class="text-2xl font-bold text-white mb-2">dr hab. inż. Sebastian</h3>
-                            <p class="text-gray-400 text-sm mb-4">
-                                Główny inżynier i naukowiec. Ekspert w dziedzinie algorytmów kognitywnych i sieci neuronowych. Nadzoruje jakość technologiczną wdrożeń oraz prowadzi dział B+R (R&D) w zakresie nowych interfejsów człowiek-maszyna.
-                            </p>
-                            <div class="flex gap-2">
-                                <div class="h-1 w-8 bg-neon-purple"></div>
-                                <div class="h-1 w-2 bg-gray-700"></div>
+                            <div>
+                                <span class="text-[10px] font-tech text-neon-purple border border-neon-purple/30 px-2 py-1 rounded mb-3 inline-block bg-neon-purple/5">TECH LEAD & SCIENCE</span>
+                                <h3 class="text-2xl font-bold text-white mb-3 font-tech">dr hab. inż. Sebastian</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed border-l-2 border-white/10 pl-4 group-hover:border-neon-purple transition-colors">
+                                    Mózg operacyjny od strony technologii. Ekspert w dziedzinie algorytmów i systemów neuronowych. Czuwa nad jakością naukową.
+                                </p>
                             </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </section>
 
-        <!-- Expertise Grid -->
-        <section id="expertise" class="py-24 px-6 md:px-12 relative z-10">
-            <div class="flex justify-between items-end mb-16">
+        <!-- Oferta Preview -->
+        <section class="py-20 md:py-32 px-6 md:px-12 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-white/5 pb-8">
                 <div>
-                    <span class="text-xs font-tech text-neon-blue uppercase tracking-widest mb-4 block">03 / Kompetencje</span>
-                    <h2 class="text-4xl md:text-6xl font-bold tracking-tight text-white">TECH<br><span class="text-gray-700">STACK</span></h2>
+                    <div class="flex items-center gap-4 mb-4">
+                        <span class="text-xs font-tech text-neon-blue uppercase tracking-widest">02 / Oferta</span>
+                        <div class="h-[1px] w-24 bg-white/10"></div>
+                    </div>
+                    <h2 class="text-4xl md:text-7xl font-bold tracking-tighter text-white font-tech">OBSZARY<br><span class="text-gray-700">DZIAŁANIA</span></h2>
+                </div>
+                <div class="mt-8 md:mt-0 max-w-sm md:text-right text-gray-400 text-sm">
+                    <p class="mb-4">Interdyscyplinarne podejście do technologii i marketingu.</p>
+                    <a href="oferta.html" class="inline-flex items-center gap-2 text-neon-blue hover:text-white transition-colors uppercase font-tech text-xs tracking-widest group">
+                        Pełna oferta 
+                        <span class="block w-4 h-[1px] bg-neon-blue group-hover:w-8 transition-all"></span>
+                    </a>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
                 <!-- Card 1 -->
-                <div class="glass-panel p-8 md:p-12 rounded-2xl group cursor-hover-trigger relative overflow-hidden border-l-4 border-l-transparent hover:border-l-neon-blue">
-                    <div class="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-100 group-hover:text-neon-blue transition-all duration-500">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                <div class="spotlight-card p-10 rounded-2xl group cursor-hover-trigger">
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center mb-6 text-neon-blue group-hover:bg-neon-blue group-hover:text-black transition-all">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4 font-tech">Kampanie & Strategia</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                            Projektujemy mądre kampanie – od citylightów po ekrany w klinikach. Spinamy offline z online’em.
+                        </p>
+                        <a href="oferta.html" class="text-xs font-tech text-gray-500 group-hover:text-neon-blue uppercase tracking-widest transition-colors">Czytaj więcej -></a>
                     </div>
-                    <span class="text-xs font-tech text-gray-500 mb-4 block">01</span>
-                    <h3 class="text-2xl font-bold text-white mb-4">AI Health & Med</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed max-w-sm">
-                        Precyzyjna architektura modeli AI dla medycyny. Analiza obrazowa, systemy wspierania decyzji klinicznych i cyfrowe protokoły rehabilitacyjne VR.
-                    </p>
                 </div>
 
                 <!-- Card 2 -->
-                <div class="glass-panel p-8 md:p-12 rounded-2xl group cursor-hover-trigger relative overflow-hidden border-l-4 border-l-transparent hover:border-l-neon-purple">
-                    <div class="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-100 group-hover:text-neon-purple transition-all duration-500">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                <div class="spotlight-card p-10 rounded-2xl group cursor-hover-trigger">
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center mb-6 text-neon-purple group-hover:bg-neon-purple group-hover:text-black transition-all">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4 font-tech">Web & VR Development</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                            Zaawansowane strony www, systemy rejestracji i środowiska imersyjne VR dla biznesu i medycyny.
+                        </p>
+                        <a href="oferta.html" class="text-xs font-tech text-gray-500 group-hover:text-neon-purple uppercase tracking-widest transition-colors">Czytaj więcej -></a>
                     </div>
-                    <span class="text-xs font-tech text-gray-500 mb-4 block">02</span>
-                    <h3 class="text-2xl font-bold text-white mb-4">Generative Media</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed max-w-sm">
-                        Automatyzacja tworzenia treści wideo i grafiki. Hiper-personalizacja przekazu reklamowego oparta na danych biometrycznych i behawioralnych.
-                    </p>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="glass-panel p-8 md:p-12 rounded-2xl group cursor-hover-trigger relative overflow-hidden border-l-4 border-l-transparent hover:border-l-neon-blue">
-                    <div class="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-100 group-hover:text-neon-blue transition-all duration-500">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                    </div>
-                    <span class="text-xs font-tech text-gray-500 mb-4 block">03</span>
-                    <h3 class="text-2xl font-bold text-white mb-4">Immersive Web & VR</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed max-w-sm">
-                        Doświadczenia WebGL i WebXR. Strony internetowe, które są aplikacjami. Wirtualne salony sprzedaży i przestrzenie szkoleniowe.
-                    </p>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="glass-panel p-8 md:p-12 rounded-2xl group cursor-hover-trigger relative overflow-hidden border-l-4 border-l-transparent hover:border-l-neon-purple">
-                    <div class="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-100 group-hover:text-neon-purple transition-all duration-500">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
-                    </div>
-                    <span class="text-xs font-tech text-gray-500 mb-4 block">04</span>
-                    <h3 class="text-2xl font-bold text-white mb-4">Virtual Production</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed max-w-sm">
-                        Produkcja filmowa nowej generacji. Unreal Engine, VFX w czasie rzeczywistym i cyfrowe plany zdjęciowe. Hollywoodzka jakość dla biznesu.
-                    </p>
                 </div>
             </div>
-
-            <!-- NEW B2B / Custom Dev Feature Section -->
-            <div class="glass-panel rounded-3xl overflow-hidden grid grid-cols-1 md:grid-cols-12 group relative border border-white/5 shadow-2xl shadow-neon-blue/5">
-                
-                <!-- Left Content -->
-                <div class="md:col-span-7 p-8 md:p-16 flex flex-col justify-center relative z-10">
-                    <div class="mb-6">
-                        <span class="text-xs font-tech text-neon-blue border border-neon-blue/20 px-3 py-1 rounded-full mb-4 inline-block tracking-widest uppercase bg-neon-blue/5">
-                            B2B & Clinical Solutions
-                        </span>
-                        <h3 class="text-3xl md:text-5xl font-bold text-white mb-2 leading-tight">
-                            DEDYKUJEMY <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-white">PRZYSZŁOŚĆ.</span>
-                        </h3>
-                        <p class="text-xl text-gray-400 font-light">Software Medyczny & VR na Zamówienie</p>
-                    </div>
-
-                    <p class="text-gray-400 text-sm leading-relaxed mb-8 border-l-2 border-neon-blue/30 pl-4">
-                        Jako ośrodek R&D, projektujemy od podstaw dedykowane scenariusze terapeutyczne i aplikacje VR, ściśle dopasowane do specyfiki klinicznej Twojej placówki. Oferujemy pełną personalizację środowiska – od poziomu stymulacji sensorycznej po integrację z zaawansowanymi systemami biofeedbacku i EEG.
-                    </p>
-                    
-                    <ul class="space-y-4 mb-8">
-                        <li class="flex items-start gap-3 text-sm text-gray-300">
-                            <svg class="w-5 h-5 text-neon-blue shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            <span><strong>Placówki Medyczne:</strong> Własne protokoły terapeutyczne i badawcze.</span>
-                        </li>
-                        <li class="flex items-start gap-3 text-sm text-gray-300">
-                            <svg class="w-5 h-5 text-neon-blue shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
-                            <span><strong>Ośrodki Specjalistyczne:</strong> Neurorehabilitacja, ADHD, Geriatria.</span>
-                        </li>
-                        <li class="flex items-start gap-3 text-sm text-gray-300">
-                            <svg class="w-5 h-5 text-neon-blue shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                            <span><strong>Custom Development:</strong> Innowacje pod Twoim własnym brandem.</span>
-                        </li>
-                    </ul>
-
-                    <div>
-                        <a href="mailto:kontakt@ncni.pl" class="inline-flex items-center gap-2 text-xs font-tech uppercase tracking-widest text-neon-blue hover:text-white transition-colors group/link">
-                            Rozpocznij Projekt
-                            <span class="block w-8 h-[1px] bg-neon-blue group-hover/link:w-12 transition-all"></span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Right Image -->
-                <div class="md:col-span-5 relative min-h-[300px] md:min-h-full overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10 md:bg-gradient-to-l"></div>
-                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" 
-                         alt="VR Development" 
-                         class="w-full h-full object-cover grayscale opacity-60 group-hover:scale-105 group-hover:grayscale-0 transition-all duration-700 ease-out">
-                    
-                    <!-- Decorative Overlay Grid -->
-                    <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImgridIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPjxwYXRoIGQ9Ik0wIDQwTDQwIDBIMHoiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-20"></div>
-                </div>
-            </div>
-
         </section>
 
-        <!-- Marquee Strip -->
-        <div class="marquee-container py-4 md:py-6 bg-black">
-            <div class="marquee-content font-tech font-bold text-xl md:text-2xl tracking-tight uppercase">
-                Neural Networks • Machine Learning • Data Science • Virtual Reality • Augmented Reality • Cognitive Science • Neural Networks • Machine Learning • Data Science • Virtual Reality • Augmented Reality • Cognitive Science •
+        <!-- Portfolio Placeholder -->
+        <section class="py-16 px-6 md:px-12 border-t border-white/5 bg-black/40 relative overflow-hidden">
+             <!-- Background Tech Grid -->
+             <div class="absolute inset-0 opacity-10" style="background-image: linear-gradient(rgba(0, 243, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 243, 255, 0.1) 1px, transparent 1px); background-size: 40px 40px;"></div>
+             
+            <div class="flex items-center justify-between relative z-10">
+                <span class="text-xs font-tech text-gray-500 uppercase tracking-widest block">03 / Portfolio</span>
+                <a href="portfolio.html" class="text-sm text-neon-blue hover:text-white transition-colors font-tech uppercase tracking-widest">Zobacz realizacje -></a>
             </div>
-            <div class="marquee-content font-tech font-bold text-xl md:text-2xl tracking-tight uppercase" aria-hidden="true">
-                Neural Networks • Machine Learning • Data Science • Virtual Reality • Augmented Reality • Cognitive Science • Neural Networks • Machine Learning • Data Science • Virtual Reality • Augmented Reality • Cognitive Science •
+            <!-- Marquee Strip -->
+            <div class="overflow-hidden whitespace-nowrap py-16 opacity-60 relative z-10">
+                <div class="inline-block animate-[marquee_25s_linear_infinite] text-5xl md:text-7xl font-bold text-transparent stroke-text font-tech" style="-webkit-text-stroke: 1px rgba(255,255,255,0.2);">
+                    WEB DEVELOPMENT • VIRTUAL REALITY • STRATEGIA • UX/UI DESIGN • HARDWARE • CONSULTING •
+                </div>
             </div>
-        </div>
+        </section>
 
         <!-- Footer / Contact -->
-        <section id="contact" class="min-h-[60vh] flex flex-col justify-between px-6 md:px-12 py-24 relative bg-[#020202] border-t border-gray-900">
-            <div class="z-10 grid grid-cols-1 md:grid-cols-2 gap-12">
+        <section id="contact" class="min-h-[60vh] flex flex-col justify-between px-6 md:px-12 py-20 md:py-32 relative bg-[#020202] border-t border-white/10">
+            <div class="z-10 grid grid-cols-1 md:grid-cols-2 gap-16">
                 <div>
-                    <p class="text-xs font-tech text-neon-blue uppercase tracking-widest mb-8">Rozpocznij Współpracę</p>
-                    <h2 class="text-4xl md:text-7xl font-bold tracking-tighter leading-[0.9] mb-8 text-white">
-                        ZDEFINIUJMY<br>
-                        <span class="text-gray-700">JUTRO.</span>
+                    <span class="text-xs font-tech text-neon-blue uppercase tracking-widest mb-6 block">Rozpocznij Projekt</span>
+                    <h2 class="text-4xl md:text-7xl font-bold tracking-tighter leading-[0.9] mb-8 text-white font-tech">
+                        WSPÓLNIE<br>
+                        <span class="text-gray-800">STWÓRZMY JUTRO.</span>
                     </h2>
                 </div>
                 <div class="flex flex-col justify-center items-start md:items-end">
-                     <a href="mailto:kontakt@ncni.pl" class="group relative text-2xl md:text-4xl text-white font-light cursor-hover-trigger">
-                        kontakt@ncni.pl
-                        <span class="absolute -bottom-2 left-0 w-0 h-[2px] bg-neon-blue transition-all duration-300 group-hover:w-full"></span>
+                     <a href="mailto:neuroinnowacje@gmail.com" class="group relative text-2xl md:text-5xl text-white font-light cursor-hover-trigger break-all md:break-normal font-tech tracking-tight">
+                        neuroinnowacje@gmail.com
+                        <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-neon-blue transition-all duration-300 group-hover:w-full"></span>
                     </a>
-                    <p class="mt-4 text-gray-500 font-tech">Odpowiadamy w ciągu 24h.</p>
+                    <a href="tel:+48600608303" class="mt-6 text-xl text-gray-400 hover:text-white transition-colors font-tech">
+                        +48 600 608 303
+                    </a>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-end z-10 pt-24">
-                <div class="text-sm text-gray-400 font-tech">
-                    <p class="text-white font-bold mb-2 tracking-widest">NCNI.AGENCY</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 items-end z-10 pt-16 md:pt-24 border-t border-white/5 mt-12">
+                <div class="text-sm text-gray-500 font-tech">
+                    <p class="text-white font-bold mb-2 tracking-widest uppercase">Kiszlo Studio</p>
                     <p>ul. Żeromskiego 60/5a</p>
                     <p>50-312 Wrocław, Poland</p>
-                    <p class="mt-2 text-xs text-gray-600">EU VAT: PL8982250000</p>
                 </div>
                 
-                <div class="flex flex-col gap-3 text-sm text-gray-400 font-tech">
-                    <a href="https://neuroinnowacje.pl" target="_blank" class="hover:text-neon-blue transition-colors cursor-hover-trigger flex items-center gap-2">
-                        Neuroinnowacje.pl <span class="text-[10px] border border-gray-700 px-1 rounded">B2B</span>
-                    </a>
-                    <a href="https://ncni.pl" target="_blank" class="hover:text-neon-blue transition-colors cursor-hover-trigger flex items-center gap-2">
-                        NCNI Science <span class="text-[10px] border border-gray-700 px-1 rounded">R&D</span>
+                <div class="flex flex-col gap-3 text-sm text-gray-500 font-tech">
+                    <div class="text-xs uppercase mb-1 tracking-widest text-gray-700">Partnerzy</div>
+                    <a href="https://ncni.pl" target="_blank" class="hover:text-neon-blue transition-colors flex items-center gap-2 group">
+                        Naukowe Centrum Neuroinnowacji
+                        <svg class="w-3 h-3 text-gray-600 group-hover:text-neon-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                     </a>
                 </div>
 
-                <div class="text-xs text-gray-600 font-tech uppercase md:text-right">
-                    <div class="mb-1">Designed by NCNI AI Core</div>
-                    © 2025 NCNI. All Rights Reserved.
+                <div class="text-xs text-gray-700 font-tech uppercase md:text-right">
+                    &copy; 2026 Kiszlo Studio. All Rights Reserved.
                 </div>
             </div>
             
             <!-- Glow Footer -->
-            <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[80%] h-[300px] bg-neon-blue opacity-[0.05] rounded-full blur-[120px] pointer-events-none"></div>
+            <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[60%] h-[300px] bg-neon-blue opacity-[0.05] rounded-full blur-[120px] pointer-events-none"></div>
         </section>
 
     </main>
 
     <script>
         document.addEventListener("DOMContentLoaded", (event) => {
-            console.log("NCNI System: v2.0 Online");
+            console.log("Kiszlo Studio v2.0: Cyber-Neuro System Online");
 
-            // --- 1. SMOOTH SCROLL ---
+            // --- 0. SPOTLIGHT EFFECT LOGIC ---
+            const cards = document.querySelectorAll(".spotlight-card");
+            cards.forEach(card => {
+                card.onmousemove = e => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty("--mouse-x", `${x}px`);
+                    card.style.setProperty("--mouse-y", `${y}px`);
+                };
+            });
+
+            // --- 1. MOBILE MENU ---
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+            let isMenuOpen = false;
+
+            menuToggle.addEventListener('click', () => {
+                isMenuOpen = !isMenuOpen;
+                if(isMenuOpen) {
+                    mobileMenu.classList.remove('closed');
+                    mobileMenu.classList.add('open');
+                    menuToggle.innerHTML = '<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>';
+                } else {
+                    mobileMenu.classList.remove('open');
+                    mobileMenu.classList.add('closed');
+                    menuToggle.innerHTML = '<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
+                }
+            });
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    isMenuOpen = false;
+                    mobileMenu.classList.remove('open');
+                    mobileMenu.classList.add('closed');
+                    menuToggle.innerHTML = '<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
+                });
+            });
+
+            // --- 2. SMOOTH SCROLL (Lenis) ---
             const lenis = new Lenis({
-                duration: 1.5, // Slower, more "heavy" feel
+                duration: 1.2,
                 easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
                 smooth: true,
             });
@@ -601,7 +579,7 @@
             }
             requestAnimationFrame(raf);
 
-            // --- 2. CURSOR LOGIC ---
+            // --- 3. CURSOR LOGIC ---
             const cursorDot = document.querySelector('.cursor-dot');
             const cursorOutline = document.querySelector('.cursor-outline');
             const hoverTriggers = document.querySelectorAll('.cursor-hover-trigger');
@@ -612,134 +590,135 @@
                     const posY = e.clientY;
                     cursorDot.style.left = `${posX}px`;
                     cursorDot.style.top = `${posY}px`;
+                    
+                    // Smooth delay for outline
                     cursorOutline.animate({
                         left: `${posX}px`,
                         top: `${posY}px`
-                    }, { duration: 400, fill: "forwards" });
+                    }, { duration: 500, fill: "forwards" });
                 });
 
                 hoverTriggers.forEach(link => {
                     link.addEventListener('mouseenter', () => {
-                        cursorOutline.style.transform = 'translate(-50%, -50%) scale(2.5)';
+                        cursorOutline.style.transform = 'translate(-50%, -50%) scale(2)';
                         cursorOutline.style.backgroundColor = 'rgba(0, 243, 255, 0.05)';
                         cursorOutline.style.borderColor = 'rgba(0, 243, 255, 0.5)';
-                        cursorDot.style.opacity = '0';
                     });
                     link.addEventListener('mouseleave', () => {
                         cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
                         cursorOutline.style.backgroundColor = 'transparent';
-                        cursorOutline.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-                        cursorDot.style.opacity = '1';
+                        cursorOutline.style.borderColor = 'rgba(255, 255, 255, 0.3)';
                     });
                 });
             }
 
-            // --- 3. ANIMATIONS (GSAP) ---
+            // --- 4. ANIMATIONS (GSAP) ---
             gsap.registerPlugin(ScrollTrigger);
 
             const tl = gsap.timeline();
             tl.to(".reveal-text-inner", {
-                y: 0, duration: 1.4, ease: "power4.out", stagger: 0.2
+                y: 0, duration: 1.4, ease: "power4.out", stagger: 0.1
             })
             .to(".reveal-fade", {
                 opacity: 1, duration: 1, stagger: 0.1
             }, "-=0.8");
 
-            gsap.to(".scroll-line", {
-                scaleX: 1, duration: 1.5, ease: "power2.out",
-                scrollTrigger: { trigger: "#misja", start: "top 80%" }
-            });
-
-            // Parallax/Fade for sections
-            gsap.utils.toArray('.glass-panel').forEach((panel, i) => {
-                gsap.from(panel, {
-                    scrollTrigger: { trigger: panel, start: "top 95%" },
-                    y: 60, opacity: 0, duration: 0.8, ease: "back.out(1.7)", delay: i * 0.1
-                });
-            });
-
-            // --- 4. THREE.JS (ENHANCED) ---
+            // --- 5. THREE.JS: NEURAL NETWORK EFFECT ---
             const canvasContainer = document.getElementById('canvas-container');
             if (canvasContainer) {
                 const scene = new THREE.Scene();
-                // Add subtle fog for depth
-                scene.fog = new THREE.FogExp2(0x000000, 0.002);
-
                 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                camera.position.z = 20;
+
                 const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
                 renderer.setSize(window.innerWidth, window.innerHeight);
                 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
                 canvasContainer.appendChild(renderer.domElement);
 
-                // Complex Geometry - Connecting Nodes
-                const geometry = new THREE.BufferGeometry();
-                const count = 300; // More particles
-                const positions = new Float32Array(count * 3);
-                const colors = new Float32Array(count * 3);
+                // Create Particles
+                const particleCount = window.innerWidth < 768 ? 60 : 100; // Less particles for cleaner look
+                const particles = new THREE.Group();
+                const particleGeo = new THREE.SphereGeometry(0.1, 8, 8);
+                const particleMat = new THREE.MeshBasicMaterial({ color: 0x00f3ff, transparent: true, opacity: 0.8 });
+                
+                const particlePositions = [];
+                const particleVelocities = [];
 
-                for(let i = 0; i < count * 3; i+=3) {
-                    positions[i] = (Math.random() - 0.5) * 20;
-                    positions[i+1] = (Math.random() - 0.5) * 20;
-                    positions[i+2] = (Math.random() - 0.5) * 20;
-
-                    // Color gradient: Cyan to Purple mix
-                    const mix = Math.random();
-                    if(mix > 0.5) {
-                        colors[i] = 0; colors[i+1] = 0.95; colors[i+2] = 1; // Cyan
-                    } else {
-                        colors[i] = 0.7; colors[i+1] = 0; colors[i+2] = 1; // Purple
-                    }
+                for(let i=0; i<particleCount; i++) {
+                    const mesh = new THREE.Mesh(particleGeo, particleMat);
+                    const x = (Math.random() - 0.5) * 40;
+                    const y = (Math.random() - 0.5) * 40;
+                    const z = (Math.random() - 0.5) * 20;
+                    
+                    mesh.position.set(x, y, z);
+                    particles.add(mesh);
+                    
+                    particlePositions.push(mesh.position);
+                    particleVelocities.push(new THREE.Vector3(
+                        (Math.random() - 0.5) * 0.02,
+                        (Math.random() - 0.5) * 0.02,
+                        (Math.random() - 0.5) * 0.02
+                    ));
                 }
-
-                geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-                geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-
-                const material = new THREE.PointsMaterial({
-                    size: 0.05,
-                    vertexColors: true,
-                    transparent: true,
-                    opacity: 0.8,
-                    blending: THREE.AdditiveBlending
-                });
-
-                const particles = new THREE.Points(geometry, material);
                 scene.add(particles);
 
-                camera.position.z = 8;
+                // Lines
+                const lineMaterial = new THREE.LineBasicMaterial({ color: 0x00f3ff, transparent: true, opacity: 0.15 });
+                const lineGeometry = new THREE.BufferGeometry();
+                const lines = new THREE.LineSegments(lineGeometry, lineMaterial);
+                scene.add(lines);
 
                 // Mouse interaction
                 let mouseX = 0, mouseY = 0;
-                let targetX = 0, targetY = 0;
-                const windowHalfX = window.innerWidth / 2;
-                const windowHalfY = window.innerHeight / 2;
-
                 document.addEventListener('mousemove', (event) => {
-                    mouseX = (event.clientX - windowHalfX);
-                    mouseY = (event.clientY - windowHalfY);
+                    mouseX = (event.clientX - window.innerWidth / 2) * 0.05;
+                    mouseY = (event.clientY - window.innerHeight / 2) * 0.05;
                 });
 
-                const clock = new THREE.Clock();
+                function animate() {
+                    requestAnimationFrame(animate);
 
-                function animate3D() {
-                    const time = clock.getElapsedTime();
-                    
-                    targetX = mouseX * 0.0005;
-                    targetY = mouseY * 0.0005;
+                    // Update particles
+                    const positions = particles.children.map(p => p.position);
+                    const linePositions = [];
 
-                    particles.rotation.y += 0.05 * (targetX - particles.rotation.y);
-                    particles.rotation.x += 0.05 * (targetY - particles.rotation.x);
+                    particles.children.forEach((p, i) => {
+                        // Move
+                        p.position.add(particleVelocities[i]);
+                        
+                        // Bounce off bounds
+                        if(p.position.x > 20 || p.position.x < -20) particleVelocities[i].x *= -1;
+                        if(p.position.y > 20 || p.position.y < -20) particleVelocities[i].y *= -1;
+                        if(p.position.z > 10 || p.position.z < -10) particleVelocities[i].z *= -1;
+
+                        // Mouse influence
+                        p.position.x += (mouseX * 0.001 - p.position.x) * 0.01;
+                        p.position.y += (-mouseY * 0.001 - p.position.y) * 0.01;
+
+                        // Find connections
+                        for(let j=i+1; j<particleCount; j++) {
+                            const p2 = particles.children[j];
+                            const dist = p.position.distanceTo(p2.position);
+                            
+                            if(dist < 5) { // Connection distance
+                                linePositions.push(
+                                    p.position.x, p.position.y, p.position.z,
+                                    p2.position.x, p2.position.y, p2.position.z
+                                );
+                            }
+                        }
+                    });
+
+                    // Update lines
+                    lineGeometry.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
                     
-                    // Constant slow rotation + wave
-                    particles.rotation.z = time * 0.05;
-                    
-                    // Pulse size effect
-                    const s = 1 + Math.sin(time * 2) * 0.05;
-                    particles.scale.set(s, s, s);
+                    // Rotate entire system slowly
+                    particles.rotation.y += 0.001;
+                    lines.rotation.y += 0.001;
 
                     renderer.render(scene, camera);
-                    requestAnimationFrame(animate3D);
                 }
-                animate3D();
+                animate();
 
                 window.addEventListener('resize', () => {
                     camera.aspect = window.innerWidth / window.innerHeight;
