@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- SEO & Identity for Kiszlo.ai -->
-    <title>Kiszlo Studio | AI Marketing & Imersyjne Technologie VR</title>
-    <meta name="description" content="Kiszlo Studio (www.kiszlo.ai) – Agencja przyszłości. Łączymy strategię marketingową z technologią AI, automatyzacją i wirtualną rzeczywistością (VR). Neuroinnowacje i Web Development.">
-    <meta name="keywords" content="Agencja AI, Marketing AI, VR Wrocław, Automatyzacja Biznesu, Strony WWW, Neuroinnowacje, Karol Kiszło, Imersja">
+    <!-- SEO & Identity for Kiszlo Studio -->
+    <title>Kiszlo Studio | Strategia Marketingowa, AI, VR & MedTech</title>
+    <meta name="description" content="Kiszlo Studio – Łączymy marketing z technologią. Specjalizujemy się w AI dla medycyny (MedTech), medycznym VR (symulacje, terapia) oraz multimedialnych kampaniach dla biznesu i kultury.">
+    <meta name="keywords" content="Kiszlo Studio, AI w medycynie, MedTech Software, Marketing Strategiczny, VR Wrocław, VR w medycynie, Rehabilitacja VR, Scenografia Multimedialna, Automatyzacja Biznesu, Karol Kiszło">
     <meta name="author" content="Karol Kiszło">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.kiszlo.ai/">
@@ -15,29 +15,33 @@
     <!-- Open Graph / Facebook / LinkedIn -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.kiszlo.ai/">
-    <meta property="og:title" content="Kiszlo Studio | AI & Marketing Przyszłości">
-    <meta property="og:description" content="Strategia, Design, AI, VR. Tworzymy rozwiązania jutra dla Twojego biznesu.">
+    <meta property="og:site_name" content="Kiszlo Studio">
+    <meta property="og:title" content="Kiszlo Studio | AI, MedTech & Marketing">
+    <meta property="og:description" content="Tworzymy innowacje dla medycyny i biznesu. Od aplikacji AI i symulatorów VR po kampanie multimedialne.">
     <meta property="og:image" content="https://www.kiszlo.ai/og-image.jpg">
+    <meta property="og:locale" content="pl_PL">
 
-    <!-- Twitter -->
+    <!-- Twitter Card -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://www.kiszlo.ai/">
-    <meta property="twitter:title" content="Kiszlo Studio | AI & Marketing">
-    <meta property="twitter:description" content="Strategia, Design, AI, VR. Tworzymy rozwiązania jutra.">
+    <meta property="twitter:title" content="Kiszlo Studio | AI & MedTech VR">
+    <meta property="twitter:description" content="Technologia w służbie zdrowia i biznesu. Sprawdź nasze rozwiązania VR i AI.">
 
-    <!-- AI & Schema.org Structured Data (Kluczowe dla AI Search) -->
+    <!-- AI & Schema.org Structured Data (Advanced SEO) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
+      "@type": "ProfessionalService",
       "name": "Kiszlo Studio",
+      "alternateName": "Kiszlo.ai",
       "url": "https://www.kiszlo.ai",
       "logo": "https://www.kiszlo.ai/logo.png",
       "founder": {
         "@type": "Person",
-        "name": "Karol Kiszło"
+        "name": "Karol Kiszło",
+        "jobTitle": "CEO & Strategist"
       },
-      "description": "Agencja technologiczno-marketingowa specjalizująca się w AI, VR i neuroinnowacjach.",
+      "description": "Agencja technologiczna specjalizująca się w rozwiązaniach AI dla medycyny (MedTech), aplikacjach VR do terapii i szkoleń oraz marketingu multimedialnym.",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "ul. Żeromskiego 60/5a",
@@ -53,8 +57,17 @@
         "@type": "ContactPoint",
         "telephone": "+48-600-608-303",
         "contactType": "customer service",
-        "email": "neuroinnowacje@gmail.com"
-      }
+        "email": "neuroinnowacje@gmail.com",
+        "availableLanguage": ["Polish", "English"]
+      },
+      "knowsAbout": [
+        "Medical AI Software",
+        "MedTech Solutions",
+        "Medical Virtual Reality",
+        "VR Rehabilitation",
+        "Multimedia Scenography",
+        "Business Strategy"
+      ]
     }
     </script>
     
@@ -81,6 +94,13 @@
                     },
                     animation: {
                         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'marquee': 'marquee 25s linear infinite',
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        }
                     }
                 }
             }
@@ -126,9 +146,18 @@
             mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
             -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
         }
+        
+        /* Updated Canvas Container for Hero Section Only */
         #canvas-container {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-            z-index: -1; opacity: 0.8; mix-blend-mode: screen; pointer-events: none;
+            position: absolute; /* Changed from fixed */
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            z-index: 0; /* Behind content */
+            opacity: 0.8; 
+            mix-blend-mode: screen; 
+            pointer-events: none;
         }
 
         /* --- CURSOR --- */
@@ -173,7 +202,7 @@
         .spotlight-card:hover { transform: translateY(-5px); border-color: rgba(255, 255, 255, 0.1); }
         
         .text-hero {
-            font-size: clamp(2.5rem, 8vw, 7rem); /* Adjusted for mobile */
+            font-size: clamp(2.5rem, 8vw, 6.5rem); 
             line-height: 1; font-weight: 800; letter-spacing: -0.03em;
             font-family: 'Space Grotesk', sans-serif;
             background: linear-gradient(180deg, #fff 0%, #aaa 100%);
@@ -184,6 +213,11 @@
         .gradient-text {
             background: linear-gradient(90deg, var(--accent-glow), #a855f7);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        .stroke-text {
+             -webkit-text-stroke: 1px rgba(255,255,255,0.2);
+             color: transparent;
         }
 
         .reveal-mask { overflow: hidden; display: block; }
@@ -198,7 +232,7 @@
         @media (max-width: 768px) {
             .cursor-dot, .cursor-outline { display: none; }
             body { cursor: auto; }
-            .text-hero { font-size: 13vw; }
+            .text-hero { font-size: 11vw; }
         }
     </style>
 </head>
@@ -206,7 +240,7 @@
 
     <div class="noise-overlay"></div>
     <div class="grid-bg"></div>
-    <div id="canvas-container"></div>
+    <!-- Canvas Removed from here (body root) and moved to Hero Section -->
     <div class="cursor-dot"></div>
     <div class="cursor-outline"></div>
 
@@ -217,13 +251,13 @@
                 <span class="absolute inset-0 bg-neon-blue rounded-full animate-ping opacity-75"></span>
                 <span class="relative block w-4 h-4 bg-neon-blue rounded-full shadow-[0_0_15px_#00f3ff]"></span>
             </div>
-            <span class="text-white">KISZLO<span class="text-white/40">.AI</span></span>
+            <span class="text-white">KISZLO<span class="text-white/40">.STUDIO</span></span>
         </a>
         
         <!-- Desktop Menu -->
         <div class="hidden md:flex items-center gap-12 text-xs font-tech font-bold uppercase tracking-widest text-white/60">
             <a href="#about" class="hover:text-neon-blue transition-colors cursor-hover-trigger relative group">
-                <span class="mr-1 text-neon-blue/50">01.</span> Zespół
+                <span class="mr-1 text-neon-blue/50">01.</span> Studio
                 <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-neon-blue transition-all group-hover:w-full"></span>
             </a>
             <a href="portfolio.html" class="hover:text-neon-blue transition-colors cursor-hover-trigger relative group">
@@ -231,7 +265,7 @@
                 <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-neon-blue transition-all group-hover:w-full"></span>
             </a>
             <a href="oferta.html" class="hover:text-neon-blue transition-colors cursor-hover-trigger relative group">
-                <span class="mr-1 text-neon-blue/50">03.</span> Oferta
+                <span class="mr-1 text-neon-blue/50">03.</span> Usługi
                 <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-neon-blue transition-all group-hover:w-full"></span>
             </a>
             <a href="#contact" class="hover:text-neon-blue transition-colors cursor-hover-trigger relative group">
@@ -257,9 +291,9 @@
     <!-- Mobile Fullscreen Menu -->
     <div id="mobile-menu" class="fixed inset-0 z-40 bg-black flex flex-col justify-center items-center gap-8 closed md:hidden">
         <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
-        <a href="#about" class="mobile-link text-4xl font-tech font-bold text-white hover:text-neon-blue transition-colors">Zespół</a>
+        <a href="#about" class="mobile-link text-4xl font-tech font-bold text-white hover:text-neon-blue transition-colors">Studio</a>
         <a href="portfolio.html" class="mobile-link text-4xl font-tech font-bold text-white hover:text-neon-blue transition-colors">Portfolio</a>
-        <a href="oferta.html" class="mobile-link text-4xl font-tech font-bold text-white hover:text-neon-blue transition-colors">Oferta</a>
+        <a href="oferta.html" class="mobile-link text-4xl font-tech font-bold text-white hover:text-neon-blue transition-colors">Usługi</a>
         <a href="#contact" class="mobile-link text-4xl font-tech font-bold text-white hover:text-neon-blue transition-colors">Kontakt</a>
         <div class="w-12 h-[1px] bg-white/20 my-4"></div>
         <a href="eng.html" class="text-xl font-tech text-gray-500 hover:text-white transition-colors">EN (Global)</a>
@@ -268,13 +302,16 @@
     <main>
         
         <!-- Hero Section -->
-        <section class="min-h-[100dvh] w-full flex flex-col justify-center px-6 md:px-12 relative pt-20">
-            <div class="z-10 mt-10 md:mt-0 max-w-6xl">
+        <section class="min-h-[100dvh] w-full flex flex-col justify-center px-6 md:px-12 relative pt-20 overflow-hidden" id="hero-section">
+            <!-- CANVAS CONTAINER MOVED HERE -->
+            <div id="canvas-container"></div>
+            
+            <div class="z-10 mt-10 md:mt-0 max-w-6xl relative">
                 <!-- Glitch Header -->
                 <div class="reveal-mask mb-6">
                     <div class="glitch-wrapper reveal-text-inner">
-                        <h1 class="text-hero glitch-text break-words" data-text="KISZLO.AI">
-                            KISZLO.AI
+                        <h1 class="text-hero glitch-text break-words" data-text="KISZLO.STUDIO">
+                            KISZLO.STUDIO
                         </h1>
                     </div>
                 </div>
@@ -282,14 +319,15 @@
                 <!-- Subtitle -->
                 <div class="reveal-mask mb-8 pb-2">
                     <h2 class="text-lg md:text-3xl font-tech text-neon-blue reveal-text-inner leading-tight tracking-wide">
-                        // Marketing • AI • Imersja • VR
+                        // Marketing • MedTech • Film • AI • VR
                     </h2>
                 </div>
                 
                 <!-- Lead Text -->
-                <div class="max-w-2xl reveal-fade opacity-0 border-l border-neon-blue/50 pl-6 py-2 bg-gradient-to-r from-neon-blue/5 to-transparent">
+                <div class="max-w-3xl reveal-fade opacity-0 border-l border-neon-blue/50 pl-6 py-4 bg-gradient-to-r from-neon-blue/5 to-transparent backdrop-blur-sm">
                     <p class="text-sm md:text-lg text-gray-300 font-sans leading-relaxed">
-                        Pomagamy firmom łączyć strategię marketingową z technologią: tworzymy skuteczną komunikację, automatyzację opartą o AI oraz środowiska imersyjne VR dla biznesu.
+                        Łączymy strategię marketingową z budową zaawansowanych stron WWW i aplikacji AI. 
+                        Tworzymy kampanie reklamowe, <strong>symulacje VR dla medycyny</strong> oraz multimedialne scenografie dla filmu i teatru.
                     </p>
                 </div>
             </div>
@@ -310,6 +348,30 @@
             </div>
         </section>
 
+        <!-- Mission Section -->
+        <section class="py-16 px-6 md:px-12 relative z-10 border-b border-white/5 bg-[#030305]">
+            <div class="max-w-4xl mx-auto">
+                <p class="text-lg md:text-2xl text-gray-300 font-light leading-relaxed mb-8">
+                    <strong class="text-white font-bold">W Kiszlo Studio</strong> łączę strategię marketingową, budowę zaawansowanych stron www i aplikacji z wykorzystaniem AI w biznesie, technologii i medycynie.
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 mt-12">
+                    <div>
+                        <h3 class="text-neon-blue font-tech uppercase tracking-widest text-xs mb-4">Kreacja & Kampanie</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                            Tworzę koncepcje i realizacje kampanii – od billboardów i reklamy zewnętrznej, przez digital, po środowiska imersyjne i <strong>aplikacje VR wspierające terapię i edukację</strong>. Wspieram projekty filmowe i teatralne: od wideo reklamowego i kontentu promocyjnego, po multimedialne scenografie i instalacje immersyjne.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-neon-purple font-tech uppercase tracking-widest text-xs mb-4">Tech & Wdrożenia</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Zajmuję się także sprzedażą, developmentem i wdrożeniami specjalistycznych rozwiązań – tak, aby od pomysłu przejść do działającego systemu, który realnie wspiera komunikację i sprzedaż.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Team Section -->
         <section id="about" class="py-20 md:py-32 px-6 md:px-12 relative z-10">
             <div class="max-w-7xl mx-auto">
@@ -320,7 +382,7 @@
                 
                 <h2 class="text-3xl md:text-6xl font-bold font-tech text-white mb-20 leading-tight max-w-5xl">
                     Strategia spotyka się tu z <br>
-                    <span class="gradient-text">Technologią i AI.</span>
+                    <span class="gradient-text">Technologią i Sztuką.</span>
                 </h2>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
@@ -337,7 +399,7 @@
                                 <span class="text-[10px] font-tech text-neon-blue border border-neon-blue/30 px-2 py-1 rounded mb-3 inline-block bg-neon-blue/5">FOUNDER & STRATEGIST</span>
                                 <h3 class="text-2xl font-bold text-white mb-3 font-tech">Karol Kiszło</h3>
                                 <p class="text-gray-400 text-sm leading-relaxed border-l-2 border-white/10 pl-4 group-hover:border-neon-blue transition-colors">
-                                    Łączę światy biznesu i technologii. Odpowiadam za strategię marketingową i wizję projektów. Projektuję komunikację, która działa.
+                                    Łączę światy biznesu, sztuki i technologii. Odpowiadam za strategię marketingową, wizję projektów multimedialnych oraz wdrożenia AI. Projektuję komunikację, która działa.
                                 </p>
                             </div>
                         </div>
@@ -355,7 +417,7 @@
                                 <span class="text-[10px] font-tech text-neon-purple border border-neon-purple/30 px-2 py-1 rounded mb-3 inline-block bg-neon-purple/5">TECH LEAD & SCIENCE</span>
                                 <h3 class="text-2xl font-bold text-white mb-3 font-tech">dr hab. inż. Sebastian</h3>
                                 <p class="text-gray-400 text-sm leading-relaxed border-l-2 border-white/10 pl-4 group-hover:border-neon-purple transition-colors">
-                                    Mózg operacyjny od strony technologii. Ekspert w dziedzinie algorytmów i systemów neuronowych. Czuwa nad jakością naukową.
+                                    Mózg operacyjny od strony technologii. Ekspert w dziedzinie algorytmów i systemów neuronowych. Czuwa nad jakością naukową i wdrożeniową.
                                 </p>
                             </div>
                         </div>
@@ -365,7 +427,7 @@
             </div>
         </section>
 
-        <!-- Oferta Preview -->
+        <!-- Oferta Preview (UPDATED) -->
         <section class="py-20 md:py-32 px-6 md:px-12 relative z-10">
             <div class="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-white/5 pb-8">
                 <div>
@@ -376,7 +438,7 @@
                     <h2 class="text-4xl md:text-7xl font-bold tracking-tighter text-white font-tech">OBSZARY<br><span class="text-gray-700">DZIAŁANIA</span></h2>
                 </div>
                 <div class="mt-8 md:mt-0 max-w-sm md:text-right text-gray-400 text-sm">
-                    <p class="mb-4">Interdyscyplinarne podejście do technologii i marketingu.</p>
+                    <p class="mb-4">Interdyscyplinarne podejście: Biznes, Medycyna, Sztuka.</p>
                     <a href="oferta.html" class="inline-flex items-center gap-2 text-neon-blue hover:text-white transition-colors uppercase font-tech text-xs tracking-widest group">
                         Pełna oferta 
                         <span class="block w-4 h-[1px] bg-neon-blue group-hover:w-8 transition-all"></span>
@@ -385,31 +447,33 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-                <!-- Card 1 -->
+                <!-- Card 1: Multimedia & Film -->
                 <div class="spotlight-card p-10 rounded-2xl group cursor-hover-trigger">
                     <div class="relative z-10">
                         <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center mb-6 text-neon-blue group-hover:bg-neon-blue group-hover:text-black transition-all">
                             <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
                         </div>
-                        <h3 class="text-2xl font-bold text-white mb-4 font-tech">Kampanie & Strategia</h3>
+                        <h3 class="text-2xl font-bold text-white mb-4 font-tech">Kampanie, Film & Teatr</h3>
                         <p class="text-gray-400 text-sm leading-relaxed mb-6">
-                            Projektujemy mądre kampanie – od citylightów po ekrany w klinikach. Spinamy offline z online’em.
+                            Od reklamy outdoorowej i digitalowej, po multimedia dla kultury. Tworzymy wideo reklamowe, kontent promocyjny oraz multimedialne scenografie i instalacje imersyjne.
                         </p>
-                        <a href="oferta.html" class="text-xs font-tech text-gray-500 group-hover:text-neon-blue uppercase tracking-widest transition-colors">Czytaj więcej -></a>
+                        <!-- Updated Link -->
+                        <a href="oferta.html" class="text-xs font-tech text-gray-500 group-hover:text-neon-blue uppercase tracking-widest transition-colors">Sprawdź szczegóły -></a>
                     </div>
                 </div>
 
-                <!-- Card 2 -->
+                <!-- Card 2: AI & MedTech (HEAVILY UPDATED) -->
                 <div class="spotlight-card p-10 rounded-2xl group cursor-hover-trigger">
                     <div class="relative z-10">
                         <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center mb-6 text-neon-purple group-hover:bg-neon-purple group-hover:text-black transition-all">
                             <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
                         </div>
-                        <h3 class="text-2xl font-bold text-white mb-4 font-tech">Web, AI & VR</h3>
+                        <h3 class="text-2xl font-bold text-white mb-4 font-tech">AI, MedTech & Web Apps</h3>
                         <p class="text-gray-400 text-sm leading-relaxed mb-6">
-                            Zaawansowane strony www, automatyzacja AI, systemy rejestracji i środowiska imersyjne VR dla biznesu i medycyny.
+                            Budujemy dedykowane aplikacje medyczne, systemy AI wspierające diagnozę oraz platformy dla podmiotów leczniczych. Łączymy web development z zaawansowaną analityką danych w medycynie.
                         </p>
-                        <a href="oferta.html" class="text-xs font-tech text-gray-500 group-hover:text-neon-purple uppercase tracking-widest transition-colors">Czytaj więcej -></a>
+                        <!-- Updated Link -->
+                        <a href="oferta.html" class="text-xs font-tech text-gray-500 group-hover:text-neon-purple uppercase tracking-widest transition-colors">Sprawdź rozwiązania -></a>
                     </div>
                 </div>
             </div>
@@ -427,7 +491,7 @@
             <!-- Marquee Strip -->
             <div class="overflow-hidden whitespace-nowrap py-16 opacity-60 relative z-10">
                 <div class="inline-block animate-[marquee_25s_linear_infinite] text-4xl md:text-7xl font-bold text-transparent stroke-text font-tech" style="-webkit-text-stroke: 1px rgba(255,255,255,0.2);">
-                    WEB DEVELOPMENT • AI AUTOMATION • VIRTUAL REALITY • STRATEGIA • UX/UI •
+                    MEDICAL VR • MEDTECH AI • STRATEGIA • SCENOGRAFIA MULTIMEDIALNA • FILM • WEB DEV •
                 </div>
             </div>
         </section>
@@ -481,7 +545,7 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", (event) => {
-            console.log("Kiszlo Studio v2.0: Cyber-Neuro System Online");
+            console.log("Kiszlo Studio v2.7: Hero Neuro Network");
 
             // --- 0. SPOTLIGHT EFFECT LOGIC ---
             const cards = document.querySelectorAll(".spotlight-card");
@@ -577,20 +641,25 @@
                 opacity: 1, duration: 1, stagger: 0.1
             }, "-=0.8");
 
-            // --- 5. THREE.JS: NEURAL NETWORK EFFECT ---
+            // --- 5. THREE.JS: HERO NETWORK EFFECT ---
             const canvasContainer = document.getElementById('canvas-container');
-            if (canvasContainer) {
+            const heroSection = document.getElementById('hero-section');
+
+            if (canvasContainer && heroSection) {
                 const scene = new THREE.Scene();
-                const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-                camera.position.z = 20;
+                const camera = new THREE.PerspectiveCamera(75, heroSection.clientWidth / heroSection.clientHeight, 0.1, 1000);
+                
+                // Initial camera position
+                const baseCameraZ = 20;
+                camera.position.z = baseCameraZ;
 
                 const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setSize(heroSection.clientWidth, heroSection.clientHeight);
                 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
                 canvasContainer.appendChild(renderer.domElement);
 
                 // Create Particles
-                const particleCount = window.innerWidth < 768 ? 50 : 100; // Performance opt
+                const particleCount = window.innerWidth < 768 ? 40 : 80;
                 const particles = new THREE.Group();
                 const particleGeo = new THREE.SphereGeometry(0.1, 8, 8);
                 const particleMat = new THREE.MeshBasicMaterial({ color: 0x00f3ff, transparent: true, opacity: 0.8 });
@@ -620,6 +689,7 @@
                 const lines = new THREE.LineSegments(lineGeometry, lineMaterial);
                 scene.add(lines);
 
+                // Interaction
                 let mouseX = 0, mouseY = 0;
                 document.addEventListener('mousemove', (event) => {
                     mouseX = (event.clientX - window.innerWidth / 2) * 0.05;
@@ -629,18 +699,28 @@
                 function animate() {
                     requestAnimationFrame(animate);
 
-                    const linePositions = [];
+                    // 1. "Breathing" Effect (Zoom In/Out)
+                    const time = Date.now() * 0.001; // Current time in seconds
+                    // Oscillation: sine wave creates smooth up/down value
+                    const breathingZoom = Math.sin(time * 0.5) * 2; 
+                    camera.position.z = baseCameraZ + breathingZoom;
 
+                    // 2. Particle Physics
+                    const linePositions = [];
                     particles.children.forEach((p, i) => {
+                        // Move
                         p.position.add(particleVelocities[i]);
                         
+                        // Bounce
                         if(p.position.x > 20 || p.position.x < -20) particleVelocities[i].x *= -1;
                         if(p.position.y > 20 || p.position.y < -20) particleVelocities[i].y *= -1;
                         if(p.position.z > 10 || p.position.z < -10) particleVelocities[i].z *= -1;
 
+                        // Slight Mouse Influence
                         p.position.x += (mouseX * 0.001 - p.position.x) * 0.01;
                         p.position.y += (-mouseY * 0.001 - p.position.y) * 0.01;
 
+                        // Connections
                         for(let j=i+1; j<particleCount; j++) {
                             const p2 = particles.children[j];
                             const dist = p.position.distanceTo(p2.position);
@@ -655,6 +735,8 @@
                     });
 
                     lineGeometry.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
+                    
+                    // Slow rotation of entire system
                     particles.rotation.y += 0.001;
                     lines.rotation.y += 0.001;
 
@@ -662,10 +744,14 @@
                 }
                 animate();
 
+                // Responsive Resize logic bound to Hero Section
                 window.addEventListener('resize', () => {
-                    camera.aspect = window.innerWidth / window.innerHeight;
+                    const width = heroSection.clientWidth;
+                    const height = heroSection.clientHeight;
+                    
+                    camera.aspect = width / height;
                     camera.updateProjectionMatrix();
-                    renderer.setSize(window.innerWidth, window.innerHeight);
+                    renderer.setSize(width, height);
                 });
             }
         });
