@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Portfolio | Kiszlo Studio</title>
-    <meta name="description" content="Wybrane realizacje Kiszlo Studio. Projekty VR, strony www i kampanie marketingowe.">
+    <title>Portfolio | Kiszlo Studio - Realizacje VR, Medycyna & Sztuka</title>
+    <meta name="description" content="Wybrane realizacje Kiszlo Studio. Aplikacje VR dla medycyny, scenografia teatralna, kampanie multimedialne i systemy AI.">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,85 +39,32 @@
     <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
 
     <style>
-        :root {
-            --bg-color: #030305;
-            --text-main: #FAFAFA;
-            --accent-glow: #00f3ff;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: 'Manrope', sans-serif;
-            overflow-x: hidden;
-            cursor: none;
-        }
+        :root { --bg-color: #030305; --text-main: #FAFAFA; --accent-glow: #00f3ff; }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Manrope', sans-serif; overflow-x: hidden; cursor: none; }
         
-         /* Reuse Styles from Offer/Index for consistency */
-        .noise-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 9000; opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
-        .grid-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-size: 50px 50px;
-            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            z-index: -2; pointer-events: none;
-            mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
-            -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
-        }
-        #canvas-container {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-            z-index: -1; opacity: 0.5; mix-blend-mode: screen; pointer-events: none;
-        }
-        .cursor-dot {
-            width: 6px; height: 6px; background-color: var(--accent-glow);
-            position: fixed; transform: translate(-50%, -50%); border-radius: 50%;
-            z-index: 9999; pointer-events: none; box-shadow: 0 0 15px var(--accent-glow);
-        }
-        .cursor-outline {
-            width: 40px; height: 40px; border: 1px solid rgba(255, 255, 255, 0.3);
-            position: fixed; transform: translate(-50%, -50%); border-radius: 50%;
-            z-index: 9998; pointer-events: none; transition: width 0.3s, height 0.3s, background-color 0.3s;
-        }
+        .noise-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9000; opacity: 0.03; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); }
+        .grid-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-size: 50px 50px; background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px); z-index: -2; pointer-events: none; mask-image: radial-gradient(circle at center, black 40%, transparent 100%); -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%); }
+        
+        /* Canvas positioned strictly in hero */
+        #canvas-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.5; mix-blend-mode: screen; pointer-events: none; }
+
+        .cursor-dot { width: 6px; height: 6px; background-color: var(--accent-glow); position: fixed; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9999; pointer-events: none; box-shadow: 0 0 15px var(--accent-glow); }
+        .cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(255, 255, 255, 0.3); position: fixed; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9998; pointer-events: none; transition: width 0.3s, height 0.3s, background-color 0.3s; }
+
         .glitch-wrapper { position: relative; display: inline-block; }
         .glitch-text { position: relative; z-index: 1; }
-        .glitch-text::before, .glitch-text::after {
-            content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-color);
-        }
-        .glitch-text::before {
-            left: 2px; text-shadow: -1px 0 #ff00c1; clip-path: inset(44% 0 61% 0);
-            animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
-        }
-        .glitch-text::after {
-            left: -2px; text-shadow: -1px 0 #00fff9; clip-path: inset(58% 0 43% 0);
-            animation: glitch-anim-2 3s infinite linear alternate-reverse;
-        }
+        .glitch-text::before, .glitch-text::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-color); }
+        .glitch-text::before { left: 2px; text-shadow: -1px 0 #ff00c1; clip-path: inset(44% 0 61% 0); animation: glitch-anim-1 2.5s infinite linear alternate-reverse; }
+        .glitch-text::after { left: -2px; text-shadow: -1px 0 #00fff9; clip-path: inset(58% 0 43% 0); animation: glitch-anim-2 3s infinite linear alternate-reverse; }
         @keyframes glitch-anim-1 { 0% { clip-path: inset(20% 0 80% 0); } 100% { clip-path: inset(30% 0 20% 0); } }
         @keyframes glitch-anim-2 { 0% { clip-path: inset(10% 0 60% 0); } 100% { clip-path: inset(70% 0 10% 0); } }
 
-        .text-hero {
-            font-size: clamp(3rem, 7vw, 6rem); line-height: 0.95; font-weight: 800; letter-spacing: -0.03em;
-            font-family: 'Space Grotesk', sans-serif;
-            background: linear-gradient(180deg, #fff 0%, #aaa 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            padding-bottom: 0.1em;
-        }
+        .text-hero { font-size: clamp(3rem, 7vw, 6rem); line-height: 0.95; font-weight: 800; letter-spacing: -0.03em; font-family: 'Space Grotesk', sans-serif; background: linear-gradient(180deg, #fff 0%, #aaa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; padding-bottom: 0.1em; }
         
-        .project-card {
-            position: relative; overflow: hidden; border-radius: 1rem;
-            aspect-ratio: 4/3; background: #111;
-        }
-        .project-img {
-            width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; opacity: 0.6;
-        }
+        .project-card { position: relative; overflow: hidden; border-radius: 1rem; aspect-ratio: 4/3; background: #111; }
+        .project-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; opacity: 0.6; }
         .project-card:hover .project-img { transform: scale(1.1); opacity: 0.3; }
-        .project-content {
-            position: absolute; bottom: 0; left: 0; width: 100%; padding: 2rem;
-            transform: translateY(20px); opacity: 0; transition: all 0.4s ease;
-        }
+        .project-content { position: absolute; bottom: 0; left: 0; width: 100%; padding: 2rem; transform: translateY(20px); opacity: 0; transition: all 0.4s ease; }
         .project-card:hover .project-content { transform: translateY(0); opacity: 1; }
 
         #mobile-menu { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -135,7 +82,6 @@
 
     <div class="noise-overlay"></div>
     <div class="grid-bg"></div>
-    <div id="canvas-container"></div>
     <div class="cursor-dot"></div>
     <div class="cursor-outline"></div>
 
@@ -144,12 +90,12 @@
          <div class="text-xl md:text-2xl font-bold font-tech tracking-tighter cursor-hover-trigger flex items-center gap-3">
              <a href="index.html" class="flex items-center gap-3">
                 <span class="w-3 h-3 bg-neon-blue rounded-full shadow-[0_0_15px_#00f3ff]"></span>
-                <span class="text-white">KISZLO</span><span class="text-white/40">.STUDIO</span>
+                <span class="text-white">KISZLO<span class="text-white/40">.STUDIO</span></span>
             </a>
         </div>
         
         <div class="hidden md:flex items-center gap-10 text-xs font-tech font-bold uppercase tracking-widest text-white/60">
-            <a href="index.html#about" class="hover:text-neon-blue transition-colors cursor-hover-trigger">Zespół</a>
+            <a href="index.html" class="hover:text-neon-blue transition-colors cursor-hover-trigger">Studio</a>
             <a href="portfolio.html" class="text-neon-blue cursor-default">Portfolio</a>
             <a href="oferta.html" class="hover:text-neon-blue transition-colors cursor-hover-trigger">Oferta</a>
             <a href="#contact" class="hover:text-neon-blue transition-colors cursor-hover-trigger">Kontakt</a>
@@ -165,72 +111,79 @@
 
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="fixed inset-0 z-40 bg-black flex flex-col justify-center items-center gap-8 closed md:hidden">
-        <a href="index.html" class="mobile-link text-3xl font-tech font-bold text-white hover:text-neon-blue">Home</a>
+        <a href="index.html" class="mobile-link text-3xl font-tech font-bold text-white hover:text-neon-blue">Studio</a>
         <a href="portfolio.html" class="mobile-link text-3xl font-tech font-bold text-neon-blue">Portfolio</a>
         <a href="oferta.html" class="mobile-link text-3xl font-tech font-bold text-white hover:text-neon-blue">Oferta</a>
         <a href="#contact" class="mobile-link text-3xl font-tech font-bold text-white hover:text-neon-blue">Kontakt</a>
     </div>
 
-    <main class="pt-32 px-6 md:px-12">
+    <main>
         
-        <!-- Header -->
-        <div class="max-w-7xl mx-auto mb-20 md:mb-32">
-            <div class="flex items-center gap-4 mb-6">
-                 <span class="w-12 h-[1px] bg-neon-blue"></span>
-                 <span class="text-neon-blue font-tech text-xs tracking-[0.2em] uppercase">Wybrane Projekty</span>
+        <!-- Header / Hero with Canvas -->
+        <section id="hero-section" class="relative pt-32 px-6 md:px-12 pb-20 overflow-hidden">
+            <div id="canvas-container"></div>
+            
+            <div class="max-w-7xl mx-auto relative z-10">
+                <div class="flex items-center gap-4 mb-6">
+                     <span class="w-12 h-[1px] bg-neon-blue"></span>
+                     <span class="text-neon-blue font-tech text-xs tracking-[0.2em] uppercase">Wybrane Projekty</span>
+                </div>
+                <div class="glitch-wrapper mb-6">
+                    <h1 class="text-hero glitch-text" data-text="PORTFOLIO">PORTFOLIO</h1>
+                </div>
+                <p class="text-gray-400 max-w-2xl text-lg leading-relaxed border-l-2 border-white/10 pl-6">
+                    Realizacje, które łączą technologię z emocjami. Zobacz, jak wykorzystujemy VR, AI i multimedia w praktyce.
+                </p>
             </div>
-            <div class="glitch-wrapper mb-6">
-                <h1 class="text-hero glitch-text" data-text="PORTFOLIO">PORTFOLIO</h1>
-            </div>
-        </div>
+        </section>
 
         <!-- Projects Grid -->
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mb-32">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mb-32 px-6 md:px-12">
             
-            <!-- Project 1 -->
+            <!-- Project 1: MedTech -->
             <div class="project-card group cursor-hover-trigger border border-white/5">
                 <img src="https://images.unsplash.com/photo-1626379953822-baec19c3accd?auto=format&fit=crop&q=80&w=1000" class="project-img" alt="VR Medical">
                 <div class="project-content">
                     <span class="text-neon-blue font-tech text-xs tracking-widest uppercase mb-2 block">VR / MedTech</span>
-                    <h3 class="text-3xl font-bold text-white mb-2">Neuro-Rehabilitacja VR</h3>
-                    <p class="text-gray-400 text-sm">System terapeutyczny dla pacjentów poudarowych.</p>
+                    <h3 class="text-3xl font-bold text-white mb-2">Symulator Chirurgiczny VR</h3>
+                    <p class="text-gray-400 text-sm">Zaawansowany system treningowy dla studentów medycyny z haptyką.</p>
                 </div>
             </div>
 
-            <!-- Project 2 -->
+            <!-- Project 2: Scenography -->
             <div class="project-card group cursor-hover-trigger border border-white/5">
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1000" class="project-img" alt="Corporate Web">
+                <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=1000" class="project-img" alt="Theater Scenography">
                 <div class="project-content">
-                    <span class="text-neon-purple font-tech text-xs tracking-widest uppercase mb-2 block">Web Development</span>
-                    <h3 class="text-3xl font-bold text-white mb-2">Eco-Energy Platform</h3>
-                    <p class="text-gray-400 text-sm">Zaawansowany portal korporacyjny z kalkulatorem OZE.</p>
+                    <span class="text-neon-purple font-tech text-xs tracking-widest uppercase mb-2 block">Teatr / Multimedia</span>
+                    <h3 class="text-3xl font-bold text-white mb-2">Multimedialny "Makbet"</h3>
+                    <p class="text-gray-400 text-sm">Interaktywna scenografia cyfrowa reagująca na ruch aktorów.</p>
                 </div>
             </div>
 
-            <!-- Project 3 -->
+            <!-- Project 3: Web/Med -->
             <div class="project-card group cursor-hover-trigger border border-white/5">
-                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1000" class="project-img" alt="Cyber Security">
+                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=1000" class="project-img" alt="Telemedicine">
                 <div class="project-content">
-                    <span class="text-white font-tech text-xs tracking-widest uppercase mb-2 block">Branding & Strategy</span>
-                    <h3 class="text-3xl font-bold text-white mb-2">CyberSec Summit</h3>
-                    <p class="text-gray-400 text-sm">Pełna identyfikacja wizualna i strategia komunikacji.</p>
+                    <span class="text-white font-tech text-xs tracking-widest uppercase mb-2 block">Web Development</span>
+                    <h3 class="text-3xl font-bold text-white mb-2">Platforma Telemedyczna</h3>
+                    <p class="text-gray-400 text-sm">System rejestracji i konsultacji online dla sieci klinik.</p>
                 </div>
             </div>
 
-            <!-- Project 4 -->
+            <!-- Project 4: AI/Hardware -->
             <div class="project-card group cursor-hover-trigger border border-white/5">
-                <img src="https://images.unsplash.com/photo-1592478411213-61535fdd861d?auto=format&fit=crop&q=80&w=1000" class="project-img" alt="Hardware Setup">
+                <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?auto=format&fit=crop&q=80&w=1000" class="project-img" alt="AI Analytics">
                 <div class="project-content">
-                    <span class="text-neon-blue font-tech text-xs tracking-widest uppercase mb-2 block">Hardware</span>
-                    <h3 class="text-3xl font-bold text-white mb-2">Sim-Lab Setup</h3>
-                    <p class="text-gray-400 text-sm">Kompleksowe wdrożenie stanowisk symulacyjnych.</p>
+                    <span class="text-neon-blue font-tech text-xs tracking-widest uppercase mb-2 block">AI / Automatyzacja</span>
+                    <h3 class="text-3xl font-bold text-white mb-2">Voicebot Kliniczny</h3>
+                    <p class="text-gray-400 text-sm">System AI automatyzujący umawianie wizyt i triaż pacjentów.</p>
                 </div>
             </div>
 
         </div>
 
         <!-- Contact Section -->
-        <section id="contact" class="border-t border-white/10 pt-20 pb-32">
+        <section id="contact" class="border-t border-white/10 pt-20 pb-32 px-6 md:px-12 bg-[#020202]">
              <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div>
                     <h2 class="text-4xl md:text-6xl font-bold font-tech text-white mb-8">ZACZNIJMY<br>PROJEKT.</h2>
@@ -245,7 +198,7 @@
             <div class="max-w-7xl mx-auto mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between text-xs font-tech text-gray-600 uppercase">
                 <div>&copy; 2026 Kiszlo Studio</div>
                  <div class="flex gap-4 mt-4 md:mt-0">
-                    <a href="index.html" class="hover:text-white">Strona Główna</a>
+                    <a href="index.html" class="hover:text-white">Studio</a>
                     <a href="oferta.html" class="hover:text-white">Oferta</a>
                 </div>
             </div>
@@ -254,9 +207,7 @@
     </main>
 
     <script>
-        // Common JS Logic (Menu, Lenis, Three.js, Cursor)
-        // ... (Same shared logic for consistency)
-        
+        // Common JS Logic
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileLinks = document.querySelectorAll('.mobile-link');
@@ -299,34 +250,40 @@
             });
         }
         
-         const canvasContainer = document.getElementById('canvas-container');
-        if (canvasContainer) {
+        // Canvas restricted to hero
+        const canvasContainer = document.getElementById('canvas-container');
+        const heroSection = document.getElementById('hero-section');
+        if (canvasContainer && heroSection) {
             const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+            const camera = new THREE.PerspectiveCamera(75, heroSection.clientWidth/heroSection.clientHeight, 0.1, 1000);
             camera.position.z = 20;
             const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setSize(heroSection.clientWidth, heroSection.clientHeight);
             canvasContainer.appendChild(renderer.domElement);
             
             const particles = new THREE.Group();
             const geo = new THREE.SphereGeometry(0.1, 4, 4);
             const mat = new THREE.MeshBasicMaterial({ color: 0x00f3ff, transparent: true, opacity: 0.6 });
-            for(let i=0; i<80; i++) {
+            for(let i=0; i<60; i++) {
                 const mesh = new THREE.Mesh(geo, mat);
-                mesh.position.set((Math.random()-0.5)*40, (Math.random()-0.5)*40, (Math.random()-0.5)*20);
+                mesh.position.set((Math.random()-0.5)*30, (Math.random()-0.5)*30, (Math.random()-0.5)*15);
                 particles.add(mesh);
             }
             scene.add(particles);
             
             function animate() {
                 requestAnimationFrame(animate);
+                // breathing
+                const time = Date.now() * 0.001;
+                camera.position.z = 20 + Math.sin(time * 0.5) * 2;
                 particles.rotation.y += 0.001;
                 renderer.render(scene, camera);
             }
             animate();
             window.addEventListener('resize', () => {
-                camera.aspect = window.innerWidth/window.innerHeight; camera.updateProjectionMatrix();
-                renderer.setSize(window.innerWidth, window.innerHeight);
+                camera.aspect = heroSection.clientWidth/heroSection.clientHeight; 
+                camera.updateProjectionMatrix();
+                renderer.setSize(heroSection.clientWidth, heroSection.clientHeight);
             });
         }
     </script>
