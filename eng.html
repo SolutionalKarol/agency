@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO & Identity -->
+    <title>Kiszlo Studio | Marketing & Immersion</title>
+    <meta name="description" content="Kiszlo Studio – marketing, communication, and immersive experiences. We combine strategy with VR technology and web development.">
+    <meta name="author" content="Karol Kiszło">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@200;300;400;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'neon-blue': '#00f3ff',
+                        'neon-purple': '#bc13fe',
+                        'deep-bg': '#030305',
+                        'glass-border': 'rgba(255, 255, 255, 0.08)',
+                    },
+                    fontFamily: {
+                        'sans': ['Manrope', 'sans-serif'],
+                        'tech': ['Space Grotesk', 'monospace'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
+
+    <style>
+        :root {
+            --bg-color: #030305;
+            --text-main: #FAFAFA;
+            --accent-glow: #00f3ff;
+            --cursor-size: 20px;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Manrope', sans-serif;
+            overflow-x: hidden;
+            cursor: none; 
+            margin: 0;
+            padding: 0;
+        }
+
+        /* --- BACKGROUND FX --- */
+        
+        /* Noise Texture */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9000;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Subtle Grid */
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: 50px 50px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            z-index: -2;
+            pointer-events: none;
+            mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+            -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+        }
+
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            opacity: 0.8; 
+            mix-blend-mode: screen;
+            pointer-events: none;
+        }
+
+        /* --- CURSOR --- */
+        .cursor-dot {
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent-glow);
+            position: fixed;
+            top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            position: fixed;
+            top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9998;
+            pointer-events: none;
+            transition: width 0.3s, height 0.3s, background-color 0.3s;
+        }
+
+        /* --- UI COMPONENTS --- */
+
+        /* Glitch Text Effect */
+        .glitch-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        .glitch-text {
+            position: relative;
+            z-index: 1;
+        }
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-color);
+        }
+        .glitch-text::before {
+            left: 2px;
+            text-shadow: -1px 0 #ff00c1;
+            clip-path: inset(44% 0 61% 0);
+            animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
+        }
+        .glitch-text::after {
+            left: -2px;
+            text-shadow: -1px 0 #00fff9;
+            clip-path: inset(58% 0 43% 0);
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+        @keyframes glitch-anim-1 {
+            0% { clip-path: inset(20% 0 80% 0); }
+            20% { clip-path: inset(60% 0 10% 0); }
+            40% { clip-path: inset(40% 0 50% 0); }
+            60% { clip-path: inset(80% 0 5% 0); }
+            80% { clip-path: inset(10% 0 70% 0); }
+            100% { clip-path: inset(30% 0 20% 0); }
+        }
+        @keyframes glitch-anim-2 {
+            0% { clip-path: inset(10% 0 60% 0); }
+            20% { clip-path: inset(80% 0 5% 0); }
+            40% { clip-path: inset(30% 0 20% 0); }
+            60% { clip-path: inset(10% 0 80% 0); }
+            80% { clip-path: inset(50% 0 30% 0); }
+            100% { clip-path: inset(70% 0 10% 0); }
+        }
+
+        /* Spotlight Cards */
+        .spotlight-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .spotlight-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.06), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .spotlight-card:hover::before {
+            opacity: 1;
+        }
+        .spotlight-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Typography */
+        .text-hero {
+            font-size: clamp(3rem, 8vw, 7rem);
+            line-height: 0.95;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            font-family: 'Space Grotesk', sans-serif;
+            background: linear-gradient(180deg, #fff 0%, #aaa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding-bottom: 0.1em;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, var(--accent-glow), #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Utilities */
+        .reveal-mask { overflow: hidden; display: block; }
+        .reveal-text-inner { display: block; transform: translateY(110%); }
+        
+        /* Mobile Menu */
+        #mobile-menu { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        #mobile-menu.open { transform: translateX(0%); }
+        #mobile-menu.closed { transform: translateX(100%); }
+
+        ::selection { background: var(--accent-glow); color: #000; }
+        
+        @media (max-width: 768px) {
+            .cursor-dot, .cursor-outline { display: none; }
+            body { cursor: auto; }
+            .text-hero { font-size: 13vw; }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-neon-blue selection:text-black">
+
+    <!-- FX Layers -->
+    <div class="noise-overlay"></div>
+    <div class="grid-bg"></div>
+    <div id="canvas-container"></div>
+    
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-6 md:px-12 md:py-8 flex justify-between items-center bg-black/80 backdrop-blur-md border-b border-white/5 transition-all duration-300" id="navbar">
+        <div class="text-xl md:text-2xl font-bold tracking-tighter cursor-hover-trigger flex items-center gap-3 relative z-50 font-tech">
+            <div class="relative w-4 h-4">
+                <span class="absolute inset-0 bg-neon-blue rounded-full animate-ping opacity-75"></span>
+                <span class="relative block w-4 h-4 bg-neon-blue rounded-full shadow-[0_0_15px_#00f3ff]"></span>
+            </div>
+            <span class="text-white">KISZLO</span><span class="text-white/40">.STUDIO</span>
+        </div>
+        
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center gap-12 text-xs font-tech font-bold uppercase tracking-widest text-white/60">
+            <a href="#about" class="hover:text-neon-blue transition-colors cursor-hover-trigger relative group">
+                <span class="mr-1 text-neon-blue/50">01.</span> Team
+                <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-neon-blue transition-all group-hover:w-full"></span>
+            </a>
+            <a href="portfolio.html" class="hover:text-neon-blue transition-colors cursor-hover-trigger relative group">
+                <span class="mr-1 text-neon-blue/50">02.</span> Portfolio
+                <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-neon-blue transition-all group-hover:w-full"></span>
+            </a>
+            <a href="oferta.html" class="hover:text-neon-blue transition-colors cursor-hover-trigger relative group">
+                <span class="mr-1 text-neon-blue/50">03.</span> Services
+                <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-neon-blue transition-all group-hover:w-full"></span>
+            </a>
+            <a href="#contact" class="hover:text-neon-blue transition-colors cursor-hover-trigger relative group">
+                <span class="mr-1 text-neon-blue/50">04.</span> Contact
+                <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-neon-blue transition-all group-hover:w-full"></span>
+            </a>
+            
+            <div class="flex items-center gap-2 border-l border-white/10 pl-6 lang-switch">
+                <a href="index.html" class="inactive cursor-hover-trigger hover:text-neon-blue transition-colors">PL</a>
+                <span class="text-white/20">/</span>
+                <span class="active cursor-default text-white">EN</span>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="menu-toggle" class="md:hidden text-white cursor-pointer relative z-50 p-2 focus:outline-none">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+    </nav>
+
+    <!-- Mobile Fullscreen Menu -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-black flex flex-col justify-center items-center gap-8 closed md:hidden">
+        <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
+        <a href="#about" class="mobile-link text-4xl font-tech font-bold text-white hover:text-neon-blue transition-colors">Team</a>
+        <a href="portfolio.html" class="mobile-link text-4xl font-tech font-bold text-white hover:text-neon-blue transition-colors">Portfolio</a>
+        <a href="oferta.html" class="mobile-link text-4xl font-tech font-bold text-white hover:text-neon-blue transition-colors">Services</a>
+        <a href="#contact" class="mobile-link text-4xl font-tech font-bold text-white hover:text-neon-blue transition-colors">Contact</a>
+        <div class="w-12 h-[1px] bg-white/20 my-4"></div>
+        <a href="index.html" class="text-xl font-tech text-gray-500 hover:text-white transition-colors">PL (Polska)</a>
+    </div>
+
+    <main>
+        
+        <!-- Hero Section -->
+        <section class="min-h-[100dvh] w-full flex flex-col justify-center px-6 md:px-12 relative pt-20">
+            <div class="z-10 mt-10 md:mt-0 max-w-6xl">
+                <!-- Glitch Header -->
+                <div class="reveal-mask mb-6">
+                    <div class="glitch-wrapper reveal-text-inner">
+                        <h1 class="text-hero glitch-text break-words" data-text="KISZLO STUDIO">
+                            KISZLO STUDIO
+                        </h1>
+                    </div>
+                </div>
+                
+                <!-- Subtitle -->
+                <div class="reveal-mask mb-8 pb-2">
+                    <h2 class="text-xl md:text-3xl font-tech text-neon-blue reveal-text-inner leading-tight tracking-wide">
+                        // Marketing • Communication • Immersion
+                    </h2>
+                </div>
+                
+                <!-- Lead Text -->
+                <div class="max-w-2xl reveal-fade opacity-0 border-l border-neon-blue/50 pl-6 py-2 bg-gradient-to-r from-neon-blue/5 to-transparent">
+                    <p class="text-sm md:text-lg text-gray-300 font-sans leading-relaxed">
+                        We help companies combine marketing strategy with technology: crafting effective communication, modern websites, and immersive environments for VR applications and digital solutions.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Bottom Indicator -->
+            <div class="absolute bottom-8 left-6 right-6 md:bottom-12 md:left-12 md:right-12 flex justify-between items-end z-10 border-t border-white/10 pt-4 md:pt-6">
+                <div class="flex items-center gap-3 reveal-fade opacity-0">
+                    <div class="flex gap-1">
+                        <span class="w-1 h-3 bg-neon-blue animate-pulse"></span>
+                        <span class="w-1 h-3 bg-neon-blue animate-pulse delay-75"></span>
+                        <span class="w-1 h-3 bg-neon-blue animate-pulse delay-150"></span>
+                    </div>
+                    <span class="text-[10px] md:text-xs font-tech text-neon-blue tracking-widest uppercase">System Online</span>
+                </div>
+                <div class="text-[10px] md:text-xs font-tech text-gray-600 uppercase tracking-widest reveal-fade opacity-0">
+                    Scroll to Explore
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section id="about" class="py-20 md:py-32 px-6 md:px-12 relative z-10">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex items-center gap-4 mb-16">
+                    <span class="text-xs font-tech text-neon-blue uppercase tracking-widest">01 / Team</span>
+                    <div class="h-[1px] w-24 bg-white/10"></div>
+                </div>
+                
+                <h2 class="text-3xl md:text-6xl font-bold font-tech text-white mb-20 leading-tight max-w-5xl">
+                    Where Strategy meets <br>
+                    <span class="gradient-text">Technology & Science.</span>
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                    
+                    <!-- Karol Kiszło Card -->
+                    <div class="spotlight-card p-8 rounded-2xl group cursor-hover-trigger">
+                        <div class="flex flex-col sm:flex-row gap-8 items-start relative z-10">
+                            <div class="w-full sm:w-32 shrink-0">
+                                <div class="team-img-container grayscale group-hover:grayscale-0 transition-all duration-500">
+                                    <img src="kk.jpg" alt="Karol Kiszło" class="team-img" onerror="this.src='https://ui-avatars.com/api/?name=Karol+Kiszlo&background=111&color=fff&size=400'">
+                                </div>
+                            </div>
+                            <div>
+                                <span class="text-[10px] font-tech text-neon-blue border border-neon-blue/30 px-2 py-1 rounded mb-3 inline-block bg-neon-blue/5">FOUNDER & STRATEGIST</span>
+                                <h3 class="text-2xl font-bold text-white mb-3 font-tech">Karol Kiszło</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed border-l-2 border-white/10 pl-4 group-hover:border-neon-blue transition-colors">
+                                    I bridge the worlds of business and technology. Responsible for marketing strategy and project vision. Designing communication that works.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sebastian Kraszewski Card -->
+                    <div class="spotlight-card p-8 rounded-2xl group cursor-hover-trigger">
+                        <div class="flex flex-col sm:flex-row gap-8 items-start relative z-10">
+                            <div class="w-full sm:w-32 shrink-0">
+                                <div class="team-img-container grayscale group-hover:grayscale-0 transition-all duration-500">
+                                    <img src="sk.jpg" alt="Sebastian Kraszewski" class="team-img" onerror="this.src='https://ui-avatars.com/api/?name=Sebastian+K&background=111&color=fff&size=400'">
+                                </div>
+                            </div>
+                            <div>
+                                <span class="text-[10px] font-tech text-neon-purple border border-neon-purple/30 px-2 py-1 rounded mb-3 inline-block bg-neon-purple/5">TECH LEAD & SCIENCE</span>
+                                <h3 class="text-2xl font-bold text-white mb-3 font-tech">dr hab. inż. Sebastian</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed border-l-2 border-white/10 pl-4 group-hover:border-neon-purple transition-colors">
+                                    Operational brain on the tech side. Expert in algorithms and neural systems. Ensuring scientific quality.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Oferta Preview -->
+        <section class="py-20 md:py-32 px-6 md:px-12 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-white/5 pb-8">
+                <div>
+                    <div class="flex items-center gap-4 mb-4">
+                        <span class="text-xs font-tech text-neon-blue uppercase tracking-widest">02 / Services</span>
+                        <div class="h-[1px] w-24 bg-white/10"></div>
+                    </div>
+                    <h2 class="text-4xl md:text-7xl font-bold tracking-tighter text-white font-tech">AREAS OF<br><span class="text-gray-700">EXPERTISE</span></h2>
+                </div>
+                <div class="mt-8 md:mt-0 max-w-sm md:text-right text-gray-400 text-sm">
+                    <p class="mb-4">Interdisciplinary approach to technology and marketing.</p>
+                    <a href="oferta.html" class="inline-flex items-center gap-2 text-neon-blue hover:text-white transition-colors uppercase font-tech text-xs tracking-widest group">
+                        Full Offer 
+                        <span class="block w-4 h-[1px] bg-neon-blue group-hover:w-8 transition-all"></span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                <!-- Card 1 -->
+                <div class="spotlight-card p-10 rounded-2xl group cursor-hover-trigger">
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center mb-6 text-neon-blue group-hover:bg-neon-blue group-hover:text-black transition-all">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4 font-tech">Campaigns & Strategy</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                            We design smart campaigns – from citylights to clinic screens. Connecting offline with online.
+                        </p>
+                        <a href="oferta.html" class="text-xs font-tech text-gray-500 group-hover:text-neon-blue uppercase tracking-widest transition-colors">Read more -></a>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="spotlight-card p-10 rounded-2xl group cursor-hover-trigger">
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center mb-6 text-neon-purple group-hover:bg-neon-purple group-hover:text-black transition-all">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4 font-tech">Web & VR Development</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                            Advanced websites, registration systems, and immersive VR environments for business and medicine.
+                        </p>
+                        <a href="oferta.html" class="text-xs font-tech text-gray-500 group-hover:text-neon-purple uppercase tracking-widest transition-colors">Read more -></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Placeholder -->
+        <section class="py-16 px-6 md:px-12 border-t border-white/5 bg-black/40 relative overflow-hidden">
+             <!-- Background Tech Grid -->
+             <div class="absolute inset-0 opacity-10" style="background-image: linear-gradient(rgba(0, 243, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 243, 255, 0.1) 1px, transparent 1px); background-size: 40px 40px;"></div>
+             
+            <div class="flex items-center justify-between relative z-10">
+                <span class="text-xs font-tech text-gray-500 uppercase tracking-widest block">03 / Portfolio</span>
+                <a href="portfolio.html" class="text-sm text-neon-blue hover:text-white transition-colors font-tech uppercase tracking-widest">View Projects -></a>
+            </div>
+            <!-- Marquee Strip -->
+            <div class="overflow-hidden whitespace-nowrap py-16 opacity-60 relative z-10">
+                <div class="inline-block animate-[marquee_25s_linear_infinite] text-5xl md:text-7xl font-bold text-transparent stroke-text font-tech" style="-webkit-text-stroke: 1px rgba(255,255,255,0.2);">
+                    WEB DEVELOPMENT • VIRTUAL REALITY • STRATEGY • UX/UI DESIGN • HARDWARE • CONSULTING •
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer / Contact -->
+        <section id="contact" class="min-h-[60vh] flex flex-col justify-between px-6 md:px-12 py-20 md:py-32 relative bg-[#020202] border-t border-white/10">
+            <div class="z-10 grid grid-cols-1 md:grid-cols-2 gap-16">
+                <div>
+                    <span class="text-xs font-tech text-neon-blue uppercase tracking-widest mb-6 block">Start a Project</span>
+                    <h2 class="text-4xl md:text-7xl font-bold tracking-tighter leading-[0.9] mb-8 text-white font-tech">
+                        LET'S CREATE<br>
+                        <span class="text-gray-800">TOMORROW.</span>
+                    </h2>
+                </div>
+                <div class="flex flex-col justify-center items-start md:items-end">
+                     <a href="mailto:neuroinnowacje@gmail.com" class="group relative text-2xl md:text-5xl text-white font-light cursor-hover-trigger break-all md:break-normal font-tech tracking-tight">
+                        neuroinnowacje@gmail.com
+                        <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-neon-blue transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="tel:+48600608303" class="mt-6 text-xl text-gray-400 hover:text-white transition-colors font-tech">
+                        +48 600 608 303
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 items-end z-10 pt-16 md:pt-24 border-t border-white/5 mt-12">
+                <div class="text-sm text-gray-500 font-tech">
+                    <p class="text-white font-bold mb-2 tracking-widest uppercase">Kiszlo Studio</p>
+                    <p>ul. Żeromskiego 60/5a</p>
+                    <p>50-312 Wrocław, Poland</p>
+                </div>
+                
+                <div class="flex flex-col gap-3 text-sm text-gray-500 font-tech">
+                    <div class="text-xs uppercase mb-1 tracking-widest text-gray-700">Partners</div>
+                    <a href="https://ncni.pl" target="_blank" class="hover:text-neon-blue transition-colors flex items-center gap-2 group">
+                        Scientific Center for Neuroinnovation
+                        <svg class="w-3 h-3 text-gray-600 group-hover:text-neon-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    </a>
+                </div>
+
+                <div class="text-xs text-gray-700 font-tech uppercase md:text-right">
+                    &copy; 2026 Kiszlo Studio. All Rights Reserved.
+                </div>
+            </div>
+            
+            <!-- Glow Footer -->
+            <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[60%] h-[300px] bg-neon-blue opacity-[0.05] rounded-full blur-[120px] pointer-events-none"></div>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", (event) => {
+            console.log("Kiszlo Studio v2.0: Cyber-Neuro System Online (EN)");
+
+            // --- 0. SPOTLIGHT EFFECT LOGIC ---
+            const cards = document.querySelectorAll(".spotlight-card");
+            cards.forEach(card => {
+                card.onmousemove = e => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty("--mouse-x", `${x}px`);
+                    card.style.setProperty("--mouse-y", `${y}px`);
+                };
+            });
+
+            // --- 1. MOBILE MENU ---
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+            let isMenuOpen = false;
+
+            menuToggle.addEventListener('click', () => {
+                isMenuOpen = !isMenuOpen;
+                if(isMenuOpen) {
+                    mobileMenu.classList.remove('closed');
+                    mobileMenu.classList.add('open');
+                    menuToggle.innerHTML = '<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>';
+                } else {
+                    mobileMenu.classList.remove('open');
+                    mobileMenu.classList.add('closed');
+                    menuToggle.innerHTML = '<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
+                }
+            });
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    isMenuOpen = false;
+                    mobileMenu.classList.remove('open');
+                    mobileMenu.classList.add('closed');
+                    menuToggle.innerHTML = '<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
+                });
+            });
+
+            // --- 2. SMOOTH SCROLL (Lenis) ---
+            const lenis = new Lenis({
+                duration: 1.2,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                smooth: true,
+            });
+            function raf(time) {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+            }
+            requestAnimationFrame(raf);
+
+            // --- 3. CURSOR LOGIC ---
+            const cursorDot = document.querySelector('.cursor-dot');
+            const cursorOutline = document.querySelector('.cursor-outline');
+            const hoverTriggers = document.querySelectorAll('.cursor-hover-trigger');
+
+            if (window.matchMedia("(pointer: fine)").matches) {
+                window.addEventListener('mousemove', (e) => {
+                    const posX = e.clientX;
+                    const posY = e.clientY;
+                    cursorDot.style.left = `${posX}px`;
+                    cursorDot.style.top = `${posY}px`;
+                    
+                    // Smooth delay for outline
+                    cursorOutline.animate({
+                        left: `${posX}px`,
+                        top: `${posY}px`
+                    }, { duration: 500, fill: "forwards" });
+                });
+
+                hoverTriggers.forEach(link => {
+                    link.addEventListener('mouseenter', () => {
+                        cursorOutline.style.transform = 'translate(-50%, -50%) scale(2)';
+                        cursorOutline.style.backgroundColor = 'rgba(0, 243, 255, 0.05)';
+                        cursorOutline.style.borderColor = 'rgba(0, 243, 255, 0.5)';
+                    });
+                    link.addEventListener('mouseleave', () => {
+                        cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
+                        cursorOutline.style.backgroundColor = 'transparent';
+                        cursorOutline.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                    });
+                });
+            }
+
+            // --- 4. ANIMATIONS (GSAP) ---
+            gsap.registerPlugin(ScrollTrigger);
+
+            const tl = gsap.timeline();
+            tl.to(".reveal-text-inner", {
+                y: 0, duration: 1.4, ease: "power4.out", stagger: 0.1
+            })
+            .to(".reveal-fade", {
+                opacity: 1, duration: 1, stagger: 0.1
+            }, "-=0.8");
+
+            // --- 5. THREE.JS: NEURAL NETWORK EFFECT ---
+            const canvasContainer = document.getElementById('canvas-container');
+            if (canvasContainer) {
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                camera.position.z = 20;
+
+                const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                canvasContainer.appendChild(renderer.domElement);
+
+                // Create Particles
+                const particleCount = window.innerWidth < 768 ? 60 : 100; // Less particles for cleaner look
+                const particles = new THREE.Group();
+                const particleGeo = new THREE.SphereGeometry(0.1, 8, 8);
+                const particleMat = new THREE.MeshBasicMaterial({ color: 0x00f3ff, transparent: true, opacity: 0.8 });
+                
+                const particlePositions = [];
+                const particleVelocities = [];
+
+                for(let i=0; i<particleCount; i++) {
+                    const mesh = new THREE.Mesh(particleGeo, particleMat);
+                    const x = (Math.random() - 0.5) * 40;
+                    const y = (Math.random() - 0.5) * 40;
+                    const z = (Math.random() - 0.5) * 20;
+                    
+                    mesh.position.set(x, y, z);
+                    particles.add(mesh);
+                    
+                    particlePositions.push(mesh.position);
+                    particleVelocities.push(new THREE.Vector3(
+                        (Math.random() - 0.5) * 0.02,
+                        (Math.random() - 0.5) * 0.02,
+                        (Math.random() - 0.5) * 0.02
+                    ));
+                }
+                scene.add(particles);
+
+                // Lines
+                const lineMaterial = new THREE.LineBasicMaterial({ color: 0x00f3ff, transparent: true, opacity: 0.15 });
+                const lineGeometry = new THREE.BufferGeometry();
+                const lines = new THREE.LineSegments(lineGeometry, lineMaterial);
+                scene.add(lines);
+
+                // Mouse interaction
+                let mouseX = 0, mouseY = 0;
+                document.addEventListener('mousemove', (event) => {
+                    mouseX = (event.clientX - window.innerWidth / 2) * 0.05;
+                    mouseY = (event.clientY - window.innerHeight / 2) * 0.05;
+                });
+
+                function animate() {
+                    requestAnimationFrame(animate);
+
+                    // Update particles
+                    const positions = particles.children.map(p => p.position);
+                    const linePositions = [];
+
+                    particles.children.forEach((p, i) => {
+                        // Move
+                        p.position.add(particleVelocities[i]);
+                        
+                        // Bounce off bounds
+                        if(p.position.x > 20 || p.position.x < -20) particleVelocities[i].x *= -1;
+                        if(p.position.y > 20 || p.position.y < -20) particleVelocities[i].y *= -1;
+                        if(p.position.z > 10 || p.position.z < -10) particleVelocities[i].z *= -1;
+
+                        // Mouse influence
+                        p.position.x += (mouseX * 0.001 - p.position.x) * 0.01;
+                        p.position.y += (-mouseY * 0.001 - p.position.y) * 0.01;
+
+                        // Find connections
+                        for(let j=i+1; j<particleCount; j++) {
+                            const p2 = particles.children[j];
+                            const dist = p.position.distanceTo(p2.position);
+                            
+                            if(dist < 5) { // Connection distance
+                                linePositions.push(
+                                    p.position.x, p.position.y, p.position.z,
+                                    p2.position.x, p2.position.y, p2.position.z
+                                );
+                            }
+                        }
+                    });
+
+                    // Update lines
+                    lineGeometry.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
+                    
+                    // Rotate entire system slowly
+                    particles.rotation.y += 0.001;
+                    lines.rotation.y += 0.001;
+
+                    renderer.render(scene, camera);
+                }
+                animate();
+
+                window.addEventListener('resize', () => {
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
