@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Portfolio | Kiszlo Studio - Realizacje VR, Medycyna & Sztuka</title>
-    <meta name="description" content="Wybrane realizacje Kiszlo Studio. Aplikacje VR dla medycyny, scenografia teatralna, kampanie multimedialne i systemy AI.">
+    <title>Portfolio | Kiszlo Studio - High-End Tech & Science</title>
+    <meta name="description" content="Portfolio Kiszlo Studio. Realizacje high-tech: VR, MedTech, AI i multimedialna sztuka.">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@200;300;400;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -21,11 +22,17 @@
                     colors: {
                         'neon-blue': '#00f3ff',
                         'neon-purple': '#bc13fe',
+                        'neon-green': '#0aff60',
                         'deep-bg': '#030305',
+                        'panel-bg': 'rgba(255, 255, 255, 0.02)',
                     },
                     fontFamily: {
                         'sans': ['Manrope', 'sans-serif'],
-                        'tech': ['Space Grotesk', 'monospace'],
+                        'tech': ['Space Grotesk', 'sans-serif'],
+                        'mono': ['JetBrains Mono', 'monospace'],
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px)",
                     }
                 }
             }
@@ -42,14 +49,15 @@
         :root { --bg-color: #030305; --text-main: #FAFAFA; --accent-glow: #00f3ff; }
         body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Manrope', sans-serif; overflow-x: hidden; cursor: none; }
         
-        .noise-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9000; opacity: 0.03; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); }
-        .grid-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-size: 50px 50px; background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px); z-index: -2; pointer-events: none; mask-image: radial-gradient(circle at center, black 40%, transparent 100%); -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%); }
+        .noise-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9000; opacity: 0.04; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); }
         
-        /* Canvas positioned strictly in hero */
-        #canvas-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.5; mix-blend-mode: screen; pointer-events: none; }
+        /* Grid Background Fixed */
+        .grid-fixed { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none; background-size: 40px 40px; mask-image: radial-gradient(circle at center, black 40%, transparent 100%); }
 
-        .cursor-dot { width: 6px; height: 6px; background-color: var(--accent-glow); position: fixed; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9999; pointer-events: none; box-shadow: 0 0 15px var(--accent-glow); }
-        .cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(255, 255, 255, 0.3); position: fixed; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9998; pointer-events: none; transition: width 0.3s, height 0.3s, background-color 0.3s; }
+        #canvas-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.6; mix-blend-mode: screen; pointer-events: none; }
+
+        .cursor-dot { width: 4px; height: 4px; background-color: var(--accent-glow); position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9999; pointer-events: none; box-shadow: 0 0 10px var(--accent-glow); }
+        .cursor-outline { width: 30px; height: 30px; border: 1px solid rgba(255, 255, 255, 0.3); position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9998; pointer-events: none; transition: width 0.3s, height 0.3s, background-color 0.3s; }
 
         .glitch-wrapper { position: relative; display: inline-block; }
         .glitch-text { position: relative; z-index: 1; }
@@ -59,13 +67,66 @@
         @keyframes glitch-anim-1 { 0% { clip-path: inset(20% 0 80% 0); } 100% { clip-path: inset(30% 0 20% 0); } }
         @keyframes glitch-anim-2 { 0% { clip-path: inset(10% 0 60% 0); } 100% { clip-path: inset(70% 0 10% 0); } }
 
-        .text-hero { font-size: clamp(3rem, 7vw, 6rem); line-height: 0.95; font-weight: 800; letter-spacing: -0.03em; font-family: 'Space Grotesk', sans-serif; background: linear-gradient(180deg, #fff 0%, #aaa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; padding-bottom: 0.1em; }
+        .text-hero { font-size: clamp(3rem, 7vw, 6rem); line-height: 0.9; font-weight: 800; letter-spacing: -0.03em; font-family: 'Space Grotesk', sans-serif; background: linear-gradient(180deg, #fff 0%, #aaa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        /* --- TECH CARD "NASA STYLE" --- */
+        .tech-card {
+            background: rgba(255, 255, 255, 0.015);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
         
-        .project-card { position: relative; overflow: hidden; border-radius: 1rem; aspect-ratio: 4/3; background: #111; }
-        .project-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; opacity: 0.6; }
-        .project-card:hover .project-img { transform: scale(1.1); opacity: 0.3; }
-        .project-content { position: absolute; bottom: 0; left: 0; width: 100%; padding: 2rem; transform: translateY(20px); opacity: 0; transition: all 0.4s ease; }
-        .project-card:hover .project-content { transform: translateY(0); opacity: 1; }
+        /* Scanline effect on hover */
+        .tech-card::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0, 243, 255, 0.05) 51%, transparent 52%);
+            background-size: 100% 8px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s;
+        }
+        .tech-card:hover::after { opacity: 1; }
+
+        .tech-card:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.8);
+            transform: translateY(-2px);
+        }
+
+        /* Decorative Corners */
+        .corner { position: absolute; width: 8px; height: 8px; border-style: solid; border-color: var(--accent-glow); transition: all 0.3s; opacity: 0.5; }
+        .tech-card:hover .corner { opacity: 1; width: 12px; height: 12px; }
+        .corner-tl { top: 0; left: 0; border-width: 2px 0 0 2px; }
+        .corner-br { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
+        
+        /* Icon Box */
+        .icon-box {
+            width: 48px; height: 48px;
+            display: flex; align-items: center; justify-content: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.3);
+        }
+
+        .tech-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #888;
+            transition: 0.3s;
+        }
+        .tech-card:hover .tech-badge {
+            border-color: var(--accent-glow);
+            color: var(--accent-glow);
+            background: rgba(0, 243, 255, 0.05);
+        }
 
         #mobile-menu { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
         #mobile-menu.open { transform: translateX(0%); }
@@ -78,10 +139,10 @@
         }
     </style>
 </head>
-<body>
+<body class="antialiased">
 
     <div class="noise-overlay"></div>
-    <div class="grid-bg"></div>
+    <div class="grid-fixed bg-grid-pattern"></div>
     <div class="cursor-dot"></div>
     <div class="cursor-outline"></div>
 
@@ -94,7 +155,7 @@
             </a>
         </div>
         
-        <div class="hidden md:flex items-center gap-10 text-xs font-tech font-bold uppercase tracking-widest text-white/60">
+        <div class="hidden md:flex items-center gap-10 text-xs font-mono font-bold uppercase tracking-widest text-white/60">
             <a href="index.html" class="hover:text-neon-blue transition-colors cursor-hover-trigger">Studio</a>
             <a href="portfolio.html" class="text-neon-blue cursor-default">Portfolio</a>
             <a href="oferta.html" class="hover:text-neon-blue transition-colors cursor-hover-trigger">Oferta</a>
@@ -119,87 +180,220 @@
 
     <main>
         
-        <!-- Header / Hero with Canvas -->
-        <section id="hero-section" class="relative pt-32 px-6 md:px-12 pb-20 overflow-hidden">
+        <!-- Header -->
+        <section id="hero-section" class="relative pt-32 px-6 md:px-12 pb-16 overflow-hidden">
             <div id="canvas-container"></div>
             
             <div class="max-w-7xl mx-auto relative z-10">
                 <div class="flex items-center gap-4 mb-6">
-                     <span class="w-12 h-[1px] bg-neon-blue"></span>
-                     <span class="text-neon-blue font-tech text-xs tracking-[0.2em] uppercase">Wybrane Projekty</span>
+                     <span class="w-2 h-2 bg-neon-blue animate-pulse rounded-full"></span>
+                     <span class="text-neon-blue font-mono text-xs tracking-widest uppercase">System: Online</span>
                 </div>
                 <div class="glitch-wrapper mb-6">
                     <h1 class="text-hero glitch-text" data-text="PORTFOLIO">PORTFOLIO</h1>
                 </div>
-                <p class="text-gray-400 max-w-2xl text-lg leading-relaxed border-l-2 border-white/10 pl-6">
-                    Realizacje, które łączą technologię z emocjami. Zobacz, jak wykorzystujemy VR, AI i multimedia w praktyce.
-                </p>
+                <div class="flex flex-col md:flex-row gap-8 items-start border-t border-white/10 pt-8">
+                    <p class="text-gray-400 max-w-xl text-sm md:text-base leading-relaxed font-mono">
+                        // ACCESSING ARCHIVES...<br>
+                        Studium przypadku: Integracja technologii (AI, VR) z celami biologicznymi i artystycznymi.
+                    </p>
+                </div>
             </div>
         </section>
 
-        <!-- Projects Grid -->
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mb-32 px-6 md:px-12">
+        <!-- Tech Stack / Projects -->
+        <div class="max-w-7xl mx-auto px-6 md:px-12 pb-32 flex flex-col gap-6">
             
-            <!-- Project 1: MedTech -->
-            <div class="project-card group cursor-hover-trigger border border-white/5">
-                <img src="https://images.unsplash.com/photo-1626379953822-baec19c3accd?auto=format&fit=crop&q=80&w=1000" class="project-img" alt="VR Medical">
-                <div class="project-content">
-                    <span class="text-neon-blue font-tech text-xs tracking-widest uppercase mb-2 block">VR / MedTech</span>
-                    <h3 class="text-3xl font-bold text-white mb-2">Symulator Chirurgiczny VR</h3>
-                    <p class="text-gray-400 text-sm">Zaawansowany system treningowy dla studentów medycyny z haptyką.</p>
-                </div>
-            </div>
+            <!-- Project 1: NCNI -->
+            <article class="tech-card p-6 md:p-8 rounded-lg cursor-hover-trigger group">
+                <div class="corner corner-tl"></div>
+                <div class="corner corner-br"></div>
+                
+                <div class="flex flex-col md:flex-row gap-6 md:gap-10">
+                    <!-- Tech Icon Module -->
+                    <div class="flex-shrink-0">
+                        <div class="icon-box group-hover:border-neon-blue transition-colors">
+                            <!-- VR Goggles Icon -->
+                            <svg class="w-6 h-6 text-gray-400 group-hover:text-neon-blue transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 12l.666 3.109a4.5 4.5 0 004.28 3.641h10.608a4.5 4.5 0 004.28-3.641l.666-3.11m-18.995 0h7.495M21.75 12H14.25M11 12a3 3 0 116 0m-6 0a3 3 0 106 0" />
+                            </svg>
+                        </div>
+                        <div class="mt-2 text-[10px] font-mono text-gray-600 uppercase tracking-widest text-center">Sys.01</div>
+                    </div>
 
-            <!-- Project 2: Scenography -->
-            <div class="project-card group cursor-hover-trigger border border-white/5">
-                <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=1000" class="project-img" alt="Theater Scenography">
-                <div class="project-content">
-                    <span class="text-neon-purple font-tech text-xs tracking-widest uppercase mb-2 block">Teatr / Multimedia</span>
-                    <h3 class="text-3xl font-bold text-white mb-2">Multimedialny "Makbet"</h3>
-                    <p class="text-gray-400 text-sm">Interaktywna scenografia cyfrowa reagująca na ruch aktorów.</p>
-                </div>
-            </div>
+                    <!-- Content -->
+                    <div class="flex-1">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 border-b border-white/5 pb-4">
+                            <h3 class="text-2xl md:text-3xl font-bold text-white font-tech group-hover:text-neon-blue transition-colors">NCNI CIRCLE VR</h3>
+                            <span class="text-xs font-mono text-neon-blue bg-neon-blue/10 px-2 py-1 rounded mt-2 md:mt-0">MEDTECH / CLINICAL</span>
+                        </div>
 
-            <!-- Project 3: Web/Med -->
-            <div class="project-card group cursor-hover-trigger border border-white/5">
-                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=1000" class="project-img" alt="Telemedicine">
-                <div class="project-content">
-                    <span class="text-white font-tech text-xs tracking-widest uppercase mb-2 block">Web Development</span>
-                    <h3 class="text-3xl font-bold text-white mb-2">Platforma Telemedyczna</h3>
-                    <p class="text-gray-400 text-sm">System rejestracji i konsultacji online dla sieci klinik.</p>
-                </div>
-            </div>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6 font-sans">
+                            Zintegrowany system neuroterapeutyczny. Platforma immersyjna łącząca terapię ekspozycyjną (VRET) z biofeedbackiem w czasie rzeczywistym. Pełna kontrola nad leczeniem fobii, wsparcie dla osób neuroatypowych (ADHD) oraz aktywizacja seniorów.
+                        </p>
 
-            <!-- Project 4: AI/Hardware -->
-            <div class="project-card group cursor-hover-trigger border border-white/5">
-                <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?auto=format&fit=crop&q=80&w=1000" class="project-img" alt="AI Analytics">
-                <div class="project-content">
-                    <span class="text-neon-blue font-tech text-xs tracking-widest uppercase mb-2 block">AI / Automatyzacja</span>
-                    <h3 class="text-3xl font-bold text-white mb-2">Voicebot Kliniczny</h3>
-                    <p class="text-gray-400 text-sm">System AI automatyzujący umawianie wizyt i triaż pacjentów.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-badge">Unity 3D</span>
+                            <span class="tech-badge">Biofeedback API</span>
+                            <span class="tech-badge">VRET</span>
+                            <span class="tech-badge">C#</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </article>
+
+            <!-- Project 2: Makbet -->
+            <article class="tech-card p-6 md:p-8 rounded-lg cursor-hover-trigger group border-l-2 border-l-neon-purple/50">
+                 <div class="corner corner-tl" style="border-color: var(--neon-purple)"></div>
+                <div class="corner corner-br" style="border-color: var(--neon-purple)"></div>
+
+                <div class="flex flex-col md:flex-row gap-6 md:gap-10">
+                    <div class="flex-shrink-0">
+                         <div class="icon-box group-hover:border-neon-purple transition-colors">
+                            <!-- Theater Masks Icon -->
+                            <svg class="w-6 h-6 text-gray-400 group-hover:text-neon-purple transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z" />
+                            </svg>
+                        </div>
+                        <div class="mt-2 text-[10px] font-mono text-gray-600 uppercase tracking-widest text-center">Sys.02</div>
+                    </div>
+
+                    <div class="flex-1">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 border-b border-white/5 pb-4">
+                            <h3 class="text-2xl md:text-3xl font-bold text-white font-tech group-hover:text-neon-purple transition-colors">PROTOTYP: MAKBET</h3>
+                            <span class="text-xs font-mono text-neon-purple bg-neon-purple/10 px-2 py-1 rounded mt-2 md:mt-0">R&D / ART</span>
+                        </div>
+
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6 font-sans">
+                            Eksperymentalny prototyp interaktywnej scenografii. Nie gotowy produkt, a badanie granic technologii w sztuce. System czujników głębi (Kinect Azure) i projekcji 4K reagujący na żywo na gesty aktorów.
+                        </p>
+
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-badge">TouchDesigner</span>
+                            <span class="tech-badge">Lidar / Kinect</span>
+                            <span class="tech-badge">Generative Mapping</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Project 3: Neuro-Audio -->
+            <article class="tech-card p-6 md:p-8 rounded-lg cursor-hover-trigger group">
+                 <div class="corner corner-tl" style="border-color: #3b82f6"></div>
+                <div class="corner corner-br" style="border-color: #3b82f6"></div>
+
+                <div class="flex flex-col md:flex-row gap-6 md:gap-10">
+                    <div class="flex-shrink-0">
+                         <div class="icon-box group-hover:border-blue-500 transition-colors">
+                            <!-- Music Note Icon -->
+                            <svg class="w-6 h-6 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                            </svg>
+                        </div>
+                         <div class="mt-2 text-[10px] font-mono text-gray-600 uppercase tracking-widest text-center">Sys.03</div>
+                    </div>
+
+                    <div class="flex-1">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 border-b border-white/5 pb-4">
+                            <h3 class="text-2xl md:text-3xl font-bold text-white font-tech group-hover:text-blue-400 transition-colors">NEURO-AUDIO ADHD</h3>
+                            <span class="text-xs font-mono text-blue-400 bg-blue-500/10 px-2 py-1 rounded mt-2 md:mt-0">MOBILE / DSP</span>
+                        </div>
+
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6 font-sans">
+                            Adaptacyjna aplikacja audio. Koniec z "szumami do skupienia". Nasz algorytm DSP w czasie rzeczywistym modyfikuje Twoją ulubioną muzykę (od popu po klasykę), dostosowując pasma dźwiękowe do potrzeb mózgu z ADHD.
+                        </p>
+
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-badge">Real-time DSP</span>
+                            <span class="tech-badge">Python / Swift</span>
+                            <span class="tech-badge">Neuro-modulation</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Project 4: Voicebot -->
+            <article class="tech-card p-6 md:p-8 rounded-lg cursor-hover-trigger group">
+                 <div class="corner corner-tl"></div>
+                <div class="corner corner-br"></div>
+
+                <div class="flex flex-col md:flex-row gap-6 md:gap-10">
+                    <div class="flex-shrink-0">
+                         <div class="icon-box group-hover:border-neon-blue transition-colors">
+                            <svg class="w-6 h-6 text-gray-400 group-hover:text-neon-blue transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                            </svg>
+                        </div>
+                         <div class="mt-2 text-[10px] font-mono text-gray-600 uppercase tracking-widest text-center">Sys.04</div>
+                    </div>
+
+                    <div class="flex-1">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 border-b border-white/5 pb-4">
+                            <h3 class="text-2xl md:text-3xl font-bold text-white font-tech group-hover:text-neon-blue transition-colors">VOICEBOT KLINICZNY</h3>
+                            <span class="text-xs font-mono text-neon-blue bg-neon-blue/10 px-2 py-1 rounded mt-2 md:mt-0">AI / AUTOMATION</span>
+                        </div>
+
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6 font-sans">
+                            Autonomiczny asystent głosowy (24/7). Rozpoznaje intencje pacjenta (język naturalny), sprawdza grafiki lekarzy w czasie rzeczywistym i dokonuje rezerwacji w systemie medycznym.
+                        </p>
+
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-badge">OpenAI Whisper</span>
+                            <span class="tech-badge">LLM Integration</span>
+                            <span class="tech-badge">VoIP</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Project 5: AD-APT (New AI Ad System) -->
+            <article class="tech-card p-6 md:p-8 rounded-lg cursor-hover-trigger group border-l-2 border-l-neon-green/50">
+                 <div class="corner corner-tl" style="border-color: var(--neon-green)"></div>
+                <div class="corner corner-br" style="border-color: var(--neon-green)"></div>
+
+                <div class="flex flex-col md:flex-row gap-6 md:gap-10">
+                    <div class="flex-shrink-0">
+                         <div class="icon-box group-hover:border-neon-green transition-colors">
+                            <!-- Eye / Target Icon -->
+                            <svg class="w-6 h-6 text-gray-400 group-hover:text-neon-green transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                        </div>
+                         <div class="mt-2 text-[10px] font-mono text-gray-600 uppercase tracking-widest text-center">Sys.05</div>
+                    </div>
+
+                    <div class="flex-1">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 border-b border-white/5 pb-4">
+                            <h3 class="text-2xl md:text-3xl font-bold text-white font-tech group-hover:text-neon-green transition-colors">AD-APT: REKLAMA KOGNITYWNA</h3>
+                            <span class="text-xs font-mono text-neon-green bg-neon-green/10 px-2 py-1 rounded mt-2 md:mt-0">AI / MARKETING</span>
+                        </div>
+
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6 font-sans">
+                            System Digital Signage nowej generacji. Sztuczna inteligencja (Computer Vision) "widzi" odbiorcę i w czasie rzeczywistym dopasowuje treść reklamy, język oraz ton komunikatu do jego cech demograficznych i nastroju. Reklama, która rozumie kontekst.
+                        </p>
+
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-badge">Computer Vision</span>
+                            <span class="tech-badge">Real-time GenAI</span>
+                            <span class="tech-badge">Personalization Engine</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
 
         </div>
 
-        <!-- Contact Section -->
-        <section id="contact" class="border-t border-white/10 pt-20 pb-32 px-6 md:px-12 bg-[#020202]">
-             <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+        <!-- Footer -->
+        <section id="contact" class="border-t border-white/10 py-20 px-6 md:px-12 bg-[#020202]">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-end gap-10">
                 <div>
-                    <h2 class="text-4xl md:text-6xl font-bold font-tech text-white mb-8">ZACZNIJMY<br>PROJEKT.</h2>
-                    <p class="text-gray-400">Masz wyzwanie? Znajdźmy rozwiązanie.</p>
+                     <span class="text-[10px] font-mono text-neon-blue uppercase tracking-widest mb-4 block">System Status: Active</span>
+                     <h2 class="text-4xl md:text-6xl font-bold font-tech text-white">READY TO<br>DEPLOY?</h2>
                 </div>
-                <div class="flex flex-col items-start md:items-end justify-center">
-                    <a href="mailto:neuroinnowacje@gmail.com" class="text-2xl md:text-4xl text-white font-light hover:text-neon-blue transition-colors mb-4">neuroinnowacje@gmail.com</a>
-                    <a href="tel:+48600608303" class="text-xl text-gray-400 hover:text-white transition-colors">+48 600 608 303</a>
-                </div>
-            </div>
-            
-            <div class="max-w-7xl mx-auto mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between text-xs font-tech text-gray-600 uppercase">
-                <div>&copy; 2026 Kiszlo Studio</div>
-                 <div class="flex gap-4 mt-4 md:mt-0">
-                    <a href="index.html" class="hover:text-white">Studio</a>
-                    <a href="oferta.html" class="hover:text-white">Oferta</a>
+                <div class="text-right">
+                    <a href="mailto:neuroinnowacje@gmail.com" class="text-xl md:text-2xl text-gray-300 hover:text-neon-blue transition-colors font-mono">neuroinnowacje@gmail.com</a>
+                    <div class="text-xs font-mono text-gray-600 mt-4 uppercase">© 2026 Kiszlo Studio. All systems operational.</div>
                 </div>
             </div>
         </section>
@@ -238,14 +432,16 @@
             });
              document.querySelectorAll('.cursor-hover-trigger').forEach(link => {
                 link.addEventListener('mouseenter', () => {
-                    cursorOutline.style.transform = 'translate(-50%, -50%) scale(2)';
+                    cursorOutline.style.transform = 'translate(-50%, -50%) scale(2.5)';
                     cursorOutline.style.backgroundColor = 'rgba(0, 243, 255, 0.05)';
                     cursorOutline.style.borderColor = 'rgba(0, 243, 255, 0.5)';
+                    cursorOutline.style.borderRadius = '4px'; // Tech feel
                 });
                 link.addEventListener('mouseleave', () => {
                     cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
                     cursorOutline.style.backgroundColor = 'transparent';
                     cursorOutline.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                    cursorOutline.style.borderRadius = '50%';
                 });
             });
         }
