@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Services | Kiszlo Studio - MedTech, Web, AI & Marketing</title>
+    <meta name="description" content="Kiszlo Studio Offer. We create premium websites, medical VR apps, implement AI in business and design ROI-driven digital marketing.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.kiszlo.ai/services.html">
+    
+    <!-- AI Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "MedTech, Web & Marketing Services",
+      "provider": {
+        "@type": "Organization",
+        "name": "Kiszlo Studio"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Global"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Tech & Creative Services",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Medical VR Simulations" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Premium Web Development" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI & Business Automation" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Performance Marketing & SEO" } }
+        ]
+      }
+    }
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@200;300;400;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'neon-blue': '#00f3ff',
+                        'neon-purple': '#bc13fe',
+                        'deep-bg': '#030305',
+                    },
+                    fontFamily: {
+                        'sans': ['Manrope', 'sans-serif'],
+                        'tech': ['Space Grotesk', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
+
+    <style>
+        :root { --bg-color: #030305; --text-main: #FAFAFA; --accent-glow: #00f3ff; }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Manrope', sans-serif; overflow-x: hidden; cursor: none; margin: 0; padding: 0;}
+        
+        .noise-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9000; opacity: 0.03; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); }
+        .grid-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-size: 50px 50px; background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px); z-index: -2; pointer-events: none; mask-image: radial-gradient(circle at center, black 40%, transparent 100%); -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%); }
+        
+        #canvas-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.5; mix-blend-mode: screen; pointer-events: none; }
+
+        .cursor-dot { width: 6px; height: 6px; background-color: var(--accent-glow); position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9999; pointer-events: none; box-shadow: 0 0 15px var(--accent-glow); }
+        .cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(255, 255, 255, 0.3); position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9998; pointer-events: none; transition: width 0.3s, height 0.3s, background-color 0.3s; }
+
+        .glitch-wrapper { position: relative; display: inline-block; }
+        .glitch-text { position: relative; z-index: 1; }
+        .glitch-text::before, .glitch-text::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-color); }
+        .glitch-text::before { left: 2px; text-shadow: -1px 0 #ff00c1; clip-path: inset(44% 0 61% 0); animation: glitch-anim-1 2.5s infinite linear alternate-reverse; }
+        .glitch-text::after { left: -2px; text-shadow: -1px 0 #00fff9; clip-path: inset(58% 0 43% 0); animation: glitch-anim-2 3s infinite linear alternate-reverse; }
+        @keyframes glitch-anim-1 { 0% { clip-path: inset(20% 0 80% 0); } 100% { clip-path: inset(30% 0 20% 0); } }
+        @keyframes glitch-anim-2 { 0% { clip-path: inset(10% 0 60% 0); } 100% { clip-path: inset(70% 0 10% 0); } }
+
+        .spotlight-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); position: relative; overflow: hidden; transition: transform 0.3s ease; }
+        .spotlight-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.06), transparent 40%); opacity: 0; transition: opacity 0.5s; pointer-events: none; z-index: 1; }
+        .spotlight-card:hover::before { opacity: 1; }
+        .spotlight-card:hover { transform: translateY(-5px); border-color: rgba(255, 255, 255, 0.1); }
+
+        .text-hero { font-size: clamp(3rem, 7vw, 6rem); line-height: 0.95; font-weight: 800; letter-spacing: -0.03em; font-family: 'Space Grotesk', sans-serif; background: linear-gradient(180deg, #fff 0%, #aaa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; padding-bottom: 0.1em; }
+
+        #mobile-menu { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        #mobile-menu.open { transform: translateX(0%); }
+        #mobile-menu.closed { transform: translateX(100%); }
+
+        ::selection { background: var(--accent-glow); color: #000; }
+        @media (max-width: 768px) {
+            .cursor-dot, .cursor-outline { display: none; }
+            body { cursor: auto; }
+            .text-hero { font-size: 13vw; }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="noise-overlay"></div>
+    <div class="grid-bg"></div>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- Nav -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-6 md:px-12 md:py-8 flex justify-between items-center bg-black/80 backdrop-blur-md border-b border-white/5">
+        <div class="text-xl md:text-2xl font-bold font-tech tracking-tighter cursor-hover-trigger flex items-center gap-3">
+             <a href="eng.html" class="flex items-center gap-3">
+                <span class="w-3 h-3 bg-neon-blue rounded-full shadow-[0_0_15px_#00f3ff]"></span>
+                <span class="text-white">KISZLO<span class="text-white/40">.STUDIO</span></span>
+            </a>
+        </div>
+        
+        <div class="hidden md:flex items-center gap-10 text-xs font-tech font-bold uppercase tracking-widest text-white/60">
+            <a href="eng.html" class="hover:text-neon-blue transition-colors cursor-hover-trigger">Studio</a>
+            <a href="portfolio.html" class="hover:text-neon-blue transition-colors cursor-hover-trigger">Portfolio</a>
+            <a href="services.html" class="text-neon-blue cursor-default">Services</a>
+            <a href="#contact" class="hover:text-neon-blue transition-colors cursor-hover-trigger">Contact</a>
+             <div class="flex items-center gap-2 border-l border-white/10 pl-6 lang-switch">
+                <a href="oferta.html" class="inactive cursor-hover-trigger hover:text-neon-blue transition-colors">PL</a>
+                <span class="text-white/20">/</span>
+                <span class="active cursor-default text-white">EN</span>
+            </div>
+        </div>
+        
+        <button id="menu-toggle" class="md:hidden text-white cursor-pointer relative z-50 p-2"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-black flex flex-col justify-center items-center gap-8 closed md:hidden">
+        <a href="eng.html" class="mobile-link text-3xl font-tech font-bold text-white hover:text-neon-blue">Studio</a>
+        <a href="portfolio.html" class="mobile-link text-3xl font-tech font-bold text-white hover:text-neon-blue">Portfolio</a>
+        <a href="services.html" class="mobile-link text-3xl font-tech font-bold text-neon-blue">Services</a>
+        <a href="#contact" class="mobile-link text-3xl font-tech font-bold text-white hover:text-neon-blue">Contact</a>
+    </div>
+
+    <main>
+        
+        <!-- Header -->
+        <section id="hero-section" class="relative pt-32 px-6 md:px-12 pb-20 overflow-hidden">
+            <div id="canvas-container"></div>
+            
+            <div class="max-w-7xl mx-auto relative z-10">
+                <div class="flex items-center gap-4 mb-6">
+                     <span class="w-12 h-[1px] bg-neon-blue"></span>
+                     <span class="text-neon-blue font-tech text-xs tracking-[0.2em] uppercase">Our Services</span>
+                </div>
+                <div class="glitch-wrapper mb-6">
+                    <h1 class="text-hero glitch-text" data-text="OFFER">OFFER</h1>
+                </div>
+                <p class="text-gray-400 max-w-2xl text-lg leading-relaxed border-l-2 border-white/10 pl-6">
+                    Comprehensive solutions combining marketing, medicine, and art. We implement the technologies of tomorrow – AI and VR – in business and clinical environments.
+                </p>
+            </div>
+        </section>
+
+        <!-- Services List -->
+        <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col gap-12 mb-32">
+            
+            <!-- Service 1: MedTech VR -->
+            <div class="spotlight-card p-8 md:p-12 rounded-3xl border border-white/5 relative overflow-hidden">
+                 <div class="absolute top-0 right-0 w-64 h-64 bg-neon-blue/5 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2"></div>
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 relative z-10">
+                    <div class="md:col-span-4">
+                        <span class="text-6xl font-tech font-bold text-white/5 absolute -top-4 -left-4">01</span>
+                        <h2 class="text-3xl font-bold text-white mb-4 relative z-10 font-tech">MedTech & VR</h2>
+                        <span class="inline-block px-3 py-1 rounded border border-neon-blue/30 text-neon-blue text-[10px] font-tech tracking-widest uppercase mb-4">Simulations & Therapy</span>
+                    </div>
+                    <div class="md:col-span-8">
+                        <p class="text-gray-300 leading-relaxed mb-6">
+                            We create advanced VR and AR applications for medicine. From surgical simulators, through neurological rehabilitation tools in virtual reality, to educational systems for medical personnel.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 2: Premium Websites -->
+            <div class="spotlight-card p-8 md:p-12 rounded-3xl border border-white/5 relative overflow-hidden">
+                <div class="absolute bottom-0 left-0 w-64 h-64 bg-neon-purple/5 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2"></div>
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 relative z-10">
+                    <div class="md:col-span-4">
+                        <span class="text-6xl font-tech font-bold text-white/5 absolute -top-4 -left-4">02</span>
+                        <h2 class="text-3xl font-bold text-white mb-4 relative z-10 font-tech">Premium Web</h2>
+                        <span class="inline-block px-3 py-1 rounded border border-neon-purple/30 text-neon-purple text-[10px] font-tech tracking-widest uppercase mb-4">Design & Dev</span>
+                    </div>
+                    <div class="md:col-span-8">
+                        <p class="text-gray-300 leading-relaxed mb-6">
+                            We design and build modern websites and web applications. We use 3D animations (Three.js), advanced SEO, and performance optimization. Every project is unique – we don't use templates.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DIGITAL MARKETING - EXPANDED SECTION -->
+        <section class="py-20 bg-black/40 relative">
+            <div class="max-w-7xl mx-auto px-6 md:px-12">
+                <div class="text-center mb-24">
+                    <div class="flex items-center justify-center gap-4 mb-6">
+                        <div class="h-[1px] w-12 bg-neon-purple"></div>
+                        <span class="text-neon-purple font-tech text-xs tracking-widest uppercase">Marketing Pillar</span>
+                        <div class="h-[1px] w-12 bg-neon-purple"></div>
+                    </div>
+                    <h2 class="text-5xl md:text-7xl font-bold text-white mb-6 font-tech">MARKETING <span class="text-gray-800 italic">ROI-DRIVEN</span></h2>
+                    <p class="text-gray-400 max-w-3xl mx-auto text-lg">
+                        We combine data analytics with creativity and AI. Your campaigns stop being a cost and become a measurable investment in your company's growth.
+                    </p>
+                </div>
+
+                <!-- 3 Main Marketing Modules -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+                    
+                    <!-- Performance Marketing -->
+                    <div class="spotlight-card p-10 rounded-2xl border border-neon-blue/20 group cursor-hover-trigger">
+                        <div class="w-14 h-14 bg-neon-blue/10 rounded-full flex items-center justify-center mb-8 group-hover:bg-neon-blue group-hover:text-black transition-all">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4 font-tech">Performance & Paid</h3>
+                        <p class="text-gray-400 text-sm mb-8 leading-relaxed font-sans">
+                            Scalable campaigns in Google Ads, Meta Ads, and LinkedIn B2B ecosystems. We optimize for real conversion and ROAS, not just empty clicks.
+                        </p>
+                        <div class="border-t border-white/10 pt-6">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <div class="text-neon-blue font-bold text-2xl font-tech">3.2x</div>
+                                    <div class="text-gray-600 text-[9px] uppercase tracking-widest font-tech">avg. ROAS</div>
+                                </div>
+                                <div>
+                                    <div class="text-neon-blue font-bold text-2xl font-tech">-42%</div>
+                                    <div class="text-gray-600 text-[9px] uppercase tracking-widest font-tech">CPA Reduction</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SEO & Content -->
+                    <div class="spotlight-card p-10 rounded-2xl border border-neon-purple/20 group cursor-hover-trigger">
+                        <div class="w-14 h-14 bg-neon-purple/10 rounded-full flex items-center justify-center mb-8 group-hover:bg-neon-purple group-hover:text-black transition-all">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4 font-tech">SEO & Content</h3>
+                        <p class="text-gray-400 text-sm mb-8 leading-relaxed font-sans">
+                            Strategic search engine positioning. From technical SEO (Core Web Vitals) to expert content marketing that builds your brand's authority.
+                        </p>
+                        <div class="border-t border-white/10 pt-6">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <div class="text-neon-purple font-bold text-2xl font-tech">+187%</div>
+                                    <div class="text-gray-600 text-[9px] uppercase tracking-widest font-tech">Org. Traffic</div>
+                                </div>
+                                <div>
+                                    <div class="text-neon-purple font-bold text-2xl font-tech">TOP 3</div>
+                                    <div class="text-gray-600 text-[9px] uppercase tracking-widest font-tech">Rankings</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Automation -->
+                    <div class="spotlight-card p-10 rounded-2xl border border-white/20 group cursor-hover-trigger">
+                        <div class="w-14 h-14 bg-white/10 rounded-full flex items-center justify-center mb-8 group-hover:bg-white group-hover:text-black transition-all">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707"/><circle cx="12" cy="17" r="3"/></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4 font-tech">AI & Automation</h3>
+                        <p class="text-gray-400 text-sm mb-8 leading-relaxed font-sans">
+                            Automation of sales processes. We implement AI chatbots, CRM systems, and lead nurturing funnels that work for you 24/7.
+                        </p>
+                        <div class="border-t border-white/10 pt-6">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <div class="text-white font-bold text-2xl font-tech">68%</div>
+                                    <div class="text-gray-600 text-[9px] uppercase tracking-widest font-tech">Time Saved</div>
+                                </div>
+                                <div>
+                                    <div class="text-white font-bold text-2xl font-tech">24/7</div>
+                                    <div class="text-gray-600 text-[9px] uppercase tracking-widest font-tech">Deployment</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION: WORKFLOW -->
+                <div class="border-y border-white/5 py-24 mb-32 bg-[#020202]">
+                    <h3 class="text-3xl font-bold text-white mb-16 font-tech text-center">Data-Driven Workflow</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 max-w-6xl mx-auto">
+                        <div class="text-center group">
+                            <div class="w-16 h-16 bg-neon-blue/10 rounded-full flex items-center justify-center mx-auto mb-6 text-neon-blue text-2xl font-bold font-tech group-hover:bg-neon-blue group-hover:text-black transition-all">1</div>
+                            <h4 class="text-white font-bold mb-3 font-tech">Audit</h4>
+                            <p class="text-gray-500 text-xs font-sans leading-relaxed">Competitor analysis, tracking setup, and market research.</p>
+                        </div>
+                        <div class="text-center group">
+                            <div class="w-16 h-16 bg-neon-blue/10 rounded-full flex items-center justify-center mx-auto mb-6 text-neon-blue text-2xl font-bold font-tech group-hover:bg-neon-blue group-hover:text-black transition-all">2</div>
+                            <h4 class="text-white font-bold mb-3 font-tech">Strategy</h4>
+                            <p class="text-gray-500 text-xs font-sans leading-relaxed">Sales funnels, targeting, and KPI mapping.</p>
+                        </div>
+                        <div class="text-center group">
+                            <div class="w-16 h-16 bg-neon-blue/10 rounded-full flex items-center justify-center mx-auto mb-6 text-neon-blue text-2xl font-bold font-tech group-hover:bg-neon-blue group-hover:text-black transition-all">3</div>
+                            <h4 class="text-white font-bold mb-3 font-tech">Deploy</h4>
+                            <p class="text-gray-500 text-xs font-sans leading-relaxed">Campaign launch, content creation, and automation.</p>
+                        </div>
+                        <div class="text-center group">
+                            <div class="w-16 h-16 bg-neon-blue/10 rounded-full flex items-center justify-center mx-auto mb-6 text-neon-blue text-2xl font-bold font-tech group-hover:bg-neon-blue group-hover:text-black transition-all">4</div>
+                            <h4 class="text-white font-bold mb-3 font-tech">Scale</h4>
+                            <p class="text-gray-500 text-xs font-sans leading-relaxed">A/B testing, budget optimization, and ROI growth.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION: CASE STUDIES -->
+                <div class="mb-32">
+                    <h3 class="text-3xl font-bold text-white mb-12 font-tech">Proof of Value</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        
+                        <!-- Case 1 -->
+                        <div class="spotlight-card p-10 rounded-3xl border border-white/10 group">
+                            <span class="text-[10px] text-neon-blue font-tech uppercase tracking-[0.2em] mb-4 block">MedTech B2B Campaign</span>
+                            <h4 class="text-2xl font-bold text-white mb-6 font-tech">LeadGen for VR Clinic</h4>
+                            <p class="text-gray-400 text-sm mb-8 font-sans">
+                                Implementation of a multi-channel LinkedIn & Google Ads campaign for an innovative VR therapy facility. Effective reaching of decision-makers in the medical sector.
+                            </p>
+                            <div class="flex gap-8 border-t border-white/5 pt-8">
+                                <div>
+                                    <div class="text-neon-blue font-bold text-3xl font-tech">147</div>
+                                    <div class="text-gray-600 text-[10px] uppercase font-tech">Qual. Leads</div>
+                                </div>
+                                <div>
+                                    <div class="text-neon-blue font-bold text-3xl font-tech">€23</div>
+                                    <div class="text-gray-600 text-[10px] uppercase font-tech">Avg. CPL</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Case 2 -->
+                        <div class="spotlight-card p-10 rounded-3xl border border-white/10 group">
+                            <span class="text-[10px] text-neon-purple font-tech uppercase tracking-[0.2em] mb-4 block">SEO & Content Strategy</span>
+                            <h4 class="text-2xl font-bold text-white mb-6 font-tech">Scaling EdTech Platform</h4>
+                            <p class="text-gray-400 text-sm mb-8 font-sans">
+                                Comprehensive SEO and content marketing strategy for a tech startup. Increased organic visibility for niche expert keywords.
+                            </p>
+                            <div class="flex gap-8 border-t border-white/5 pt-8">
+                                <div>
+                                    <div class="text-neon-purple font-bold text-3xl font-tech">+340%</div>
+                                    <div class="text-gray-600 text-[10px] uppercase font-tech">Org. Growth</div>
+                                </div>
+                                <div>
+                                    <div class="text-neon-purple font-bold text-3xl font-tech">TOP 5</div>
+                                    <div class="text-gray-600 text-[10px] uppercase font-tech">42 Keywords</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- PRICING PACKAGES -->
+                <div class="max-w-6xl mx-auto">
+                    <h3 class="text-3xl font-bold text-white mb-16 font-tech text-center">Investment in Growth</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        
+                        <!-- Starter -->
+                        <div class="spotlight-card p-10 rounded-2xl border border-white/10 flex flex-col">
+                            <h4 class="text-neon-blue font-tech uppercase text-xs tracking-widest mb-2">Starter</h4>
+                            <div class="text-4xl font-bold text-white mb-8 font-tech">from 3 500 <span class="text-lg text-gray-500">PLN</span></div>
+                            <ul class="space-y-4 text-sm text-gray-400 font-sans mb-12 flex-1">
+                                <li class="flex items-start gap-3"><span class="text-neon-blue">✓</span> Google Ads (1 Channel)</li>
+                                <li class="flex items-start gap-3"><span class="text-neon-blue">✓</span> Landing Page Audit</li>
+                                <li class="flex items-start gap-3"><span class="text-neon-blue">✓</span> Monthly KPI Report</li>
+                            </ul>
+                            <a href="#contact" class="block w-full text-center py-4 border border-neon-blue/40 text-neon-blue font-tech text-xs uppercase tracking-widest hover:bg-neon-blue hover:text-black transition-all">Select Starter</a>
+                        </div>
+
+                        <!-- Growth -->
+                        <div class="spotlight-card p-10 rounded-2xl border-2 border-neon-blue relative flex flex-col scale-105">
+                            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-neon-blue text-black text-[10px] font-bold px-4 py-1 rounded-full uppercase tracking-tighter">Most Popular</div>
+                            <h4 class="text-neon-blue font-tech uppercase text-xs tracking-widest mb-2">Growth</h4>
+                            <div class="text-4xl font-bold text-white mb-8 font-tech">from 7 900 <span class="text-lg text-gray-500">PLN</span></div>
+                            <ul class="space-y-4 text-sm text-gray-200 font-sans mb-12 flex-1">
+                                <li class="flex items-start gap-3"><span class="text-neon-blue font-bold">✓</span> Multi-channel (Google & Meta)</li>
+                                <li class="flex items-start gap-3"><span class="text-neon-blue font-bold">✓</span> Basic SEO (4 articles)</li>
+                                <li class="flex items-start gap-3"><span class="text-neon-blue font-bold">✓</span> Automation Setup</li>
+                                <li class="flex items-start gap-3"><span class="text-neon-blue font-bold">✓</span> Weekly Optimization</li>
+                            </ul>
+                            <a href="#contact" class="block w-full text-center py-4 bg-neon-blue text-black font-tech text-xs uppercase font-bold tracking-widest hover:bg-white transition-all">Select Growth</a>
+                        </div>
+
+                        <!-- Enterprise -->
+                        <div class="spotlight-card p-10 rounded-2xl border border-white/10 flex flex-col">
+                            <h4 class="text-neon-purple font-tech uppercase text-xs tracking-widest mb-2">Enterprise</h4>
+                            <div class="text-4xl font-bold text-white mb-8 font-tech">Custom</div>
+                            <ul class="space-y-4 text-sm text-gray-400 font-sans mb-12 flex-1">
+                                <li class="flex items-start gap-3"><span class="text-neon-purple">✓</span> Full Funnel Strategy</li>
+                                <li class="flex items-start gap-3"><span class="text-neon-purple">✓</span> Dedicated AI Solutions</li>
+                                <li class="flex items-start gap-3"><span class="text-neon-purple">✓</span> Technical SEO Mastery</li>
+                                <li class="flex items-start gap-3"><span class="text-neon-purple">✓</span> Real-time Data Hub</li>
+                            </ul>
+                            <a href="#contact" class="block w-full text-center py-4 border border-neon-purple/40 text-neon-purple font-tech text-xs uppercase tracking-widest hover:bg-neon-purple hover:text-black transition-all">Expert Contact</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer / Contact -->
+        <section id="contact" class="border-t border-white/10 pt-20 pb-32 px-6 md:px-12 bg-[#020202]">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-4xl md:text-6xl font-bold font-tech text-white mb-8">LET'S START<br>A PROJECT.</h2>
+                    <p class="text-gray-400 font-sans">Choose a partner who understands technology and knows how to sell it.</p>
+                </div>
+                <div class="flex flex-col items-start md:items-end justify-center">
+                    <a href="mailto:neuroinnowacje@gmail.com" class="text-2xl md:text-4xl text-white font-light hover:text-neon-blue transition-colors mb-4 font-tech break-all">neuroinnowacje@gmail.com</a>
+                    <a href="tel:+48600608303" class="text-xl text-gray-400 hover:text-white transition-colors font-tech">+48 600 608 303</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Spotlight Logic
+        document.querySelectorAll(".spotlight-card").forEach(card => {
+            card.onmousemove = e => {
+                const rect = card.getBoundingClientRect();
+                card.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`);
+                card.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
+            };
+        });
+
+        // Mobile Menu
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        let isMenuOpen = false;
+
+        menuToggle.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            if(isMenuOpen) {
+                mobileMenu.classList.remove('closed'); mobileMenu.classList.add('open');
+                menuToggle.innerHTML = '<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>';
+            } else {
+                mobileMenu.classList.remove('open'); mobileMenu.classList.add('closed');
+                menuToggle.innerHTML = '<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
+            }
+        });
+        mobileLinks.forEach(l => l.addEventListener('click', () => menuToggle.click()));
+
+        // Smooth Scroll
+        const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smooth: true });
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+
+        // Cursor
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+        if (window.matchMedia("(pointer: fine)").matches) {
+            window.addEventListener('mousemove', (e) => {
+                cursorDot.style.left = `${e.clientX}px`; cursorDot.style.top = `${e.clientY}px`;
+                cursorOutline.animate({ left: `${e.clientX}px`, top: `${e.clientY}px` }, { duration: 500, fill: "forwards" });
+            });
+             document.querySelectorAll('.cursor-hover-trigger').forEach(link => {
+                link.addEventListener('mouseenter', () => {
+                    cursorOutline.style.transform = 'translate(-50%, -50%) scale(2)';
+                    cursorOutline.style.backgroundColor = 'rgba(0, 243, 255, 0.05)';
+                    cursorOutline.style.borderColor = 'rgba(0, 243, 255, 0.5)';
+                });
+                link.addEventListener('mouseleave', () => {
+                    cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
+                    cursorOutline.style.backgroundColor = 'transparent';
+                    cursorOutline.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                });
+            });
+        }
+        
+        // Three.js Background
+        const canvasContainer = document.getElementById('canvas-container');
+        const heroSection = document.getElementById('hero-section');
+        if (canvasContainer && heroSection) {
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, heroSection.clientWidth/heroSection.clientHeight, 0.1, 1000);
+            camera.position.z = 20;
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(heroSection.clientWidth, heroSection.clientHeight);
+            canvasContainer.appendChild(renderer.domElement);
+            
+            const particles = new THREE.Group();
+            const geo = new THREE.SphereGeometry(0.1, 4, 4);
+            const mat = new THREE.MeshBasicMaterial({ color: 0x00f3ff, transparent: true, opacity: 0.6 });
+            for(let i=0; i<60; i++) {
+                const mesh = new THREE.Mesh(geo, mat);
+                mesh.position.set((Math.random()-0.5)*30, (Math.random()-0.5)*30, (Math.random()-0.5)*15);
+                particles.add(mesh);
+            }
+            scene.add(particles);
+            
+            const lineMaterial = new THREE.LineBasicMaterial({ color: 0x00f3ff, transparent: true, opacity: 0.1 });
+            const lineGeometry = new THREE.BufferGeometry();
+            const lines = new THREE.LineSegments(lineGeometry, lineMaterial);
+            scene.add(lines);
+
+            function animate() {
+                requestAnimationFrame(animate);
+                const time = Date.now() * 0.001;
+                camera.position.z = 20 + Math.sin(time * 0.5) * 2;
+                particles.rotation.y += 0.001;
+                lines.rotation.y += 0.001;
+                renderer.render(scene, camera);
+            }
+            animate();
+            
+            window.addEventListener('resize', () => {
+                camera.aspect = heroSection.clientWidth/heroSection.clientHeight; 
+                camera.updateProjectionMatrix();
+                renderer.setSize(heroSection.clientWidth, heroSection.clientHeight);
+            });
+        }
+    </script>
+</body>
+</html>
