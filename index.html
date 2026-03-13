@@ -21,12 +21,6 @@
     <meta property="og:image" content="https://www.kiszlo.ai/og-image.jpg">
     <meta property="og:locale" content="pl_PL">
 
-    <!-- Twitter Card -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://www.kiszlo.ai/">
-    <meta property="twitter:title" content="Kiszlo Studio | AI & MedTech VR">
-    <meta property="twitter:description" content="Technologia w służbie zdrowia i biznesu. Sprawdź nasze rozwiązania VR i AI.">
-
     <!-- AI & Schema.org Structured Data (Advanced SEO) -->
     <script type="application/ld+json">
     {
@@ -110,8 +104,12 @@
     <!-- Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
+    
+    <!-- Vanilla Tilt (Poziom 1) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
 
     <style>
         :root {
@@ -131,6 +129,10 @@
             padding: 0;
         }
 
+        a, button, .magnetic, .scramble-text, .kinetic-title, .team-img-container {
+            cursor: none;
+        }
+
         /* --- BACKGROUND FX --- */
         .noise-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -147,14 +149,13 @@
             -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
         }
         
-        /* Updated Canvas Container for Hero Section Only */
         #canvas-container {
-            position: absolute; /* Changed from fixed */
+            position: absolute; 
             top: 0; 
             left: 0; 
             width: 100%; 
             height: 100%;
-            z-index: 0; /* Behind content */
+            z-index: 0; 
             opacity: 0.8; 
             mix-blend-mode: screen; 
             pointer-events: none;
@@ -166,10 +167,35 @@
             position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
             border-radius: 50%; z-index: 9999; pointer-events: none; box-shadow: 0 0 15px var(--accent-glow);
         }
-        .cursor-outline {
-            width: 40px; height: 40px; border: 1px solid rgba(255, 255, 255, 0.3);
-            position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
-            border-radius: 50%; z-index: 9998; pointer-events: none; transition: width 0.3s, height 0.3s, background-color 0.3s;
+        
+        .cursor-blob {
+            width: 50px; height: 50px;
+            background: rgba(0, 243, 255, 0.15);
+            position: fixed; top: 0; left: 0;
+            border-radius: 50%;
+            pointer-events: none; z-index: 9998;
+            transform: translate(-50%, -50%);
+            will-change: transform, width, height, border-radius;
+            transition: border-radius 0.3s, width 0.3s, height 0.3s, background-color 0.3s;
+            mix-blend-mode: screen;
+            filter: blur(8px);
+        }
+
+        /* --- KINETIC TITLE CSS --- */
+        .kinetic-char {
+            display: inline-block;
+            will-change: transform, color;
+        }
+
+        /* --- POZIOM 1: 3D TILT & PARALLAX CSS --- */
+        .team-img-container {
+            transform-style: preserve-3d;
+            will-change: transform;
+            position: relative; /* Wymagane dla WebGL canvas z Poziomu 2 */
+        }
+        .team-img-container img {
+            transform: translateZ(20px); /* obraz "wyskakuje" do przodu */
+            transition: transform 0.3s, opacity 0.3s;
         }
 
         /* --- UI COMPONENTS --- */
@@ -230,7 +256,7 @@
         ::selection { background: var(--accent-glow); color: #000; }
         
         @media (max-width: 768px) {
-            .cursor-dot, .cursor-outline { display: none; }
+            .cursor-dot, .cursor-blob { display: none !important; }
             body { cursor: auto; }
             .text-hero { font-size: 11vw; }
         }
@@ -240,13 +266,13 @@
 
     <div class="noise-overlay"></div>
     <div class="grid-bg"></div>
-    <!-- Canvas Removed from here (body root) and moved to Hero Section -->
+    
     <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
+    <div class="cursor-blob"></div>
 
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 px-6 py-6 md:px-12 md:py-8 flex justify-between items-center bg-black/80 backdrop-blur-md border-b border-white/5 transition-all duration-300" id="navbar">
-        <a href="index.html" class="text-xl md:text-2xl font-bold tracking-tighter cursor-hover-trigger flex items-center gap-3 relative z-50 font-tech">
+        <a href="index.html" class="text-xl md:text-2xl font-bold tracking-tighter cursor-hover-trigger flex items-center gap-3 relative z-50 font-tech magnetic">
             <div class="relative w-4 h-4">
                 <span class="absolute inset-0 bg-neon-blue rounded-full animate-ping opacity-75"></span>
                 <span class="relative block w-4 h-4 bg-neon-blue rounded-full shadow-[0_0_15px_#00f3ff]"></span>
@@ -256,19 +282,19 @@
         
         <!-- Desktop Menu -->
         <div class="hidden md:flex items-center gap-12 text-xs font-tech font-bold uppercase tracking-widest text-white/60">
-            <a href="#about" class="hover:text-neon-blue transition-colors cursor-hover-trigger relative group">
+            <a href="#about" class="hover:text-neon-blue transition-colors cursor-hover-trigger relative group magnetic">
                 <span class="mr-1 text-neon-blue/50">01.</span> Studio
                 <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-neon-blue transition-all group-hover:w-full"></span>
             </a>
-            <a href="portfolio.html" class="hover:text-neon-blue transition-colors cursor-hover-trigger relative group">
+            <a href="portfolio.html" class="hover:text-neon-blue transition-colors cursor-hover-trigger relative group magnetic">
                 <span class="mr-1 text-neon-blue/50">02.</span> Portfolio
                 <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-neon-blue transition-all group-hover:w-full"></span>
             </a>
-            <a href="oferta.html" class="hover:text-neon-blue transition-colors cursor-hover-trigger relative group">
+            <a href="oferta.html" class="hover:text-neon-blue transition-colors cursor-hover-trigger relative group magnetic">
                 <span class="mr-1 text-neon-blue/50">03.</span> Usługi
                 <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-neon-blue transition-all group-hover:w-full"></span>
             </a>
-            <a href="#contact" class="hover:text-neon-blue transition-colors cursor-hover-trigger relative group">
+            <a href="#contact" class="hover:text-neon-blue transition-colors cursor-hover-trigger relative group magnetic">
                 <span class="mr-1 text-neon-blue/50">04.</span> Kontakt
                 <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-neon-blue transition-all group-hover:w-full"></span>
             </a>
@@ -281,7 +307,7 @@
         </div>
 
         <!-- Mobile Menu Toggle -->
-        <button id="menu-toggle" class="md:hidden text-white cursor-pointer relative z-50 p-2 focus:outline-none">
+        <button id="menu-toggle" class="md:hidden text-white cursor-pointer relative z-50 p-2 focus:outline-none magnetic">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
             </svg>
@@ -303,7 +329,6 @@
         
         <!-- Hero Section -->
         <section class="min-h-[100dvh] w-full flex flex-col justify-center px-6 md:px-12 relative pt-20 overflow-hidden" id="hero-section">
-            <!-- CANVAS CONTAINER MOVED HERE -->
             <div id="canvas-container"></div>
             
             <div class="z-10 mt-10 md:mt-0 max-w-6xl relative">
@@ -318,7 +343,7 @@
                 
                 <!-- Subtitle -->
                 <div class="reveal-mask mb-8 pb-2">
-                    <h2 class="text-lg md:text-3xl font-tech text-neon-blue reveal-text-inner leading-tight tracking-wide">
+                    <h2 class="text-lg md:text-3xl font-tech text-neon-blue reveal-text-inner leading-tight tracking-wide scramble-text">
                         // Marketing • MedTech • Film • AI • VR
                     </h2>
                 </div>
@@ -390,9 +415,11 @@
                     <!-- Karol Kiszło Card -->
                     <div class="spotlight-card p-8 rounded-2xl group cursor-hover-trigger">
                         <div class="flex flex-col sm:flex-row gap-8 items-start relative z-10">
+                            <!-- Zaktualizowano kontener dla efektów 3D i WebGL -->
                             <div class="w-full sm:w-32 shrink-0">
-                                <div class="team-img-container grayscale group-hover:grayscale-0 transition-all duration-500 overflow-hidden rounded-lg">
-                                    <img src="kk.jpg" alt="Karol Kiszło" class="w-full h-auto object-cover" onerror="this.src='https://ui-avatars.com/api/?name=Karol+Kiszlo&background=111&color=fff&size=400'">
+                                <div class="team-img-container grayscale group-hover:grayscale-0 transition-all duration-500 rounded-lg">
+                                    <!-- Dodano crossorigin="anonymous" dla Canvas API -->
+                                    <img src="kk.jpg" crossorigin="anonymous" alt="Karol Kiszło" class="w-full h-auto object-cover rounded-lg" onerror="this.src='https://ui-avatars.com/api/?name=Karol+Kiszlo&background=111&color=fff&size=400'">
                                 </div>
                             </div>
                             <div>
@@ -408,9 +435,11 @@
                     <!-- Sebastian Kraszewski Card -->
                     <div class="spotlight-card p-8 rounded-2xl group cursor-hover-trigger">
                         <div class="flex flex-col sm:flex-row gap-8 items-start relative z-10">
+                            <!-- Zaktualizowano kontener dla efektów 3D i WebGL -->
                             <div class="w-full sm:w-32 shrink-0">
-                                <div class="team-img-container grayscale group-hover:grayscale-0 transition-all duration-500 overflow-hidden rounded-lg">
-                                    <img src="sk.jpg" alt="Sebastian Kraszewski" class="w-full h-auto object-cover" onerror="this.src='https://ui-avatars.com/api/?name=Sebastian+K&background=111&color=fff&size=400'">
+                                <div class="team-img-container grayscale group-hover:grayscale-0 transition-all duration-500 rounded-lg">
+                                    <!-- Dodano crossorigin="anonymous" dla Canvas API -->
+                                    <img src="sk.jpg" crossorigin="anonymous" alt="Sebastian Kraszewski" class="w-full h-auto object-cover rounded-lg" onerror="this.src='https://ui-avatars.com/api/?name=Sebastian+K&background=111&color=fff&size=400'">
                                 </div>
                             </div>
                             <div>
@@ -427,7 +456,7 @@
             </div>
         </section>
 
-        <!-- Oferta Preview (UPDATED) -->
+        <!-- Oferta Preview -->
         <section class="py-20 md:py-32 px-6 md:px-12 relative z-10">
             <div class="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-white/5 pb-8">
                 <div>
@@ -439,7 +468,7 @@
                 </div>
                 <div class="mt-8 md:mt-0 max-w-sm md:text-right text-gray-400 text-sm">
                     <p class="mb-4">Interdyscyplinarne podejście: Biznes, Medycyna, Sztuka.</p>
-                    <a href="oferta.html" class="inline-flex items-center gap-2 text-neon-blue hover:text-white transition-colors uppercase font-tech text-xs tracking-widest group">
+                    <a href="oferta.html" class="inline-flex items-center gap-2 text-neon-blue hover:text-white transition-colors uppercase font-tech text-xs tracking-widest group magnetic">
                         Pełna oferta 
                         <span class="block w-4 h-[1px] bg-neon-blue group-hover:w-8 transition-all"></span>
                     </a>
@@ -457,12 +486,11 @@
                         <p class="text-gray-400 text-sm leading-relaxed mb-6">
                             Od reklamy outdoorowej i digitalowej, po multimedia dla kultury. Tworzymy wideo reklamowe, kontent promocyjny oraz multimedialne scenografie i instalacje imersyjne.
                         </p>
-                        <!-- Updated Link -->
-                        <a href="oferta.html" class="text-xs font-tech text-gray-500 group-hover:text-neon-blue uppercase tracking-widest transition-colors">Sprawdź szczegóły -></a>
+                        <a href="oferta.html" class="text-xs font-tech text-gray-500 group-hover:text-neon-blue uppercase tracking-widest transition-colors magnetic inline-block">Sprawdź szczegóły -></a>
                     </div>
                 </div>
 
-                <!-- Card 2: AI & MedTech (HEAVILY UPDATED) -->
+                <!-- Card 2: AI & MedTech -->
                 <div class="spotlight-card p-10 rounded-2xl group cursor-hover-trigger">
                     <div class="relative z-10">
                         <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center mb-6 text-neon-purple group-hover:bg-neon-purple group-hover:text-black transition-all">
@@ -472,8 +500,7 @@
                         <p class="text-gray-400 text-sm leading-relaxed mb-6">
                             Budujemy dedykowane aplikacje medyczne, systemy AI wspierające diagnozę oraz platformy dla podmiotów leczniczych. Łączymy web development z zaawansowaną analityką danych w medycynie.
                         </p>
-                        <!-- Updated Link -->
-                        <a href="oferta.html" class="text-xs font-tech text-gray-500 group-hover:text-neon-purple uppercase tracking-widest transition-colors">Sprawdź rozwiązania -></a>
+                        <a href="oferta.html" class="text-xs font-tech text-gray-500 group-hover:text-neon-purple uppercase tracking-widest transition-colors magnetic inline-block">Sprawdź rozwiązania -></a>
                     </div>
                 </div>
             </div>
@@ -486,12 +513,12 @@
              
             <div class="flex items-center justify-between relative z-10">
                 <span class="text-xs font-tech text-gray-500 uppercase tracking-widest block">03 / Portfolio</span>
-                <a href="portfolio.html" class="text-sm text-neon-blue hover:text-white transition-colors font-tech uppercase tracking-widest">Zobacz realizacje -></a>
+                <a href="portfolio.html" class="text-sm text-neon-blue hover:text-white transition-colors font-tech uppercase tracking-widest magnetic">Zobacz realizacje -></a>
             </div>
             <!-- Marquee Strip -->
             <div class="overflow-hidden whitespace-nowrap py-16 opacity-60 relative z-10">
                 <div class="inline-block animate-[marquee_25s_linear_infinite] text-4xl md:text-7xl font-bold text-transparent stroke-text font-tech" style="-webkit-text-stroke: 1px rgba(255,255,255,0.2);">
-                    MEDICAL VR • MEDTECH AI • STRATEGIA • SCENOGRAFIA MULTIMEDIALNA • FILM • WEB DEV •
+                    MEDICAL VR • MEDTECH AI • STRATEGIA • SCENOGRAFIA MULTIMEDIALNA • FILM • WEB DEV • 
                 </div>
             </div>
         </section>
@@ -501,17 +528,16 @@
             <div class="z-10 grid grid-cols-1 md:grid-cols-2 gap-16">
                 <div>
                     <span class="text-xs font-tech text-neon-blue uppercase tracking-widest mb-6 block">Rozpocznij Projekt</span>
-                    <h2 class="text-4xl md:text-7xl font-bold tracking-tighter leading-[0.9] mb-8 text-white font-tech">
-                        WSPÓLNIE<br>
-                        <span class="text-gray-800">STWÓRZMY JUTRO.</span>
+                    <h2 class="text-4xl md:text-7xl font-bold tracking-tighter leading-[1.1] mb-8 text-white font-tech kinetic-title">
+                        WSPÓLNIE STWÓRZMY JUTRO
                     </h2>
                 </div>
                 <div class="flex flex-col justify-center items-start md:items-end">
-                     <a href="mailto:neuroinnowacje@gmail.com" class="group relative text-2xl md:text-5xl text-white font-light cursor-hover-trigger break-all md:break-normal font-tech tracking-tight">
+                     <a href="mailto:neuroinnowacje@gmail.com" class="group relative text-2xl md:text-5xl text-white font-light cursor-hover-trigger break-all md:break-normal font-tech tracking-tight magnetic">
                         neuroinnowacje@gmail.com
                         <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-neon-blue transition-all duration-300 group-hover:w-full"></span>
                     </a>
-                    <a href="tel:+48600608303" class="mt-6 text-xl text-gray-400 hover:text-white transition-colors font-tech">
+                    <a href="tel:+48600608303" class="mt-6 text-xl text-gray-400 hover:text-white transition-colors font-tech magnetic">
                         +48 600 608 303
                     </a>
                 </div>
@@ -544,10 +570,239 @@
     </main>
 
     <script>
-        document.addEventListener("DOMContentLoaded", (event) => {
-            console.log("Kiszlo Studio v2.7: Hero Neuro Network");
+        // Rejestracja wtyczek GSAP
+        gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
-            // --- 0. SPOTLIGHT EFFECT LOGIC ---
+        document.addEventListener("DOMContentLoaded", (event) => {
+            console.log("Kiszlo Studio v3.0: Level 3 Interaction Unlocked");
+
+            // --- POZIOM 1: 3D TILT ---
+            VanillaTilt.init(document.querySelectorAll(".team-img-container"), {
+                max: 20,
+                speed: 400,
+                glare: true,
+                "max-glare": 0.4,
+                scale: 1.05,
+                perspective: 800,
+                gyroscope: true  // działa też na mobile przez żyroskop!
+            });
+
+            // --- POZIOM 2: LIVING PHOTO (WebGL Ripple Effect) ---
+            class LivingPhoto {
+                constructor(container) {
+                    this.container = container;
+                    this.img = container.querySelector('img');
+                    this.isHovered = false;
+                    this.mouse = { x: 0.5, y: 0.5 };
+                    this.ripples = [];
+                    
+                    // Bezpieczeństwo - inicjuj gdy obrazek jest gotowy
+                    if(this.img.complete) {
+                        this.init();
+                    } else {
+                        this.img.addEventListener('load', () => this.init());
+                    }
+                }
+                
+                init() {
+                    const w = this.container.offsetWidth;
+                    const h = this.container.offsetHeight;
+                    
+                    this.scene = new THREE.Scene();
+                    this.camera = new THREE.OrthographicCamera(-0.5, 0.5, 0.5, -0.5, 0, 10);
+                    this.camera.position.z = 1;
+                    
+                    this.renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+                    this.renderer.setSize(w, h);
+                    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                    
+                    // Ziedziczony border-radius
+                    this.renderer.domElement.style.cssText = `
+                        position:absolute; top:0; left:0; width:100%; height:100%; z-index:2; pointer-events:none; border-radius: inherit; transition: opacity 0.3s;
+                    `;
+                    
+                    this.container.appendChild(this.renderer.domElement);
+                    
+                    const texture = new THREE.TextureLoader().load(this.img.src);
+                    
+                    this.uniforms = {
+                        uTexture: { value: texture },
+                        uMouse: { value: new THREE.Vector2(0.5, 0.5) },
+                        uTime: { value: 0 },
+                        uHover: { value: 0 },
+                    };
+                    
+                    const vertexShader = `
+                        varying vec2 vUv;
+                        void main() {
+                            vUv = uv;
+                            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                        }
+                    `;
+                    
+                    const fragmentShader = `
+                        uniform sampler2D uTexture;
+                        uniform vec2 uMouse;
+                        uniform float uTime;
+                        uniform float uHover;
+                        varying vec2 vUv;
+                        void main() {
+                            vec2 uv = vUv;
+                            
+                            // Efekt 1: Subtelne zniekształcenie przy hover (ciepło/lustro)
+                            float dist = distance(uv, uMouse);
+                            float ripple = sin(dist * 30.0 - uTime * 4.0) * 0.015 * uHover;
+                            ripple *= smoothstep(0.5, 0.0, dist);
+                            
+                            // Efekt 2: RGB split — lekki chromatic aberration
+                            float aberration = ripple * 2.0;
+                            
+                            float r = texture2D(uTexture, uv + vec2(ripple + aberration, ripple)).r;
+                            float g = texture2D(uTexture, uv + vec2(ripple, ripple)).g;
+                            float b = texture2D(uTexture, uv + vec2(ripple - aberration, ripple)).b;
+                            
+                            // Efekt 3: Lekkie rozjaśnienie przy hover
+                            vec3 color = vec3(r, g, b);
+                            color += uHover * 0.05;
+                            
+                            gl_FragColor = vec4(color, 1.0);
+                        }
+                    `;
+                    
+                    const geometry = new THREE.PlaneGeometry(1, 1);
+                    const material = new THREE.ShaderMaterial({
+                        uniforms: this.uniforms,
+                        vertexShader,
+                        fragmentShader,
+                        transparent: true
+                    });
+                    
+                    this.plane = new THREE.Mesh(geometry, material);
+                    this.scene.add(this.plane);
+                    
+                    // Przekazanie referencji z powrotem do <img> (potrzebne dla Poziomu 3)
+                    this.img.livingPhotoRef = this;
+
+                    // Events
+                    this.container.addEventListener('mouseenter', () => {
+                        this.isHovered = true;
+                        gsap.to(this.uniforms.uHover, { value: 1, duration: 0.5 });
+                    });
+                    this.container.addEventListener('mouseleave', () => {
+                        this.isHovered = false;
+                        gsap.to(this.uniforms.uHover, { value: 0, duration: 0.8 });
+                    });
+                    this.container.addEventListener('mousemove', (e) => {
+                        const rect = this.container.getBoundingClientRect();
+                        this.uniforms.uMouse.value.x = (e.clientX - rect.left) / rect.width;
+                        this.uniforms.uMouse.value.y = 1 - (e.clientY - rect.top) / rect.height;
+                    });
+                    
+                    this.animate();
+                }
+                
+                animate() {
+                    requestAnimationFrame(() => this.animate());
+                    this.uniforms.uTime.value += 0.016;
+                    this.renderer.render(this.scene, this.camera);
+                }
+            }
+
+            // Inicjalizacja Living Photo
+            document.querySelectorAll('.team-img-container').forEach(container => {
+                new LivingPhoto(container);
+            });
+
+
+            // --- POZIOM 3: PIXEL EXPLOSION (Zoptymalizowany dla wydajności) ---
+            let isExploding = false; // Zapobiega multi-kliknięciom
+            
+            document.querySelectorAll('.team-img-container img').forEach(img => {
+                img.addEventListener('click', function() {
+                    if (isExploding) return;
+                    isExploding = true;
+                    
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d', { willReadFrequently: true });
+                    canvas.width = this.offsetWidth;
+                    canvas.height = this.offsetHeight;
+                    
+                    try {
+                        // Rysuje obraz na wirtualnym płótnie
+                        ctx.drawImage(this, 0, 0, canvas.width, canvas.height);
+                        
+                        // Zoptymalizowane: pobiera wszystkie dane RAZ zamiast w pętli
+                        const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+                        
+                        const pixels = [];
+                        const step = 6; // co ile px jeden "piksel-cząstka"
+                        
+                        // Ukryj oryginalny obrazek i efekt WebGL na czas eksplozji
+                        gsap.to(this, { opacity: 0, duration: 0.1 });
+                        if(this.livingPhotoRef) {
+                            gsap.to(this.livingPhotoRef.renderer.domElement, { opacity: 0, duration: 0.1 });
+                        }
+
+                        const rect = this.getBoundingClientRect();
+                        let activeAnimations = 0;
+
+                        for(let y = 0; y < canvas.height; y += step) {
+                            for(let x = 0; x < canvas.width; x += step) {
+                                // Obliczanie indeksu w jednowymiarowej tablicy (r,g,b,a)
+                                const index = (y * canvas.width + x) * 4;
+                                const r = imgData[index];
+                                const g = imgData[index+1];
+                                const b = imgData[index+2];
+                                
+                                // Pomijanie przezroczystych pikseli
+                                if (imgData[index+3] === 0) continue;
+
+                                const div = document.createElement('div');
+                                div.style.cssText = `
+                                    position:fixed; width:${step}px; height:${step}px;
+                                    background:rgb(${r},${g},${b});
+                                    left:${rect.left + x}px;
+                                    top:${rect.top + y}px;
+                                    z-index:9999; pointer-events:none; border-radius:1px;
+                                `;
+                                document.body.appendChild(div);
+                                pixels.push(div);
+                                
+                                activeAnimations++;
+                                
+                                gsap.to(div, {
+                                    x: (Math.random() - 0.5) * 500,
+                                    y: (Math.random() - 0.5) * 500 + 300,
+                                    opacity: 0,
+                                    scale: Math.random() * 2,
+                                    rotation: Math.random() * 360,
+                                    duration: 1 + Math.random(),
+                                    ease: 'power3.out',
+                                    onComplete: () => {
+                                        div.remove();
+                                        activeAnimations--;
+                                        
+                                        // Po zakończeniu ostatniej cząsteczki
+                                        if (activeAnimations === 0) {
+                                            gsap.to(this, { opacity: 1, duration: 0.5 });
+                                            if(this.livingPhotoRef) {
+                                                gsap.to(this.livingPhotoRef.renderer.domElement, { opacity: 1, duration: 0.5 });
+                                            }
+                                            isExploding = false;
+                                        }
+                                    }
+                                });
+                            }
+                        }
+                    } catch (e) {
+                        console.warn("Pixel explosion zablokowane ze względów CORS/Zabezpieczeń. Przetestuj na serwerze.", e);
+                        isExploding = false;
+                    }
+                });
+            });
+
+
+            // --- POZOSTAŁE EFEKTY Z POPRZEDNIEJ WERSJI ---
             const cards = document.querySelectorAll(".spotlight-card");
             cards.forEach(card => {
                 card.onmousemove = e => {
@@ -559,7 +814,6 @@
                 };
             });
 
-            // --- 1. MOBILE MENU ---
             const menuToggle = document.getElementById('menu-toggle');
             const mobileMenu = document.getElementById('mobile-menu');
             const mobileLinks = document.querySelectorAll('.mobile-link');
@@ -586,7 +840,6 @@
                 });
             });
 
-            // --- 2. SMOOTH SCROLL (Lenis) ---
             const lenis = new Lenis({
                 duration: 1.2,
                 easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -598,40 +851,125 @@
             }
             requestAnimationFrame(raf);
 
-            // --- 3. CURSOR LOGIC ---
             const cursorDot = document.querySelector('.cursor-dot');
-            const cursorOutline = document.querySelector('.cursor-outline');
+            const cursorBlob = document.querySelector('.cursor-blob');
             const hoverTriggers = document.querySelectorAll('.cursor-hover-trigger');
 
-            if (window.matchMedia("(pointer: fine)").matches) {
+            if (window.matchMedia("(pointer: fine)").matches && window.innerWidth > 768) {
+                let lastX = 0, lastY = 0;
+
                 window.addEventListener('mousemove', (e) => {
                     const posX = e.clientX;
                     const posY = e.clientY;
+                    
                     cursorDot.style.left = `${posX}px`;
                     cursorDot.style.top = `${posY}px`;
                     
-                    cursorOutline.animate({
-                        left: `${posX}px`,
-                        top: `${posY}px`
-                    }, { duration: 500, fill: "forwards" });
+                    const dx = posX - lastX;
+                    const dy = posY - lastY;
+                    const speed = Math.sqrt(dx*dx + dy*dy);
+                    const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+                    const stretch = Math.min(speed * 0.5, 40);
+                    
+                    gsap.to(cursorBlob, {
+                        left: posX, 
+                        top: posY,
+                        scaleX: 1 + stretch * 0.05,
+                        scaleY: 1 - stretch * 0.02,
+                        rotation: angle,
+                        duration: 0.15,
+                        overwrite: "auto"
+                    });
+                    
+                    gsap.to(cursorBlob, { scaleX: 1, scaleY: 1, duration: 0.6, delay: 0.1 });
+                    lastX = posX; 
+                    lastY = posY;
                 });
 
                 hoverTriggers.forEach(link => {
                     link.addEventListener('mouseenter', () => {
-                        cursorOutline.style.transform = 'translate(-50%, -50%) scale(2)';
-                        cursorOutline.style.backgroundColor = 'rgba(0, 243, 255, 0.05)';
-                        cursorOutline.style.borderColor = 'rgba(0, 243, 255, 0.5)';
+                        gsap.to(cursorBlob, {
+                            scale: 1.5,
+                            backgroundColor: 'rgba(0, 243, 255, 0.05)',
+                            border: '1px solid rgba(0, 243, 255, 0.5)',
+                            duration: 0.3
+                        });
                     });
                     link.addEventListener('mouseleave', () => {
-                        cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
-                        cursorOutline.style.backgroundColor = 'transparent';
-                        cursorOutline.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                        gsap.to(cursorBlob, {
+                            scale: 1,
+                            backgroundColor: 'rgba(0, 243, 255, 0.15)',
+                            border: 'none',
+                            duration: 0.3
+                        });
                     });
                 });
             }
 
-            // --- 4. ANIMATIONS (GSAP) ---
-            gsap.registerPlugin(ScrollTrigger);
+            document.querySelectorAll('.magnetic').forEach(el => {
+                el.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    gsap.to(this, { x: x * 0.35, y: y * 0.35, duration: 0.4, ease: 'power2.out' });
+                });
+                el.addEventListener('mouseleave', function() {
+                    gsap.to(this, { x: 0, y: 0, duration: 0.7, ease: 'elastic.out(1, 0.5)' });
+                });
+            });
+
+            document.querySelectorAll('.scramble-text').forEach(el => {
+                const original = el.textContent.trim();
+                const chars = "アイウエオabcdefghijklmnopqrstuvwxyz!@#$%^&*01";
+                
+                el.addEventListener('mouseenter', function() {
+                    let iteration = 0;
+                    const interval = setInterval(() => {
+                        el.textContent = original.split('').map((char, i) => {
+                            if(i < iteration) return original[i];
+                            if(char === ' ') return ' '; 
+                            return chars[Math.floor(Math.random() * chars.length)];
+                        }).join('');
+                        
+                        if(iteration >= original.length) clearInterval(interval);
+                        iteration += 0.5;
+                    }, 30);
+                });
+            });
+
+            document.querySelectorAll('.kinetic-title').forEach(title => {
+                const text = title.textContent.trim();
+                title.innerHTML = text.split('').map(char => 
+                    char === ' ' ? '<span>&nbsp;</span>' : `<span class="kinetic-char">${char}</span>`
+                ).join('');
+                
+                title.addEventListener('mousemove', e => {
+                    title.querySelectorAll('.kinetic-char').forEach((char) => {
+                        const charRect = char.getBoundingClientRect();
+                        const dx = e.clientX - (charRect.left + charRect.width / 2);
+                        const dy = e.clientY - (charRect.top + charRect.height / 2);
+                        const dist = Math.sqrt(dx*dx + dy*dy);
+                        const force = Math.max(0, 80 - dist) / 80;
+                        
+                        if(force > 0) {
+                            gsap.to(char, {
+                                y: -dy * force * 0.4,
+                                x: -dx * force * 0.2,
+                                color: `rgba(0, 243, 255, ${force + 0.3})`,
+                                duration: 0.3
+                            });
+                        } else {
+                            gsap.to(char, { y: 0, x: 0, color: 'inherit', duration: 0.6 });
+                        }
+                    });
+                });
+                
+                title.addEventListener('mouseleave', () => {
+                    gsap.to(title.querySelectorAll('.kinetic-char'), { 
+                        y: 0, x: 0, color: 'inherit', duration: 0.6, ease: 'elastic.out(1, 0.4)' 
+                    });
+                });
+            });
 
             const tl = gsap.timeline();
             tl.to(".reveal-text-inner", {
@@ -641,7 +979,6 @@
                 opacity: 1, duration: 1, stagger: 0.1
             }, "-=0.8");
 
-            // --- 5. THREE.JS: HERO NETWORK EFFECT ---
             const canvasContainer = document.getElementById('canvas-container');
             const heroSection = document.getElementById('hero-section');
 
@@ -649,7 +986,6 @@
                 const scene = new THREE.Scene();
                 const camera = new THREE.PerspectiveCamera(75, heroSection.clientWidth / heroSection.clientHeight, 0.1, 1000);
                 
-                // Initial camera position
                 const baseCameraZ = 20;
                 camera.position.z = baseCameraZ;
 
@@ -658,7 +994,6 @@
                 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
                 canvasContainer.appendChild(renderer.domElement);
 
-                // Create Particles
                 const particleCount = window.innerWidth < 768 ? 40 : 80;
                 const particles = new THREE.Group();
                 const particleGeo = new THREE.SphereGeometry(0.1, 8, 8);
@@ -683,13 +1018,11 @@
                 }
                 scene.add(particles);
 
-                // Lines
                 const lineMaterial = new THREE.LineBasicMaterial({ color: 0x00f3ff, transparent: true, opacity: 0.15 });
                 const lineGeometry = new THREE.BufferGeometry();
                 const lines = new THREE.LineSegments(lineGeometry, lineMaterial);
                 scene.add(lines);
 
-                // Interaction
                 let mouseX = 0, mouseY = 0;
                 document.addEventListener('mousemove', (event) => {
                     mouseX = (event.clientX - window.innerWidth / 2) * 0.05;
@@ -699,28 +1032,21 @@
                 function animate() {
                     requestAnimationFrame(animate);
 
-                    // 1. "Breathing" Effect (Zoom In/Out)
-                    const time = Date.now() * 0.001; // Current time in seconds
-                    // Oscillation: sine wave creates smooth up/down value
+                    const time = Date.now() * 0.001; 
                     const breathingZoom = Math.sin(time * 0.5) * 2; 
                     camera.position.z = baseCameraZ + breathingZoom;
 
-                    // 2. Particle Physics
                     const linePositions = [];
                     particles.children.forEach((p, i) => {
-                        // Move
                         p.position.add(particleVelocities[i]);
                         
-                        // Bounce
                         if(p.position.x > 20 || p.position.x < -20) particleVelocities[i].x *= -1;
                         if(p.position.y > 20 || p.position.y < -20) particleVelocities[i].y *= -1;
                         if(p.position.z > 10 || p.position.z < -10) particleVelocities[i].z *= -1;
 
-                        // Slight Mouse Influence
                         p.position.x += (mouseX * 0.001 - p.position.x) * 0.01;
                         p.position.y += (-mouseY * 0.001 - p.position.y) * 0.01;
 
-                        // Connections
                         for(let j=i+1; j<particleCount; j++) {
                             const p2 = particles.children[j];
                             const dist = p.position.distanceTo(p2.position);
@@ -736,7 +1062,6 @@
 
                     lineGeometry.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
                     
-                    // Slow rotation of entire system
                     particles.rotation.y += 0.001;
                     lines.rotation.y += 0.001;
 
@@ -744,7 +1069,6 @@
                 }
                 animate();
 
-                // Responsive Resize logic bound to Hero Section
                 window.addEventListener('resize', () => {
                     const width = heroSection.clientWidth;
                     const height = heroSection.clientHeight;
