@@ -3,64 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiszlo Studio | AI, VR & MedTech we Wrocławiu</title>
     
-    <!-- SEO & Identity for Kiszlo Studio -->
-    <title>Kiszlo Studio | Strategia Marketingowa, AI, VR & MedTech</title>
-    <meta name="description" content="Kiszlo Studio – Łączymy marketing z technologią. Specjalizujemy się w AI dla medycyny (MedTech), medycznym VR (symulacje, terapia) oraz multimedialnych kampaniach dla biznesu i kultury.">
-    <meta name="keywords" content="Kiszlo Studio, AI w medycynie, MedTech Software, Marketing Strategiczny, VR Wrocław, VR w medycynie, Rehabilitacja VR, Scenografia Multimedialna, Automatyzacja Biznesu, Karol Kiszło">
+    <!-- Zaktualizowane tagi meta pod kątem AI i Lokalizacji -->
+    <meta name="description" content="Kiszlo Studio – Karol Kiszło. Łączymy marketing z technologią z naszej bazy we Wrocławiu. Specjalizujemy się w AI dla biznesu, MedTech, symulacjach VR oraz multimedialnej scenografii.">
+    <meta name="keywords" content="Kiszlo Studio, Karol Kiszło Wrocław, Agencja AI Wrocław, MedTech Wrocław, Symulacje VR, Automatyzacja Biznesu AI, Marketing Strategiczny">
     <meta name="author" content="Karol Kiszło">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://www.kiszlo.ai/">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <link rel="canonical" href="https://www.kiszlo.studio/">
 
-    <!-- Open Graph / Facebook / LinkedIn -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.kiszlo.ai/">
-    <meta property="og:site_name" content="Kiszlo Studio">
-    <meta property="og:title" content="Kiszlo Studio | AI, MedTech & Marketing">
-    <meta property="og:description" content="Tworzymy innowacje dla medycyny i biznesu. Od aplikacji AI i symulatorów VR po kampanie multimedialne.">
-    <meta property="og:image" content="https://www.kiszlo.ai/og-image.jpg">
-    <meta property="og:locale" content="pl_PL">
-
-    <!-- AI & Schema.org Structured Data (Advanced SEO) -->
+    <!-- Rozbudowana Schema.org - Tak karmimy roboty AI (Perplexity, ChatGPT) wiedzą o Tobie -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
       "name": "Kiszlo Studio",
-      "alternateName": "Kiszlo.ai",
-      "url": "https://www.kiszlo.ai",
-      "logo": "https://www.kiszlo.ai/logo.png",
+      "alternateName": "Kiszlo.Studio",
+      "url": "https://www.kiszlo.studio",
       "founder": {
         "@type": "Person",
         "name": "Karol Kiszło",
-        "jobTitle": "CEO & Strategist"
+        "jobTitle": "Founder & Strategist",
+        "description": "Ekspert łączący marketing z innowacjami AI i produkcją filmową."
       },
-      "description": "Agencja technologiczna specjalizująca się w rozwiązaniach AI dla medycyny (MedTech), aplikacjach VR do terapii i szkoleń oraz marketingu multimedialnym.",
+      "description": "Butikowe studio technologiczno-kreatywne założone przez Karola Kiszło we Wrocławiu. Realizujemy projekty z zakresu sztucznej inteligencji, VR (wirtualna rzeczywistość) w medycynie oraz zaawansowanej postprodukcji wideo.",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "ul. Żeromskiego 60/5a",
+        "streetAddress": "ul. Stefana Żeromskiego 60/5a",
         "addressLocality": "Wrocław",
+        "addressRegion": "Dolnośląskie",
         "postalCode": "50-312",
         "addressCountry": "PL"
       },
-      "sameAs": [
-        "https://www.linkedin.com/in/karolkiszlo",
-        "https://www.facebook.com/kiszlostudio"
-      ],
       "contactPoint": {
         "@type": "ContactPoint",
-        "telephone": "+48-600-608-303",
+        "telephone": "+48-600-608-333",
         "contactType": "customer service",
-        "email": "neuroinnowacje@gmail.com",
-        "availableLanguage": ["Polish", "English"]
+        "email": "kiszlo.studio@gmail.com",
+        "areaServed": "PL"
       },
       "knowsAbout": [
         "Medical AI Software",
         "MedTech Solutions",
-        "Medical Virtual Reality",
-        "VR Rehabilitation",
-        "Multimedia Scenography",
-        "Business Strategy"
+        "Virtual Reality Therapy",
+        "AI Business Automation",
+        "Multimedia Production",
+        "Wrocław"
       ]
     }
     </script>
@@ -68,7 +56,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@200;300;400;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -77,1007 +65,415 @@
             theme: {
                 extend: {
                     colors: {
-                        'neon-blue': '#00f3ff',
-                        'neon-purple': '#bc13fe',
-                        'deep-bg': '#030305',
-                        'glass-border': 'rgba(255, 255, 255, 0.08)',
+                        'brand-accent': '#2b7a78', 
+                        'brand-light': '#3aafa9',
+                        'deep-bg': '#0a0a0a',
                     },
                     fontFamily: {
                         'sans': ['Manrope', 'sans-serif'],
-                        'tech': ['Space Grotesk', 'monospace'],
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'marquee': 'marquee 25s linear infinite',
-                    },
-                    keyframes: {
-                        marquee: {
-                            '0%': { transform: 'translateX(0)' },
-                            '100%': { transform: 'translateX(-50%)' },
-                        }
+                        'serif': ['Playfair Display', 'serif'],
                     }
                 }
             }
         }
     </script>
     
-    <!-- Libraries -->
+    <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
-    
-    <!-- Vanilla Tilt (Poziom 1) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
 
     <style>
-        :root {
-            --bg-color: #030305;
-            --text-main: #FAFAFA;
-            --accent-glow: #00f3ff;
-            --cursor-size: 20px;
+        body { background-color: #0a0a0a; color: #FAFAFA; font-family: 'Manrope', sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
+        
+        .noise-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9000; opacity: 0.04; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); }
+
+        .video-bg {
+            position: absolute; right: 0; bottom: 0;
+            min-width: 100%; min-height: 100%;
+            width: auto; height: auto;
+            z-index: 0;
+            object-fit: cover;
+            opacity: 0.4; 
+            filter: grayscale(80%) contrast(1.2); 
         }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: 'Manrope', sans-serif;
-            overflow-x: hidden;
-            cursor: none; 
-            margin: 0;
-            padding: 0;
+        .hero-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, #0a0a0a 0%, transparent 80%);
+            z-index: 1;
         }
 
-        a, button, .magnetic, .scramble-text, .kinetic-title, .team-img-container {
-            cursor: none;
+        .text-hero { 
+            font-size: clamp(3rem, 8vw, 7rem); 
+            line-height: 1; 
+            font-weight: 800; 
+            letter-spacing: -0.04em; 
+            background: linear-gradient(180deg, #ffffff 0%, #888888 100%); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
         }
 
-        /* --- BACKGROUND FX --- */
-        .noise-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 9000; opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        .card-premium {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
         }
-        .grid-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-size: 50px 50px;
-            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            z-index: -2; pointer-events: none;
-            mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
-            -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+        .card-premium:hover {
+            border-color: rgba(43, 122, 120, 0.5); 
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        ::selection { background: var(--brand-accent); color: #fff; }
+
+        /* Stylizacja prostego widgetu AI Chat */
+        #ai-chat-widget {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
         }
         
-        #canvas-container {
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%;
-            z-index: 0; 
-            opacity: 0.8; 
-            mix-blend-mode: screen; 
-            pointer-events: none;
-        }
-
-        /* --- CURSOR --- */
-        .cursor-dot {
-            width: 6px; height: 6px; background-color: var(--accent-glow);
-            position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
-            border-radius: 50%; z-index: 9999; pointer-events: none; box-shadow: 0 0 15px var(--accent-glow);
-        }
-        
-        .cursor-blob {
-            width: 50px; height: 50px;
-            background: rgba(0, 243, 255, 0.15);
-            position: fixed; top: 0; left: 0;
+        #ai-chat-button {
+            width: 56px;
+            height: 56px;
             border-radius: 50%;
-            pointer-events: none; z-index: 9998;
-            transform: translate(-50%, -50%);
-            will-change: transform, width, height, border-radius;
-            transition: border-radius 0.3s, width 0.3s, height 0.3s, background-color 0.3s;
-            mix-blend-mode: screen;
-            filter: blur(8px);
-        }
-
-        /* --- KINETIC TITLE CSS --- */
-        .kinetic-char {
-            display: inline-block;
-            will-change: transform, color;
-        }
-
-        /* --- POZIOM 1: 3D TILT & PARALLAX CSS --- */
-        .team-img-container {
-            transform-style: preserve-3d;
-            will-change: transform;
-            position: relative; /* Wymagane dla WebGL canvas z Poziomu 2 */
-        }
-        .team-img-container img {
-            transform: translateZ(20px); /* obraz "wyskakuje" do przodu */
-            transition: transform 0.3s, opacity 0.3s;
-        }
-
-        /* --- UI COMPONENTS --- */
-        .glitch-wrapper { position: relative; display: inline-block; }
-        .glitch-text { position: relative; z-index: 1; }
-        .glitch-text::before, .glitch-text::after {
-            content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-color);
-        }
-        .glitch-text::before {
-            left: 2px; text-shadow: -1px 0 #ff00c1; clip-path: inset(44% 0 61% 0);
-            animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
-        }
-        .glitch-text::after {
-            left: -2px; text-shadow: -1px 0 #00fff9; clip-path: inset(58% 0 43% 0);
-            animation: glitch-anim-2 3s infinite linear alternate-reverse;
-        }
-        @keyframes glitch-anim-1 { 0% { clip-path: inset(20% 0 80% 0); } 100% { clip-path: inset(30% 0 20% 0); } }
-        @keyframes glitch-anim-2 { 0% { clip-path: inset(10% 0 60% 0); } 100% { clip-path: inset(70% 0 10% 0); } }
-
-        .spotlight-card {
-            background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05);
-            position: relative; overflow: hidden; transition: transform 0.3s ease;
-        }
-        .spotlight-card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.06), transparent 40%);
-            opacity: 0; transition: opacity 0.5s; pointer-events: none; z-index: 1;
-        }
-        .spotlight-card:hover::before { opacity: 1; }
-        .spotlight-card:hover { transform: translateY(-5px); border-color: rgba(255, 255, 255, 0.1); }
-        
-        .text-hero {
-            font-size: clamp(2.5rem, 8vw, 6.5rem); 
-            line-height: 1; font-weight: 800; letter-spacing: -0.03em;
-            font-family: 'Space Grotesk', sans-serif;
-            background: linear-gradient(180deg, #fff 0%, #aaa 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            padding-bottom: 0.1em;
+            background-color: var(--brand-accent);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(43, 122, 120, 0.3);
+            transition: transform 0.3s ease;
         }
         
-        .gradient-text {
-            background: linear-gradient(90deg, var(--accent-glow), #a855f7);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        #ai-chat-button:hover {
+            transform: scale(1.05);
         }
 
-        .stroke-text {
-             -webkit-text-stroke: 1px rgba(255,255,255,0.2);
-             color: transparent;
+        #ai-chat-window {
+            width: 320px;
+            height: 400px;
+            background-color: #111;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            margin-bottom: 16px;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            font-family: 'Manrope', sans-serif;
         }
 
-        .reveal-mask { overflow: hidden; display: block; }
-        .reveal-text-inner { display: block; transform: translateY(110%); }
-        
-        #mobile-menu { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-        #mobile-menu.open { transform: translateX(0%); }
-        #mobile-menu.closed { transform: translateX(100%); }
+        .chat-header {
+            background-color: #1a1a1a;
+            padding: 16px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-        ::selection { background: var(--accent-glow); color: #000; }
+        .chat-messages {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .msg-ai {
+            background-color: rgba(43, 122, 120, 0.2);
+            padding: 10px 14px;
+            border-radius: 12px 12px 12px 0;
+            font-size: 0.85rem;
+            color: #ddd;
+            max-width: 85%;
+            align-self: flex-start;
+        }
         
-        @media (max-width: 768px) {
-            .cursor-dot, .cursor-blob { display: none !important; }
-            body { cursor: auto; }
-            .text-hero { font-size: 11vw; }
+        .msg-user {
+            background-color: #222;
+            padding: 10px 14px;
+            border-radius: 12px 12px 0 12px;
+            font-size: 0.85rem;
+            color: #fff;
+            max-width: 85%;
+            align-self: flex-end;
+        }
+
+        .chat-input {
+            padding: 12px;
+            background-color: #1a1a1a;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            gap: 8px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-size: 0.85rem;
+            outline: none;
         }
     </style>
 </head>
-<body class="antialiased selection:bg-neon-blue selection:text-black">
+<body class="antialiased selection:bg-brand-accent selection:text-white">
 
     <div class="noise-overlay"></div>
-    <div class="grid-bg"></div>
-    
-    <div class="cursor-dot"></div>
-    <div class="cursor-blob"></div>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 px-6 py-6 md:px-12 md:py-8 flex justify-between items-center bg-black/80 backdrop-blur-md border-b border-white/5 transition-all duration-300" id="navbar">
-        <a href="index.html" class="text-xl md:text-2xl font-bold tracking-tighter cursor-hover-trigger flex items-center gap-3 relative z-50 font-tech magnetic">
-            <div class="relative w-4 h-4">
-                <span class="absolute inset-0 bg-neon-blue rounded-full animate-ping opacity-75"></span>
-                <span class="relative block w-4 h-4 bg-neon-blue rounded-full shadow-[0_0_15px_#00f3ff]"></span>
-            </div>
-            <span class="text-white">KISZLO<span class="text-white/40">.STUDIO</span></span>
+    <nav class="fixed top-0 w-full z-50 px-6 py-6 md:px-12 md:py-8 flex justify-between items-center bg-black/60 backdrop-blur-lg border-b border-white/5 transition-all duration-300">
+        
+        <!-- LOIS: Kiedy zdobędziesz logo w formacie PNG z białymi literami i przezroczystym tłem, wgraj je do repozytorium jako 'logo-biale.png' i podmień ścieżkę w 'src' poniżej. -->
+        <a href="index.html" class="z-50 block w-48 md:w-64">
+             <img src="https://via.placeholder.com/400x120/0a0a0a/ffffff?text=Kiszlo.Studio" alt="Kiszlo Studio" class="w-full h-auto object-contain" id="site-logo">
         </a>
         
         <!-- Desktop Menu -->
-        <div class="hidden md:flex items-center gap-12 text-xs font-tech font-bold uppercase tracking-widest text-white/60">
-            <a href="#about" class="hover:text-neon-blue transition-colors cursor-hover-trigger relative group magnetic">
-                <span class="mr-1 text-neon-blue/50">01.</span> Studio
-                <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-neon-blue transition-all group-hover:w-full"></span>
+        <div class="hidden md:flex items-center gap-12 text-xs font-bold uppercase tracking-widest text-white/60">
+            <a href="index.html" class="text-white relative group">
+                Studio
+                <span class="absolute -bottom-2 left-0 w-full h-[1px] bg-brand-accent transition-all"></span>
             </a>
-            <a href="portfolio.html" class="hover:text-neon-blue transition-colors cursor-hover-trigger relative group magnetic">
-                <span class="mr-1 text-neon-blue/50">02.</span> Portfolio
-                <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-neon-blue transition-all group-hover:w-full"></span>
+             <!-- LOIS: Zmieniłam linkowanie, żeby menu wskazywało na poprawne podstrony w Twoim repo -->
+            <a href="oferta.html" class="hover:text-white transition-colors relative group">
+                Oferta
+                <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-brand-accent transition-all group-hover:w-full"></span>
             </a>
-            <a href="oferta.html" class="hover:text-neon-blue transition-colors cursor-hover-trigger relative group magnetic">
-                <span class="mr-1 text-neon-blue/50">03.</span> Usługi
-                <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-neon-blue transition-all group-hover:w-full"></span>
+            <a href="portfolio.html" class="hover:text-white transition-colors relative group">
+                Portfolio
+                <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-brand-accent transition-all group-hover:w-full"></span>
             </a>
-            <a href="#contact" class="hover:text-neon-blue transition-colors cursor-hover-trigger relative group magnetic">
-                <span class="mr-1 text-neon-blue/50">04.</span> Kontakt
-                <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-neon-blue transition-all group-hover:w-full"></span>
+            <a href="#contact" class="hover:text-white transition-colors relative group">
+                Kontakt
             </a>
-            
-            <div class="flex items-center gap-2 border-l border-white/10 pl-6 lang-switch">
-                <span class="active cursor-default text-white">PL</span>
+            <div class="flex items-center gap-2 border-l border-white/10 pl-6">
+                <span class="text-white cursor-default">PL</span>
                 <span class="text-white/20">/</span>
-                <a href="eng.html" class="inactive cursor-hover-trigger hover:text-neon-blue transition-colors">EN</a>
+                <a href="eng.html" class="hover:text-brand-accent transition-colors">EN</a>
             </div>
         </div>
-
-        <!-- Mobile Menu Toggle -->
-        <button id="menu-toggle" class="md:hidden text-white cursor-pointer relative z-50 p-2 focus:outline-none magnetic">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
-        </button>
     </nav>
-
-    <!-- Mobile Fullscreen Menu -->
-    <div id="mobile-menu" class="fixed inset-0 z-40 bg-black flex flex-col justify-center items-center gap-8 closed md:hidden">
-        <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
-        <a href="#about" class="mobile-link text-4xl font-tech font-bold text-white hover:text-neon-blue transition-colors">Studio</a>
-        <a href="portfolio.html" class="mobile-link text-4xl font-tech font-bold text-white hover:text-neon-blue transition-colors">Portfolio</a>
-        <a href="oferta.html" class="mobile-link text-4xl font-tech font-bold text-white hover:text-neon-blue transition-colors">Usługi</a>
-        <a href="#contact" class="mobile-link text-4xl font-tech font-bold text-white hover:text-neon-blue transition-colors">Kontakt</a>
-        <div class="w-12 h-[1px] bg-white/20 my-4"></div>
-        <a href="eng.html" class="text-xl font-tech text-gray-500 hover:text-white transition-colors">EN (Global)</a>
-    </div>
 
     <main>
         
-        <!-- Hero Section -->
-        <section class="min-h-[100dvh] w-full flex flex-col justify-center px-6 md:px-12 relative pt-20 overflow-hidden" id="hero-section">
-            <div id="canvas-container"></div>
+        <!-- HERO SECTION -->
+        <section class="min-h-[100dvh] w-full flex flex-col justify-center px-6 md:px-12 relative overflow-hidden" id="hero-section">
             
-            <div class="z-10 mt-10 md:mt-0 max-w-6xl relative">
-                <!-- Glitch Header -->
-                <div class="reveal-mask mb-6">
-                    <div class="glitch-wrapper reveal-text-inner">
-                        <h1 class="text-hero glitch-text break-words" data-text="KISZLO.STUDIO">
-                            KISZLO.STUDIO
-                        </h1>
-                    </div>
+            <video autoplay loop muted playsinline class="video-bg">
+                <source src="https://cdn.pixabay.com/video/2020/05/25/40141-425251642_large.mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay"></div>
+            
+            <div class="z-10 mt-20 max-w-6xl relative">
+                
+                <div class="mb-4 overflow-hidden">
+                    <span class="block text-brand-light font-bold text-xs tracking-[0.3em] uppercase transform translate-y-full hero-reveal">
+                        Strategic Advisory & Media
+                    </span>
                 </div>
                 
-                <!-- Subtitle -->
-                <div class="reveal-mask mb-8 pb-2">
-                    <h2 class="text-lg md:text-3xl font-tech text-neon-blue reveal-text-inner leading-tight tracking-wide scramble-text">
-                        // Marketing • MedTech • Film • AI • VR
-                    </h2>
+                <div class="overflow-hidden mb-6">
+                    <h1 class="text-hero hero-reveal transform translate-y-full">
+                        WIZJA.<br>PRODUKCJA.<br><span class="font-serif italic text-white/90">TECHNOLOGIA.</span>
+                    </h1>
                 </div>
                 
-                <!-- Lead Text -->
-                <div class="max-w-3xl reveal-fade opacity-0 border-l border-neon-blue/50 pl-6 py-4 bg-gradient-to-r from-neon-blue/5 to-transparent backdrop-blur-sm">
-                    <p class="text-sm md:text-lg text-gray-300 font-sans leading-relaxed">
-                        Łączymy strategię marketingową z budową zaawansowanych stron WWW i aplikacji AI. 
-                        Tworzymy kampanie reklamowe, <strong>symulacje VR dla medycyny</strong> oraz multimedialne scenografie dla filmu i teatru.
+                <div class="max-w-2xl border-l-2 border-brand-accent pl-6 py-2 mt-8 overflow-hidden">
+                    <p class="text-lg text-gray-300 font-light leading-relaxed transform translate-y-full hero-reveal">
+                        Kompleksowe doradztwo strategiczne, produkcja filmowa, aplikacje VR oraz nowoczesny web development napędzany przez AI. Tworzymy rozwiązania na najwyższym poziomie wizualnym i technologicznym.
                     </p>
                 </div>
             </div>
-            
-            <!-- Bottom Indicator -->
-            <div class="absolute bottom-8 left-6 right-6 md:bottom-12 md:left-12 md:right-12 flex justify-between items-end z-10 border-t border-white/10 pt-4 md:pt-6">
-                <div class="flex items-center gap-3 reveal-fade opacity-0">
-                    <div class="flex gap-1">
-                        <span class="w-1 h-3 bg-neon-blue animate-pulse"></span>
-                        <span class="w-1 h-3 bg-neon-blue animate-pulse delay-75"></span>
-                        <span class="w-1 h-3 bg-neon-blue animate-pulse delay-150"></span>
-                    </div>
-                    <span class="text-[10px] md:text-xs font-tech text-neon-blue tracking-widest uppercase">System Online</span>
-                </div>
-                <div class="text-[10px] md:text-xs font-tech text-gray-600 uppercase tracking-widest reveal-fade opacity-0">
-                    Scroll to Explore
-                </div>
-            </div>
         </section>
 
-        <!-- Mission Section -->
-        <section class="py-16 px-6 md:px-12 relative z-10 border-b border-white/5 bg-[#030305]">
-            <div class="max-w-4xl mx-auto">
-                <p class="text-lg md:text-2xl text-gray-300 font-light leading-relaxed mb-8">
-                    <strong class="text-white font-bold">W Kiszlo Studio</strong> łączymy strategię marketingową, budowę zaawansowanych stron www i aplikacji z wykorzystaniem AI w biznesie, technologii i medycynie.
-                </p>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 mt-12">
-                    <div>
-                        <h3 class="text-neon-blue font-tech uppercase tracking-widest text-xs mb-4">Kreacja & Kampanie</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed mb-6">
-                            Tworzymy koncepcje i realizacje kampanii – od billboardów i reklamy zewnętrznej, przez digital, po środowiska imersyjne i <strong>aplikacje VR wspierające terapię i edukację</strong>. Wspieramy projekty filmowe i teatralne: od wideo reklamowego i kontentu promocyjnego, po multimedialne scenografie i instalacje immersyjne.
-                        </p>
-                    </div>
-                    <div>
-                        <h3 class="text-neon-purple font-tech uppercase tracking-widest text-xs mb-4">Tech & Wdrożenia</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">
-                            Zajmujemy się także sprzedażą, developmentem i wdrożeniami specjalistycznych rozwiązań – tak, aby od pomysłu przejść do działającego systemu, który realnie wspiera komunikację i sprzedaż.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Team Section -->
-        <section id="about" class="py-20 md:py-32 px-6 md:px-12 relative z-10">
+        <!-- PRODUKCJA I POSTPRODUKCJA -->
+        <section id="production" class="py-24 px-6 md:px-12 relative z-10 bg-[#0a0a0a]">
             <div class="max-w-7xl mx-auto">
                 <div class="flex items-center gap-4 mb-16">
-                    <span class="text-xs font-tech text-neon-blue uppercase tracking-widest">01 / Zespół</span>
-                    <div class="h-[1px] w-24 bg-white/10"></div>
+                    <div class="h-[1px] w-12 bg-brand-accent"></div>
+                    <span class="text-xs font-bold text-brand-accent uppercase tracking-widest">Media & Communications</span>
                 </div>
                 
-                <h2 class="text-3xl md:text-6xl font-bold font-tech text-white mb-20 leading-tight max-w-5xl">
-                    Strategia spotyka się tu z <br>
-                    <span class="gradient-text">Technologią i Sztuką.</span>
-                </h2>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                            Kino spotyka się<br>z <span class="font-serif italic text-gray-400">biznesem.</span>
+                        </h2>
+                        <p class="text-gray-400 text-lg leading-relaxed mb-8">
+                            Nie robimy po prostu "filmików". Projektujemy komunikację wizualną, która ma konkretny cel biznesowy. Od pomysłu kreatywnego, przez profesjonalny plan zdjęciowy, aż po zaawansowaną postprodukcję, korekcję barwną (color grading) i montaż.
+                        </p>
+                        
+                        <ul class="space-y-4 text-gray-300">
+                            <li class="flex items-start gap-3">
+                                <span class="text-brand-accent mt-1">◆</span>
+                                <div>
+                                    <strong class="text-white block">Produkcja Reklamowa</strong>
+                                    <span class="text-sm text-gray-500">Spoty TV, digital video, kampanie wizerunkowe.</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-brand-accent mt-1">◆</span>
+                                <div>
+                                    <strong class="text-white block">Postprodukcja & VFX</strong>
+                                    <span class="text-sm text-gray-500">Montaż offline/online, efekty wizualne, sound design.</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-brand-accent mt-1">◆</span>
+                                <div>
+                                    <strong class="text-white block">Scenografia Multimedialna</strong>
+                                    <span class="text-sm text-gray-500">Zaawansowane instalacje wizualne dla eventów i kultury.</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                     
-                    <!-- Karol Kiszło Card -->
-                    <div class="spotlight-card p-8 rounded-2xl group cursor-hover-trigger">
-                        <div class="flex flex-col sm:flex-row gap-8 items-start relative z-10">
-                            <!-- Zaktualizowano kontener dla efektów 3D i WebGL -->
-                            <div class="w-full sm:w-32 shrink-0">
-                                <div class="team-img-container grayscale group-hover:grayscale-0 transition-all duration-500 rounded-lg">
-                                    <!-- Dodano crossorigin="anonymous" dla Canvas API -->
-                                    <img src="kk.jpg" crossorigin="anonymous" alt="Karol Kiszło" class="w-full h-auto object-cover rounded-lg" onerror="this.src='https://ui-avatars.com/api/?name=Karol+Kiszlo&background=111&color=fff&size=400'">
-                                </div>
-                            </div>
-                            <div>
-                                <span class="text-[10px] font-tech text-neon-blue border border-neon-blue/30 px-2 py-1 rounded mb-3 inline-block bg-neon-blue/5">FOUNDER & STRATEGIST</span>
-                                <h3 class="text-2xl font-bold text-white mb-3 font-tech">Karol Kiszło</h3>
-                                <p class="text-gray-400 text-sm leading-relaxed border-l-2 border-white/10 pl-4 group-hover:border-neon-blue transition-colors">
-                                    Łączy światy biznesu, sztuki i technologii. Odpowiada za strategię marketingową, wizję projektów multimedialnych oraz wdrożenia AI. Projektuje komunikację, która działa.
-                                </p>
-                            </div>
-                        </div>
+                    <div class="relative group">
+                        <div class="absolute inset-0 bg-brand-accent opacity-20 blur-2xl group-hover:opacity-40 transition-opacity duration-500"></div>
+                        <img src="https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=2071&auto=format&fit=crop" alt="Postprodukcja filmowa" class="relative z-10 w-full h-[500px] object-cover rounded-sm grayscale hover:grayscale-0 transition-all duration-700">
                     </div>
-
-                    <!-- Sebastian Kraszewski Card -->
-                    <div class="spotlight-card p-8 rounded-2xl group cursor-hover-trigger">
-                        <div class="flex flex-col sm:flex-row gap-8 items-start relative z-10">
-                            <!-- Zaktualizowano kontener dla efektów 3D i WebGL -->
-                            <div class="w-full sm:w-32 shrink-0">
-                                <div class="team-img-container grayscale group-hover:grayscale-0 transition-all duration-500 rounded-lg">
-                                    <!-- Dodano crossorigin="anonymous" dla Canvas API -->
-                                    <img src="sk.jpg" crossorigin="anonymous" alt="Sebastian Kraszewski" class="w-full h-auto object-cover rounded-lg" onerror="this.src='https://ui-avatars.com/api/?name=Sebastian+K&background=111&color=fff&size=400'">
-                                </div>
-                            </div>
-                            <div>
-                                <span class="text-[10px] font-tech text-neon-purple border border-neon-purple/30 px-2 py-1 rounded mb-3 inline-block bg-neon-purple/5">TECH LEAD & SCIENCE</span>
-                                <h3 class="text-2xl font-bold text-white mb-3 font-tech">dr hab. inż. Sebastian</h3>
-                                <p class="text-gray-400 text-sm leading-relaxed border-l-2 border-white/10 pl-4 group-hover:border-neon-purple transition-colors">
-                                    Mózg operacyjny od strony technologii. Ekspert w dziedzinie algorytmów i systemów neuronowych. Czuwa nad jakością naukową i wdrożeniową.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </section>
 
-        <!-- Oferta Preview -->
-        <section class="py-20 md:py-32 px-6 md:px-12 relative z-10">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-white/5 pb-8">
+        <!-- SEKCJA AI & STRATEGIA -->
+        <section id="ai" class="py-24 px-6 md:px-12 relative z-10 border-t border-white/5 bg-[#0d0d0d]">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-20">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Tech, AI & Web Solutions</h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto text-lg">Zarządzamy danymi, tworzymy wciągające wirtualne światy i projektujemy inteligentne strony WWW, które realnie optymalizują biznes.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="card-premium p-10 rounded-sm">
+                        <div class="w-12 h-12 border border-brand-accent/30 flex items-center justify-center mb-8 text-brand-light">01</div>
+                        <h3 class="text-xl font-bold text-white mb-4">Produkcja Aplikacji VR</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Projektujemy i wdrażamy zaawansowane symulacje wirtualnej rzeczywistości (VR) dla biznesu, medycyny (MedTech) i edukacji. Zapewniamy pełne zanurzenie w cyfrowym świecie i interakcje na nowym poziomie.</p>
+                    </div>
+                    
+                    <div class="card-premium p-10 rounded-sm">
+                        <div class="w-12 h-12 border border-brand-accent/30 flex items-center justify-center mb-8 text-brand-light">02</div>
+                        <h3 class="text-xl font-bold text-white mb-4">AI Web Development</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Tworzymy strony internetowe nowej generacji. Wykorzystujemy najnowsze standardy sztucznej inteligencji, aby Twoja obecność w sieci zachwycała wizualnie, a automatyzacje AI bezbłędnie pracowały w tle.</p>
+                    </div>
+
+                    <div class="card-premium p-10 rounded-sm">
+                        <div class="w-12 h-12 border border-brand-accent/30 flex items-center justify-center mb-8 text-brand-light">03</div>
+                        <h3 class="text-xl font-bold text-white mb-4">Strategic Advisory</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Doradztwo na styku technologii, marketingu i sztuki. Pomagamy układać lejki sprzedażowe i bezbłędnie wdrażamy rozwiązania ROI-driven na każdy etap komunikacji Twojej firmy.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="contact" class="border-t border-white/10 pt-24 pb-12 px-6 md:px-12 bg-[#050505]">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 mb-16">
                 <div>
-                    <div class="flex items-center gap-4 mb-4">
-                        <span class="text-xs font-tech text-neon-blue uppercase tracking-widest">02 / Oferta</span>
-                        <div class="h-[1px] w-24 bg-white/10"></div>
-                    </div>
-                    <h2 class="text-4xl md:text-7xl font-bold tracking-tighter text-white font-tech">OBSZARY<br><span class="text-gray-700">DZIAŁANIA</span></h2>
+                    <h2 class="text-4xl md:text-6xl font-bold text-white mb-6 font-serif italic">Porozmawiajmy.</h2>
+                    <p class="text-gray-400 text-lg">Twój biznes zasługuje na rozwiązania technologiczne z najwyższej półki.</p>
                 </div>
-                <div class="mt-8 md:mt-0 max-w-sm md:text-right text-gray-400 text-sm">
-                    <p class="mb-4">Interdyscyplinarne podejście: Biznes, Medycyna, Sztuka.</p>
-                    <a href="oferta.html" class="inline-flex items-center gap-2 text-neon-blue hover:text-white transition-colors uppercase font-tech text-xs tracking-widest group magnetic">
-                        Pełna oferta 
-                        <span class="block w-4 h-[1px] bg-neon-blue group-hover:w-8 transition-all"></span>
-                    </a>
+                <div class="flex flex-col md:items-end justify-center">
+                    <a href="mailto:kiszlo.studio@gmail.com" class="text-2xl md:text-3xl text-white hover:text-brand-light transition-colors mb-2 font-light tracking-wide">kiszlo.studio@gmail.com</a>
+                    <a href="tel:+48600608333" class="text-xl text-gray-500 hover:text-white transition-colors">+48 600 608 333</a>
                 </div>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-                <!-- Card 1: Multimedia & Film -->
-                <div class="spotlight-card p-10 rounded-2xl group cursor-hover-trigger">
-                    <div class="relative z-10">
-                        <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center mb-6 text-neon-blue group-hover:bg-neon-blue group-hover:text-black transition-all">
-                            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                        </div>
-                        <h3 class="text-2xl font-bold text-white mb-4 font-tech">Kampanie, Film & Teatr</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed mb-6">
-                            Od reklamy outdoorowej i digitalowej, po multimedia dla kultury. Tworzymy wideo reklamowe, kontent promocyjny oraz multimedialne scenografie i instalacje imersyjne.
-                        </p>
-                        <a href="oferta.html" class="text-xs font-tech text-gray-500 group-hover:text-neon-blue uppercase tracking-widest transition-colors magnetic inline-block">Sprawdź szczegóły -></a>
-                    </div>
-                </div>
-
-                <!-- Card 2: AI & MedTech -->
-                <div class="spotlight-card p-10 rounded-2xl group cursor-hover-trigger">
-                    <div class="relative z-10">
-                        <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center mb-6 text-neon-purple group-hover:bg-neon-purple group-hover:text-black transition-all">
-                            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                        </div>
-                        <h3 class="text-2xl font-bold text-white mb-4 font-tech">AI, MedTech & Web Apps</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed mb-6">
-                            Budujemy dedykowane aplikacje medyczne, systemy AI wspierające diagnozę oraz platformy dla podmiotów leczniczych. Łączymy web development z zaawansowaną analityką danych w medycynie.
-                        </p>
-                        <a href="oferta.html" class="text-xs font-tech text-gray-500 group-hover:text-neon-purple uppercase tracking-widest transition-colors magnetic inline-block">Sprawdź rozwiązania -></a>
-                    </div>
-                </div>
+            <div class="max-w-7xl mx-auto border-t border-white/10 pt-8 text-xs text-gray-600 flex justify-between items-center uppercase tracking-widest">
+                <span>© 2026 Kiszlo Studio. Karol Kiszło.</span>
+                <span>Wrocław / Polska</span>
             </div>
-        </section>
-
-        <!-- Portfolio Placeholder -->
-        <section class="py-16 px-6 md:px-12 border-t border-white/5 bg-black/40 relative overflow-hidden">
-             <!-- Background Tech Grid -->
-             <div class="absolute inset-0 opacity-10" style="background-image: linear-gradient(rgba(0, 243, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 243, 255, 0.1) 1px, transparent 1px); background-size: 40px 40px;"></div>
-             
-            <div class="flex items-center justify-between relative z-10">
-                <span class="text-xs font-tech text-gray-500 uppercase tracking-widest block">03 / Portfolio</span>
-                <a href="portfolio.html" class="text-sm text-neon-blue hover:text-white transition-colors font-tech uppercase tracking-widest magnetic">Zobacz realizacje -></a>
-            </div>
-            <!-- Marquee Strip -->
-            <div class="overflow-hidden whitespace-nowrap py-16 opacity-60 relative z-10">
-                <div class="inline-block animate-[marquee_25s_linear_infinite] text-4xl md:text-7xl font-bold text-transparent stroke-text font-tech" style="-webkit-text-stroke: 1px rgba(255,255,255,0.2);">
-                    MEDICAL VR • MEDTECH AI • STRATEGIA • SCENOGRAFIA MULTIMEDIALNA • FILM • WEB DEV • 
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer / Contact -->
-        <section id="contact" class="min-h-[60vh] flex flex-col justify-between px-6 md:px-12 py-20 md:py-32 relative bg-[#020202] border-t border-white/10">
-            <div class="z-10 grid grid-cols-1 md:grid-cols-2 gap-16">
-                <div>
-                    <span class="text-xs font-tech text-neon-blue uppercase tracking-widest mb-6 block">Rozpocznij Projekt</span>
-                    <h2 class="text-4xl md:text-7xl font-bold tracking-tighter leading-[1.1] mb-8 text-white font-tech kinetic-title">
-                        WSPÓLNIE STWÓRZMY JUTRO
-                    </h2>
-                </div>
-                <div class="flex flex-col justify-center items-start md:items-end">
-                     <a href="mailto:neuroinnowacje@gmail.com" class="group relative text-2xl md:text-5xl text-white font-light cursor-hover-trigger break-all md:break-normal font-tech tracking-tight magnetic">
-                        neuroinnowacje@gmail.com
-                        <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-neon-blue transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="tel:+48600608303" class="mt-6 text-xl text-gray-400 hover:text-white transition-colors font-tech magnetic">
-                        +48 600 608 303
-                    </a>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 items-end z-10 pt-16 md:pt-24 border-t border-white/5 mt-12">
-                <div class="text-sm text-gray-500 font-tech">
-                    <p class="text-white font-bold mb-2 tracking-widest uppercase">Kiszlo Studio</p>
-                    <p>ul. Żeromskiego 60/5a</p>
-                    <p>50-312 Wrocław, Poland</p>
-                </div>
-                
-                <div class="flex flex-col gap-3 text-sm text-gray-500 font-tech">
-                    <div class="text-xs uppercase mb-1 tracking-widest text-gray-700">Partnerzy</div>
-                    <a href="https://ncni.pl" target="_blank" class="hover:text-neon-blue transition-colors flex items-center gap-2 group">
-                        Naukowe Centrum Neuroinnowacji
-                        <svg class="w-3 h-3 text-gray-600 group-hover:text-neon-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                    </a>
-                </div>
-
-                <div class="text-xs text-gray-700 font-tech uppercase md:text-right">
-                    &copy; 2026 Kiszlo Studio. All Rights Reserved.
-                </div>
-            </div>
-            
-            <!-- Glow Footer -->
-            <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[60%] h-[300px] bg-neon-blue opacity-[0.05] rounded-full blur-[120px] pointer-events-none"></div>
-        </section>
+        </footer>
 
     </main>
 
+    <!-- AI Chat Widget (UI Only - Ready for API Hookup) -->
+    <div id="ai-chat-widget">
+        <div id="ai-chat-window">
+            <div class="chat-header">
+                <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 bg-brand-light rounded-full animate-pulse"></div>
+                    <span class="text-xs font-bold text-white uppercase tracking-wider">Kiszlo.AI Assistant</span>
+                </div>
+                <button id="close-chat" class="text-gray-500 hover:text-white">×</button>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <div class="msg-ai">Cześć! Jestem asystentem AI wytrenowanym na wiedzy o projektach Karola Kiszło i Kiszlo.Studio z Wrocławia. W czym mogę pomóc?</div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chat-input-field" placeholder="Zapytaj mnie o AI w medycynie...">
+                <button id="send-msg" class="text-brand-light font-bold text-sm">Wyślij</button>
+            </div>
+        </div>
+        <div id="ai-chat-button">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        </div>
+    </div>
+
     <script>
-        // Rejestracja wtyczek GSAP
-        gsap.registerPlugin(ScrollTrigger, TextPlugin);
+        // Logika okienka chatu AI
+        const chatBtn = document.getElementById('ai-chat-button');
+        const chatWindow = document.getElementById('ai-chat-window');
+        const closeChatBtn = document.getElementById('close-chat');
+        const chatInput = document.getElementById('chat-input-field');
+        const sendMsgBtn = document.getElementById('send-msg');
+        const messagesContainer = document.getElementById('chat-messages');
 
-        document.addEventListener("DOMContentLoaded", (event) => {
-            console.log("Kiszlo Studio v3.0: Level 3 Interaction Unlocked");
+        function toggleChat() {
+            chatWindow.style.display = chatWindow.style.display === 'flex' ? 'none' : 'flex';
+        }
 
-            // --- POZIOM 1: 3D TILT ---
-            VanillaTilt.init(document.querySelectorAll(".team-img-container"), {
-                max: 20,
-                speed: 400,
-                glare: true,
-                "max-glare": 0.4,
-                scale: 1.05,
-                perspective: 800,
-                gyroscope: true  // działa też na mobile przez żyroskop!
-            });
+        chatBtn.addEventListener('click', toggleChat);
+        closeChatBtn.addEventListener('click', toggleChat);
 
-            // --- POZIOM 2: LIVING PHOTO (WebGL Ripple Effect) ---
-            class LivingPhoto {
-                constructor(container) {
-                    this.container = container;
-                    this.img = container.querySelector('img');
-                    this.isHovered = false;
-                    this.mouse = { x: 0.5, y: 0.5 };
-                    this.ripples = [];
-                    
-                    // Bezpieczeństwo - inicjuj gdy obrazek jest gotowy
-                    if(this.img.complete) {
-                        this.init();
-                    } else {
-                        this.img.addEventListener('load', () => this.init());
-                    }
-                }
-                
-                init() {
-                    const w = this.container.offsetWidth;
-                    const h = this.container.offsetHeight;
-                    
-                    this.scene = new THREE.Scene();
-                    this.camera = new THREE.OrthographicCamera(-0.5, 0.5, 0.5, -0.5, 0, 10);
-                    this.camera.position.z = 1;
-                    
-                    this.renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-                    this.renderer.setSize(w, h);
-                    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-                    
-                    // Ziedziczony border-radius
-                    this.renderer.domElement.style.cssText = `
-                        position:absolute; top:0; left:0; width:100%; height:100%; z-index:2; pointer-events:none; border-radius: inherit; transition: opacity 0.3s;
-                    `;
-                    
-                    this.container.appendChild(this.renderer.domElement);
-                    
-                    const texture = new THREE.TextureLoader().load(this.img.src);
-                    
-                    this.uniforms = {
-                        uTexture: { value: texture },
-                        uMouse: { value: new THREE.Vector2(0.5, 0.5) },
-                        uTime: { value: 0 },
-                        uHover: { value: 0 },
-                    };
-                    
-                    const vertexShader = `
-                        varying vec2 vUv;
-                        void main() {
-                            vUv = uv;
-                            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-                        }
-                    `;
-                    
-                    const fragmentShader = `
-                        uniform sampler2D uTexture;
-                        uniform vec2 uMouse;
-                        uniform float uTime;
-                        uniform float uHover;
-                        varying vec2 vUv;
-                        void main() {
-                            vec2 uv = vUv;
-                            
-                            // Efekt 1: Subtelne zniekształcenie przy hover (ciepło/lustro)
-                            float dist = distance(uv, uMouse);
-                            float ripple = sin(dist * 30.0 - uTime * 4.0) * 0.015 * uHover;
-                            ripple *= smoothstep(0.5, 0.0, dist);
-                            
-                            // Efekt 2: RGB split — lekki chromatic aberration
-                            float aberration = ripple * 2.0;
-                            
-                            float r = texture2D(uTexture, uv + vec2(ripple + aberration, ripple)).r;
-                            float g = texture2D(uTexture, uv + vec2(ripple, ripple)).g;
-                            float b = texture2D(uTexture, uv + vec2(ripple - aberration, ripple)).b;
-                            
-                            // Efekt 3: Lekkie rozjaśnienie przy hover
-                            vec3 color = vec3(r, g, b);
-                            color += uHover * 0.05;
-                            
-                            gl_FragColor = vec4(color, 1.0);
-                        }
-                    `;
-                    
-                    const geometry = new THREE.PlaneGeometry(1, 1);
-                    const material = new THREE.ShaderMaterial({
-                        uniforms: this.uniforms,
-                        vertexShader,
-                        fragmentShader,
-                        transparent: true
-                    });
-                    
-                    this.plane = new THREE.Mesh(geometry, material);
-                    this.scene.add(this.plane);
-                    
-                    // Przekazanie referencji z powrotem do <img> (potrzebne dla Poziomu 3)
-                    this.img.livingPhotoRef = this;
-
-                    // Events
-                    this.container.addEventListener('mouseenter', () => {
-                        this.isHovered = true;
-                        gsap.to(this.uniforms.uHover, { value: 1, duration: 0.5 });
-                    });
-                    this.container.addEventListener('mouseleave', () => {
-                        this.isHovered = false;
-                        gsap.to(this.uniforms.uHover, { value: 0, duration: 0.8 });
-                    });
-                    this.container.addEventListener('mousemove', (e) => {
-                        const rect = this.container.getBoundingClientRect();
-                        this.uniforms.uMouse.value.x = (e.clientX - rect.left) / rect.width;
-                        this.uniforms.uMouse.value.y = 1 - (e.clientY - rect.top) / rect.height;
-                    });
-                    
-                    this.animate();
-                }
-                
-                animate() {
-                    requestAnimationFrame(() => this.animate());
-                    this.uniforms.uTime.value += 0.016;
-                    this.renderer.render(this.scene, this.camera);
-                }
-            }
-
-            // Inicjalizacja Living Photo
-            document.querySelectorAll('.team-img-container').forEach(container => {
-                new LivingPhoto(container);
-            });
-
-
-            // --- POZIOM 3: PIXEL EXPLOSION (Zoptymalizowany dla wydajności) ---
-            let isExploding = false; // Zapobiega multi-kliknięciom
+        function handleSend() {
+            const text = chatInput.value.trim();
+            if(!text) return;
             
-            document.querySelectorAll('.team-img-container img').forEach(img => {
-                img.addEventListener('click', function() {
-                    if (isExploding) return;
-                    isExploding = true;
-                    
-                    const canvas = document.createElement('canvas');
-                    const ctx = canvas.getContext('2d', { willReadFrequently: true });
-                    canvas.width = this.offsetWidth;
-                    canvas.height = this.offsetHeight;
-                    
-                    try {
-                        // Rysuje obraz na wirtualnym płótnie
-                        ctx.drawImage(this, 0, 0, canvas.width, canvas.height);
-                        
-                        // Zoptymalizowane: pobiera wszystkie dane RAZ zamiast w pętli
-                        const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
-                        
-                        const pixels = [];
-                        const step = 6; // co ile px jeden "piksel-cząstka"
-                        
-                        // Ukryj oryginalny obrazek i efekt WebGL na czas eksplozji
-                        gsap.to(this, { opacity: 0, duration: 0.1 });
-                        if(this.livingPhotoRef) {
-                            gsap.to(this.livingPhotoRef.renderer.domElement, { opacity: 0, duration: 0.1 });
-                        }
+            // Dodaj wiadomość użytkownika
+            messagesContainer.innerHTML += `<div class="msg-user">${text}</div>`;
+            chatInput.value = '';
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-                        const rect = this.getBoundingClientRect();
-                        let activeAnimations = 0;
+            // Symulacja odpowiedzi AI (docelowo tu wejdzie zapytanie do API OpenAI/Perplexity)
+            setTimeout(() => {
+                messagesContainer.innerHTML += `<div class="msg-ai">Rozumiem. Moduł połączenia z bazą wiedzy Kiszlo.Studio oczekuje na klucz API, abym mógł odpowiedzieć na Twoje pytanie o projektach realizowanych przez zespół Karola Kiszło we Wrocławiu.</div>`;
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 1000);
+        }
 
-                        for(let y = 0; y < canvas.height; y += step) {
-                            for(let x = 0; x < canvas.width; x += step) {
-                                // Obliczanie indeksu w jednowymiarowej tablicy (r,g,b,a)
-                                const index = (y * canvas.width + x) * 4;
-                                const r = imgData[index];
-                                const g = imgData[index+1];
-                                const b = imgData[index+2];
-                                
-                                // Pomijanie przezroczystych pikseli
-                                if (imgData[index+3] === 0) continue;
+        sendMsgBtn.addEventListener('click', handleSend);
+        chatInput.addEventListener('keypress', (e) => {
+            if(e.key === 'Enter') handleSend();
+        });
 
-                                const div = document.createElement('div');
-                                div.style.cssText = `
-                                    position:fixed; width:${step}px; height:${step}px;
-                                    background:rgb(${r},${g},${b});
-                                    left:${rect.left + x}px;
-                                    top:${rect.top + y}px;
-                                    z-index:9999; pointer-events:none; border-radius:1px;
-                                `;
-                                document.body.appendChild(div);
-                                pixels.push(div);
-                                
-                                activeAnimations++;
-                                
-                                gsap.to(div, {
-                                    x: (Math.random() - 0.5) * 500,
-                                    y: (Math.random() - 0.5) * 500 + 300,
-                                    opacity: 0,
-                                    scale: Math.random() * 2,
-                                    rotation: Math.random() * 360,
-                                    duration: 1 + Math.random(),
-                                    ease: 'power3.out',
-                                    onComplete: () => {
-                                        div.remove();
-                                        activeAnimations--;
-                                        
-                                        // Po zakończeniu ostatniej cząsteczki
-                                        if (activeAnimations === 0) {
-                                            gsap.to(this, { opacity: 1, duration: 0.5 });
-                                            if(this.livingPhotoRef) {
-                                                gsap.to(this.livingPhotoRef.renderer.domElement, { opacity: 1, duration: 0.5 });
-                                            }
-                                            isExploding = false;
-                                        }
-                                    }
-                                });
-                            }
-                        }
-                    } catch (e) {
-                        console.warn("Pixel explosion zablokowane ze względów CORS/Zabezpieczeń. Przetestuj na serwerze.", e);
-                        isExploding = false;
-                    }
-                });
-            });
+        // GSAP Animations
+        gsap.to(".hero-reveal", {
+            y: 0,
+            duration: 1.2,
+            stagger: 0.15,
+            ease: "power4.out",
+            delay: 0.2
+        });
 
-
-            // --- POZOSTAŁE EFEKTY Z POPRZEDNIEJ WERSJI ---
-            const cards = document.querySelectorAll(".spotlight-card");
-            cards.forEach(card => {
-                card.onmousemove = e => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    card.style.setProperty("--mouse-x", `${x}px`);
-                    card.style.setProperty("--mouse-y", `${y}px`);
-                };
-            });
-
-            const menuToggle = document.getElementById('menu-toggle');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const mobileLinks = document.querySelectorAll('.mobile-link');
-            let isMenuOpen = false;
-
-            menuToggle.addEventListener('click', () => {
-                isMenuOpen = !isMenuOpen;
-                if(isMenuOpen) {
-                    mobileMenu.classList.remove('closed');
-                    mobileMenu.classList.add('open');
-                    menuToggle.innerHTML = '<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>';
-                } else {
-                    mobileMenu.classList.remove('open');
-                    mobileMenu.classList.add('closed');
-                    menuToggle.innerHTML = '<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
-                }
-            });
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    isMenuOpen = false;
-                    mobileMenu.classList.remove('open');
-                    mobileMenu.classList.add('closed');
-                    menuToggle.innerHTML = '<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
-                });
-            });
-
-            const lenis = new Lenis({
-                duration: 1.2,
-                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-                smooth: true,
-            });
-            function raf(time) {
-                lenis.raf(time);
-                requestAnimationFrame(raf);
+        let lastScroll = 0;
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > 100 && currentScroll > lastScroll) {
+                nav.style.transform = 'translateY(-100%)';
+            } else {
+                nav.style.transform = 'translateY(0)';
             }
-            requestAnimationFrame(raf);
-
-            const cursorDot = document.querySelector('.cursor-dot');
-            const cursorBlob = document.querySelector('.cursor-blob');
-            const hoverTriggers = document.querySelectorAll('.cursor-hover-trigger');
-
-            if (window.matchMedia("(pointer: fine)").matches && window.innerWidth > 768) {
-                let lastX = 0, lastY = 0;
-
-                window.addEventListener('mousemove', (e) => {
-                    const posX = e.clientX;
-                    const posY = e.clientY;
-                    
-                    cursorDot.style.left = `${posX}px`;
-                    cursorDot.style.top = `${posY}px`;
-                    
-                    const dx = posX - lastX;
-                    const dy = posY - lastY;
-                    const speed = Math.sqrt(dx*dx + dy*dy);
-                    const angle = Math.atan2(dy, dx) * 180 / Math.PI;
-                    const stretch = Math.min(speed * 0.5, 40);
-                    
-                    gsap.to(cursorBlob, {
-                        left: posX, 
-                        top: posY,
-                        scaleX: 1 + stretch * 0.05,
-                        scaleY: 1 - stretch * 0.02,
-                        rotation: angle,
-                        duration: 0.15,
-                        overwrite: "auto"
-                    });
-                    
-                    gsap.to(cursorBlob, { scaleX: 1, scaleY: 1, duration: 0.6, delay: 0.1 });
-                    lastX = posX; 
-                    lastY = posY;
-                });
-
-                hoverTriggers.forEach(link => {
-                    link.addEventListener('mouseenter', () => {
-                        gsap.to(cursorBlob, {
-                            scale: 1.5,
-                            backgroundColor: 'rgba(0, 243, 255, 0.05)',
-                            border: '1px solid rgba(0, 243, 255, 0.5)',
-                            duration: 0.3
-                        });
-                    });
-                    link.addEventListener('mouseleave', () => {
-                        gsap.to(cursorBlob, {
-                            scale: 1,
-                            backgroundColor: 'rgba(0, 243, 255, 0.15)',
-                            border: 'none',
-                            duration: 0.3
-                        });
-                    });
-                });
-            }
-
-            document.querySelectorAll('.magnetic').forEach(el => {
-                el.addEventListener('mousemove', function(e) {
-                    const rect = this.getBoundingClientRect();
-                    const x = e.clientX - rect.left - rect.width / 2;
-                    const y = e.clientY - rect.top - rect.height / 2;
-                    gsap.to(this, { x: x * 0.35, y: y * 0.35, duration: 0.4, ease: 'power2.out' });
-                });
-                el.addEventListener('mouseleave', function() {
-                    gsap.to(this, { x: 0, y: 0, duration: 0.7, ease: 'elastic.out(1, 0.5)' });
-                });
-            });
-
-            document.querySelectorAll('.scramble-text').forEach(el => {
-                const original = el.textContent.trim();
-                const chars = "アイウエオabcdefghijklmnopqrstuvwxyz!@#$%^&*01";
-                
-                el.addEventListener('mouseenter', function() {
-                    let iteration = 0;
-                    const interval = setInterval(() => {
-                        el.textContent = original.split('').map((char, i) => {
-                            if(i < iteration) return original[i];
-                            if(char === ' ') return ' '; 
-                            return chars[Math.floor(Math.random() * chars.length)];
-                        }).join('');
-                        
-                        if(iteration >= original.length) clearInterval(interval);
-                        iteration += 0.5;
-                    }, 30);
-                });
-            });
-
-            document.querySelectorAll('.kinetic-title').forEach(title => {
-                const text = title.textContent.trim();
-                title.innerHTML = text.split('').map(char => 
-                    char === ' ' ? '<span>&nbsp;</span>' : `<span class="kinetic-char">${char}</span>`
-                ).join('');
-                
-                title.addEventListener('mousemove', e => {
-                    title.querySelectorAll('.kinetic-char').forEach((char) => {
-                        const charRect = char.getBoundingClientRect();
-                        const dx = e.clientX - (charRect.left + charRect.width / 2);
-                        const dy = e.clientY - (charRect.top + charRect.height / 2);
-                        const dist = Math.sqrt(dx*dx + dy*dy);
-                        const force = Math.max(0, 80 - dist) / 80;
-                        
-                        if(force > 0) {
-                            gsap.to(char, {
-                                y: -dy * force * 0.4,
-                                x: -dx * force * 0.2,
-                                color: `rgba(0, 243, 255, ${force + 0.3})`,
-                                duration: 0.3
-                            });
-                        } else {
-                            gsap.to(char, { y: 0, x: 0, color: 'inherit', duration: 0.6 });
-                        }
-                    });
-                });
-                
-                title.addEventListener('mouseleave', () => {
-                    gsap.to(title.querySelectorAll('.kinetic-char'), { 
-                        y: 0, x: 0, color: 'inherit', duration: 0.6, ease: 'elastic.out(1, 0.4)' 
-                    });
-                });
-            });
-
-            const tl = gsap.timeline();
-            tl.to(".reveal-text-inner", {
-                y: 0, duration: 1.4, ease: "power4.out", stagger: 0.1
-            })
-            .to(".reveal-fade", {
-                opacity: 1, duration: 1, stagger: 0.1
-            }, "-=0.8");
-
-            const canvasContainer = document.getElementById('canvas-container');
-            const heroSection = document.getElementById('hero-section');
-
-            if (canvasContainer && heroSection) {
-                const scene = new THREE.Scene();
-                const camera = new THREE.PerspectiveCamera(75, heroSection.clientWidth / heroSection.clientHeight, 0.1, 1000);
-                
-                const baseCameraZ = 20;
-                camera.position.z = baseCameraZ;
-
-                const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-                renderer.setSize(heroSection.clientWidth, heroSection.clientHeight);
-                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-                canvasContainer.appendChild(renderer.domElement);
-
-                const particleCount = window.innerWidth < 768 ? 40 : 80;
-                const particles = new THREE.Group();
-                const particleGeo = new THREE.SphereGeometry(0.1, 8, 8);
-                const particleMat = new THREE.MeshBasicMaterial({ color: 0x00f3ff, transparent: true, opacity: 0.8 });
-                
-                const particleVelocities = [];
-
-                for(let i=0; i<particleCount; i++) {
-                    const mesh = new THREE.Mesh(particleGeo, particleMat);
-                    const x = (Math.random() - 0.5) * 40;
-                    const y = (Math.random() - 0.5) * 40;
-                    const z = (Math.random() - 0.5) * 20;
-                    
-                    mesh.position.set(x, y, z);
-                    particles.add(mesh);
-                    
-                    particleVelocities.push(new THREE.Vector3(
-                        (Math.random() - 0.5) * 0.02,
-                        (Math.random() - 0.5) * 0.02,
-                        (Math.random() - 0.5) * 0.02
-                    ));
-                }
-                scene.add(particles);
-
-                const lineMaterial = new THREE.LineBasicMaterial({ color: 0x00f3ff, transparent: true, opacity: 0.15 });
-                const lineGeometry = new THREE.BufferGeometry();
-                const lines = new THREE.LineSegments(lineGeometry, lineMaterial);
-                scene.add(lines);
-
-                let mouseX = 0, mouseY = 0;
-                document.addEventListener('mousemove', (event) => {
-                    mouseX = (event.clientX - window.innerWidth / 2) * 0.05;
-                    mouseY = (event.clientY - window.innerHeight / 2) * 0.05;
-                });
-
-                function animate() {
-                    requestAnimationFrame(animate);
-
-                    const time = Date.now() * 0.001; 
-                    const breathingZoom = Math.sin(time * 0.5) * 2; 
-                    camera.position.z = baseCameraZ + breathingZoom;
-
-                    const linePositions = [];
-                    particles.children.forEach((p, i) => {
-                        p.position.add(particleVelocities[i]);
-                        
-                        if(p.position.x > 20 || p.position.x < -20) particleVelocities[i].x *= -1;
-                        if(p.position.y > 20 || p.position.y < -20) particleVelocities[i].y *= -1;
-                        if(p.position.z > 10 || p.position.z < -10) particleVelocities[i].z *= -1;
-
-                        p.position.x += (mouseX * 0.001 - p.position.x) * 0.01;
-                        p.position.y += (-mouseY * 0.001 - p.position.y) * 0.01;
-
-                        for(let j=i+1; j<particleCount; j++) {
-                            const p2 = particles.children[j];
-                            const dist = p.position.distanceTo(p2.position);
-                            
-                            if(dist < 5) { 
-                                linePositions.push(
-                                    p.position.x, p.position.y, p.position.z,
-                                    p2.position.x, p2.position.y, p2.position.z
-                                );
-                            }
-                        }
-                    });
-
-                    lineGeometry.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
-                    
-                    particles.rotation.y += 0.001;
-                    lines.rotation.y += 0.001;
-
-                    renderer.render(scene, camera);
-                }
-                animate();
-
-                window.addEventListener('resize', () => {
-                    const width = heroSection.clientWidth;
-                    const height = heroSection.clientHeight;
-                    
-                    camera.aspect = width / height;
-                    camera.updateProjectionMatrix();
-                    renderer.setSize(width, height);
-                });
-            }
+            lastScroll = currentScroll;
         });
     </script>
 </body>
