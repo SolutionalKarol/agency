@@ -56,7 +56,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -65,13 +65,14 @@
             theme: {
                 extend: {
                     colors: {
-                        'brand-accent': '#2b7a78', 
-                        'brand-light': '#3aafa9',
+                        'neon-blue': '#00f3ff',
+                        'neon-purple': '#bc13fe',
                         'deep-bg': '#0a0a0a',
                     },
                     fontFamily: {
                         'sans': ['Manrope', 'sans-serif'],
                         'serif': ['Playfair Display', 'serif'],
+                        'tech': ['Space Grotesk', 'sans-serif'],
                     }
                 }
             }
@@ -112,19 +113,21 @@
             -webkit-text-fill-color: transparent; 
         }
 
-        .card-premium {
+        .spotlight-card {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             transition: all 0.4s ease;
         }
-        .card-premium:hover {
-            border-color: rgba(43, 122, 120, 0.5); 
+        .spotlight-card:hover {
             transform: translateY(-5px);
             background: rgba(255, 255, 255, 0.04);
         }
 
-        ::selection { background: var(--brand-accent); color: #fff; }
+        .reveal-mask { overflow: hidden; display: block; }
+        .reveal-text-inner { display: block; transform: translateY(110%); }
+
+        ::selection { background: var(--neon-blue); color: #000; }
 
         /* Stylizacja prostego widgetu AI Chat */
         #ai-chat-widget {
@@ -141,13 +144,13 @@
             width: 56px;
             height: 56px;
             border-radius: 50%;
-            background-color: var(--brand-accent);
-            color: white;
+            background-color: var(--neon-blue);
+            color: black;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(43, 122, 120, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 243, 255, 0.3);
             transition: transform 0.3s ease;
         }
         
@@ -188,7 +191,8 @@
         }
 
         .msg-ai {
-            background-color: rgba(43, 122, 120, 0.2);
+            background-color: rgba(0, 243, 255, 0.1);
+            border: 1px solid rgba(0, 243, 255, 0.2);
             padding: 10px 14px;
             border-radius: 12px 12px 12px 0;
             font-size: 0.85rem;
@@ -225,40 +229,42 @@
         }
     </style>
 </head>
-<body class="antialiased selection:bg-brand-accent selection:text-white">
+<body class="antialiased selection:bg-neon-blue selection:text-black">
 
     <div class="noise-overlay"></div>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 px-6 py-6 md:px-12 md:py-8 flex justify-between items-center bg-black/60 backdrop-blur-lg border-b border-white/5 transition-all duration-300">
+    <nav class="fixed top-0 w-full z-50 px-6 py-6 md:px-12 md:py-8 flex justify-between items-center bg-black/80 backdrop-blur-md border-b border-white/5 transition-all duration-300">
         
-        <!-- LOIS: Kiedy zdobędziesz logo w formacie PNG z białymi literami i przezroczystym tłem, wgraj je do repozytorium jako 'logo-biale.png' i podmień ścieżkę w 'src' poniżej. -->
-        <a href="index.html" class="z-50 block w-48 md:w-64">
-             <img src="https://via.placeholder.com/400x120/0a0a0a/ffffff?text=Kiszlo.Studio" alt="Kiszlo Studio" class="w-full h-auto object-contain" id="site-logo">
+        <a href="index.html" class="z-50 block w-48 md:w-64 flex items-center gap-3">
+             <span class="w-3 h-3 bg-neon-blue rounded-full shadow-[0_0_15px_#00f3ff] animate-pulse"></span>
+             <span class="text-white font-tech font-bold text-xl tracking-widest">KISZLO<span class="text-white/40">.STUDIO</span></span>
         </a>
         
         <!-- Desktop Menu -->
-        <div class="hidden md:flex items-center gap-12 text-xs font-bold uppercase tracking-widest text-white/60">
+        <div class="hidden md:flex items-center gap-12 text-xs font-tech font-bold uppercase tracking-widest text-white/60">
             <a href="index.html" class="text-white relative group">
                 Studio
-                <span class="absolute -bottom-2 left-0 w-full h-[1px] bg-brand-accent transition-all"></span>
+                <span class="absolute -bottom-2 left-0 w-full h-[1px] bg-neon-blue transition-all"></span>
             </a>
-             <!-- LOIS: Zmieniłam linkowanie, żeby menu wskazywało na poprawne podstrony w Twoim repo -->
             <a href="oferta.html" class="hover:text-white transition-colors relative group">
                 Oferta
-                <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-brand-accent transition-all group-hover:w-full"></span>
+                <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-neon-blue transition-all group-hover:w-full"></span>
             </a>
             <a href="portfolio.html" class="hover:text-white transition-colors relative group">
                 Portfolio
-                <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-brand-accent transition-all group-hover:w-full"></span>
+                <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-neon-blue transition-all group-hover:w-full"></span>
             </a>
             <a href="#contact" class="hover:text-white transition-colors relative group">
                 Kontakt
+                <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-neon-blue transition-all group-hover:w-full"></span>
             </a>
             <div class="flex items-center gap-2 border-l border-white/10 pl-6">
                 <span class="text-white cursor-default">PL</span>
                 <span class="text-white/20">/</span>
-                <a href="eng.html" class="hover:text-brand-accent transition-colors">EN</a>
+                <a href="eng.html" class="hover:text-neon-blue transition-colors">EN</a>
+                <span class="text-white/20">/</span>
+                <a href="de.html" class="hover:text-neon-blue transition-colors">DE</a>
             </div>
         </div>
     </nav>
@@ -275,20 +281,20 @@
             
             <div class="z-10 mt-20 max-w-6xl relative">
                 
-                <div class="mb-4 overflow-hidden">
-                    <span class="block text-brand-light font-bold text-xs tracking-[0.3em] uppercase transform translate-y-full hero-reveal">
-                        Strategic Advisory & Media
+                <div class="reveal-mask mb-6">
+                    <span class="block text-neon-blue font-tech font-bold text-xs tracking-[0.3em] uppercase reveal-text-inner">
+                        Strategiczne Doradztwo & Media
                     </span>
                 </div>
                 
-                <div class="overflow-hidden mb-6">
-                    <h1 class="text-hero hero-reveal transform translate-y-full">
+                <div class="reveal-mask mb-6">
+                    <h1 class="text-hero reveal-text-inner">
                         WIZJA.<br>PRODUKCJA.<br><span class="font-serif italic text-white/90">TECHNOLOGIA.</span>
                     </h1>
                 </div>
                 
-                <div class="max-w-2xl border-l-2 border-brand-accent pl-6 py-2 mt-8 overflow-hidden">
-                    <p class="text-lg text-gray-300 font-light leading-relaxed transform translate-y-full hero-reveal">
+                <div class="max-w-2xl border-l-2 border-neon-blue pl-6 py-2 mt-8 overflow-hidden reveal-fade opacity-0">
+                    <p class="text-lg text-gray-300 font-light leading-relaxed">
                         Kompleksowe doradztwo strategiczne, produkcja filmowa, aplikacje VR oraz nowoczesny web development napędzany przez AI. Tworzymy rozwiązania na najwyższym poziomie wizualnym i technologicznym.
                     </p>
                 </div>
@@ -299,47 +305,47 @@
         <section id="production" class="py-24 px-6 md:px-12 relative z-10 bg-[#0a0a0a]">
             <div class="max-w-7xl mx-auto">
                 <div class="flex items-center gap-4 mb-16">
-                    <div class="h-[1px] w-12 bg-brand-accent"></div>
-                    <span class="text-xs font-bold text-brand-accent uppercase tracking-widest">Media & Communications</span>
+                    <div class="h-[1px] w-12 bg-neon-blue"></div>
+                    <span class="text-xs font-tech font-bold text-neon-blue uppercase tracking-widest">Media & Komunikacja</span>
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
                     <div>
                         <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-                            Kino spotyka się<br>z <span class="font-serif italic text-gray-400">biznesem.</span>
+                            Kino spotyka się<br>z <span class="font-serif italic text-neon-blue">biznesem.</span>
                         </h2>
-                        <p class="text-gray-400 text-lg leading-relaxed mb-8">
+                        <p class="text-gray-400 text-lg leading-relaxed mb-8 font-light">
                             Nie robimy po prostu "filmików". Projektujemy komunikację wizualną, która ma konkretny cel biznesowy. Od pomysłu kreatywnego, przez profesjonalny plan zdjęciowy, aż po zaawansowaną postprodukcję, korekcję barwną (color grading) i montaż.
                         </p>
                         
-                        <ul class="space-y-4 text-gray-300">
+                        <ul class="space-y-4 text-gray-300 font-light">
                             <li class="flex items-start gap-3">
-                                <span class="text-brand-accent mt-1">◆</span>
+                                <span class="text-neon-blue mt-1">◆</span>
                                 <div>
-                                    <strong class="text-white block">Produkcja Reklamowa</strong>
+                                    <strong class="text-white block font-semibold">Produkcja Reklamowa</strong>
                                     <span class="text-sm text-gray-500">Spoty TV, digital video, kampanie wizerunkowe.</span>
                                 </div>
                             </li>
                             <li class="flex items-start gap-3">
-                                <span class="text-brand-accent mt-1">◆</span>
+                                <span class="text-neon-blue mt-1">◆</span>
                                 <div>
-                                    <strong class="text-white block">Postprodukcja & VFX</strong>
+                                    <strong class="text-white block font-semibold">Postprodukcja & VFX</strong>
                                     <span class="text-sm text-gray-500">Montaż offline/online, efekty wizualne, sound design.</span>
                                 </div>
                             </li>
                             <li class="flex items-start gap-3">
-                                <span class="text-brand-accent mt-1">◆</span>
+                                <span class="text-neon-blue mt-1">◆</span>
                                 <div>
-                                    <strong class="text-white block">Scenografia Multimedialna</strong>
+                                    <strong class="text-white block font-semibold">Scenografia Multimedialna</strong>
                                     <span class="text-sm text-gray-500">Zaawansowane instalacje wizualne dla eventów i kultury.</span>
                                 </div>
                             </li>
                         </ul>
                     </div>
                     
-                    <div class="relative group">
-                        <div class="absolute inset-0 bg-brand-accent opacity-20 blur-2xl group-hover:opacity-40 transition-opacity duration-500"></div>
-                        <img src="https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=2071&auto=format&fit=crop" alt="Postprodukcja filmowa" class="relative z-10 w-full h-[500px] object-cover rounded-sm grayscale hover:grayscale-0 transition-all duration-700">
+                    <div class="relative group spotlight-card rounded-2xl overflow-hidden p-1">
+                        <div class="absolute inset-0 bg-neon-blue opacity-10 blur-2xl group-hover:opacity-30 transition-opacity duration-500"></div>
+                        <img src="https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=2071&auto=format&fit=crop" alt="Postprodukcja filmowa" class="relative z-10 w-full h-[500px] object-cover rounded-xl grayscale group-hover:grayscale-0 transition-all duration-700">
                     </div>
                 </div>
             </div>
@@ -350,26 +356,26 @@
             <div class="max-w-7xl mx-auto">
                 <div class="text-center mb-20">
                     <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Tech, AI & Web Solutions</h2>
-                    <p class="text-gray-400 max-w-2xl mx-auto text-lg">Zarządzamy danymi, tworzymy wciągające wirtualne światy i projektujemy inteligentne strony WWW, które realnie optymalizują biznes.</p>
+                    <p class="text-gray-400 max-w-2xl mx-auto text-lg font-light">Zarządzamy danymi, tworzymy wciągające wirtualne światy i projektujemy inteligentne strony WWW, które realnie optymalizują biznes.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="card-premium p-10 rounded-sm">
-                        <div class="w-12 h-12 border border-brand-accent/30 flex items-center justify-center mb-8 text-brand-light">01</div>
+                    <div class="spotlight-card p-10 rounded-2xl border border-white/5 hover:border-neon-blue/50 transition-colors duration-300">
+                        <div class="w-12 h-12 rounded-full border border-neon-blue/30 flex items-center justify-center mb-8 text-neon-blue shadow-[0_0_15px_rgba(0,243,255,0.2)] font-tech">01</div>
                         <h3 class="text-xl font-bold text-white mb-4">Produkcja Aplikacji VR</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">Projektujemy i wdrażamy zaawansowane symulacje wirtualnej rzeczywistości (VR) dla biznesu, medycyny (MedTech) i edukacji. Zapewniamy pełne zanurzenie w cyfrowym świecie i interakcje na nowym poziomie.</p>
+                        <p class="text-gray-400 text-sm leading-relaxed font-light">Projektujemy i wdrażamy zaawansowane symulacje wirtualnej rzeczywistości (VR) dla biznesu, medycyny (MedTech) i edukacji. Zapewniamy pełne zanurzenie w cyfrowym świecie i interakcje na nowym poziomie.</p>
                     </div>
                     
-                    <div class="card-premium p-10 rounded-sm">
-                        <div class="w-12 h-12 border border-brand-accent/30 flex items-center justify-center mb-8 text-brand-light">02</div>
+                    <div class="spotlight-card p-10 rounded-2xl border border-white/5 hover:border-neon-purple/50 transition-colors duration-300">
+                        <div class="w-12 h-12 rounded-full border border-neon-purple/30 flex items-center justify-center mb-8 text-neon-purple shadow-[0_0_15px_rgba(188,19,254,0.2)] font-tech">02</div>
                         <h3 class="text-xl font-bold text-white mb-4">AI Web Development</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">Tworzymy strony internetowe nowej generacji. Wykorzystujemy najnowsze standardy sztucznej inteligencji, aby Twoja obecność w sieci zachwycała wizualnie, a automatyzacje AI bezbłędnie pracowały w tle.</p>
+                        <p class="text-gray-400 text-sm leading-relaxed font-light">Tworzymy strony internetowe nowej generacji. Wykorzystujemy najnowsze standardy sztucznej inteligencji, aby Twoja obecność w sieci zachwycała wizualnie, a automatyzacje AI bezbłędnie pracowały w tle.</p>
                     </div>
 
-                    <div class="card-premium p-10 rounded-sm">
-                        <div class="w-12 h-12 border border-brand-accent/30 flex items-center justify-center mb-8 text-brand-light">03</div>
+                    <div class="spotlight-card p-10 rounded-2xl border border-white/5 hover:border-white/50 transition-colors duration-300">
+                        <div class="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center mb-8 text-white shadow-[0_0_15px_rgba(255,255,255,0.2)] font-tech">03</div>
                         <h3 class="text-xl font-bold text-white mb-4">Strategic Advisory</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">Doradztwo na styku technologii, marketingu i sztuki. Pomagamy układać lejki sprzedażowe i bezbłędnie wdrażamy rozwiązania ROI-driven na każdy etap komunikacji Twojej firmy.</p>
+                        <p class="text-gray-400 text-sm leading-relaxed font-light">Doradztwo na styku technologii, marketingu i sztuki. Pomagamy układać lejki sprzedażowe i bezbłędnie wdrażamy rozwiązania ROI-driven na każdy etap komunikacji Twojej firmy.</p>
                     </div>
                 </div>
             </div>
@@ -380,16 +386,16 @@
             <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 mb-16">
                 <div>
                     <h2 class="text-4xl md:text-6xl font-bold text-white mb-6 font-serif italic">Porozmawiajmy.</h2>
-                    <p class="text-gray-400 text-lg">Twój biznes zasługuje na rozwiązania technologiczne z najwyższej półki.</p>
+                    <p class="text-gray-400 text-lg font-light">Twój biznes zasługuje na rozwiązania technologiczne z najwyższej półki.</p>
                 </div>
                 <div class="flex flex-col md:items-end justify-center">
-                    <a href="mailto:kiszlo.studio@gmail.com" class="text-2xl md:text-3xl text-white hover:text-brand-light transition-colors mb-2 font-light tracking-wide">kiszlo.studio@gmail.com</a>
-                    <a href="tel:+48600608333" class="text-xl text-gray-500 hover:text-white transition-colors">+48 600 608 333</a>
+                    <a href="mailto:kiszlo.studio@gmail.com" class="text-2xl md:text-3xl text-white hover:text-neon-blue transition-colors mb-2 font-light tracking-wide">kiszlo.studio@gmail.com</a>
+                    <a href="tel:+48600608333" class="text-xl text-gray-500 hover:text-white transition-colors font-tech">+48 600 608 333</a>
                 </div>
             </div>
-            <div class="max-w-7xl mx-auto border-t border-white/10 pt-8 text-xs text-gray-600 flex justify-between items-center uppercase tracking-widest">
+            <div class="max-w-7xl mx-auto border-t border-white/10 pt-8 text-xs text-gray-600 flex justify-between items-center uppercase tracking-widest font-tech">
                 <span>© 2026 Kiszlo Studio. Karol Kiszło.</span>
-                <span>Wrocław / Polska</span>
+                <span>ul. Stefana Żeromskiego 60/5a, 50-312 Wrocław, Polska</span>
             </div>
         </footer>
 
@@ -400,8 +406,8 @@
         <div id="ai-chat-window">
             <div class="chat-header">
                 <div class="flex items-center gap-2">
-                    <div class="w-2 h-2 bg-brand-light rounded-full animate-pulse"></div>
-                    <span class="text-xs font-bold text-white uppercase tracking-wider">Kiszlo.AI Assistant</span>
+                    <div class="w-2 h-2 bg-neon-blue rounded-full animate-pulse"></div>
+                    <span class="text-xs font-tech font-bold text-white uppercase tracking-wider">Kiszlo.AI Assistant</span>
                 </div>
                 <button id="close-chat" class="text-gray-500 hover:text-white">×</button>
             </div>
@@ -410,7 +416,7 @@
             </div>
             <div class="chat-input">
                 <input type="text" id="chat-input-field" placeholder="Zapytaj mnie o AI w medycynie...">
-                <button id="send-msg" class="text-brand-light font-bold text-sm">Wyślij</button>
+                <button id="send-msg" class="text-neon-blue font-bold text-sm">Wyślij</button>
             </div>
         </div>
         <div id="ai-chat-button">
@@ -443,7 +449,7 @@
             chatInput.value = '';
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-            // Symulacja odpowiedzi AI (docelowo tu wejdzie zapytanie do API OpenAI/Perplexity)
+            // Symulacja odpowiedzi AI
             setTimeout(() => {
                 messagesContainer.innerHTML += `<div class="msg-ai">Rozumiem. Moduł połączenia z bazą wiedzy Kiszlo.Studio oczekuje na klucz API, abym mógł odpowiedzieć na Twoje pytanie o projektach realizowanych przez zespół Karola Kiszło we Wrocławiu.</div>`;
                 messagesContainer.scrollTop = messagesContainer.scrollHeight;
@@ -455,15 +461,23 @@
             if(e.key === 'Enter') handleSend();
         });
 
-        // GSAP Animations
-        gsap.to(".hero-reveal", {
+        // Intro animations
+        gsap.to(".reveal-text-inner", {
             y: 0,
             duration: 1.2,
             stagger: 0.15,
             ease: "power4.out",
-            delay: 0.2
+            delay: 0.1
+        });
+        
+        gsap.to(".reveal-fade", {
+            opacity: 1,
+            duration: 1.5,
+            ease: "power2.out",
+            delay: 0.6
         });
 
+        // Ukrywanie paska nawigacji przy przewijaniu
         let lastScroll = 0;
         const nav = document.querySelector('nav');
         window.addEventListener('scroll', () => {
