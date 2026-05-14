@@ -172,7 +172,7 @@
             margin: 0 auto;
         }
 
-        /* --- Navigacja (Skopiowana ze strony głównej) --- */
+        /* --- Navigacja --- */
         .nav {
             position: fixed;
             top: 0; left: 0; width: 100%;
@@ -362,9 +362,12 @@
             background: var(--surface);
         }
 
+        /* TWEAKED ZDJĘCIA PROFILOWE - ELEGANCKIE I MNIEJSZE */
         .profile-media {
             position: relative;
-            aspect-ratio: 4 / 5;
+            aspect-ratio: 3 / 4; /* Trochę zgrabniejsze proporcje */
+            max-width: 280px; /* Nie pozwolimy im rozrosnąć się na pół ekranu */
+            border-radius: 8px; /* Subtelne zaokrąglenie dodaje klasy */
             overflow: hidden;
             border: 1px solid var(--border);
             background: linear-gradient(135deg, #121212, #1a1a1a);
