@@ -1,354 +1,937 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="pl" data-theme="dark" class="no-js">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio | Kiszlo.Studio</title>
     
-    <title>Portfolio | Kiszlo Studio - Strategia, Produkcja, AI</title>
-    <meta name="description" content="Portfolio Kiszlo Studio. Zobacz nasze realizacje: zaawansowane symulacje VR, produkcje multimedialne i wdrożenia AI.">
+    <!-- Meta Descriptions Multi-Language & Geo Tags -->
+    <meta name="description" content="Portfolio Kiszlo Studio. Zobacz nasze wybrane realizacje: produkcje wideo klasy premium, symulacje VR (MedTech), wdrożenia AI oraz zyskowne strategie marketingowe.">
+    <meta name="description" lang="en" content="Kiszlo Studio Portfolio. Explore our selected case studies: premium video production, VR simulations (MedTech), AI implementations, and ROI-driven marketing strategies.">
+    <meta name="description" lang="de" content="Kiszlo Studio Portfolio. Entdecken Sie unsere ausgewählten Fallstudien: Premium-Videoproduktion, VR-Simulationen (MedTech), KI-Implementierungen und ROI-gesteuerte Marketingstrategien.">
     
-    <!-- Fonts - Spójne ze stroną główną -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <meta name="keywords" content="Portfolio Kiszlo Studio, Case Study Agencja AI, Realizacje VR Wrocław, Kampanie Wideo, MedTech VR, Przykłady wdrożeń AI, Sukcesy marketingowe">
+    <meta name="author" content="Karol Kiszło">
+    <meta name="robots" content="index, follow">
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'brand-accent': '#2b7a78', 
-                        'brand-light': '#3aafa9',
-                        'deep-bg': '#0a0a0a',
-                    },
-                    fontFamily: {
-                        'sans': ['Manrope', 'sans-serif'],
-                        'serif': ['Playfair Display', 'serif'],
-                    }
-                }
-            }
+    <!-- Geo Location Tags -->
+    <meta name="geo.region" content="PL-DS">
+    <meta name="geo.placename" content="Wrocław, Dolnośląskie, Polska">
+    <meta name="geo.position" content="51.1079;17.0385">
+    <meta name="ICBM" content="51.1079, 17.0385">
+
+    <!-- Canonical & Hreflang for SEO -->
+    <link rel="canonical" href="https://www.kiszlo.studio/portfolio.html">
+    <link rel="alternate" hreflang="pl" href="https://www.kiszlo.studio/portfolio.html" />
+    <link rel="alternate" hreflang="x-default" href="https://www.kiszlo.studio/portfolio.html" />
+
+    <!-- AI & Knowledge Graph Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://www.kiszlo.studio/#organization",
+          "name": "Kiszlo Studio",
+          "url": "https://www.kiszlo.studio",
+          "founder": {
+            "@type": "Person",
+            "name": "Karol Kiszło"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+48-600-608-333",
+            "contactType": "customer service",
+            "email": "kiszlo.studio@gmail.com"
+          }
+        },
+        {
+          "@type": "CollectionPage",
+          "@id": "https://www.kiszlo.studio/portfolio.html",
+          "name": "Portfolio Kiszlo Studio",
+          "description": "Galeria projektów, case study i realizacji Kiszlo Studio we Wrocławiu z zakresu AI, VR i produkcji wideo.",
+          "about": {
+            "@type": "Thing",
+            "name": "Wybrane realizacje i wdrożenia technologiczne"
+          }
         }
+      ]
+    }
     </script>
     
+    <!-- Font Preload -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <!-- GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 
     <style>
-        body { background-color: #0a0a0a; color: #FAFAFA; font-family: 'Manrope', sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
+        :root {
+            --bg: #080808;
+            --surface: #101010;
+            --surface-2: #161616;
+            --border: rgba(255,255,255,0.08);
+            --border-soft: rgba(255,255,255,0.04);
+            --text: #f4f1ec;
+            --muted: #9b958d;
+            --faint: #5a554f;
+            --primary: #00f3ff;
+            --primary-soft: rgba(0,243,255,0.12);
+            --glow: 0 0 18px rgba(0,243,255,0.28);
+            --font-display: 'Instrument Serif', serif;
+            --font-body: 'DM Sans', sans-serif;
+            --container: 1280px;
+            --transition: 220ms cubic-bezier(.16,1,.3,1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* no-js fallback */
+        html.no-js body { overflow-x: visible; }
+        html.no-js .hero-title-line { transform: translateY(0) !important; opacity: 1 !important; }
+        html.no-js .hero-text { opacity: 1 !important; }
+        html.no-js .fade-up { opacity: 1 !important; transform: translateY(0) !important; }
         
-        .noise-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9000; opacity: 0.04; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); }
+        ::selection { background: var(--primary); color: #000; }
 
-        .text-hero { 
-            font-size: clamp(3rem, 8vw, 7rem); 
-            line-height: 1; 
-            font-weight: 800; 
-            letter-spacing: -0.04em; 
-            background: linear-gradient(180deg, #ffffff 0%, #888888 100%); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
+        img { display: block; max-width: 100%; height: auto; }
+        a { color: inherit; text-decoration: none; }
+
+        .noise {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: .03;
+            z-index: 9999;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
         }
 
-        /* --- Eleganckie karty portfolio --- */
-        .project-card {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
+        .container {
+            width: min(var(--container), calc(100% - 48px));
+            margin: 0 auto;
         }
 
-        .project-card:hover {
-            border-color: rgba(43, 122, 120, 0.5); /* Brand accent glow */
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.04);
+        /* Nav */
+        .nav {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            z-index: 100;
+            padding: 24px 0;
+            background: rgba(8, 8, 8, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-soft);
+            transition: transform 0.4s ease;
+            will-change: transform;
+        }
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         
-        /* Akcenty z brandowych kolorów */
-        .icon-box {
-            width: 48px; height: 48px;
-            display: flex; align-items: center; justify-content: center;
-            border: 1px solid rgba(255,255,255,0.1);
-            background: rgba(0,0,0,0.3);
-            border-radius: 4px;
+        .nav-brand-block {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-decoration: none;
         }
-
-        .tech-badge {
-            font-size: 0.75rem;
+        .logo-text-main {
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            line-height: 1;
+        }
+        .logo-text-dot {
+            color: var(--primary);
+            font-weight: 700;
+        }
+        .logo-tagline {
+            font-family: var(--font-body);
+            color: var(--muted);
+            font-size: 10px;
             text-transform: uppercase;
-            padding: 4px 12px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: #888;
-            transition: 0.3s;
-            border-radius: 99px;
+            letter-spacing: 0.2em;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
             font-weight: 600;
         }
-        .project-card:hover .tech-badge {
-            border-color: var(--brand-accent);
-            color: var(--brand-light);
-            background: rgba(43, 122, 120, 0.1);
+        .nav-links a {
+            color: var(--faint);
+            transition: var(--transition);
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text);
+        }
+        .nav-langs {
+            display: flex;
+            gap: 12px;
+            border-left: 1px solid var(--border);
+            padding-left: 24px;
         }
 
-        ::selection { background: var(--brand-accent); color: #fff; }
+        /* Mobile Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 1001;
+            background: none;
+            border: none;
+            padding: 8px;
+        }
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 1px;
+            background: var(--text);
+            transition: var(--transition);
+        }
+        .nav-menu-wrapper {
+            display: flex;
+            align-items: center;
+        }
+
+        .section {
+            padding: clamp(72px, 10vw, 140px) 0;
+            border-top: 1px solid var(--border-soft);
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: .28em;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 28px;
+            height: 1px;
+            background: var(--primary);
+            box-shadow: var(--glow);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: flex-end;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-soft);
+            padding: 140px 0 72px;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0,243,255,.022) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,243,255,.022) 1px, transparent 1px);
+            background-size: 88px 88px;
+            mask-image: radial-gradient(circle at center, black 28%, transparent 90%);
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 780px;
+            height: 780px;
+            left: 50%;
+            top: -300px;
+            transform: translateX(-50%);
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0,243,255,.05) 0%, rgba(0,243,255,.01) 40%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(56px, 10vw, 132px);
+            line-height: .92;
+            margin-bottom: 32px;
+            overflow: hidden;
+        }
+        
+        .hero-title i { font-style: italic; color: var(--text); }
+
+        .hero-title-line {
+            display: block;
+            transform: translateY(110%);
+        }
+
+        .hero-text {
+            font-size: clamp(18px, 2vw, 25px);
+            font-weight: 300;
+            color: var(--muted);
+            max-width: 760px;
+            opacity: 0;
+            border-left: 1px solid var(--primary);
+            padding-left: 24px;
+        }
+
+        .hero-text strong { color: var(--text); font-weight: 500; }
+
+        /* Portfolio Gallery (Bento Style) */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 16px;
+        }
+        
+        .portfolio-item {
+            background: var(--surface);
+            border: 1px solid var(--border-soft);
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            group: portfolio;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .portfolio-item:hover {
+            border-color: var(--border);
+            background: var(--surface-2);
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            filter: grayscale(80%) contrast(1.1);
+            transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1), filter 0.5s ease;
+        }
+
+        .portfolio-item:hover .portfolio-image {
+            transform: scale(1.05);
+            filter: grayscale(0%) contrast(1);
+        }
+
+        .portfolio-content {
+            padding: 32px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(to top, var(--surface) 80%, transparent);
+            margin-top: -60px; /* Overlap image slightly */
+        }
+
+        .portfolio-item:hover .portfolio-content {
+            background: linear-gradient(to top, var(--surface-2) 80%, transparent);
+        }
+
+        .portfolio-large { grid-column: span 12; flex-direction: row; }
+        .portfolio-large .portfolio-image { width: 60%; height: 500px; margin-top: 0; }
+        .portfolio-large .portfolio-content { width: 40%; margin-top: 0; background: transparent; padding: 48px; justify-content: center; gap: 24px; }
+        
+        .portfolio-medium { grid-column: span 6; }
+
+        .portfolio-category {
+            color: var(--primary);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: .2em;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .portfolio-title {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: clamp(28px, 3vw, 42px);
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .portfolio-desc {
+            color: var(--muted);
+            font-size: 15px;
+            font-weight: 300;
+            margin-bottom: 24px;
+        }
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            border: 1px solid var(--border);
+            color: var(--faint);
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            border-top: 1px solid var(--border-soft);
+            padding: 80px 0 24px;
+            margin-top: 80px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.3fr .8fr .9fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 34px;
+            margin-bottom: 16px;
+        }
+
+        .footer-desc {
+            color: var(--faint);
+            font-size: 15px;
+            max-width: 34ch;
+        }
+
+        .footer-head {
+            color: var(--faint);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: .18em;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .footer-links {
+            display: grid;
+            gap: 12px;
+        }
+
+        .footer-links a,
+        .footer-links div {
+            color: var(--muted);
+            font-size: 15px;
+            font-weight: 300;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover { color: var(--primary); }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-soft);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            color: var(--faint);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+        }
+
+        /* AI Chat */
+        #ai-chat-widget {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        
+        #ai-chat-button {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background-color: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            transition: var(--transition);
+        }
+        
+        #ai-chat-button:hover {
+            border-color: var(--primary);
+            box-shadow: var(--glow);
+            color: var(--primary);
+        }
+
+        #ai-chat-window {
+            width: 340px;
+            height: 440px;
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            margin-bottom: 16px;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+            font-family: var(--font-body);
+        }
+
+        .chat-header {
+            background-color: var(--bg);
+            padding: 20px;
+            border-bottom: 1px solid var(--border-soft);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .msg {
+            padding: 12px 16px;
+            font-size: 14px;
+            line-height: 1.5;
+            font-weight: 300;
+            max-width: 85%;
+        }
+
+        .msg-ai {
+            background-color: var(--surface-2);
+            border: 1px solid var(--border-soft);
+            border-radius: 12px 12px 12px 0;
+            color: var(--text);
+            align-self: flex-start;
+        }
+        
+        .msg-user {
+            background-color: var(--primary-soft);
+            border: 1px solid rgba(0,243,255,0.2);
+            color: var(--primary);
+            border-radius: 12px 12px 0 12px;
+            align-self: flex-end;
+        }
+
+        .chat-input {
+            padding: 16px;
+            background-color: var(--bg);
+            border-top: 1px solid var(--border-soft);
+            display: flex;
+            gap: 12px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            background-color: transparent;
+            border: none;
+            color: var(--text);
+            font-size: 14px;
+            outline: none;
+            font-family: var(--font-body);
+        }
+        
+        .chat-input input::placeholder { color: var(--faint); }
+
+        .chat-input button {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .chat-input button:hover { color: var(--text); }
+
+        .fade-up { opacity: 0; transform: translateY(24px); }
+
+        @media (max-width: 980px) {
+            .portfolio-large { flex-direction: column; }
+            .portfolio-large .portfolio-image { width: 100%; height: 300px; }
+            .portfolio-large .portfolio-content { width: 100%; padding: 32px; background: linear-gradient(to top, var(--surface) 90%, transparent); margin-top: -60px; }
+            .portfolio-medium { grid-column: span 12; }
+            .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+            .logo-tagline { display: none; }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .nav-menu-wrapper {
+                position: fixed;
+                top: 0; left: 0; width: 100%; height: 100vh;
+                background: rgba(8, 8, 8, 0.98);
+                backdrop-filter: blur(16px);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 40px;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.4s ease;
+                z-index: 1000;
+            }
+            .nav-menu-wrapper.open { opacity: 1; pointer-events: auto; }
+            .nav-links { display: flex; flex-direction: column; text-align: center; font-size: 18px; gap: 32px; }
+            .nav-langs { border-left: none; padding-left: 0; justify-content: center; }
+            .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+            .hamburger.open span:nth-child(2) { opacity: 0; }
+            .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        }
+        @media (max-width: 640px) {
+            .container { width: min(var(--container), calc(100% - 28px)); }
+            .hero-title { font-size: 48px; }
+            .footer-bottom { flex-direction: column; gap: 12px; }
+        }
     </style>
 </head>
-<body class="antialiased selection:bg-brand-accent selection:text-white">
-
-    <div class="noise-overlay"></div>
+<body>
+    <script>document.documentElement.classList.remove('no-js');</script>
+    <div class="noise" aria-hidden="true"></div>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 px-6 py-6 md:px-12 md:py-8 flex justify-between items-center bg-black/60 backdrop-blur-lg border-b border-white/5 transition-all duration-300">
-        
-        <!-- LOIS: Twoje logo -->
-        <a href="index.html" class="z-50 block w-48 md:w-64">
-             <img src="https://via.placeholder.com/400x120/0a0a0a/ffffff?text=Kiszlo.Studio" alt="Kiszlo Studio" class="w-full h-auto object-contain" id="site-logo">
-        </a>
-        
-        <!-- Desktop Menu -->
-        <div class="hidden md:flex items-center gap-12 text-xs font-bold uppercase tracking-widest text-white/60">
-            <a href="index.html" class="hover:text-white transition-colors relative group">
-                Studio
-                <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-brand-accent transition-all group-hover:w-full"></span>
+    <nav class="nav" id="main-nav">
+        <div class="container nav-inner">
+            <a href="index.html" class="nav-brand-block">
+                <div class="logo-text-main">
+                    Kiszlo<span class="logo-text-dot">.</span>Studio
+                </div>
+                <div class="logo-tagline">
+                    AI-DRIVEN CREATIVE & STRATEGIC STUDIO
+                </div>
             </a>
-            <a href="oferta.html" class="hover:text-white transition-colors relative group">
-                Oferta
-                <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-brand-accent transition-all group-hover:w-full"></span>
-            </a>
-            <a href="portfolio.html" class="text-white relative group">
-                Portfolio
-                <span class="absolute -bottom-2 left-0 w-full h-[1px] bg-brand-accent transition-all"></span>
-            </a>
-            <a href="#contact" class="hover:text-white transition-colors relative group">
-                Kontakt
-            </a>
-            <div class="flex items-center gap-2 border-l border-white/10 pl-6">
-                <span class="text-white cursor-default">PL</span>
-                <span class="text-white/20">/</span>
-                <a href="eng.html" class="hover:text-brand-accent transition-colors">EN</a>
+            
+            <button class="hamburger" id="mobile-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-menu-wrapper" id="mobile-menu">
+                <div class="nav-links">
+                    <a href="index.html">Start</a>
+                    <a href="onas.html">O nas</a>
+                    <a href="oferta.html">Oferta</a>
+                    <a href="portfolio.html" class="active">Portfolio</a>
+                </div>
+                <div class="nav-langs">
+                    <span style="color: var(--text); font-weight: 600; font-size: 12px;">PL</span>
+                    <a href="eng.html" style="color: var(--faint); font-size: 12px; text-decoration: none;">EN</a>
+                    <a href="de.html" style="color: var(--faint); font-size: 12px; text-decoration: none;">DE</a>
+                </div>
             </div>
         </div>
     </nav>
 
     <main>
-        
-        <!-- Header -->
-        <section id="hero-section" class="relative pt-40 px-6 md:px-12 pb-24 overflow-hidden border-b border-white/5">
-            <div class="max-w-7xl mx-auto relative z-10">
-                <div class="flex items-center gap-4 mb-6">
-                     <span class="block text-brand-light font-bold text-xs tracking-[0.3em] uppercase hero-reveal transform translate-y-full">
-                        Nasze realizacje
-                    </span>
-                </div>
-                <div class="overflow-hidden mb-6">
-                    <h1 class="text-hero hero-reveal transform translate-y-full font-serif italic">
-                        Portfolio.
-                    </h1>
-                </div>
-                <div class="border-l-2 border-brand-accent pl-6 py-2 mt-8 overflow-hidden">
-                    <p class="text-gray-300 max-w-2xl text-lg leading-relaxed hero-reveal transform translate-y-full font-light">
-                        Wybrane studia przypadków: Integracja zaawansowanej technologii (AI, VR, Web) ze strategią biznesową i produkcją multimedialną.
-                    </p>
-                </div>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container hero-inner">
+                <div class="eyebrow">Wybrane realizacje</div>
+                <h1 class="hero-title">
+                    <span class="hero-title-line">Teoria</span>
+                    <span class="hero-title-line">w praktykę.</span>
+                    <span class="hero-title-line"><i>Obraz w zysk.</i></span>
+                </h1>
+                <p class="hero-text">
+                    Nie pokazujemy wszystkiego. Wybraliśmy projekty, w których <strong>połączenie strategii z technologią premium</strong> przyniosło najlepsze rezultaty. Od kinowych kampanii wideo po symulatory VR.
+                </p>
             </div>
         </section>
 
-        <!-- Projects -->
-        <div class="max-w-7xl mx-auto px-6 md:px-12 py-24 flex flex-col gap-8 bg-[#0a0a0a]">
-            
-            <!-- SHOWREEL / YOUTUBE PLACEHOLDER -->
-            <article class="project-card p-0 rounded-sm group mb-8 border border-brand-accent/20 relative overflow-hidden h-[400px] md:h-[600px] flex items-center justify-center">
-                <!-- Tło/Miniaturka Wideo -->
-                <div class="absolute inset-0 bg-black/60 z-10 group-hover:bg-black/40 transition-colors duration-500"></div>
-                <img src="https://images.unsplash.com/photo-1535016120720-40c646be5580?q=80&w=2070&auto=format&fit=crop" alt="Showreel Background" class="absolute inset-0 w-full h-full object-cover opacity-60 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
-                
-                <!-- Przycisk Play i Tytuł -->
-                <div class="relative z-20 text-center flex flex-col items-center p-6">
-                    <a href="LINK_DO_YOUTUBE" target="_blank" class="w-20 h-20 bg-brand-accent/90 rounded-full flex items-center justify-center mb-8 cursor-pointer group-hover:scale-110 transition-transform duration-300 shadow-[0_0_30px_rgba(43,122,120,0.5)]">
-                        <!-- Ikona Play -->
-                        <svg class="w-8 h-8 text-white translate-x-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        <!-- Portfolio Gallery -->
+        <section class="section" style="padding-top: 40px;">
+            <div class="container">
+                <div class="portfolio-grid">
+                    
+                    <!-- Case Study 1 (Wyróżnione) -->
+                    <a href="#" class="portfolio-item portfolio-large fade-up">
+                        <img src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?q=80&w=2078&auto=format&fit=crop" alt="Symulacje Medyczne VR" class="portfolio-image">
+                        <div class="portfolio-content">
+                            <div>
+                                <div class="portfolio-category">VR & MedTech</div>
+                                <h2 class="portfolio-title">Symulator VRET dla sektora medycznego</h2>
+                                <p class="portfolio-desc">
+                                    Współpraca badawczo-rozwojowa z Politechniką Wrocławską i NCNI. Zaprojektowaliśmy immersyjne środowisko wirtualnej rzeczywistości (Unity 3D) wspierające zaawansowane szkolenia medyczne i terapię.
+                                </p>
+                            </div>
+                            <div class="tag-list">
+                                <span class="tag">Wirtualna Rzeczywistość</span>
+                                <span class="tag">Badania NCNI</span>
+                                <span class="tag">Unity 3D</span>
+                            </div>
+                        </div>
                     </a>
-                    <h3 class="text-4xl md:text-6xl font-bold text-white mb-4 font-serif italic tracking-wide drop-shadow-lg">Kiszlo.Studio Showreel</h3>
-                    <span class="text-xs font-bold text-gray-300 bg-black/50 px-4 py-2 rounded-sm uppercase tracking-[0.3em] backdrop-blur-sm border border-white/10">Obejrzyj na YouTube</span>
-                </div>
-            </article>
 
-            <!-- Project 1: NCNI -->
-            <article class="project-card p-8 md:p-12 rounded-sm group">
-                <div class="flex flex-col md:flex-row gap-8 md:gap-12">
-                    <div class="flex-shrink-0">
-                        <div class="icon-box group-hover:border-brand-accent transition-colors">
-                            <svg class="w-6 h-6 text-gray-400 group-hover:text-brand-light transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 12l.666 3.109a4.5 4.5 0 004.28 3.641h10.608a4.5 4.5 0 004.28-3.641l.666-3.11m-18.995 0h7.495M21.75 12H14.25M11 12a3 3 0 116 0m-6 0a3 3 0 106 0" />
-                            </svg>
+                    <!-- Case Study 2 -->
+                    <a href="#" class="portfolio-item portfolio-medium fade-up">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" alt="Kampania Premium Wideo" class="portfolio-image">
+                        <div class="portfolio-content">
+                            <div>
+                                <div class="portfolio-category">Wideo & Produkcja</div>
+                                <h2 class="portfolio-title">Kinowa kampania produktowa</h2>
+                                <p class="portfolio-desc">
+                                    Od strategii, przez scenografię, aż po zaawansowany montaż i color grading. Zrealizowaliśmy kampanię reklamową nastawioną na budowanie świadomości marki klasy premium.
+                                </p>
+                            </div>
+                            <div class="tag-list">
+                                <span class="tag">Produkcja TV/Digital</span>
+                                <span class="tag">Color Grading</span>
+                                <span class="tag">VFX</span>
+                            </div>
                         </div>
-                    </div>
+                    </a>
 
-                    <div class="flex-1">
-                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 border-b border-white/5 pb-6">
-                            <h3 class="text-3xl font-bold text-white group-hover:text-brand-light transition-colors">NCNI CIRCLE VR</h3>
-                            <span class="text-xs font-bold text-brand-light bg-brand-accent/10 px-3 py-1 rounded-sm mt-3 md:mt-0 tracking-widest uppercase">MedTech / Clinical</span>
+                    <!-- Case Study 3 -->
+                    <a href="#" class="portfolio-item portfolio-medium fade-up">
+                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1965&auto=format&fit=crop" alt="Rozwiązania AI Web" class="portfolio-image">
+                        <div class="portfolio-content">
+                            <div>
+                                <div class="portfolio-category">AI & Web Dev</div>
+                                <h2 class="portfolio-title">Platforma AI dla E-Commerce</h2>
+                                <p class="portfolio-desc">
+                                    Zbudowaliśmy butikowy interfejs połączony z automatyzacją opartą o modele językowe (LLM). Wdrożenie agenta AI drastycznie zmniejszyło koszty obsługi klienta B2B.
+                                </p>
+                            </div>
+                            <div class="tag-list">
+                                <span class="tag">LLM Integration</span>
+                                <span class="tag">Automatyzacja B2B</span>
+                                <span class="tag">UX/UI Premium</span>
+                            </div>
                         </div>
+                    </a>
 
-                        <p class="text-gray-400 text-base leading-relaxed mb-8 font-light">
-                            Zintegrowany system neuroterapeutyczny. Platforma immersyjna łącząca terapię ekspozycyjną (VRET) z biofeedbackiem w czasie rzeczywistym. Pełna kontrola nad leczeniem fobii, wsparcie dla osób neuroatypowych (ADHD) oraz aktywizacja seniorów.
-                        </p>
-
-                        <div class="flex flex-wrap gap-3">
-                            <span class="tech-badge">Unity 3D</span>
-                            <span class="tech-badge">Biofeedback API</span>
-                            <span class="tech-badge">VRET</span>
+                    <!-- Case Study 4 -->
+                    <a href="#" class="portfolio-item portfolio-large fade-up">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop" alt="Strategia ROI" class="portfolio-image">
+                        <div class="portfolio-content">
+                            <div>
+                                <div class="portfolio-category">Strategia & Consulting</div>
+                                <h2 class="portfolio-title">Rebranding & Optymalizacja Lejka B2B</h2>
+                                <p class="portfolio-desc">
+                                    Kompleksowy audyt komunikacji wizualnej, przebudowa tożsamości marki i optymalizacja ścieżek zakupowych. Wynik? Mierzalny wzrost konwersji i ustrukturyzowany ekosystem reklamowy.
+                                </p>
+                            </div>
+                            <div class="tag-list">
+                                <span class="tag">Business Design</span>
+                                <span class="tag">Optymalizacja ROI</span>
+                                <span class="tag">Architektura marki</span>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </article>
+                    </a>
 
-            <!-- Project 2: Makbet -->
-            <article class="project-card p-8 md:p-12 rounded-sm group">
-                <div class="flex flex-col md:flex-row gap-8 md:gap-12">
-                    <div class="flex-shrink-0">
-                         <div class="icon-box group-hover:border-brand-accent transition-colors">
-                            <svg class="w-6 h-6 text-gray-400 group-hover:text-brand-light transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z" />
-                            </svg>
-                        </div>
-                    </div>
-
-                    <div class="flex-1">
-                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 border-b border-white/5 pb-6">
-                            <h3 class="text-3xl font-bold text-white group-hover:text-brand-light transition-colors">PROTOTYP: MAKBET</h3>
-                            <span class="text-xs font-bold text-brand-light bg-brand-accent/10 px-3 py-1 rounded-sm mt-3 md:mt-0 tracking-widest uppercase">R&D / Art & Event</span>
-                        </div>
-
-                        <p class="text-gray-400 text-base leading-relaxed mb-8 font-light">
-                            Eksperymentalny prototyp interaktywnej scenografii dla teatru i eventów. Badanie granic technologii w sztuce. System czujników głębi (Kinect Azure) i projekcji 4K reagujący na żywo na gesty aktorów na scenie.
-                        </p>
-
-                        <div class="flex flex-wrap gap-3">
-                            <span class="tech-badge">TouchDesigner</span>
-                            <span class="tech-badge">Lidar / Kinect</span>
-                            <span class="tech-badge">Generative Mapping</span>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Project 3: Neuro-Audio -->
-            <article class="tech-card p-6 md:p-8 rounded-lg cursor-hover-trigger group">
-                 <div class="corner corner-tl" style="border-color: #3b82f6"></div>
-                <div class="corner corner-br" style="border-color: #3b82f6"></div>
-
-                <div class="flex flex-col md:flex-row gap-6 md:gap-10">
-                    <div class="flex-shrink-0">
-                         <div class="icon-box group-hover:border-blue-500 transition-colors">
-                            <!-- Music Note Icon -->
-                            <svg class="w-6 h-6 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
-                            </svg>
-                        </div>
-                         <div class="mt-2 text-[10px] font-mono text-gray-600 uppercase tracking-widest text-center">Sys.03</div>
-                    </div>
-
-                    <div class="flex-1">
-                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 border-b border-white/5 pb-4">
-                            <h3 class="text-2xl md:text-3xl font-bold text-white font-tech group-hover:text-blue-400 transition-colors">NEURO-AUDIO ADHD</h3>
-                            <span class="text-xs font-mono text-blue-400 bg-blue-500/10 px-2 py-1 rounded mt-2 md:mt-0">MOBILE / DSP</span>
-                        </div>
-
-                        <p class="text-gray-400 text-sm leading-relaxed mb-6 font-sans">
-                            Adaptacyjna aplikacja audio. Koniec z "szumami do skupienia". Nasz algorytm DSP w czasie rzeczywistym modyfikuje Twoją ulubioną muzykę (od popu po klasykę), dostosowując pasma dźwiękowe do potrzeb mózgu z ADHD.
-                        </p>
-
-                        <div class="flex flex-wrap gap-2">
-                            <span class="tech-badge">Real-time DSP</span>
-                            <span class="tech-badge">Python / Swift</span>
-                            <span class="tech-badge">Neuro-modulation</span>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Project 4: Digital Twin & Web3D (Zamiast AI Content Engine) -->
-            <article class="tech-card p-6 md:p-8 rounded-lg cursor-hover-trigger group border-l-2 border-l-neon-green/50">
-                 <div class="corner corner-tl" style="border-color: var(--neon-green)"></div>
-                <div class="corner corner-br" style="border-color: var(--neon-green)"></div>
-
-                <div class="flex flex-col md:flex-row gap-6 md:gap-10">
-                    <div class="flex-shrink-0">
-                         <div class="icon-box group-hover:border-neon-green transition-colors">
-                            <!-- 3D Cube Icon -->
-                            <svg class="w-6 h-6 text-gray-400 group-hover:text-neon-green transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                            </svg>
-                        </div>
-                         <div class="mt-2 text-[10px] font-mono text-gray-600 uppercase tracking-widest text-center">Sys.04</div>
-                    </div>
-
-                    <div class="flex-1">
-                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 border-b border-white/5 pb-4">
-                            <h3 class="text-2xl md:text-3xl font-bold text-white font-tech group-hover:text-neon-green transition-colors">DIGITAL TWIN & WEB3D</h3>
-                            <span class="text-xs font-mono text-neon-green bg-neon-green/10 px-2 py-1 rounded mt-2 md:mt-0">WEB / E-COMMERCE</span>
-                        </div>
-
-                        <p class="text-gray-400 text-sm leading-relaxed mb-6 font-sans">
-                            Przenosimy produkty do przestrzeni cyfrowej. Tworzymy interaktywne konfiguratory 3D dla branży przemysłowej i e-commerce, wirtualne showroomy oraz "cyfrowe bliźniaki" fizycznych obiektów dostępne bezpośrednio z poziomu przeglądarki.
-                        </p>
-
-                        <div class="flex flex-wrap gap-2">
-                            <span class="tech-badge">Three.js / WebGL</span>
-                            <span class="tech-badge">Interactive 3D</span>
-                            <span class="tech-badge">React</span>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-        </div>
-
-        <!-- Footer -->
-        <section id="contact" class="border-t border-white/10 py-20 px-6 md:px-12 bg-[#020202]">
-            <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-end gap-10">
-                <div>
-                     <span class="text-[10px] font-mono text-neon-blue uppercase tracking-widest mb-4 block">System Status: Active</span>
-                     <h2 class="text-4xl md:text-6xl font-bold font-tech text-white">READY TO<br>DEPLOY?</h2>
-                </div>
-                <div class="text-right">
-                    <a href="mailto:kiszlo.studio@gmail.com" class="text-xl md:text-2xl text-gray-300 hover:text-neon-blue transition-colors font-mono">kiszlo.studio@gmail.com</a>
-                    <a href="tel:+48600608333" class="block mt-2 text-lg text-gray-400 hover:text-white transition-colors font-mono">+48 600 608 333</a>
-                    <div class="text-xs font-mono text-gray-600 mt-4 uppercase">
-                        ul. Stefana Żeromskiego 60/5a, 50-312 Wrocław<br>
-                        © 2026 Kiszlo Studio. All systems operational.
-                    </div>
                 </div>
             </div>
         </section>
 
     </main>
 
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand">Kiszlo.Studio</div>
+                    <div class="footer-desc">
+                        Butikowe studio strategiczno-technologiczne łączące AI, VR, produkcję i komunikację dla nowoczesnego biznesu.
+                    </div>
+                </div>
+                <div>
+                    <div class="footer-head">Nawigacja</div>
+                    <div class="footer-links">
+                        <a href="index.html">Start</a>
+                        <a href="onas.html">O nas</a>
+                        <a href="oferta.html">Oferta</a>
+                        <a href="portfolio.html">Portfolio</a>
+                    </div>
+                </div>
+                <div>
+                    <div class="footer-head">Kontakt</div>
+                    <div class="footer-links">
+                        <a href="mailto:kiszlo.studio@gmail.com">kiszlo.studio@gmail.com</a>
+                        <a href="tel:+48600608333">+48 600 608 333</a>
+                        <div>Wrocław, Polska</div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>Kiszlo.Studio Karol Kiszło © 2026</span>
+                <span>Wrocław, Polska</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Premium AI Chat Widget -->
+    <div id="ai-chat-widget">
+        <div id="ai-chat-window">
+            <div class="chat-header">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                     <img src="https://via.placeholder.com/20x20/00f3ff/00f3ff?text=+" alt="AI Logo" style="border-radius:50%; width: 12px; height: 12px;">
+                    <span style="font-family: var(--font-body); font-weight: 600; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;">System AI</span>
+                </div>
+                <button id="close-chat" style="background: none; border: none; color: var(--faint); cursor: pointer; font-size: 20px;">×</button>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <div class="msg msg-ai">Dzień dobry. Jestem asystentem Kiszlo.Studio. W czym mogę pomóc?</div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chat-input-field" placeholder="Zadaj pytanie...">
+                <button id="send-msg">Wyślij</button>
+            </div>
+        </div>
+        <div id="ai-chat-button">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+        </div>
+    </div>
+
     <script>
-        // Animacja wjazdu dla Hero Section
-        gsap.to(".hero-reveal", {
-            y: 0,
-            duration: 1.2,
-            stagger: 0.15,
-            ease: "power4.out",
-            delay: 0.1
+        // --- MOBILE MENU LOGIC ---
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileToggle && mobileMenu) {
+            mobileToggle.addEventListener('click', () => {
+                mobileToggle.classList.toggle('open');
+                mobileMenu.classList.toggle('open');
+                document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+            });
+
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileToggle.classList.remove('open');
+                    mobileMenu.classList.remove('open');
+                    document.body.style.overflow = '';
+                });
+            });
+        }
+
+        // AI Chat Logic
+        const chatBtn = document.getElementById('ai-chat-button');
+        const chatWindow = document.getElementById('ai-chat-window');
+        const closeChatBtn = document.getElementById('close-chat');
+        const chatInput = document.getElementById('chat-input-field');
+        const sendMsgBtn = document.getElementById('send-msg');
+        const messagesContainer = document.getElementById('chat-messages');
+
+        function toggleChat() {
+            chatWindow.style.display = chatWindow.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        chatBtn.addEventListener('click', toggleChat);
+        closeChatBtn.addEventListener('click', toggleChat);
+
+        function handleSend() {
+            const text = chatInput.value.trim();
+            if(!text) return;
+            
+            messagesContainer.innerHTML += `<div class="msg msg-user">${text}</div>`;
+            chatInput.value = '';
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            setTimeout(() => {
+                messagesContainer.innerHTML += `<div class="msg msg-ai">Przyjąłem. Aby odpowiedzieć na to pytanie, mój system wiedzy wymaga autoryzacji i klucza API. Skontaktuj się bezpośrednio z zespołem.</div>`;
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 1000);
+        }
+
+        sendMsgBtn.addEventListener('click', handleSend);
+        chatInput.addEventListener('keypress', (e) => {
+            if(e.key === 'Enter') handleSend();
         });
 
-        // Ukrywanie paska nawigacji przy przewijaniu
-        let lastScroll = 0;
-        const nav = document.querySelector('nav');
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            if (currentScroll > 100 && currentScroll > lastScroll) {
-                nav.style.transform = 'translateY(-100%)';
-            } else {
-                nav.style.transform = 'translateY(0)';
-            }
-            lastScroll = currentScroll;
+        // GSAP Animations
+        window.addEventListener('load', () => {
+            if (typeof gsap === 'undefined') return;
+            gsap.registerPlugin(ScrollTrigger);
+
+            const tl = gsap.timeline({ delay: 0.1 });
+            tl.to('.hero-title-line', {
+                y: '0%',
+                duration: 1.2,
+                stagger: 0.12,
+                ease: 'power4.out'
+            })
+            .to('.hero-text', {
+                opacity: 1,
+                duration: 1,
+                ease: 'power2.out'
+            }, '-=0.8');
+
+            gsap.utils.toArray('.fade-up').forEach(el => {
+                gsap.to(el, {
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 85%'
+                    },
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: 'power3.out'
+                });
+            });
+
+            // Nav Hide/Show on Scroll
+            let lastScroll = 0;
+            const nav = document.getElementById('main-nav');
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.pageYOffset;
+                if (currentScroll > 100 && currentScroll > lastScroll) {
+                    nav.style.transform = 'translateY(-100%)';
+                } else {
+                    nav.style.transform = 'translateY(0)';
+                }
+                lastScroll = currentScroll;
+            });
         });
     </script>
 </body>
