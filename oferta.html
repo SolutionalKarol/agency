@@ -1,310 +1,1022 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="pl" data-theme="dark" class="no-js">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oferta | Kiszlo Studio - Rozwiązania Szyte na Miarę</title>
-    <meta name="description" content="Poznaj ofertę Kiszlo Studio. Specjalizujemy się w produkcji wideo, strategiach AI, web developmencie i projektach VR dla biznesu.">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oferta | Kiszlo.Studio</title>
     
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Meta Descriptions Multi-Language & Geo Tags -->
+    <meta name="description" content="Poznaj ofertę Kiszlo Studio. Dostarczamy butikowe rozwiązania: produkcja wideo, AI web development, aplikacje VR dla MedTech oraz doradztwo strategiczne we Wrocławiu.">
+    <meta name="description" lang="en" content="Discover Kiszlo Studio services: premium video production, AI web development, VR applications for MedTech, and strategic advisory in Wrocław, Poland.">
+    <meta name="description" lang="de" content="Entdecken Sie die Dienstleistungen von Kiszlo Studio: Premium-Videoproduktion, KI-Webentwicklung, VR-Anwendungen für MedTech und strategische Beratung in Breslau.">
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'brand-accent': '#2b7a78', 
-                        'brand-light': '#3aafa9',
-                        'deep-bg': '#0a0a0a',
-                    },
-                    fontFamily: {
-                        'sans': ['Manrope', 'sans-serif'],
-                        'serif': ['Playfair Display', 'serif'],
-                    }
+    <meta name="keywords" content="Oferta Kiszlo Studio, Produkcja Wideo Wrocław, Strony WWW AI, Symulacje VR MedTech, Doradztwo marketingowe, Strategia komunikacji">
+    <meta name="author" content="Karol Kiszło">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Geo Location Tags -->
+    <meta name="geo.region" content="PL-DS">
+    <meta name="geo.placename" content="Wrocław, Dolnośląskie, Polska">
+    <meta name="geo.position" content="51.1079;17.0385">
+    <meta name="ICBM" content="51.1079, 17.0385">
+
+    <!-- Canonical & Hreflang for SEO -->
+    <link rel="canonical" href="https://www.kiszlo.studio/oferta.html">
+    <link rel="alternate" hreflang="pl" href="https://www.kiszlo.studio/oferta.html" />
+    <link rel="alternate" hreflang="en" href="https://www.kiszlo.studio/services.html" />
+    <link rel="alternate" hreflang="x-default" href="https://www.kiszlo.studio/oferta.html" />
+
+    <!-- AI & Knowledge Graph Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://www.kiszlo.studio/#organization",
+          "name": "Kiszlo Studio",
+          "url": "https://www.kiszlo.studio",
+          "founder": {
+            "@type": "Person",
+            "name": "Karol Kiszło",
+            "jobTitle": "Founder & Strategist"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+48-600-608-333",
+            "contactType": "customer service",
+            "email": "kiszlo.studio@gmail.com"
+          },
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Usługi Kiszlo Studio",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Produkcja Wideo & Postprodukcja",
+                  "description": "Profesjonalna produkcja reklamowa, montaż i korekcja barwna."
                 }
-            }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Symulacje VR & MedTech",
+                  "description": "Zaawansowane aplikacje VR dla biznesu, edukacji i medycyny."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "AI Web Development",
+                  "description": "Projektowanie luksusowych stron WWW zintegrowanych z AI."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Doradztwo Strategiczne",
+                  "description": "Strategie komunikacji i optymalizacja lejków sprzedażowych (ROI)."
+                }
+              }
+            ]
+          }
         }
+      ]
+    }
     </script>
     
+    <!-- Font Preload -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <!-- GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 
     <style>
-        body { background-color: #0a0a0a; color: #FAFAFA; font-family: 'Manrope', sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
-        
-        .noise-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9000; opacity: 0.04; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); }
-
-        .text-hero { 
-            font-size: clamp(3rem, 8vw, 7rem); 
-            line-height: 1; 
-            font-weight: 800; 
-            letter-spacing: -0.04em; 
-            background: linear-gradient(180deg, #ffffff 0%, #888888 100%); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
+        :root {
+            --bg: #080808;
+            --surface: #101010;
+            --surface-2: #161616;
+            --border: rgba(255,255,255,0.08);
+            --border-soft: rgba(255,255,255,0.04);
+            --text: #f4f1ec;
+            --muted: #9b958d;
+            --faint: #5a554f;
+            --primary: #00f3ff;
+            --primary-soft: rgba(0,243,255,0.12);
+            --glow: 0 0 18px rgba(0,243,255,0.28);
+            --font-display: 'Instrument Serif', serif;
+            --font-body: 'DM Sans', sans-serif;
+            --container: 1280px;
+            --transition: 220ms cubic-bezier(.16,1,.3,1);
         }
 
-        /* --- Eleganckie karty oferty --- */
-        .service-card {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.4s ease;
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* no-js fallback */
+        html.no-js body { overflow-x: visible; }
+        html.no-js .hero-title-line { transform: translateY(0) !important; opacity: 1 !important; }
+        html.no-js .hero-text { opacity: 1 !important; }
+        html.no-js .fade-up { opacity: 1 !important; transform: translateY(0) !important; }
+        
+        ::selection { background: var(--primary); color: #000; }
+
+        img { display: block; max-width: 100%; height: auto; }
+        a { color: inherit; text-decoration: none; }
+
+        .noise {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: .03;
+            z-index: 9999;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        .container {
+            width: min(var(--container), calc(100% - 48px));
+            margin: 0 auto;
+        }
+
+        /* Nav */
+        .nav {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            z-index: 100;
+            padding: 24px 0;
+            background: rgba(8, 8, 8, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-soft);
+            transition: transform 0.4s ease;
+            will-change: transform;
+        }
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-brand-block {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-decoration: none;
+        }
+        .logo-text-main {
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            line-height: 1;
+        }
+        .logo-text-dot {
+            color: var(--primary);
+            font-weight: 700;
+        }
+        .logo-tagline {
+            font-family: var(--font-body);
+            color: var(--muted);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 600;
+        }
+        .nav-links a {
+            color: var(--faint);
+            transition: var(--transition);
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text);
+        }
+        .nav-langs {
+            display: flex;
+            gap: 12px;
+            border-left: 1px solid var(--border);
+            padding-left: 24px;
+        }
+
+        /* Mobile Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 1001;
+            background: none;
+            border: none;
+            padding: 8px;
+        }
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 1px;
+            background: var(--text);
+            transition: var(--transition);
+        }
+        .nav-menu-wrapper {
+            display: flex;
+            align-items: center;
+        }
+
+        .section {
+            padding: clamp(72px, 10vw, 140px) 0;
+            border-top: 1px solid var(--border-soft);
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: .28em;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 28px;
+            height: 1px;
+            background: var(--primary);
+            box-shadow: var(--glow);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 80vh; /* Trochę mniejsze niż na startowej */
+            display: flex;
+            align-items: flex-end;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-soft);
+            padding: 140px 0 72px;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0,243,255,.022) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,243,255,.022) 1px, transparent 1px);
+            background-size: 88px 88px;
+            mask-image: radial-gradient(circle at center, black 28%, transparent 90%);
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 780px;
+            height: 780px;
+            left: -180px;
+            top: -180px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0,243,255,.06) 0%, rgba(0,243,255,.02) 35%, transparent 72%);
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(56px, 10vw, 132px);
+            line-height: .92;
+            margin-bottom: 32px;
+            overflow: hidden;
+        }
+        
+        .hero-title i { font-style: italic; color: var(--text); }
+
+        .hero-title-line {
+            display: block;
+            transform: translateY(110%);
+        }
+
+        .hero-text {
+            font-size: clamp(18px, 2vw, 25px);
+            font-weight: 300;
+            color: var(--muted);
+            max-width: 760px;
+            opacity: 0;
+            border-left: 1px solid var(--primary);
+            padding-left: 24px;
+        }
+
+        .hero-text strong { color: var(--text); font-weight: 500; }
+
+        /* Oferta Grid (Custom dla tej podstrony) */
+        .service-list {
+            display: grid;
+            gap: 24px;
+        }
+        
+        .service-item {
+            background: var(--surface);
+            border: 1px solid var(--border-soft);
+            border-radius: 16px;
+            padding: clamp(32px, 5vw, 64px);
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+        
+        @media (min-width: 980px) {
+            .service-item {
+                grid-template-columns: 0.8fr 1.2fr;
+                align-items: center;
+                gap: 64px;
+            }
+        }
+
+        .service-item:hover {
+            border-color: var(--border);
+            background: var(--surface-2);
+        }
+
+        .service-item::before {
+            content: "";
+            position: absolute;
+            left: 0; top: 0; width: 2px; height: 0;
+            background: var(--primary);
+            box-shadow: var(--glow);
+            transition: height .45s cubic-bezier(.19,1,.22,1);
+        }
+        .service-item:hover::before { height: 100%; }
+
+        .service-no {
+            font-family: var(--font-body);
+            color: var(--primary);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: .2em;
+            font-weight: 700;
+            margin-bottom: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px; height: 56px;
+            border: 1px solid rgba(0,243,255,0.2);
+            border-radius: 50%;
+            background: rgba(0,243,255,0.05);
+        }
+
+        .service-title {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: clamp(32px, 5vw, 56px);
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .service-desc {
+            color: var(--muted);
+            font-size: 18px;
+            font-weight: 300;
+            margin-bottom: 32px;
+            max-width: 600px;
+        }
+
+        .service-desc strong { color: var(--text); font-weight: 500; }
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            border: 1px solid var(--border);
+            color: var(--faint);
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            font-weight: 600;
+        }
+
+        /* CTA Section */
+        .cta-wrap {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            text-align: center;
+            align-items: center;
+            background: var(--surface);
+            border: 1px solid var(--border-soft);
+            border-radius: 24px;
+            padding: clamp(56px, 8vw, 100px) 24px;
             position: relative;
             overflow: hidden;
         }
-
-        .service-card:hover {
-            border-color: rgba(43, 122, 120, 0.5); /* Brand accent glow */
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.04);
-            box-shadow: 0 10px 30px -10px rgba(43, 122, 120, 0.2);
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at top right, rgba(43,122,120,0.1), transparent 50%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
         
-        .service-card:hover::before { opacity: 1; }
+        .cta-wrap::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top, rgba(0,243,255,.05) 0%, transparent 60%);
+            pointer-events: none;
+        }
 
-        .service-icon-wrap {
-            width: 60px; height: 60px;
-            display: flex; items: center; justify-content: center;
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 8px;
-            background: rgba(0,0,0,0.5);
+        .cta-title {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: clamp(40px, 6vw, 72px);
+            line-height: 1;
             margin-bottom: 24px;
-            color: #888;
-            transition: all 0.3s;
-        }
-        
-        .service-card:hover .service-icon-wrap {
-            border-color: var(--brand-accent);
-            color: var(--brand-light);
-            transform: scale(1.05);
         }
 
-        .feature-list li {
-            position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 0.75rem;
-            color: #aaa;
-            font-size: 0.9rem;
-        }
-        
-        .feature-list li::before {
-            content: '◆';
-            position: absolute;
-            left: 0; top: 2px;
-            color: var(--brand-accent);
-            font-size: 0.7rem;
+        .cta-text {
+            color: var(--muted);
+            font-size: 18px;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto 40px;
         }
 
-        ::selection { background: var(--brand-accent); color: #fff; }
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: var(--primary);
+            color: #0a0a0a;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: .14em;
+            font-weight: 700;
+            padding: 18px 32px;
+            border-radius: 999px;
+            transition: var(--transition);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 28px rgba(0,243,255,.38), 0 0 52px rgba(0,243,255,.12);
+        }
+
+        /* Footer */
+        .footer {
+            border-top: 1px solid var(--border-soft);
+            padding: 80px 0 24px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.3fr .8fr .9fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 34px;
+            margin-bottom: 16px;
+        }
+
+        .footer-desc {
+            color: var(--faint);
+            font-size: 15px;
+            max-width: 34ch;
+        }
+
+        .footer-head {
+            color: var(--faint);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: .18em;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .footer-links {
+            display: grid;
+            gap: 12px;
+        }
+
+        .footer-links a,
+        .footer-links div {
+            color: var(--muted);
+            font-size: 15px;
+            font-weight: 300;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover { color: var(--primary); }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-soft);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            color: var(--faint);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+        }
+
+        /* AI Chat */
+        #ai-chat-widget {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        
+        #ai-chat-button {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background-color: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            transition: var(--transition);
+        }
+        
+        #ai-chat-button:hover {
+            border-color: var(--primary);
+            box-shadow: var(--glow);
+            color: var(--primary);
+        }
+
+        #ai-chat-window {
+            width: 340px;
+            height: 440px;
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            margin-bottom: 16px;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+            font-family: var(--font-body);
+        }
+
+        .chat-header {
+            background-color: var(--bg);
+            padding: 20px;
+            border-bottom: 1px solid var(--border-soft);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .msg {
+            padding: 12px 16px;
+            font-size: 14px;
+            line-height: 1.5;
+            font-weight: 300;
+            max-width: 85%;
+        }
+
+        .msg-ai {
+            background-color: var(--surface-2);
+            border: 1px solid var(--border-soft);
+            border-radius: 12px 12px 12px 0;
+            color: var(--text);
+            align-self: flex-start;
+        }
+        
+        .msg-user {
+            background-color: var(--primary-soft);
+            border: 1px solid rgba(0,243,255,0.2);
+            color: var(--primary);
+            border-radius: 12px 12px 0 12px;
+            align-self: flex-end;
+        }
+
+        .chat-input {
+            padding: 16px;
+            background-color: var(--bg);
+            border-top: 1px solid var(--border-soft);
+            display: flex;
+            gap: 12px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            background-color: transparent;
+            border: none;
+            color: var(--text);
+            font-size: 14px;
+            outline: none;
+            font-family: var(--font-body);
+        }
+        
+        .chat-input input::placeholder { color: var(--faint); }
+
+        .chat-input button {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .chat-input button:hover { color: var(--text); }
+
+        .fade-up { opacity: 0; transform: translateY(24px); }
+
+        @media (max-width: 980px) {
+            .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+            .logo-tagline { display: none; }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .nav-menu-wrapper {
+                position: fixed;
+                top: 0; left: 0; width: 100%; height: 100vh;
+                background: rgba(8, 8, 8, 0.98);
+                backdrop-filter: blur(16px);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 40px;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.4s ease;
+                z-index: 1000;
+            }
+            .nav-menu-wrapper.open { opacity: 1; pointer-events: auto; }
+            .nav-links { display: flex; flex-direction: column; text-align: center; font-size: 18px; gap: 32px; }
+            .nav-langs { border-left: none; padding-left: 0; justify-content: center; }
+            .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+            .hamburger.open span:nth-child(2) { opacity: 0; }
+            .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        }
+        @media (max-width: 640px) {
+            .container { width: min(var(--container), calc(100% - 28px)); }
+            .hero-title { font-size: 48px; }
+            .footer-bottom { flex-direction: column; gap: 12px; }
+            .cta-wrap { padding: 40px 20px; }
+        }
     </style>
 </head>
-<body class="antialiased selection:bg-brand-accent selection:text-white">
-
-    <div class="noise-overlay"></div>
+<body>
+    <script>document.documentElement.classList.remove('no-js');</script>
+    <div class="noise" aria-hidden="true"></div>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 px-6 py-6 md:px-12 md:py-8 flex justify-between items-center bg-black/60 backdrop-blur-lg border-b border-white/5 transition-all duration-300">
-        
-        <!-- LOIS: Twoje logo -->
-        <a href="index.html" class="z-50 block w-48 md:w-64">
-             <img src="https://via.placeholder.com/400x120/0a0a0a/ffffff?text=Kiszlo.Studio" alt="Kiszlo Studio" class="w-full h-auto object-contain" id="site-logo">
-        </a>
-        
-        <!-- Desktop Menu -->
-        <div class="hidden md:flex items-center gap-12 text-xs font-bold uppercase tracking-widest text-white/60">
-            <a href="index.html" class="hover:text-white transition-colors relative group">
-                Studio
-                <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-brand-accent transition-all group-hover:w-full"></span>
+    <nav class="nav" id="main-nav">
+        <div class="container nav-inner">
+            <a href="index.html" class="nav-brand-block">
+                <div class="logo-text-main">
+                    Kiszlo<span class="logo-text-dot">.</span>Studio
+                </div>
+                <div class="logo-tagline">
+                    AI-DRIVEN CREATIVE & STRATEGIC STUDIO
+                </div>
             </a>
-            <a href="oferta.html" class="text-white relative group">
-                Oferta
-                <span class="absolute -bottom-2 left-0 w-full h-[1px] bg-brand-accent transition-all"></span>
-            </a>
-            <a href="portfolio.html" class="hover:text-white transition-colors relative group">
-                Portfolio
-                <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-brand-accent transition-all group-hover:w-full"></span>
-            </a>
-            <a href="#contact" class="hover:text-white transition-colors relative group">
-                Kontakt
-            </a>
-            <div class="flex items-center gap-2 border-l border-white/10 pl-6">
-                <span class="text-white cursor-default">PL</span>
-                <span class="text-white/20">/</span>
-                <a href="eng.html" class="hover:text-brand-accent transition-colors">EN</a>
+            
+            <button class="hamburger" id="mobile-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-menu-wrapper" id="mobile-menu">
+                <div class="nav-links">
+                    <a href="index.html">Start</a>
+                    <a href="onas.html">O nas</a>
+                    <a href="oferta.html" class="active">Oferta</a>
+                    <a href="portfolio.html">Portfolio</a>
+                </div>
+                <div class="nav-langs">
+                    <span style="color: var(--text); font-weight: 600; font-size: 12px;">PL</span>
+                    <a href="eng.html" style="color: var(--faint); font-size: 12px; text-decoration: none;">EN</a>
+                    <a href="de.html" style="color: var(--faint); font-size: 12px; text-decoration: none;">DE</a>
+                </div>
             </div>
         </div>
     </nav>
 
     <main>
-        
-        <!-- Header -->
-        <section class="relative pt-40 px-6 md:px-12 pb-20 overflow-hidden border-b border-white/5 bg-[#0a0a0a]">
-            <div class="max-w-7xl mx-auto relative z-10">
-                <div class="flex items-center gap-4 mb-6">
-                     <span class="block text-brand-light font-bold text-xs tracking-[0.3em] uppercase hero-reveal transform translate-y-full">
-                        Czym się zajmujemy
-                    </span>
-                </div>
-                <div class="overflow-hidden mb-6">
-                    <h1 class="text-hero hero-reveal transform translate-y-full font-serif italic">
-                        Oferta.
-                    </h1>
-                </div>
-                <div class="max-w-3xl border-l-2 border-brand-accent pl-6 py-2 mt-8 overflow-hidden">
-                    <p class="text-gray-300 text-lg leading-relaxed hero-reveal transform translate-y-full font-light">
-                        Nie jesteśmy zwykłą agencją reklamową. Łączymy kompetencje doradcze, produkcję filmową najwyższej klasy z innowacjami ze świata AI i Web Developmentu. Tworzymy rozwiązania, które pracują na Twój zysk.
-                    </p>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container hero-inner">
+                <div class="eyebrow">Kompetencje</div>
+                <h1 class="hero-title">
+                    <span class="hero-title-line">Ekspertyza.</span>
+                    <span class="hero-title-line">Wdrożenia.</span>
+                    <span class="hero-title-line"><i>Rezultaty.</i></span>
+                </h1>
+                <p class="hero-text">
+                    Nie jesteśmy typową agencją. Działamy na styku sztuki filmowej, zaawansowanej technologii VR i sztucznej inteligencji. <strong>Rozwiązujemy problemy biznesowe za pomocą innowacji</strong>, dostarczając produkty w klasie premium.
+                </p>
+            </div>
+        </section>
+
+        <!-- Oferta Szczegóły -->
+        <section class="section">
+            <div class="container">
+                <div class="service-list">
+                    
+                    <!-- Service 1 -->
+                    <article class="service-item fade-up">
+                        <div>
+                            <div class="service-no">01</div>
+                            <h2 class="service-title">Wideo & <br>Postprodukcja</h2>
+                            <p class="service-desc">
+                                Kreujemy obraz, który sprzedaje. Od idei i scenariusza, przez organizację planu zdjęciowego, aż po montaż, zaawansowane efekty wizualne (VFX) i perfekcyjną korekcję barwną. Łączymy kinową estetykę z twardymi celami marketingowymi Twojej marki.
+                            </p>
+                            <div class="tag-list">
+                                <span class="tag">Reklama TV & Digital</span>
+                                <span class="tag">Color Grading</span>
+                                <span class="tag">VFX</span>
+                                <span class="tag">Scenografia</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Service 2 -->
+                    <article class="service-item fade-up">
+                        <div>
+                            <div class="service-no">02</div>
+                            <h2 class="service-title">Symulacje VR & <br>MedTech</h2>
+                            <p class="service-desc">
+                                Przenosimy użytkowników do cyfrowego wymiaru. Projektujemy oparte o silnik Unity 3D aplikacje wirtualnej rzeczywistości (VR). Współpracując z naukowcami (NCNI, PWr), tworzymy zaawansowane rozwiązania dla branży medycznej (VRET) i edukacyjnej.
+                            </p>
+                            <div class="tag-list">
+                                <span class="tag">Wirtualna Rzeczywistość</span>
+                                <span class="tag">Unity 3D</span>
+                                <span class="tag">Medycyna & Nauka</span>
+                                <span class="tag">Szkolenia</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Service 3 -->
+                    <article class="service-item fade-up">
+                        <div>
+                            <div class="service-no">03</div>
+                            <h2 class="service-title">AI Web <br>Development</h2>
+                            <p class="service-desc">
+                                Strony WWW nie muszą być statycznymi wizytówkami. Tworzymy luksusowe witryny i aplikacje webowe zintegrowane ze sztuczną inteligencją. <strong>Automatyzujemy obsługę klienta</strong> (agenty AI) i optymalizujemy architekturę pod kątem wyszukiwarek nowej generacji (AEO).
+                            </p>
+                            <div class="tag-list">
+                                <span class="tag">UI/UX Design</span>
+                                <span class="tag">Integracje LLM</span>
+                                <span class="tag">Automatyzacje</span>
+                                <span class="tag">Premium Frontend</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Service 4 -->
+                    <article class="service-item fade-up">
+                        <div>
+                            <div class="service-no">04</div>
+                            <h2 class="service-title">Strategia & <br>Consulting</h2>
+                            <p class="service-desc">
+                                Technologia bez planu to tylko koszt. Prowadzimy audyty komunikacyjne i doradzamy, jak wdrożyć nowoczesne rozwiązania, by generowały realny zwrot z inwestycji (ROI). Od układania lejków sprzedażowych po zarządzanie tożsamością marki.
+                            </p>
+                            <div class="tag-list">
+                                <span class="tag">Audyt Komunikacji</span>
+                                <span class="tag">Optymalizacja Lejków</span>
+                                <span class="tag">Consulting AI</span>
+                            </div>
+                        </div>
+                    </article>
+
                 </div>
             </div>
         </section>
 
-        <!-- Services Grid -->
-        <section class="py-24 px-6 md:px-12 bg-[#0a0a0a]">
-            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-                
-                <!-- Service 1: Strategia -->
-                <div class="service-card p-10 md:p-12 rounded-sm">
-                    <div class="service-icon-wrap flex items-center justify-center">
-                        <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                        </svg>
-                    </div>
-                    <h2 class="text-3xl font-bold text-white mb-4 font-serif italic">Strategic Advisory</h2>
-                    <p class="text-gray-400 font-light mb-8 leading-relaxed">
-                        Dobry marketing to matematyka ubrana w sztukę. Budujemy długoterminowe strategie marki, układamy procesy sprzedażowe i audytujemy obecne działania pod kątem ROI. Pomagamy firmom znaleźć ich "unikalny głos" na rynku.
+        <!-- CTA -->
+        <section class="section">
+            <div class="container">
+                <div class="cta-wrap fade-up">
+                    <div class="eyebrow" style="margin: 0 auto 24px;">Współpraca</div>
+                    <h2 class="cta-title">Gotów na krok w przyszłość?</h2>
+                    <p class="cta-text">
+                        Niezależnie czy potrzebujesz kinowej reklamy, aplikacji VR, czy strony zintegrowanej z AI – jesteśmy tu, by to zrealizować. Opowiedz nam o swoim projekcie.
                     </p>
-                    <ul class="feature-list">
-                        <li>Audyty i Strategie Komunikacji</li>
-                        <li>Optymalizacja Lejków Sprzedażowych (ROI)</li>
-                        <li>Consulting Technologiczny (AI & Automatyzacje)</li>
-                        <li>Zarządzanie Wizerunkiem Marki</li>
-                    </ul>
+                    <a href="mailto:kiszlo.studio@gmail.com" class="cta-btn">
+                        Zacznijmy rozmowę
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
                 </div>
-
-                <!-- Service 2: Video & Film -->
-                <div class="service-card p-10 md:p-12 rounded-sm">
-                    <div class="service-icon-wrap flex items-center justify-center">
-                        <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                        </svg>
-                    </div>
-                    <h2 class="text-3xl font-bold text-white mb-4 font-serif italic">Produkcja Filmowa</h2>
-                    <p class="text-gray-400 font-light mb-8 leading-relaxed">
-                        Od pomysłu po finalny render. Realizujemy profesjonalne formy wideo o kinowej jakości, które opowiadają historię Twojej marki i sprzedają Twoje produkty. Dysponujemy najwyższej klasy sprzętem i zapleczem do postprodukcji.
-                    </p>
-                    <ul class="feature-list">
-                        <li>Spoty Reklamowe i Promocyjne</li>
-                        <li>Wideo Korporacyjne i Filmy Wizerunkowe</li>
-                        <li>Postprodukcja (Montaż, VFX, Color Grading)</li>
-                        <li>Formaty Social Media (Reels, TikTok, Shorts)</li>
-                    </ul>
-                </div>
-
-                <!-- Service 3: Web & AI -->
-                <div class="service-card p-10 md:p-12 rounded-sm">
-                    <div class="service-icon-wrap flex items-center justify-center">
-                        <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                        </svg>
-                    </div>
-                    <h2 class="text-3xl font-bold text-white mb-4 font-serif italic">Web Dev & AI</h2>
-                    <p class="text-gray-400 font-light mb-8 leading-relaxed">
-                        Nowoczesna firma musi żyć w sieci. Tworzymy luksusowe strony internetowe (React/Next.js) optymalizowane pod konwersję i wydajność. Integrujemy narzędzia oparte na sztucznej inteligencji, aby zautomatyzować Twój biznes.
-                    </p>
-                    <ul class="feature-list">
-                        <li>Projektowanie UI/UX i Luksusowe Strony WWW</li>
-                        <li>Wdrożenia Asystentów AI (OpenAI, LLM)</li>
-                        <li>Optymalizacja wydajności (Szybkość i SEO)</li>
-                        <li>Web3D i Interaktywne Konfiguratory</li>
-                    </ul>
-                </div>
-
-                <!-- Service 4: VR & MedTech -->
-                <div class="service-card p-10 md:p-12 rounded-sm">
-                    <div class="service-icon-wrap flex items-center justify-center">
-                        <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                        </svg>
-                    </div>
-                    <h2 class="text-3xl font-bold text-white mb-4 font-serif italic">VR & Symulacje</h2>
-                    <p class="text-gray-400 font-light mb-8 leading-relaxed">
-                        Wykorzystujemy silniki gier (Unity, Unreal Engine) do rozwiązywania realnych problemów. Projektujemy środowiska wirtualnej rzeczywistości dla szkoleń, wsparcia procesów medycznych (MedTech) i immersyjnych prezentacji produktów.
-                    </p>
-                    <ul class="feature-list">
-                        <li>Symulacje VR dla Biznesu i Edukacji</li>
-                        <li>Systemy wsparcia w MedTech (VRET)</li>
-                        <li>Scenografia Multimedialna i Mapping 3D</li>
-                        <li>Prototypowanie przestrzenne</li>
-                    </ul>
-                </div>
-
             </div>
         </section>
-
-        <!-- CTA Section -->
-        <section class="py-24 px-6 md:px-12 border-t border-white/5 bg-[#0d0d0d] text-center">
-            <div class="max-w-3xl mx-auto">
-                <h2 class="text-3xl md:text-5xl font-bold text-white mb-6 font-serif italic">Gotowy na kolejny krok?</h2>
-                <p class="text-gray-400 text-lg mb-10 font-light">Napisz do nas, aby omówić szczegóły Twojego projektu. Dobierzemy odpowiednie narzędzia technologiczne i kreatywne, by osiągnąć Twój cel.</p>
-                <a href="#contact" class="inline-block bg-white text-black px-8 py-4 text-sm font-bold uppercase tracking-widest hover:bg-brand-accent hover:text-white transition-all duration-300">Skontaktuj się z nami</a>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer id="contact" class="border-t border-white/10 pt-24 pb-12 px-6 md:px-12 bg-[#050505]">
-            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 mb-16">
-                <div>
-                    <h2 class="text-4xl md:text-6xl font-bold text-white mb-6 font-serif italic">Let's talk.</h2>
-                    <p class="text-gray-400 text-lg">Twój biznes zasługuje na rozwiązania technologiczne z najwyższej półki.</p>
-                </div>
-                <div class="flex flex-col md:items-end justify-center">
-                    <a href="mailto:kiszlo.studio@gmail.com" class="text-2xl md:text-3xl text-white hover:text-brand-light transition-colors mb-2 font-light tracking-wide">kiszlo.studio@gmail.com</a>
-                    <a href="tel:+48600608333" class="text-xl text-gray-500 hover:text-white transition-colors">+48 600 608 333</a>
-                </div>
-            </div>
-            <div class="max-w-7xl mx-auto border-t border-white/10 pt-8 text-xs text-gray-600 flex justify-between items-center uppercase tracking-widest">
-                <span>© 2026 Kiszlo Studio. Karol Kiszło.</span>
-                <span>ul. Stefana Żeromskiego 60/5a, 50-312 Wrocław</span>
-            </div>
-        </footer>
 
     </main>
 
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand">Kiszlo.Studio</div>
+                    <div class="footer-desc">
+                        Butikowe studio strategiczno-technologiczne łączące AI, VR, produkcję i komunikację dla nowoczesnego biznesu.
+                    </div>
+                </div>
+                <div>
+                    <div class="footer-head">Nawigacja</div>
+                    <div class="footer-links">
+                        <a href="index.html">Start</a>
+                        <a href="onas.html">O nas</a>
+                        <a href="oferta.html">Oferta</a>
+                        <a href="portfolio.html">Portfolio</a>
+                    </div>
+                </div>
+                <div>
+                    <div class="footer-head">Kontakt</div>
+                    <div class="footer-links">
+                        <a href="mailto:kiszlo.studio@gmail.com">kiszlo.studio@gmail.com</a>
+                        <a href="tel:+48600608333">+48 600 608 333</a>
+                        <div>Wrocław, Polska</div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>Kiszlo.Studio Karol Kiszło © 2026</span>
+                <span>Wrocław, Polska</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Premium AI Chat Widget -->
+    <div id="ai-chat-widget">
+        <div id="ai-chat-window">
+            <div class="chat-header">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                     <img src="https://via.placeholder.com/20x20/00f3ff/00f3ff?text=+" alt="AI Logo" style="border-radius:50%; width: 12px; height: 12px;">
+                    <span style="font-family: var(--font-body); font-weight: 600; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;">System AI</span>
+                </div>
+                <button id="close-chat" style="background: none; border: none; color: var(--faint); cursor: pointer; font-size: 20px;">×</button>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <div class="msg msg-ai">Dzień dobry. Jestem asystentem Kiszlo.Studio. W czym mogę pomóc?</div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chat-input-field" placeholder="Zadaj pytanie...">
+                <button id="send-msg">Wyślij</button>
+            </div>
+        </div>
+        <div id="ai-chat-button">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+        </div>
+    </div>
+
     <script>
-        gsap.to(".hero-reveal", {
-            y: 0,
-            duration: 1.2,
-            stagger: 0.15,
-            ease: "power4.out",
-            delay: 0.1
+        // --- MOBILE MENU LOGIC ---
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileToggle && mobileMenu) {
+            mobileToggle.addEventListener('click', () => {
+                mobileToggle.classList.toggle('open');
+                mobileMenu.classList.toggle('open');
+                document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+            });
+
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileToggle.classList.remove('open');
+                    mobileMenu.classList.remove('open');
+                    document.body.style.overflow = '';
+                });
+            });
+        }
+
+        // AI Chat Logic
+        const chatBtn = document.getElementById('ai-chat-button');
+        const chatWindow = document.getElementById('ai-chat-window');
+        const closeChatBtn = document.getElementById('close-chat');
+        const chatInput = document.getElementById('chat-input-field');
+        const sendMsgBtn = document.getElementById('send-msg');
+        const messagesContainer = document.getElementById('chat-messages');
+
+        function toggleChat() {
+            chatWindow.style.display = chatWindow.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        chatBtn.addEventListener('click', toggleChat);
+        closeChatBtn.addEventListener('click', toggleChat);
+
+        function handleSend() {
+            const text = chatInput.value.trim();
+            if(!text) return;
+            
+            messagesContainer.innerHTML += `<div class="msg msg-user">${text}</div>`;
+            chatInput.value = '';
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            setTimeout(() => {
+                messagesContainer.innerHTML += `<div class="msg msg-ai">Przyjąłem. Aby odpowiedzieć na to pytanie, mój system wiedzy wymaga autoryzacji i klucza API. Skontaktuj się bezpośrednio z zespołem.</div>`;
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 1000);
+        }
+
+        sendMsgBtn.addEventListener('click', handleSend);
+        chatInput.addEventListener('keypress', (e) => {
+            if(e.key === 'Enter') handleSend();
         });
 
-        // Ukrywanie paska nawigacji przy przewijaniu
-        let lastScroll = 0;
-        const nav = document.querySelector('nav');
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            if (currentScroll > 100 && currentScroll > lastScroll) {
-                nav.style.transform = 'translateY(-100%)';
-            } else {
-                nav.style.transform = 'translateY(0)';
-            }
-            lastScroll = currentScroll;
+        // GSAP Animations
+        window.addEventListener('load', () => {
+            if (typeof gsap === 'undefined') return;
+            gsap.registerPlugin(ScrollTrigger);
+
+            const tl = gsap.timeline({ delay: 0.1 });
+            tl.to('.hero-title-line', {
+                y: '0%',
+                duration: 1.2,
+                stagger: 0.12,
+                ease: 'power4.out'
+            })
+            .to('.hero-text', {
+                opacity: 1,
+                duration: 1,
+                ease: 'power2.out'
+            }, '-=0.8');
+
+            gsap.utils.toArray('.fade-up').forEach(el => {
+                gsap.to(el, {
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 85%'
+                    },
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: 'power3.out'
+                });
+            });
+
+            // Nav Hide/Show on Scroll
+            let lastScroll = 0;
+            const nav = document.getElementById('main-nav');
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.pageYOffset;
+                if (currentScroll > 100 && currentScroll > lastScroll) {
+                    nav.style.transform = 'translateY(-100%)';
+                } else {
+                    nav.style.transform = 'translateY(0)';
+                }
+                lastScroll = currentScroll;
+            });
         });
     </script>
 </body>
