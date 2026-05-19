@@ -227,17 +227,6 @@
             font-weight: 600;
             margin-top: 4px;
         }
-        /* --- KONIEC NOWYCH STYLI LOGO --- */
-        
-        /* STARE STYLE LOGO (DO USUNIĘCIA, zastąpione powyższymi)
-        .logo {
-            display: block;
-            width: 192px;
-        }
-        @media (min-width: 768px) {
-            .logo { width: 256px; }
-        } 
-        */
 
         .nav-links {
             display: flex;
@@ -635,13 +624,37 @@
 
         .fade-up { opacity: 0; transform: translateY(24px); }
 
+        /* Integracja NCNI.Media i Dodatkowe animacje */
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+        }
+        .pulse-live {
+            animation: pulse-slow 2s infinite;
+        }
+        .ncni-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 48px;
+            align-items: center;
+        }
+        .ncni-interactive-card:hover {
+            border-color: rgba(255, 85, 0, 0.3) !important;
+            transform: translateY(-4px);
+        }
+        .ncni-interactive-card:hover .ncni-glow {
+            opacity: 0.8 !important;
+        }
+        .ncni-info a:hover svg {
+            transform: translateX(4px);
+        }
+
         @media (max-width: 980px) {
             .bento-large { grid-template-columns: 1fr; }
             .bento-medium, .bento-small { grid-column: span 12; }
             .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-            
-            /* Ukrywamy tagline na mniejszych ekranach dla czystości */
             .logo-tagline { display: none; }
+            .ncni-grid { grid-template-columns: 1fr; gap: 32px; }
             
             /* Mobile Menu Styles */
             .hamburger { display: flex; }
@@ -685,6 +698,8 @@
             .container { width: min(var(--container), calc(100% - 28px)); }
             .hero-title { font-size: 48px; }
             .footer-bottom { flex-direction: column; gap: 12px; }
+            .ncni-interactive-card { padding: 24px !important; }
+            .ncni-interactive-card > div:last-child { grid-template-columns: 1fr !important; gap: 32px !important; }
         }
     </style>
 </head>
@@ -695,7 +710,6 @@
     <!-- Nawigacja -->
     <nav class="nav" id="main-nav">
         <div class="container nav-inner">
-            <!-- ZMIANA STRUKTURY LOGO NA TEKSTOWĄ -->
             <a href="index.html" class="nav-brand-block">
                 <div class="logo-text-main">
                     Kiszlo<span class="logo-text-dot">.</span>Studio
@@ -704,9 +718,7 @@
                     AI-DRIVEN CREATIVE & STRATEGIC STUDIO
                 </div>
             </a>
-            <!-- KONIEC ZMIANY LOGO -->
             
-            <!-- PRZYCISK HAMBURGERA DLA MOBILE -->
             <button class="hamburger" id="mobile-toggle" aria-label="Menu">
                 <span></span>
                 <span></span>
@@ -719,6 +731,7 @@
                     <a href="index.html" class="active">Start</a>
                     <a href="onas.html">O nas</a>
                     <a href="oferta.html">Oferta</a>
+                    <a href="#ncni-media" style="color: #ff5500;">NCNI.Media</a>
                     <a href="portfolio.html">Portfolio</a>
                 </div>
                 <div class="nav-langs">
@@ -820,6 +833,95 @@
             </div>
         </section>
 
+        <!-- SEKCJA: INTERAKTYWNA PREZENTACJA NCNI.MEDIA (Z NOWYM MINIMALISTYCZNYM MANIFESTEM) -->
+        <section class="section" id="ncni-media" style="border-top: 1px solid var(--border-soft); background: linear-gradient(180deg, var(--bg) 0%, #0a0a0a 100%);">
+            <div class="container">
+                <div class="eyebrow fade-up" style="color: #ff5500; text-shadow: 0 0 10px rgba(255, 85, 0, 0.1);">Ekosystem</div>
+                <h2 class="hero-title fade-up" style="font-size: clamp(36px, 6vw, 64px); margin-bottom: 48px;">Medyczne <i>ekosystemy cyfrowe</i></h2>
+
+                <div class="ncni-grid fade-up">
+                    
+                    <!-- Lewa Kolumna: Opis biznesowy (PO REFORMIE LOIS — WYRZUCONY BEŁKOT KORPO) -->
+                    <div class="ncni-info" style="display: flex; flex-direction: column; gap: 24px;">
+                        <span style="color: #ff5500; font-family: var(--font-body); font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;">PROJEKT AUTORSKI KISZŁO.STUDIO</span>
+                        <p style="color: var(--muted); font-size: 18px; font-weight: 300; line-height: 1.6; margin: 0;">
+                            Poznaj <strong style="color: var(--text); font-weight: 500;">NCNI.Media</strong> – niezależny portal informacyjno-naukowy poświęcony neuroinnowacjom, najnowszym technologiom medycznym i przyszłości człowieka. To tutaj dokumentujemy przełomowe odkrycia i cyfrową ewolucję.
+                        </p>
+                        <div style="display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px; background: var(--surface); border: 1px solid var(--border-soft); border-radius: 30px; align-self: flex-start;">
+                            <span style="display: block; width: 8px; height: 8px; background: #ff5500; border-radius: 50%; box-shadow: 0 0 10px #ff5500;" class="pulse-live"></span>
+                            <span style="font-size: 13px; font-weight: 500; color: var(--muted);">Oficjalny projekt medialny dla grupy NCNI</span>
+                        </div>
+                        <a href="https://ncni-media-ahmzn7jgg-karolsolutional.vercel.app/" target="_blank" rel="noopener noreferrer" style="color: #ff5500; font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em; display: inline-flex; align-items: center; gap: 8px; margin-top: 8px; transition: var(--transition);">
+                            Odwiedź NCNI.Media 
+                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="transition: transform var(--transition);"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </a>
+                    </div>
+
+                    <!-- Prawa Kolumna: Interaktywna wizytówka (Interactive Preview Card) -->
+                    <div class="ncni-card-container">
+                        <a href="https://ncni-media-ahmzn7jgg-karolsolutional.vercel.app/" target="_blank" rel="noopener noreferrer" class="ncni-interactive-card" style="display: block; background: #0c0c0c; border: 1px solid var(--border); border-radius: 20px; padding: 40px; position: relative; overflow: hidden; transition: var(--transition); text-decoration: none;">
+                            
+                            <!-- Neonowy Glow w tle karty -->
+                            <div class="ncni-glow" style="position: absolute; inset: 0; background: radial-gradient(circle at 80% 20%, rgba(255, 85, 0, 0.08) 0%, transparent 60%); pointer-events: none; opacity: 0.5; transition: var(--transition);"></div>
+                            
+                            <!-- Nagłówek wizytówki -->
+                            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-soft); padding-bottom: 24px; margin-bottom: 28px;">
+                                <div style="font-family: var(--font-body); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; color: #fff;">
+                                    NCNI<span style="color: #ff5500;">.MEDIA</span>
+                                </div>
+                                <div style="display: flex; gap: 8px;">
+                                    <span style="background: #ff5500; color: #fff; font-size: 10px; font-weight: 700; padding: 6px 14px; border-radius: 20px; letter-spacing: 0.05em;">CZYTAJ</span>
+                                    <span style="background: #141414; border: 1px solid var(--border); color: #ccc; font-size: 10px; font-weight: 700; padding: 6px 14px; border-radius: 20px; letter-spacing: 0.05em; display: inline-flex; align-items: center; gap: 6px;">
+                                        <span style="display: block; width: 6px; height: 6px; background: #ff0000; border-radius: 50%;" class="pulse-live"></span> YOUTUBE
+                                    </span>
+                                    <span style="background: #141414; border: 1px solid var(--border); color: #ccc; font-size: 10px; font-weight: 700; padding: 6px 14px; border-radius: 20px; letter-spacing: 0.05em;">X.COM</span>
+                                </div>
+                            </div>
+
+                            <!-- Dolny Content Grid -->
+                            <div style="display: grid; grid-template-columns: 1.3fr 1fr; gap: 24px; align-items: flex-end;">
+                                <!-- Tekst -->
+                                <div style="display: flex; flex-direction: column; gap: 12px;">
+                                    <div style="display: inline-flex; align-items: center; gap: 6px; color: #ff5500; font-size: 10px; font-weight: 700; letter-spacing: 0.1em;">
+                                        <span style="display:block; width: 5px; height: 5px; background: #ff5500; border-radius: 50%;"></span>
+                                        WYDANIE SPECJALNE
+                                    </div>
+                                    <h3 style="font-family: var(--font-body); font-weight: 800; font-size: clamp(20px, 2.5vw, 28px); line-height: 1.2; color: #fff; letter-spacing: -0.02em; margin: 0;">
+                                        Architektura umysłu:<br>Czy technologia pozwoli nam <span style="color: #ff5500;">zhakować</span> własny spokój?
+                                    </h3>
+                                    <p style="color: var(--muted); font-size: 13px; font-weight: 300; line-height: 1.5; margin: 0;">
+                                        Eksperci NCNI analizują granice neuroplastyczności. Zanurz się w fascynującą debatę o tym, jak nowoczesne interfejsy zmieniają strukturę naszego mózgu.
+                                    </p>
+                                </div>
+
+                                <!-- Karta Karol / Neurocast -->
+                                <div class="neurocast-card" style="background: #111; border: 1px solid var(--border); border-radius: 12px; height: 160px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden;">
+                                    <!-- Obwody drukowane SVG w tle -->
+                                    <div style="position: absolute; inset: 0; opacity: 0.15; pointer-events: none; z-index: 0;">
+                                        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M 0,20 L 50,20 L 80,50 L 150,50 M 80,50 L 80,110 L 120,150 M 150,0 L 150,50 M 30,150 L 90,90" stroke="#00f3ff" stroke-width="1.5" fill="none" />
+                                            <path d="M 120,30 L 180,30 L 210,60" stroke="#ff5500" stroke-width="1.5" fill="none" />
+                                            <circle cx="150" cy="50" r="4" fill="#ff5500" />
+                                            <circle cx="80" cy="50" r="3" fill="#00f3ff" />
+                                            <circle cx="120" cy="150" r="3" fill="#00f3ff" />
+                                        </svg>
+                                    </div>
+                                    <div style="display: flex; justify-content: flex-end; z-index: 1;">
+                                        <span style="background: rgba(255, 85, 0, 0.12); border: 1px solid rgba(255, 85, 0, 0.2); color: #ff5500; font-size: 9px; font-weight: 700; padding: 4px 8px; border-radius: 4px; letter-spacing: 0.05em;">NEUROCAST #12</span>
+                                    </div>
+                                    <div style="z-index: 1;">
+                                        <h4 style="font-family: var(--font-body); font-weight: 700; font-size: 15px; color: #fff; margin: 0 0 2px 0;">Karol Kiszło</h4>
+                                        <p style="color: var(--muted); font-size: 10px; font-weight: 400; margin: 0;">NCNI Media - Generalny Producent Wykonawczy</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- Footer -->
@@ -858,7 +960,7 @@
         </div>
     </footer>
 
-    <!-- Premium AI Chat Widget -->
+    <!-- Premium AI Chat Widget (W PEŁNI ZINTEGROWANY Z GEMINI 2.5) -->
     <div id="ai-chat-widget">
         <div id="ai-chat-window">
             <div class="chat-header">
@@ -903,7 +1005,7 @@
             });
         }
 
-        // AI Chat Logic
+        // --- INTELLIGENT AI CHAT LOGIC (GEMINI INTEGRATION) ---
         const chatBtn = document.getElementById('ai-chat-button');
         const chatWindow = document.getElementById('ai-chat-window');
         const closeChatBtn = document.getElementById('close-chat');
@@ -918,18 +1020,69 @@
         chatBtn.addEventListener('click', toggleChat);
         closeChatBtn.addEventListener('click', toggleChat);
 
-        function handleSend() {
+        // Funkcja komunikacji z Gemini z mechanizmem retry (Exponential Backoff)
+        async function sendMessageToGemini(userQuery) {
+            const apiKey = ""; 
+            const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+
+            const systemPrompt = `Jesteś inteligentnym, luksusowym asystentem AI butikowego studia Kiszlo.Studio (założonego przez Karola Kiszło, który jest ekspertem w dziedzinie AI, VR, produkcji wideo i MedTech). Odpowiadasz krótko, z klasą, profesjonalnie, konkretnie i w języku polskim. Pomagasz klientom zrozumieć ofertę studia (Produkcja wideo, VR dla MedTech, integracja systemów LLM, doradztwo strategiczne) oraz prezentujesz unikalną synergię z nowym hubem NCNI.Media. Unikaj zbędnego lania wody.`;
+
+            const payload = {
+                contents: [{ parts: [{ text: userQuery }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] }
+            };
+
+            let delay = 1000;
+            const maxRetries = 5;
+
+            for (let attempt = 0; attempt < maxRetries; attempt++) {
+                try {
+                    const response = await fetch(endpoint, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) throw new Error(`Błąd API: ${response.status}`);
+
+                    const result = await response.json();
+                    const responseText = result.candidates?.[0]?.content?.parts?.[0]?.text;
+                    if (responseText) return responseText;
+                    else throw new Error("Pusta odpowiedź.");
+
+                } catch (error) {
+                    if (attempt === maxRetries - 1) {
+                        return "Przepraszam, mam drobne trudności techniczne z siecią. Napisz proszę bezpośrednio do Karola na kiszlo.studio@gmail.com.";
+                    }
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                    delay *= 2;
+                }
+            }
+        }
+
+        async function handleSend() {
             const text = chatInput.value.trim();
             if(!text) return;
             
+            // Renderuj wiadomość użytkownika
             messagesContainer.innerHTML += `<div class="msg msg-user">${text}</div>`;
             chatInput.value = '';
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-            setTimeout(() => {
-                messagesContainer.innerHTML += `<div class="msg msg-ai">Przyjąłem. Aby odpowiedzieć na to pytanie, mój system wiedzy wymaga autoryzacji i klucza API. Skontaktuj się bezpośrednio z zespołem.</div>`;
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            }, 1000);
+            // Renderuj indykator myślenia
+            const loadingId = 'ai-typing-' + Date.now();
+            messagesContainer.innerHTML += `<div class="msg msg-ai" id="${loadingId}" style="color: var(--muted); font-size: 13px;"><span class="animate-pulse">● ● ●</span> analiza...</div>`;
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            // Wyślij zapytanie do Gemini
+            const reply = await sendMessageToGemini(text);
+
+            // Usuń indykator i wstaw gotową odpowiedź
+            const loadingEl = document.getElementById(loadingId);
+            if (loadingEl) loadingEl.remove();
+
+            messagesContainer.innerHTML += `<div class="msg msg-ai">${reply}</div>`;
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
 
         sendMsgBtn.addEventListener('click', handleSend);
@@ -937,7 +1090,7 @@
             if(e.key === 'Enter') handleSend();
         });
 
-        // GSAP Animations
+        // --- GSAP Animations ---
         window.addEventListener('load', () => {
             if (typeof gsap === 'undefined') return;
             gsap.registerPlugin(ScrollTrigger);
