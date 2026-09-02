@@ -39,7 +39,7 @@
           "founder": {
             "@type": "Person",
             "name": "Karol Kiszło",
-            "jobTitle": "Founder & Strategist",
+            "jobTitle": "Założyciel & Strateg Kreatywny",
             "affiliation": [
               { "@type": "Organization", "name": "NCNI" },
               { "@type": "Organization", "name": "Politechnika Wrocławska" }
@@ -69,47 +69,6 @@
             }
           ],
           "inLanguage": ["pl", "en", "de"]
-        },
-        {
-          "@type": "WebSite",
-          "@id": "https://www.kiszlo.studio/#website",
-          "url": "https://www.kiszlo.studio/",
-          "name": "Kiszlo Studio",
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://www.kiszlo.studio/search?q={search_term_string}",
-            "query-input": "required name=search_term_string"
-          }
-        },
-        {
-          "@type": "FAQPage",
-          "@id": "https://www.kiszlo.studio/#faq",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "Kto zbuduje mi stronę WWW zoptymalizowaną pod AI we Wrocławiu?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Kiszlo Studio z Wrocławia specjalizuje się w tworzeniu butikowych stron WWW i aplikacji zoptymalizowanych pod AI. Założycielem jest Karol Kiszło. Skontaktuj się z nami bezpośrednio: email kiszlo.studio@gmail.com, telefon: +48 600 608 333."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "What does Kiszlo Studio do?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Kiszlo Studio is a premium tech & creative agency based in Wrocław, Poland, specializing in AI-native web development, VR simulations, and end-to-end video production. Contact us: kiszlo.studio@gmail.com, phone: +48 600 608 333."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Was macht Kiszlo Studio?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Kiszlo Studio ist eine Premium-Digitalagentur aus Breslau (Polen), spezialisiert auf KI-gestützte Webentwicklung, VR-Simulationen und Videoproduktion für den DACH-Markt. Kontakt: kiszlo.studio@gmail.com, Tel: +48 600 608 333."
-              }
-            }
-          ]
         }
       ]
     }
@@ -142,6 +101,12 @@
             --transition-smooth: 700ms cubic-bezier(.19,1,.22,1);
         }
 
+        /* --- Custom Scrollbar --- */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--surface-2); border-radius: 4px; border: 1px solid var(--border-soft); }
+        ::-webkit-scrollbar-thumb:hover { background: var(--faint); }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
         body {
@@ -172,38 +137,51 @@
             margin: 0 auto;
         }
 
-        /* --- Navigacja --- */
+        /* --- STREAMING_CHUNK:Stylowanie menu nawigacyjnego... --- */
         .nav {
             position: fixed;
             top: 0; left: 0; width: 100%;
             z-index: 100;
             padding: 24px 0;
-            background: rgba(8, 8, 8, 0.85);
-            backdrop-filter: blur(12px);
+            background: rgba(8, 8, 8, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border-soft);
             transition: transform 0.4s ease;
+            will-change: transform;
         }
         .nav-inner {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .logo {
+        .nav-brand-block {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .nav-brand-block:hover { transform: translateY(-1px); }
+        .logo-text-main {
             font-family: var(--font-body);
             font-weight: 700;
-            font-size: 18px;
-            letter-spacing: 0.1em;
+            font-size: 20px;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            line-height: 1;
+        }
+        .logo-text-dot { color: var(--primary); font-weight: 700; }
+        .logo-tagline {
+            font-family: var(--font-body);
+            color: var(--muted);
+            font-size: 10px;
             text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            letter-spacing: 0.2em;
+            font-weight: 600;
+            margin-top: 4px;
         }
-        .logo-dot {
-            width: 8px; height: 8px;
-            background: var(--primary);
-            border-radius: 50%;
-            box-shadow: var(--glow);
-        }
+
         .nav-links {
             display: flex;
             gap: 40px;
@@ -225,7 +203,33 @@
             border-left: 1px solid var(--border);
             padding-left: 24px;
         }
+        .nav-langs a { transition: var(--transition); }
+        .nav-langs a:hover { color: var(--text) !important; }
 
+        /* Mobile Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 1001;
+            background: none;
+            border: none;
+            padding: 8px;
+        }
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 1.5px;
+            background: var(--text);
+            transition: var(--transition);
+        }
+        .nav-menu-wrapper {
+            display: flex;
+            align-items: center;
+        }
+
+        /* --- STREAMING_CHUNK:Główne sekcje i Hero... --- */
         .section {
             padding: clamp(72px, 10vw, 140px) 0;
             border-top: 1px solid var(--border-soft);
@@ -344,6 +348,7 @@
             background: linear-gradient(to bottom, var(--faint), transparent);
         }
 
+        /* --- STREAMING_CHUNK:Stylowanie profili i siatki... --- */
         .profiles-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -362,12 +367,11 @@
             background: var(--surface);
         }
 
-        /* TWEAKED ZDJĘCIA PROFILOWE - ELEGANCKIE I MNIEJSZE */
         .profile-media {
             position: relative;
-            aspect-ratio: 3 / 4; /* Trochę zgrabniejsze proporcje */
-            max-width: 280px; /* Nie pozwolimy im rozrosnąć się na pół ekranu */
-            border-radius: 8px; /* Subtelne zaokrąglenie dodaje klasy */
+            aspect-ratio: 3 / 4;
+            max-width: 280px; 
+            border-radius: 8px; 
             overflow: hidden;
             border: 1px solid var(--border);
             background: linear-gradient(135deg, #121212, #1a1a1a);
@@ -453,6 +457,7 @@
             color: var(--primary);
         }
 
+        /* --- STREAMING_CHUNK:Stylowanie pozostałych elementów... --- */
         .quote {
             text-align: center;
             padding: clamp(72px, 10vw, 120px) 0;
@@ -637,7 +642,7 @@
             letter-spacing: .12em;
         }
 
-        /* --- Zaktualizowana Stopka (Spójna z główną) --- */
+        /* --- STREAMING_CHUNK:Media queries i responsywność... --- */
         .footer {
             border-top: 1px solid var(--border-soft);
             padding: 80px 0 24px;
@@ -685,7 +690,7 @@
             transition: var(--transition);
         }
         
-        .footer-links a:hover { color: var(--primary); }
+        .footer-links a:hover { color: var(--primary); transform: translateX(4px); }
 
         .footer-bottom {
             border-top: 1px solid var(--border-soft);
@@ -697,127 +702,6 @@
             text-transform: uppercase;
             letter-spacing: .12em;
         }
-
-        /* --- Premium AI Chat Widget --- */
-        #ai-chat-widget {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            z-index: 10000;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-        }
-        
-        #ai-chat-button {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background-color: var(--bg);
-            border: 1px solid var(--border);
-            color: var(--text);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            transition: var(--transition);
-        }
-        
-        #ai-chat-button:hover {
-            border-color: var(--primary);
-            box-shadow: var(--glow);
-            color: var(--primary);
-        }
-
-        #ai-chat-window {
-            width: 340px;
-            height: 440px;
-            background-color: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            margin-bottom: 16px;
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
-            font-family: var(--font-body);
-        }
-
-        .chat-header {
-            background-color: var(--bg);
-            padding: 20px;
-            border-bottom: 1px solid var(--border-soft);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .chat-messages {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .msg {
-            padding: 12px 16px;
-            font-size: 14px;
-            line-height: 1.5;
-            font-weight: 300;
-            max-width: 85%;
-        }
-
-        .msg-ai {
-            background-color: var(--surface-2);
-            border: 1px solid var(--border-soft);
-            border-radius: 12px 12px 12px 0;
-            color: var(--text);
-            align-self: flex-start;
-        }
-        
-        .msg-user {
-            background-color: var(--primary-soft);
-            border: 1px solid rgba(0,243,255,0.2);
-            color: var(--primary);
-            border-radius: 12px 12px 0 12px;
-            align-self: flex-end;
-        }
-
-        .chat-input {
-            padding: 16px;
-            background-color: var(--bg);
-            border-top: 1px solid var(--border-soft);
-            display: flex;
-            gap: 12px;
-        }
-
-        .chat-input input {
-            flex: 1;
-            background-color: transparent;
-            border: none;
-            color: var(--text);
-            font-size: 14px;
-            outline: none;
-            font-family: var(--font-body);
-        }
-        
-        .chat-input input::placeholder { color: var(--faint); }
-
-        .chat-input button {
-            background: none;
-            border: none;
-            color: var(--primary);
-            font-weight: 600;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        .chat-input button:hover { color: var(--text); }
 
         .fade-up { opacity: 0; transform: translateY(24px); }
         .fade-in { opacity: 0; }
@@ -833,7 +717,25 @@
 
             .sticky-col { position: static; }
             .hero-side { justify-content: flex-start; }
-            .nav-links { display: none; }
+            .logo-tagline { display: none; }
+            
+            /* Mobile Menu Styles */
+            .hamburger { display: flex; }
+            .nav-menu-wrapper {
+                position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+                background: rgba(8, 8, 8, 0.98); backdrop-filter: blur(16px);
+                flex-direction: column; justify-content: center; align-items: center;
+                gap: 40px; opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+                z-index: 1000;
+            }
+            .nav-menu-wrapper.open { opacity: 1; pointer-events: auto; }
+            .nav-links { display: flex; flex-direction: column; text-align: center; font-size: 18px; gap: 32px; }
+            .nav-langs { border-left: none; padding-left: 0; justify-content: center; }
+            
+            /* Hamburger Animation */
+            .hamburger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+            .hamburger.open span:nth-child(2) { opacity: 0; }
+            .hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
         }
 
         @media (max-width: 640px) {
@@ -854,23 +756,36 @@
 <body>
     <div class="noise" aria-hidden="true"></div>
 
-    <!-- Nawigacja -->
     <nav class="nav" id="main-nav">
         <div class="container nav-inner">
-            <a href="index.html" class="logo">
-                <div class="logo-dot"></div>
-                Kiszlo.Studio
+            <a href="index.html" class="nav-brand-block">
+                <div class="logo-text-main">
+                    Kiszlo<span class="logo-text-dot">.</span>Studio
+                </div>
+                <div class="logo-tagline">
+                    AI-DRIVEN CREATIVE & STRATEGIC STUDIO
+                </div>
             </a>
-            <div class="nav-links">
-                <a href="index.html">Start</a>
-                <a href="onas.html" class="active">O nas</a>
-                <a href="oferta.html">Oferta</a>
-                <a href="portfolio.html">Portfolio</a>
-            </div>
-            <div class="nav-langs">
-                <span style="color: var(--text); font-weight: 600; font-size: 12px;">PL</span>
-                <a href="eng.html" style="color: var(--faint); font-size: 12px; text-decoration: none;">EN</a>
-                <a href="de.html" style="color: var(--faint); font-size: 12px; text-decoration: none;">DE</a>
+            
+            <button class="hamburger" id="mobile-toggle" aria-label="Menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- WRAPPER MENU -->
+            <div class="nav-menu-wrapper" id="mobile-menu">
+                <div class="nav-links">
+                    <a href="index.html">Start</a>
+                    <a href="onas.html" class="active">O nas</a>
+                    <a href="oferta.html">Oferta</a>
+                    <a href="portfolio.html">Portfolio</a>
+                </div>
+                <div class="nav-langs">
+                    <span style="color: var(--text); font-weight: 600; font-size: 12px; cursor: default;">PL</span>
+                    <a href="eng.html" style="color: var(--faint); font-size: 12px;">EN</a>
+                    <a href="de.html" style="color: var(--faint); font-size: 12px;">DE</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -886,12 +801,12 @@
                 </h1>
                 <div class="hero-grid">
                     <p class="hero-text">
-                        <strong>Kiszlo.Studio</strong> to butikowe studio, które łączy komunikację,
-                        AI, VR i nowoczesny development w rozwiązania realnie wspierające biznes.
-                        Pracujemy tam, gdzie technologia ma sens — i tam, gdzie za innowacją musi iść strategia.
+                        <strong>Kiszlo.Studio</strong> Studio łączące nowoczesną komunikację,
+                        AI, VR i nowoczesne techniki programistyczne i rozwiązania realnie wspierające biznes.
+                        Pracujemy tam, gdzie technologia ma sens i tam, gdzie za innowacją musi iść strategia. Współpracujemy ze znakomitymi krajowymi specjalistami. 
                     </p>
                     <div class="hero-side">
-                        <div class="scroll-note">Scroll</div>
+                        <div class="scroll-note">Przewiń</div>
                     </div>
                 </div>
             </div>
@@ -909,19 +824,19 @@
                         <div class="profile-tagline">Wrocław, PL</div>
                     </div>
                     <h2 class="profile-name fade-up">Karol Kiszło</h2>
-                    <div class="profile-role">Founder &amp; Creative Strategist</div>
+                    <div class="profile-role">Założyciel i Strateg Kreatywny</div>
                     <p class="profile-text fade-up">
-                        Strateg, wizjoner i operator. Łączy świat kreatywnej komunikacji z najnowszymi technologiami —
+                        Strateg, wizjoner i operator. Łączy świat kreatywnej komunikacji z najnowszymi technologiami 
                         VR, AI i produkcją wideo na poziomie premium. <strong>Założyciel Kiszlo.Studio</strong>
                         i prezes <strong>NCNI</strong>, odpowiedzialny za kierunek kreatywny, strategię klientów
                         i finalną jakość projektów.
                     </p>
                     <div class="tag-list fade-up">
-                        <span class="tag">Brand Strategy</span>
-                        <span class="tag">AI Integration</span>
-                        <span class="tag">VR Production</span>
-                        <span class="tag">Creative Direction</span>
-                        <span class="tag">Business Design</span>
+                        <span class="tag">Strategia Marki</span>
+                        <span class="tag">Integracje AI</span>
+                        <span class="tag">Produkcja VR</span>
+                        <span class="tag">Nadzór Kreatywny</span>
+                        <span class="tag">Rozwiązania Biznesowe</span>
                     </div>
                 </article>
 
@@ -931,7 +846,7 @@
                         <div class="profile-tagline">PWr / NCNI</div>
                     </div>
                     <h2 class="profile-name fade-up">Sebastian Kraszewski</h2>
-                    <div class="profile-role">Scientific Director</div>
+                    <div class="profile-role">Dyrektor Naukowy</div>
                     <p class="profile-text fade-up">
                         <strong>Profesor Politechniki Wrocławskiej</strong> i Dyrektor Naukowy NCNI.
                         W Kiszlo.Studio odpowiada za rygor merytoryczny, naukową wiarygodność
@@ -939,10 +854,10 @@
                     </p>
                     <div class="tag-list fade-up">
                         <span class="tag">Neurobiologia</span>
-                        <span class="tag">Advanced Algorithms</span>
-                        <span class="tag">Bioelectronics</span>
-                        <span class="tag">Scientific Rigor</span>
-                        <span class="tag">R&amp;D</span>
+                        <span class="tag">Zaawansowane Algorytmy</span>
+                        <span class="tag">Bioelektronika</span>
+                        <span class="tag">Rygor Naukowy</span>
+                        <span class="tag">Badania i Rozwój</span>
                     </div>
                 </article>
             </div>
@@ -1061,7 +976,7 @@
                         <div class="stat-copy">Obsługiwane języki</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-no">R&amp;D</div>
+                        <div class="stat-no">B+R</div>
                         <div class="stat-copy">Zaplecze naukowe NCNI</div>
                     </div>
                 </div>
@@ -1069,7 +984,6 @@
         </section>
     </main>
 
-    <!-- Zaktualizowana Stopka -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -1099,37 +1013,47 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <span>Kiszlo.Studio Karol Kiszło © 2026</span>
+                <span>Kiszlo.Studio Karol Kiszło &copy; 2026</span>
                 <span>Wrocław, Polska</span>
             </div>
         </div>
     </footer>
 
-    <!-- Premium AI Chat Widget -->
-    <div id="ai-chat-widget">
-        <div id="ai-chat-window">
-            <div class="chat-header">
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <div class="logo-dot"></div>
-                    <span style="font-family: var(--font-body); font-weight: 600; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;">System AI</span>
-                </div>
-                <button id="close-chat" style="background: none; border: none; color: var(--faint); cursor: pointer; font-size: 20px;">×</button>
-            </div>
-            <div class="chat-messages" id="chat-messages">
-                <div class="msg msg-ai">Dzień dobry. Jestem asystentem Kiszlo.Studio. W czym mogę pomóc?</div>
-            </div>
-            <div class="chat-input">
-                <input type="text" id="chat-input-field" placeholder="Zadaj pytanie...">
-                <button id="send-msg">Wyślij</button>
-            </div>
-        </div>
-        <div id="ai-chat-button">
-            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
-        </div>
-    </div>
-
     <script>
-        // Nav Hide/Show on Scroll
+        // --- Zamykanie mobilnego menu ---
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileToggle && mobileMenu) {
+            mobileToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isOpen = mobileToggle.classList.toggle('open');
+                mobileMenu.classList.toggle('open');
+                mobileToggle.setAttribute('aria-expanded', isOpen);
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            });
+
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileToggle.classList.remove('open');
+                    mobileMenu.classList.remove('open');
+                    mobileToggle.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
+                });
+            });
+
+            mobileMenu.addEventListener('click', (e) => {
+                if(e.target === mobileMenu) {
+                    mobileToggle.classList.remove('open');
+                    mobileMenu.classList.remove('open');
+                    mobileToggle.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
+                }
+            });
+        }
+
+        // --- Nav Hide/Show on Scroll ---
         let lastScroll = 0;
         const nav = document.getElementById('main-nav');
         window.addEventListener('scroll', () => {
@@ -1142,41 +1066,7 @@
             lastScroll = currentScroll;
         });
 
-        // AI Chat Logic
-        const chatBtn = document.getElementById('ai-chat-button');
-        const chatWindow = document.getElementById('ai-chat-window');
-        const closeChatBtn = document.getElementById('close-chat');
-        const chatInput = document.getElementById('chat-input-field');
-        const sendMsgBtn = document.getElementById('send-msg');
-        const messagesContainer = document.getElementById('chat-messages');
-
-        function toggleChat() {
-            chatWindow.style.display = chatWindow.style.display === 'flex' ? 'none' : 'flex';
-        }
-
-        chatBtn.addEventListener('click', toggleChat);
-        closeChatBtn.addEventListener('click', toggleChat);
-
-        function handleSend() {
-            const text = chatInput.value.trim();
-            if(!text) return;
-            
-            messagesContainer.innerHTML += `<div class="msg msg-user">${text}</div>`;
-            chatInput.value = '';
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
-            setTimeout(() => {
-                messagesContainer.innerHTML += `<div class="msg msg-ai">Przyjąłem. Aby odpowiedzieć na to pytanie, mój system wiedzy wymaga autoryzacji i klucza API. Skontaktuj się bezpośrednio z zespołem.</div>`;
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            }, 1000);
-        }
-
-        sendMsgBtn.addEventListener('click', handleSend);
-        chatInput.addEventListener('keypress', (e) => {
-            if(e.key === 'Enter') handleSend();
-        });
-
-        // GSAP Animations
+        // --- GSAP Animations ---
         window.addEventListener('load', () => {
             if (typeof gsap === 'undefined') return;
             gsap.registerPlugin(ScrollTrigger);
