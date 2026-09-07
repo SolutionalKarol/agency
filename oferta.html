@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Oferta | Kiszlo.Studio</title>
+    <title>Oferta | Kiszlo.Studio - Automatyzacja, AI, Wideo & VR</title>
     
     <!-- Meta Descriptions Multi-Language & Geo Tags -->
-    <meta name="description" content="Poznaj ofertę Kiszlo Studio. Dostarczamy butikowe rozwiązania: produkcja wideo, AI web development, aplikacje VR dla MedTech oraz doradztwo strategiczne we Wrocławiu.">
-    <meta name="description" lang="en" content="Discover Kiszlo Studio services: premium video production, AI web development, VR applications for MedTech, and strategic advisory in Wrocław, Poland.">
-    <meta name="description" lang="de" content="Entdecken Sie die Dienstleistungen von Kiszlo Studio: Premium-Videoproduktion, KI-Webentwicklung, VR-Anwendungen für MedTech und strategische Beratung in Breslau.">
+    <meta name="description" content="Poznaj ofertę Kiszlo Studio. Dostarczamy butikowe rozwiązania: produkcja wideo, AI web development, chatboty i cyfrowe awatary, aplikacje VR dla MedTech oraz doradztwo strategiczne we Wrocławiu.">
+    <meta name="description" lang="en" content="Discover Kiszlo Studio services: premium video production, AI web development, AI avatars, VR applications for MedTech, and strategic advisory in Wrocław, Poland.">
+    <meta name="description" lang="de" content="Entdecken Sie die Dienstleistungen von Kiszlo Studio: Premium-Videoproduktion, KI-Webentwicklung, KI-Avatare, VR-Anwendungen für MedTech und strategische Beratung in Breslau.">
     
-    <meta name="keywords" content="Oferta Kiszlo Studio, Produkcja Wideo Wrocław, Strony WWW AI, Symulacje VR MedTech, Doradztwo marketingowe, Strategia komunikacji">
+    <meta name="keywords" content="Oferta Kiszlo Studio, Produkcja Wideo Wrocław, Strony WWW AI, Automatyzacja Biznesu, Cyfrowe Awatary, Chatboty, Symulacje VR MedTech, Doradztwo marketingowe">
     <meta name="author" content="Karol Kiszło">
     <meta name="robots" content="index, follow">
     
@@ -72,7 +72,15 @@
                 "itemOffered": {
                   "@type": "Service",
                   "name": "AI Web Development",
-                  "description": "Projektowanie luksusowych stron WWW zintegrowanych z AI."
+                  "description": "Projektowanie nowoczesnych  stron WWW zintegrowanych z AI."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Automatyzacja, Chatboty & Awatary AI",
+                  "description": "Wdrażanie wirtualnych asystentów, agentów AI oraz cyfrowych klonów wideo dla biznesu."
                 }
               },
               {
@@ -101,23 +109,84 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 
     <style>
+        /* Variables definition block */
         :root {
-            --bg: #080808;
-            --surface: #101010;
-            --surface-2: #161616;
-            --border: rgba(255,255,255,0.08);
-            --border-soft: rgba(255,255,255,0.04);
-            --text: #f4f1ec;
-            --muted: #9b958d;
-            --faint: #5a554f;
-            --primary: #00f3ff;
-            --primary-soft: rgba(0,243,255,0.12);
-            --glow: 0 0 18px rgba(0,243,255,0.28);
+            /* DARK MODE (Default) */
+            --bg-dark: #080808;
+            --surface-dark: #101010;
+            --surface-2-dark: #161616;
+            --border-dark: rgba(255,255,255,0.08);
+            --border-soft-dark: rgba(255,255,255,0.04);
+            --text-dark: #f4f1ec;
+            --muted-dark: #9b958d;
+            --faint-dark: #5a554f;
+            --primary-dark: #00f3ff;
+            --primary-soft-dark: rgba(0,243,255,0.12);
+            --glow-dark: 0 0 18px rgba(0,243,255,0.28);
+            --ncni-gradient-dark: linear-gradient(180deg, var(--bg) 0%, #0a0a0a 100%);
+            
+            /* LIGHT MODE */
+            --bg-light: #f4f4f5;
+            --surface-light: #ffffff;
+            --surface-2-light: #ececee;
+            --border-light: rgba(0,0,0,0.1);
+            --border-soft-light: rgba(0,0,0,0.05);
+            --text-light: #121212;
+            --muted-light: #52525b;
+            --faint-light: #a1a1aa;
+            --primary-light: #005bb5;
+            --primary-soft-light: rgba(0,91,181,0.12);
+            --glow-light: 0 0 18px rgba(0,91,181,0.25);
+            --ncni-gradient-light: linear-gradient(180deg, var(--bg) 0%, #e4e4e7 100%);
+
             --font-display: 'Instrument Serif', serif;
             --font-body: 'DM Sans', sans-serif;
             --container: 1280px;
-            --transition: 220ms cubic-bezier(.16,1,.3,1);
+            --transition: 250ms cubic-bezier(.16,1,.3,1);
         }
+
+        /* Applying currently selected mode variables */
+        :root[data-theme="dark"] {
+            --bg: var(--bg-dark);
+            --surface: var(--surface-dark);
+            --surface-2: var(--surface-2-dark);
+            --border: var(--border-dark);
+            --border-soft: var(--border-soft-dark);
+            --text: var(--text-dark);
+            --muted: var(--muted-dark);
+            --faint: var(--faint-dark);
+            --primary: var(--primary-dark);
+            --primary-soft: var(--primary-soft-dark);
+            --glow: var(--glow-dark);
+            --ncni-gradient: var(--ncni-gradient-dark);
+            --noise-opacity: 0.03;
+            --nav-bg: rgba(8, 8, 8, 0.85);
+            --mobile-menu-bg: rgba(8, 8, 8, 0.98);
+        }
+
+        :root[data-theme="light"] {
+            --bg: var(--bg-light);
+            --surface: var(--surface-light);
+            --surface-2: var(--surface-2-light);
+            --border: var(--border-light);
+            --border-soft: var(--border-soft-light);
+            --text: var(--text-light);
+            --muted: var(--muted-light);
+            --faint: var(--faint-light);
+            --primary: var(--primary-light);
+            --primary-soft: var(--primary-soft-light);
+            --glow: var(--glow-light);
+            --ncni-gradient: var(--ncni-gradient-light);
+            --noise-opacity: 0.06;
+            --nav-bg: rgba(255, 255, 255, 0.85);
+            --mobile-menu-bg: rgba(244, 244, 245, 0.98);
+        }
+
+        /* --- Custom Scrollbar --- */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--surface-2); border-radius: 4px; border: 1px solid var(--border-soft); }
+        ::-webkit-scrollbar-thumb:hover { background: var(--faint); }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
@@ -128,6 +197,7 @@
             line-height: 1.65;
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
+            transition: background-color var(--transition), color var(--transition);
         }
 
         /* no-js fallback */
@@ -136,7 +206,7 @@
         html.no-js .hero-text { opacity: 1 !important; }
         html.no-js .fade-up { opacity: 1 !important; transform: translateY(0) !important; }
         
-        ::selection { background: var(--primary); color: #000; }
+        ::selection { background: var(--primary); color: #fff; }
 
         img { display: block; max-width: 100%; height: auto; }
         a { color: inherit; text-decoration: none; }
@@ -145,9 +215,10 @@
             position: fixed;
             inset: 0;
             pointer-events: none;
-            opacity: .03;
+            opacity: var(--noise-opacity);
             z-index: 9999;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            transition: opacity var(--transition);
         }
 
         .container {
@@ -161,10 +232,10 @@
             top: 0; left: 0; width: 100%;
             z-index: 100;
             padding: 24px 0;
-            background: rgba(8, 8, 8, 0.85);
+            background: var(--nav-bg);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-soft);
-            transition: transform 0.4s ease;
+            transition: transform 0.4s ease, background-color var(--transition);
             will-change: transform;
         }
         .nav-inner {
@@ -178,7 +249,9 @@
             flex-direction: column;
             align-items: flex-start;
             text-decoration: none;
+            transition: transform var(--transition);
         }
+        .nav-brand-block:hover { transform: translateY(-1px); }
         .logo-text-main {
             font-family: var(--font-body);
             font-weight: 700;
@@ -186,10 +259,12 @@
             letter-spacing: -0.02em;
             color: var(--text);
             line-height: 1;
+            transition: color var(--transition);
         }
         .logo-text-dot {
             color: var(--primary);
             font-weight: 700;
+            transition: color var(--transition);
         }
         .logo-tagline {
             font-family: var(--font-body);
@@ -199,6 +274,13 @@
             letter-spacing: 0.2em;
             font-weight: 600;
             margin-top: 4px;
+            transition: color var(--transition);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
         }
 
         .nav-links {
@@ -211,17 +293,55 @@
         }
         .nav-links a {
             color: var(--faint);
-            transition: var(--transition);
+            transition: color var(--transition);
         }
         .nav-links a:hover, .nav-links a.active {
             color: var(--text);
         }
+        
+        .nav-actions-container {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border-left: 1px solid var(--border);
+            padding-left: 24px;
+            transition: border-color var(--transition);
+        }
+
         .nav-langs {
             display: flex;
             gap: 12px;
-            border-left: 1px solid var(--border);
-            padding-left: 24px;
         }
+        .nav-langs a { transition: color var(--transition); }
+        .nav-langs a:hover { color: var(--text) !important; }
+
+        /* Theme Toggle Button */
+        .theme-toggle-btn {
+            background: var(--surface);
+            border: 1px solid var(--border-soft);
+            color: var(--text);
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .theme-toggle-btn:hover {
+            background: var(--surface-2);
+            transform: scale(1.05);
+            border-color: var(--border);
+        }
+        .theme-toggle-btn svg {
+            width: 16px; height: 16px;
+            transition: var(--transition);
+        }
+        html[data-theme="dark"] .icon-moon { display: block; }
+        html[data-theme="dark"] .icon-sun { display: none; }
+        html[data-theme="light"] .icon-moon { display: none; }
+        html[data-theme="light"] .icon-sun { display: block; }
 
         /* Mobile Menu */
         .hamburger {
@@ -237,7 +357,7 @@
         .hamburger span {
             display: block;
             width: 24px;
-            height: 1px;
+            height: 1.5px;
             background: var(--text);
             transition: var(--transition);
         }
@@ -249,6 +369,7 @@
         .section {
             padding: clamp(72px, 10vw, 140px) 0;
             border-top: 1px solid var(--border-soft);
+            transition: border-color var(--transition);
         }
 
         .eyebrow {
@@ -261,6 +382,7 @@
             font-size: 12px;
             font-weight: 600;
             margin-bottom: 24px;
+            transition: color var(--transition);
         }
 
         .eyebrow::before {
@@ -269,9 +391,9 @@
             height: 1px;
             background: var(--primary);
             box-shadow: var(--glow);
+            transition: background var(--transition), box-shadow var(--transition);
         }
 
-        /* Hero */
         .hero {
             min-height: 80vh; /* Trochę mniejsze niż na startowej */
             display: flex;
@@ -280,6 +402,7 @@
             overflow: hidden;
             border-bottom: 1px solid var(--border-soft);
             padding: 140px 0 72px;
+            transition: border-color var(--transition);
         }
 
         .hero::before {
@@ -287,11 +410,13 @@
             position: absolute;
             inset: 0;
             background-image:
-                linear-gradient(rgba(0,243,255,.022) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0,243,255,.022) 1px, transparent 1px);
+                linear-gradient(var(--primary-soft) 1px, transparent 1px),
+                linear-gradient(90deg, var(--primary-soft) 1px, transparent 1px);
             background-size: 88px 88px;
             mask-image: radial-gradient(circle at center, black 28%, transparent 90%);
+            -webkit-mask-image: radial-gradient(circle at center, black 28%, transparent 90%);
             pointer-events: none;
+            transition: background-image var(--transition);
         }
 
         .hero::after {
@@ -302,8 +427,13 @@
             left: -180px;
             top: -180px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(0,243,255,.06) 0%, rgba(0,243,255,.02) 35%, transparent 72%);
+            background: radial-gradient(circle, var(--primary-soft) 0%, rgba(0,0,0,0) 72%);
             pointer-events: none;
+            transition: background var(--transition);
+        }
+        
+        html[data-theme="light"] .hero::after {
+            background: radial-gradient(circle, rgba(0,91,181,0.05) 0%, rgba(0,0,0,0) 72%);
         }
 
         .hero-inner {
@@ -318,6 +448,8 @@
             line-height: .92;
             margin-bottom: 32px;
             overflow: hidden;
+            color: var(--text);
+            transition: color var(--transition);
         }
         
         .hero-title i { font-style: italic; color: var(--text); }
@@ -335,11 +467,11 @@
             opacity: 0;
             border-left: 1px solid var(--primary);
             padding-left: 24px;
+            transition: color var(--transition), border-color var(--transition);
         }
 
-        .hero-text strong { color: var(--text); font-weight: 500; }
+        .hero-text strong { color: var(--text); font-weight: 500; transition: color var(--transition); }
 
-        /* Oferta Grid (Custom dla tej podstrony) */
         .service-list {
             display: grid;
             gap: 24px;
@@ -352,7 +484,7 @@
             padding: clamp(32px, 5vw, 64px);
             position: relative;
             overflow: hidden;
-            transition: var(--transition);
+            transition: all var(--transition);
             display: grid;
             grid-template-columns: 1fr;
             gap: 32px;
@@ -369,6 +501,12 @@
         .service-item:hover {
             border-color: var(--border);
             background: var(--surface-2);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        html[data-theme="dark"] .service-item:hover {
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
         .service-item::before {
@@ -393,9 +531,13 @@
             align-items: center;
             justify-content: center;
             width: 56px; height: 56px;
-            border: 1px solid rgba(0,243,255,0.2);
+            border: 1px solid var(--primary-soft);
             border-radius: 50%;
             background: rgba(0,243,255,0.05);
+            transition: color var(--transition), border-color var(--transition);
+        }
+        html[data-theme="light"] .service-no {
+            background: rgba(0,91,181,0.05);
         }
 
         .service-title {
@@ -404,6 +546,8 @@
             font-size: clamp(32px, 5vw, 56px);
             line-height: 1.1;
             margin-bottom: 20px;
+            color: var(--text);
+            transition: color var(--transition);
         }
 
         .service-desc {
@@ -412,9 +556,10 @@
             font-weight: 300;
             margin-bottom: 32px;
             max-width: 600px;
+            transition: color var(--transition);
         }
 
-        .service-desc strong { color: var(--text); font-weight: 500; }
+        .service-desc strong { color: var(--text); font-weight: 500; transition: color var(--transition); }
 
         .tag-list {
             display: flex;
@@ -431,9 +576,9 @@
             text-transform: uppercase;
             letter-spacing: .08em;
             font-weight: 600;
+            transition: border-color var(--transition), color var(--transition);
         }
 
-        /* CTA Section */
         .cta-wrap {
             display: grid;
             grid-template-columns: 1fr;
@@ -446,14 +591,16 @@
             padding: clamp(56px, 8vw, 100px) 24px;
             position: relative;
             overflow: hidden;
+            transition: background-color var(--transition), border-color var(--transition);
         }
         
         .cta-wrap::before {
             content: "";
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at top, rgba(0,243,255,.05) 0%, transparent 60%);
+            background: radial-gradient(circle at top, var(--primary-soft) 0%, transparent 60%);
             pointer-events: none;
+            transition: background var(--transition);
         }
 
         .cta-title {
@@ -462,6 +609,8 @@
             font-size: clamp(40px, 6vw, 72px);
             line-height: 1;
             margin-bottom: 24px;
+            color: var(--text);
+            transition: color var(--transition);
         }
 
         .cta-text {
@@ -470,6 +619,7 @@
             font-weight: 300;
             max-width: 600px;
             margin: 0 auto 40px;
+            transition: color var(--transition);
         }
 
         .cta-btn {
@@ -478,7 +628,7 @@
             justify-content: center;
             gap: 12px;
             background: var(--primary);
-            color: #0a0a0a;
+            color: #ffffff; /* Biały tekst na przycisku dla lepszego kontrastu w obu trybach */
             font-size: 14px;
             text-transform: uppercase;
             letter-spacing: .14em;
@@ -487,16 +637,24 @@
             border-radius: 999px;
             transition: var(--transition);
         }
+        
+        html[data-theme="dark"] .cta-btn {
+            color: #0a0a0a;
+        }
 
         .cta-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 0 28px rgba(0,243,255,.38), 0 0 52px rgba(0,243,255,.12);
         }
+        
+        html[data-theme="light"] .cta-btn:hover {
+            box-shadow: 0 0 28px rgba(0,91,181,.38), 0 0 52px rgba(0,91,181,.12);
+        }
 
-        /* Footer */
         .footer {
             border-top: 1px solid var(--border-soft);
             padding: 80px 0 24px;
+            transition: border-color var(--transition);
         }
 
         .footer-grid {
@@ -511,12 +669,15 @@
             font-style: italic;
             font-size: 34px;
             margin-bottom: 16px;
+            color: var(--text);
+            transition: color var(--transition);
         }
 
         .footer-desc {
             color: var(--faint);
             font-size: 15px;
             max-width: 34ch;
+            transition: color var(--transition);
         }
 
         .footer-head {
@@ -526,6 +687,7 @@
             letter-spacing: .18em;
             margin-bottom: 20px;
             font-weight: 700;
+            transition: color var(--transition);
         }
 
         .footer-links {
@@ -541,7 +703,7 @@
             transition: var(--transition);
         }
         
-        .footer-links a:hover { color: var(--primary); }
+        .footer-links a:hover { color: var(--primary); transform: translateX(4px); }
 
         .footer-bottom {
             border-top: 1px solid var(--border-soft);
@@ -552,9 +714,9 @@
             font-size: 12px;
             text-transform: uppercase;
             letter-spacing: .12em;
+            transition: border-color var(--transition), color var(--transition);
         }
 
-        /* AI Chat */
         #ai-chat-widget {
             position: fixed;
             bottom: 24px;
@@ -576,8 +738,12 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             transition: var(--transition);
+        }
+        
+        html[data-theme="dark"] #ai-chat-button {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
         
         #ai-chat-button:hover {
@@ -596,8 +762,13 @@
             display: none;
             flex-direction: column;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
             font-family: var(--font-body);
+            transition: background-color var(--transition), border-color var(--transition);
+        }
+        
+        html[data-theme="dark"] #ai-chat-window {
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
         }
 
         .chat-header {
@@ -607,6 +778,17 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: background-color var(--transition), border-color var(--transition);
+        }
+        
+        .chat-header-text {
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text);
+            transition: color var(--transition);
         }
 
         .chat-messages {
@@ -624,6 +806,7 @@
             line-height: 1.5;
             font-weight: 300;
             max-width: 85%;
+            transition: background-color var(--transition), color var(--transition), border-color var(--transition);
         }
 
         .msg-ai {
@@ -636,10 +819,14 @@
         
         .msg-user {
             background-color: var(--primary-soft);
-            border: 1px solid rgba(0,243,255,0.2);
+            border: 1px solid var(--primary-soft);
             color: var(--primary);
             border-radius: 12px 12px 0 12px;
             align-self: flex-end;
+        }
+        
+        html[data-theme="dark"] .msg-user {
+            border: 1px solid rgba(0,243,255,0.2);
         }
 
         .chat-input {
@@ -648,6 +835,7 @@
             border-top: 1px solid var(--border-soft);
             display: flex;
             gap: 12px;
+            transition: background-color var(--transition), border-color var(--transition);
         }
 
         .chat-input input {
@@ -658,9 +846,10 @@
             font-size: 14px;
             outline: none;
             font-family: var(--font-body);
+            transition: color var(--transition);
         }
         
-        .chat-input input::placeholder { color: var(--faint); }
+        .chat-input input::placeholder { color: var(--faint); transition: color var(--transition); }
 
         .chat-input button {
             background: none;
@@ -671,7 +860,7 @@
             text-transform: uppercase;
             letter-spacing: 0.1em;
             cursor: pointer;
-            transition: var(--transition);
+            transition: color var(--transition);
         }
         .chat-input button:hover { color: var(--text); }
 
@@ -681,11 +870,16 @@
             .footer-grid { grid-template-columns: 1fr; gap: 32px; }
             .logo-tagline { display: none; }
             .nav-links { display: none; }
+            
+            .nav-actions-container {
+                border-left: none; padding-left:0; width:100%; justify-content:center; gap:32px;
+            }
+            
             .hamburger { display: flex; }
             .nav-menu-wrapper {
                 position: fixed;
                 top: 0; left: 0; width: 100%; height: 100vh;
-                background: rgba(8, 8, 8, 0.98);
+                background: var(--mobile-menu-bg);
                 backdrop-filter: blur(16px);
                 flex-direction: column;
                 justify-content: center;
@@ -693,16 +887,27 @@
                 gap: 40px;
                 opacity: 0;
                 pointer-events: none;
-                transition: opacity 0.4s ease;
+                transition: opacity 0.4s ease, background-color var(--transition);
                 z-index: 1000;
             }
             .nav-menu-wrapper.open { opacity: 1; pointer-events: auto; }
-            .nav-links { display: flex; flex-direction: column; text-align: center; font-size: 18px; gap: 32px; }
+            
+            /* Przywracamy nav-links dla widoku mobilnego */
+            .nav-menu-wrapper .nav-links { 
+                display: flex; 
+                flex-direction: column; 
+                text-align: center; 
+                font-size: 18px; 
+                gap: 32px; 
+            }
+            
             .nav-langs { border-left: none; padding-left: 0; justify-content: center; }
+            
             .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
             .hamburger.open span:nth-child(2) { opacity: 0; }
             .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
         }
+        
         @media (max-width: 640px) {
             .container { width: min(var(--container), calc(100% - 28px)); }
             .hero-title { font-size: 48px; }
@@ -712,7 +917,19 @@
     </style>
 </head>
 <body>
-    <script>document.documentElement.classList.remove('no-js');</script>
+    <script>
+        // Init theme to prevent flashing on load
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            } else {
+                document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+            }
+            document.documentElement.classList.remove('no-js');
+        })();
+    </script>
     <div class="noise" aria-hidden="true"></div>
 
     <!-- Navigation -->
@@ -723,27 +940,44 @@
                     Kiszlo<span class="logo-text-dot">.</span>Studio
                 </div>
                 <div class="logo-tagline">
-                    AI-DRIVEN CREATIVE & STRATEGIC STUDIO
+                    AI DRIVEN CREATIVE & STRATEGIC STUDIO
                 </div>
             </a>
             
-            <button class="hamburger" id="mobile-toggle" aria-label="Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            <div class="nav-right">
+                <button class="hamburger" id="mobile-toggle" aria-label="Menu" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
 
-            <div class="nav-menu-wrapper" id="mobile-menu">
-                <div class="nav-links">
-                    <a href="index.html">Start</a>
-                    <a href="onas.html">O nas</a>
-                    <a href="oferta.html" class="active">Oferta</a>
-                    <a href="portfolio.html">Portfolio</a>
-                </div>
-                <div class="nav-langs">
-                    <span style="color: var(--text); font-weight: 600; font-size: 12px;">PL</span>
-                    <a href="eng.html" style="color: var(--faint); font-size: 12px; text-decoration: none;">EN</a>
-                    <a href="de.html" style="color: var(--faint); font-size: 12px; text-decoration: none;">DE</a>
+                <div class="nav-menu-wrapper" id="mobile-menu">
+                    <div class="nav-links">
+                        <a href="index.html">Start</a>
+                        <a href="onas.html">O nas</a>
+                        <a href="oferta.html" class="active">Oferta</a>
+                        <a href="portfolio.html">Portfolio</a>
+                    </div>
+                    
+                    <div class="nav-actions-container">
+                        <div class="nav-langs">
+                            <span style="color: var(--text); font-weight: 600; font-size: 12px; cursor: default;">PL</span>
+                            <a href="eng.html" style="color: var(--faint); font-size: 12px;">EN</a>
+                            <a href="de.html" style="color: var(--faint); font-size: 12px;">DE</a>
+                        </div>
+                        
+                        <!-- Theme Toggle Button -->
+                        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Zmień motyw jasny/ciemny">
+                            <!-- Sun icon -->
+                            <svg class="icon-sun" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                            </svg>
+                            <!-- Moon icon -->
+                            <svg class="icon-moon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -753,14 +987,14 @@
         <!-- Hero Section -->
         <section class="hero">
             <div class="container hero-inner">
-                <div class="eyebrow">Kompetencje</div>
+                <div class="eyebrow fade-up" style="transform: translateY(0); opacity: 1;">Kompetencje</div>
                 <h1 class="hero-title">
                     <span class="hero-title-line">Ekspertyza.</span>
                     <span class="hero-title-line">Wdrożenia.</span>
                     <span class="hero-title-line"><i>Rezultaty.</i></span>
                 </h1>
                 <p class="hero-text">
-                    Nie jesteśmy typową agencją. Działamy na styku sztuki filmowej, zaawansowanej technologii VR i sztucznej inteligencji. <strong>Rozwiązujemy problemy biznesowe za pomocą innowacji</strong>, dostarczając produkty w klasie premium.
+                    Nie jesteśmy typową agencją. Działamy na styku sztuki filmowej, zaawansowanej technologii wirtualnej rzeczywistości i sztucznej inteligencji. <strong>Rozwiązujemy problemy biznesowe za pomocą innowacji</strong>, dostarczając produkty w klasie premium.
                 </p>
             </div>
         </section>
@@ -776,10 +1010,10 @@
                             <div class="service-no">01</div>
                             <h2 class="service-title">Wideo & <br>Postprodukcja</h2>
                             <p class="service-desc">
-                                Kreujemy obraz, który sprzedaje. Od idei i scenariusza, przez organizację planu zdjęciowego, aż po montaż, zaawansowane efekty wizualne (VFX) i perfekcyjną korekcję barwną. Łączymy kinową estetykę z twardymi celami marketingowymi Twojej marki.
+                                Kreujemy obraz, który buduje wartość. Zapewniamy pełen proces produkcyjny obejmujący rozwój scenariusza, organizację profesjonalnego planu zdjęciowego, montaż, zaawansowane efekty wizualne (VFX) i szczegółową korekcję barwną. Łączymy kinową estetykę z celami marketingowymi Twojej marki.
                             </p>
                             <div class="tag-list">
-                                <span class="tag">Reklama TV & Digital</span>
+                                <span class="tag">Produkcja Reklamowa</span>
                                 <span class="tag">Color Grading</span>
                                 <span class="tag">VFX</span>
                                 <span class="tag">Scenografia</span>
@@ -793,13 +1027,13 @@
                             <div class="service-no">02</div>
                             <h2 class="service-title">Symulacje VR & <br>MedTech</h2>
                             <p class="service-desc">
-                                Przenosimy użytkowników do cyfrowego wymiaru. Projektujemy oparte o silnik Unity 3D aplikacje wirtualnej rzeczywistości (VR). Współpracując z naukowcami (NCNI, PWr), tworzymy zaawansowane rozwiązania dla branży medycznej (VRET) i edukacyjnej.
+                                Przenosimy doświadczenia do cyfrowego wymiaru. Projektujemy aplikacje wirtualnej rzeczywistości w oparciu o silniki graficzne 3D. We współpracy z ośrodkami naukowymi rozwijamy zaawansowane rozwiązania wspierające szkolenia biznesowe, edukację specjalistyczną oraz terapie medyczne.
                             </p>
                             <div class="tag-list">
                                 <span class="tag">Wirtualna Rzeczywistość</span>
-                                <span class="tag">Unity 3D</span>
+                                <span class="tag">Środowiska 3D</span>
                                 <span class="tag">Medycyna & Nauka</span>
-                                <span class="tag">Szkolenia</span>
+                                <span class="tag">Szkolenia VRET</span>
                             </div>
                         </div>
                     </article>
@@ -810,29 +1044,46 @@
                             <div class="service-no">03</div>
                             <h2 class="service-title">AI Web <br>Development</h2>
                             <p class="service-desc">
-                                Strony WWW nie muszą być statycznymi wizytówkami. Tworzymy luksusowe witryny i aplikacje webowe zintegrowane ze sztuczną inteligencją. <strong>Automatyzujemy obsługę klienta</strong> (agenty AI) i optymalizujemy architekturę pod kątem wyszukiwarek nowej generacji (AEO).
+                                Tworzymy nowoczesne witryny i dedykowane aplikacje webowe oparte na autorskim kodzie. Architektura naszych projektów jest optymalizowana pod kątem nowych modeli wyszukiwania sztucznej inteligencji, zapewniając najwyższą widoczność i wydajność działania.
                             </p>
                             <div class="tag-list">
-                                <span class="tag">UI/UX Design</span>
-                                <span class="tag">Integracje LLM</span>
-                                <span class="tag">Automatyzacje</span>
+                                <span class="tag">Nowoczesny interfejs</span>
+                                <span class="tag">Dedykowane oprogramowanie</span>
+                                <span class="tag">AI SEO / AEO</span>
                                 <span class="tag">Premium Frontend</span>
                             </div>
                         </div>
                     </article>
-
-                    <!-- Service 4 -->
+                    
+                    <!-- NEW Service 4: Automatyzacja & AI -->
                     <article class="service-item fade-up">
                         <div>
                             <div class="service-no">04</div>
+                            <h2 class="service-title">Automatyzacja, Chatboty <br>& Awatary AI</h2>
+                            <p class="service-desc">
+                                Zwiększamy efektywność biznesową wdrażając dedykowane systemy sztucznej inteligencji. Tworzymy inteligentne <strong>chatboty i wirtualnych agentów AI</strong> wspierających procesy obsługi klienta. Realizujemy <strong>cyfrowe klonowanie wideo</strong> generując realistyczne awatary, które automatyzują proces tworzenia materiałów na strony internetowe, instruktaże czy media społecznościowe.
+                            </p>
+                            <div class="tag-list">
+                                <span class="tag">Wirtualni Agenci AI</span>
+                                <span class="tag">Chatboty Biznesowe</span>
+                                <span class="tag">Klonowanie Postaci</span>
+                                <span class="tag">Automatyzacja Zadań</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Service 5 -->
+                    <article class="service-item fade-up">
+                        <div>
+                            <div class="service-no">05</div>
                             <h2 class="service-title">Strategia & <br>Consulting</h2>
                             <p class="service-desc">
-                                Technologia bez planu to tylko koszt. Prowadzimy audyty komunikacyjne i doradzamy, jak wdrożyć nowoczesne rozwiązania, by generowały realny zwrot z inwestycji (ROI). Od układania lejków sprzedażowych po zarządzanie tożsamością marki.
+                                Przeprowadzamy audyty procesów komunikacyjnych i wdrażamy technologie wspierające skalowanie biznesu. Projektujemy optymalne ścieżki konwersji i pomagamy w integracji nowoczesnych narzędzi cyfrowych, aby budować rynkową przewagę.
                             </p>
                             <div class="tag-list">
                                 <span class="tag">Audyt Komunikacji</span>
-                                <span class="tag">Optymalizacja Lejków</span>
-                                <span class="tag">Consulting AI</span>
+                                <span class="tag">Architektura Lejków</span>
+                                <span class="tag">Consulting Technologiczny</span>
                             </div>
                         </div>
                     </article>
@@ -848,7 +1099,7 @@
                     <div class="eyebrow" style="margin: 0 auto 24px;">Współpraca</div>
                     <h2 class="cta-title">Gotów na krok w przyszłość?</h2>
                     <p class="cta-text">
-                        Niezależnie czy potrzebujesz kinowej reklamy, aplikacji VR, czy strony zintegrowanej z AI – jesteśmy tu, by to zrealizować. Opowiedz nam o swoim projekcie.
+                        Niezależnie czy poszukujesz wsparcia w zakresie produkcji wideo, wdrożenia symulacji VR, czy integracji inteligentnych asystentów AI – jesteśmy gotowi podjąć wyzwanie. Opowiedz nam o swoim projekcie.
                     </p>
                     <a href="mailto:kiszlo.studio@gmail.com" class="cta-btn">
                         Zacznijmy rozmowę
@@ -867,7 +1118,7 @@
                 <div>
                     <div class="footer-brand">Kiszlo.Studio</div>
                     <div class="footer-desc">
-                        Butikowe studio strategiczno-technologiczne łączące AI, VR, produkcję i komunikację dla nowoczesnego biznesu.
+                       Studio strategiczno-technologiczne. Łączymy nowoczesny web development, automatyzację procesów AI z autorską produkcją wideo i wirtualną rzeczywistością, dostarczając innowacyjne rozwiązania dla biznesu.
                     </div>
                 </div>
                 <div>
@@ -900,16 +1151,17 @@
         <div id="ai-chat-window">
             <div class="chat-header">
                 <div style="display: flex; align-items: center; gap: 10px;">
-                     <img src="https://via.placeholder.com/20x20/00f3ff/00f3ff?text=+" alt="AI Logo" style="border-radius:50%; width: 12px; height: 12px;">
-                    <span style="font-family: var(--font-body); font-weight: 600; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;">System AI</span>
+                     <!-- Zaktualizowany kolor SVG dla ikony AI w nagłówku -->
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+                    <span class="chat-header-text">System AI</span>
                 </div>
-                <button id="close-chat" style="background: none; border: none; color: var(--faint); cursor: pointer; font-size: 20px;">×</button>
+                <button id="close-chat" style="background: none; border: none; color: var(--faint); cursor: pointer; font-size: 20px; transition: color var(--transition);">&times;</button>
             </div>
             <div class="chat-messages" id="chat-messages">
-                <div class="msg msg-ai">Dzień dobry. Jestem asystentem Kiszlo.Studio. W czym mogę pomóc?</div>
+                <div class="msg msg-ai">Dzień dobry. Jestem wirtualnym asystentem Kiszlo.Studio. W czym mogę dzisiaj pomóc?</div>
             </div>
             <div class="chat-input">
-                <input type="text" id="chat-input-field" placeholder="Zadaj pytanie...">
+                <input type="text" id="chat-input-field" placeholder="Wpisz wiadomość...">
                 <button id="send-msg">Wyślij</button>
             </div>
         </div>
@@ -919,28 +1171,55 @@
     </div>
 
     <script>
+        // --- Theme Toggle Logic ---
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', () => {
+                const htmlEl = document.documentElement;
+                const currentTheme = htmlEl.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                htmlEl.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+            });
+        }
+
         // --- MOBILE MENU LOGIC ---
         const mobileToggle = document.getElementById('mobile-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
         
         if (mobileToggle && mobileMenu) {
-            mobileToggle.addEventListener('click', () => {
-                mobileToggle.classList.toggle('open');
+            mobileToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isOpen = mobileToggle.classList.toggle('open');
                 mobileMenu.classList.toggle('open');
-                document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+                mobileToggle.setAttribute('aria-expanded', isOpen);
+                document.body.style.overflow = isOpen ? 'hidden' : '';
             });
 
-            const mobileLinks = mobileMenu.querySelectorAll('a');
+            const mobileLinks = mobileMenu.querySelectorAll('.nav-links a');
             mobileLinks.forEach(link => {
                 link.addEventListener('click', () => {
                     mobileToggle.classList.remove('open');
                     mobileMenu.classList.remove('open');
+                    mobileToggle.setAttribute('aria-expanded', 'false');
                     document.body.style.overflow = '';
                 });
             });
+
+            // Kliknięcie w tło zamyka menu
+            mobileMenu.addEventListener('click', (e) => {
+                if(e.target === mobileMenu) {
+                    mobileToggle.classList.remove('open');
+                    mobileMenu.classList.remove('open');
+                    mobileToggle.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
+                }
+            });
         }
 
-        // AI Chat Logic
+        // --- AI Chat Logic ---
         const chatBtn = document.getElementById('ai-chat-button');
         const chatWindow = document.getElementById('ai-chat-window');
         const closeChatBtn = document.getElementById('close-chat');
@@ -964,7 +1243,7 @@
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
             setTimeout(() => {
-                messagesContainer.innerHTML += `<div class="msg msg-ai">Przyjąłem. Aby odpowiedzieć na to pytanie, mój system wiedzy wymaga autoryzacji i klucza API. Skontaktuj się bezpośrednio z zespołem.</div>`;
+                messagesContainer.innerHTML += `<div class="msg msg-ai">Przyjąłem. System analizuje zapytanie. Wymagana jest weryfikacja i kontakt bezpośredni z zespołem studia, aby przetworzyć szczegóły.</div>`;
                 messagesContainer.scrollTop = messagesContainer.scrollHeight;
             }, 1000);
         }
@@ -974,7 +1253,7 @@
             if(e.key === 'Enter') handleSend();
         });
 
-        // GSAP Animations
+        // --- GSAP Animations ---
         window.addEventListener('load', () => {
             if (typeof gsap === 'undefined') return;
             gsap.registerPlugin(ScrollTrigger);
