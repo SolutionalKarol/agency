@@ -392,9 +392,13 @@
         }
 
         .profile-media .hover-photo { opacity: 0; }
-        .single-profile-card:hover .base-photo { opacity: 0; }
-        .single-profile-card:hover .hover-photo { opacity: 1; }
+        .profile-media.is-second-photo-visible .base-photo { opacity: 0; }
+        .profile-media.is-second-photo-visible .hover-photo { opacity: 1; }
         .single-profile-card:hover .profile-media img { transform: scale(1.04); filter: grayscale(0%) contrast(1); }
+
+        @media (prefers-reduced-motion: reduce) {
+            .profile-media img { transition: none; }
+        }
 
         .profile-tagline {
             position: absolute;
@@ -830,9 +834,10 @@
                 </h1>
                 <div class="hero-grid">
                     <p class="hero-text">
-                        <strong>Kiszlo.Studio</strong> Studio łączące nowoczesną komunikację,
-                        AI, VR i nowoczesne techniki programistyczne i rozwiązania realnie wspierające biznes.
-                        Pracujemy tam, gdzie technologia ma sens i tam, gdzie za innowacją musi iść strategia. Współpracujemy ze znakomitymi krajowymi specjalistami. 
+                        <strong>Kiszlo.Studio</strong> łączy nowoczesną komunikację, AI, VR
+                        i inżynierię oprogramowania w rozwiązania, które realnie wspierają biznes.
+                        Pracujemy tam, gdzie technologia ma sens, a za innowacją stoi przemyślana strategia.
+                        Współpracujemy z uznanymi specjalistami z całej Polski.
                     </p>
                     <div class="hero-side">
                         <div class="scroll-note">Przewiń</div>
@@ -1041,6 +1046,16 @@
     </footer>
 
     <script>
+        // --- Automatyczna zmiana portretu co 2 sekundy ---
+        const profileMedia = document.querySelector('.profile-media');
+        const portraitPhotos = profileMedia?.querySelectorAll('img');
+
+        if (profileMedia && portraitPhotos?.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            window.setInterval(() => {
+                profileMedia.classList.toggle('is-second-photo-visible');
+            }, 2000);
+        }
+
         // --- Zamykanie mobilnego menu ---
         const mobileToggle = document.getElementById('mobile-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
