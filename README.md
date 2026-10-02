@@ -43,3 +43,20 @@ Check email/phone links and the NCNI portfolio link. Check both missing and
 uploaded collaborator photos. Repeat with animation scripts
 blocked, JavaScript disabled, reduced motion, and browser storage disabled.
 All local file links, fragment identifiers and structured-data JSON must resolve.
+
+## Avatar, agents and VR media
+
+The avatar diagram and gold/turquoise agent portrait are illustrative generated
+assets (`avatar-flow.webp` and `ai-agent.webp`). VR media uses an illustrative
+headset rendering and example arachnophobia environment, not a capture from a
+completed application. CSS handles the headset zoom and crossfade; the visitor
+can pause it, and reduced motion shows a static environment.
+
+Upload **`google.ara.mp4`** at the repository root, beside `index.html`, to use real
+VR footage. The homepage VR cards check for this file. If available and decodable,
+they show their description first and switch to the muted inline video after
+three seconds in view. Native controls and a back-to-description button remain
+available. If autoplay is blocked, the native play control can start it. Missing
+or undecodable footage keeps the illustrated preview. Reduced motion exposes a
+manual player without automatic playback. For broad browser compatibility,
+export MP4 with H.264 video. No real footage is included by this change.

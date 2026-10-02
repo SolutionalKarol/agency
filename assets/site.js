@@ -69,11 +69,110 @@
         media.append(photo);
         photo.src = media.dataset.portrait;
     });
+    const previewObserver = window.IntersectionObserver ? new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            entry.target.classList.toggle('is-playing', entry.isIntersecting && !reducedMotion.matches);
+        });
+    }, {threshold: .15}) : null;
+    document.querySelectorAll('[data-vr-preview]').forEach(preview => {
+        const button = preview.querySelector('.vr-preview-toggle');
+        previewObserver?.observe(preview);
+        if (!previewObserver && !reducedMotion.matches) preview.classList.add('is-playing');
+        button.addEventListener('click', () => {
+            const paused = preview.classList.toggle('is-paused');
+            button.textContent = paused ? button.dataset.play : button.dataset.pause;
+            button.setAttribute('aria-pressed', String(paused));
+        });
+        reducedMotion.addEventListener('change', event => {
+            if (event.matches) preview.classList.remove('is-playing');
+            else previewObserver?.unobserve(preview), previewObserver?.observe(preview);
+        });
+    });
+    // Optional real footage: place google.ara.mp4 beside index.html.
+    // Missing footage keeps the existing illustrated preview.
+    let footageAvailable;
+    document.querySelectorAll('.bento-item [data-vr-preview]').forEach(preview => {
+        const card = preview.closest('.bento-item');
+        card.classList.add('vr-video-card');
+        let inView = false, timer, video, overlay, dismissed = false, ready = false;
+        const language = root.lang.split('-')[0];
+        const text = {pl: ['02 · Trening VR', 'Wróć do opisu'], en: ['02 · VR training', 'Back to description'], de: ['02 · VR-Training', 'Zur Beschreibung']}[language] || ['02 · VR training', 'Back to description'];
+        function schedule() {
+            clearTimeout(timer);
+            if (!inView || !video || !ready || dismissed || reducedMotion.matches) return;
+            timer = setTimeout(() => {
+                if (!inView) return;
+                overlay.inert = false;
+                card.classList.add('show-vr-film');
+                video.play().catch(() => { /* Native controls allow tap-to-play. */ });
+            }, 3000);
+        }
+        const observer = new IntersectionObserver(entries => {
+            inView = entries[0].isIntersecting;
+            if (!inView) {
+                clearTimeout(timer);
+                video?.pause();
+                card.classList.remove('show-vr-film');
+                if (overlay) overlay.inert = true;
+            } else if (ready && reducedMotion.matches) {
+                overlay.inert = false;
+                card.classList.add('show-vr-film');
+            } else schedule();
+        }, {threshold: .35});
+        observer.observe(card);
+        footageAvailable ||= fetch('google.ara.mp4', {method: 'HEAD'}).then(response => response.ok).catch(() => false);
+        footageAvailable.then(available => {
+            if (!available) return;
+            overlay = document.createElement('div');
+            overlay.className = 'vr-film-overlay';
+            overlay.inert = true;
+            video = document.createElement('video');
+            video.controls = true;
+            video.muted = true;
+            video.loop = true;
+            video.playsInline = true;
+            video.preload = 'metadata';
+            video.setAttribute('aria-label', text[0]);
+            const footer = document.createElement('div');
+            footer.className = 'vr-film-footer';
+            const label = document.createElement('span');
+            label.textContent = text[0];
+            const back = document.createElement('button');
+            back.type = 'button';
+            back.textContent = text[1];
+            back.addEventListener('click', () => {
+                dismissed = true;
+                video.pause();
+                card.classList.remove('show-vr-film');
+                overlay.inert = true;
+                card.setAttribute('tabindex', '-1');
+                card.focus({preventScroll: true});
+            });
+            footer.append(label, back);
+            overlay.append(video, footer);
+            card.append(overlay);
+            video.addEventListener('loadedmetadata', () => {
+                ready = true;
+                card.classList.add('has-vr-film');
+                if (reducedMotion.matches) {
+                    // Keep a visible manual player without automatic transitions.
+                    overlay.inert = false;
+                    card.classList.add('show-vr-film');
+                } else schedule();
+            }, {once: true});
+            video.addEventListener('error', () => {
+                clearTimeout(timer);
+                card.classList.remove('has-vr-film', 'show-vr-film');
+                overlay.remove();
+            }, {once: true});
+            video.src = 'google.ara.mp4';
+        });
+    });
     window.addEventListener('load', () => {
         if (!window.gsap || !window.ScrollTrigger || reducedMotion.matches) return;
         gsap.registerPlugin(ScrollTrigger);
         root.classList.add('animations-ready');
-        gsap.to('.hero-title-line, .reveal-text-inner', {y: 0, duration: 1.2, stagger: .12, ease: 'power4.out'});
+        gsap.fromTo('.hero-title-line, .reveal-text-inner', {y: 24, opacity: 0}, {y: 0, opacity: 1, duration: 1.2, stagger: .12, ease: 'power4.out'});
         gsap.to('.hero-text, .hero-side, .reveal-fade', {opacity: 1, duration: 1, delay: .3});
         gsap.utils.toArray('.fade-up, .fade-in').forEach(element => {
             gsap.to(element, {opacity: 1, y: 0, duration: .85, ease: 'power3.out', scrollTrigger: {trigger: element, start: 'top 86%', once: true}});

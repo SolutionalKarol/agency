@@ -81,3 +81,43 @@ body[data-page="portfolio"] .hero-artwork { object-position: 70% center; opacity
 .project-visit { display: inline-block; color: var(--primary); margin: 0 0 24px; font-size: 14px; }
 @media (min-width: 981px) { .ncni-project .project-preview-link { width: 60%; flex-shrink: 0; } .ncni-project .project-preview-link .portfolio-image { width: 100%; } }
 html.no-js .hamburger, html.no-js #theme-toggle { display: none; }
+/* Serif italics need space for descenders and overhanging strokes. */
+h1, h2, h3, h4, h5, h6 { overflow: visible; overflow-wrap: anywhere; }
+.hero-title { overflow: visible; line-height: 1.14; padding-bottom: .16em; padding-right: .05em; }
+.hero-title-line { line-height: 1.14; }
+.big-title, .profile-name, .bento-title, .service-title, .portfolio-title, .cta-title, .text-hero { line-height: 1.18; padding-bottom: .12em; }
+.reveal-mask { overflow: visible; padding-bottom: .16em; }
+.reveal-text-inner { line-height: 1.18; }
+.capability-visual { position: relative; margin: 0 0 28px; overflow: hidden; border: 1px solid var(--border, #333); border-radius: 12px; background: #080808; }
+.capability-visual img { width: 100%; height: auto; display: block; object-fit: cover; }
+.avatar-flow-arrow { position: absolute; left: 50%; top: 42%; transform: translate(-50%, -50%); display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: #080808; border: 1px solid #00f3ff; color: #00f3ff; font-size: 26px; }
+.avatar-flow-labels { display: grid; grid-template-columns: 1fr 1fr; padding: 12px; gap: 16px; color: #f4f1ec; text-align: center; font-size: 12px; }
+.agent-visual img { aspect-ratio: 3 / 2; }
+.service-visual.capability-visual { margin: 0; aspect-ratio: auto; }
+.service-visual.capability-visual img { height: auto; }
+.vr-preview { margin-top: 28px; }
+.vr-preview-stage { position: relative; aspect-ratio: 3 / 2; overflow: hidden; background: #080808; border: 1px solid var(--border, #333); border-radius: 12px; perspective: 700px; }
+.vr-preview-stage img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.vr-training { opacity: 1; }
+.vr-headset { opacity: 0; }
+.vr-preview.is-playing .vr-headset { animation: vr-enter 12s ease-in-out infinite; }
+.vr-preview.is-playing .vr-training { animation: vr-room 12s ease-in-out infinite; }
+.vr-preview.is-paused img { animation-play-state: paused; }
+.vr-preview-caption { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: 12px; font-size: 11px; color: var(--muted, #aaa); }
+.vr-preview-toggle { background: transparent; color: var(--primary, #00f3ff); border: 1px solid var(--border, #333); border-radius: 999px; padding: 6px 12px; font: inherit; cursor: pointer; }
+@keyframes vr-enter { 0%, 8% { opacity: 1; transform: rotateY(-18deg) rotateZ(-5deg) scale(.85); } 30% { opacity: 1; transform: rotateY(0) rotateZ(0) scale(1.05); } 43% { opacity: 1; transform: scale(1.8); } 52%, 88% { opacity: 0; transform: scale(2.3); } 100% { opacity: 1; transform: rotateY(-18deg) rotateZ(-5deg) scale(.85); } }
+@keyframes vr-room { 0%, 32% { opacity: 0; transform: scale(.96); } 49%, 82% { opacity: 1; transform: scale(1.04); } 95%, 100% { opacity: 0; transform: scale(1.04); } }
+@media (prefers-reduced-motion: reduce) { .vr-preview-toggle { display: none; } .vr-preview .vr-headset { opacity: 0; animation: none !important; } .vr-preview .vr-training { opacity: 1; transform: none; animation: none !important; } }
+html.no-js .vr-preview-toggle { display: none; }
+.vr-preview.is-paused img { animation-play-state: paused !important; }
+.vr-video-card { min-height: 430px; }
+.vr-video-card.has-vr-film .vr-preview { display: none; }
+.vr-film-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; background: #080808; opacity: 0; visibility: hidden; transition: opacity .55s ease; z-index: 3; }
+.vr-film-overlay video { display: block; width: 100%; flex: 1; min-height: 0; object-fit: contain; }
+.vr-film-footer { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 16px; color: #f4f1ec; font-size: 12px; }
+.vr-film-footer button { font: inherit; color: #00f3ff; background: none; border: 1px solid #333; padding: 6px 12px; border-radius: 999px; cursor: pointer; }
+.vr-video-card.show-vr-film .vr-film-overlay { visibility: visible; opacity: 1; }
+
+/* Keep hero text within the same gutters as the page content. */
+.container.hero-inner { width: min(var(--container, 1280px), calc(100% - 48px)); }
+@media (max-width: 768px) { .container.hero-inner { width: min(var(--container, 1280px), calc(100% - 28px)); } }
