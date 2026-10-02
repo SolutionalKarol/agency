@@ -784,6 +784,42 @@
             }
             .hero { padding-top: 110px; }
         }
+
+        /* Sieć współpracy — style ograniczone do nowej sekcji. */
+        .network-intro { max-width: 65ch; color: var(--muted); font-size: 18px; font-weight: 300; margin-bottom: 48px; }
+        .collaboration-network { position: relative; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 100px 28px; }
+        .network-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+        .network-lines path { fill: none; stroke: var(--primary); stroke-width: 1; opacity: .3; vector-effect: non-scaling-stroke; }
+        .network-node { position: relative; z-index: 1; min-width: 0; }
+        .network-node::after { content: ''; position: absolute; left: calc(50% - 4px); bottom: -5px; width: 8px; height: 8px; border: 1px solid var(--primary); border-radius: 50%; background: var(--bg); box-shadow: var(--glow); }
+        .network-karol { grid-column: 2 / 12; width: 100%; }
+        .network-sebastian { grid-column: 5 / 12; }
+        .network-mikolaj { grid-column: 1 / 7; }
+        .network-wiktor { grid-column: 7 / 13; }
+        .network-card { display: grid; grid-template-columns: minmax(100px, .6fr) minmax(0, 1.4fr); align-items: center; gap: 28px; padding: clamp(24px, 3vw, 40px); background: var(--surface); border: 1px solid var(--border-soft); border-radius: 24px; transition: border-color var(--transition), background var(--transition); }
+        .network-card:hover { border-color: rgba(0,243,255,.22); background: var(--surface-2); }
+        .network-card .profile-name { font-size: clamp(30px, 3vw, 42px); }
+        .network-card .profile-role { font-size: 10px; letter-spacing: .16em; margin-bottom: 16px; overflow-wrap: anywhere; }
+        .network-card .profile-text { font-size: 15px; margin-bottom: 20px; }
+        .network-card .tag { padding: 5px 10px; font-size: 10px; }
+        .network-placeholder { height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 20px; padding: 16px; text-align: center; background: radial-gradient(ellipse at 50% 35%, rgba(0,243,255,.09), transparent 70%), repeating-linear-gradient(0deg, transparent, transparent 31px, rgba(0,243,255,.04) 32px); }
+        .network-placeholder > span { font: italic clamp(48px, 6vw, 80px) var(--font-display); color: var(--primary); opacity: .65; }
+        .network-placeholder small { font-size: 8px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+        @media (max-width: 980px) {
+            .collaboration-network { grid-template-columns: minmax(0, 1fr); padding-left: 28px; gap: 48px; }
+            .collaboration-network .network-node { grid-column: 1; width: 100%; max-width: none; margin: 0; text-align: left; }
+            .collaboration-network .network-node::after { left: -33px; top: 43px; bottom: auto; }
+            .collaboration-network .profile-content { align-items: flex-start; }
+            .collaboration-network .tag-list { justify-content: flex-start; }
+            .collaboration-network .network-karol .profile-media { margin: 0 auto; }
+            .network-card { grid-template-columns: 120px minmax(0, 1fr); }
+        }
+        @media (max-width: 640px) {
+            .network-card { grid-template-columns: minmax(0, 1fr); gap: 24px; padding: 24px; }
+            .network-card .profile-media { width: 120px; }
+            .network-intro { font-size: 16px; }
+            .collaboration-network .network-karol { padding: 24px; }
+        }
     </style>
 </head>
 <body>
@@ -846,12 +882,15 @@
             </div>
         </section>
 
-        <!-- Zmieniona sekcja z jednym profilem na cały ekran w zgrabnej formie -->
-        <section class="section">
+        <!-- Sieć specjalistów współpracujących przy projektach -->
+        <section class="section collaboration-section" aria-labelledby="network-title">
             <div class="container">
-                <div class="eyebrow fade-up">Zespół</div>
-                
-                <article class="single-profile-card fade-up">
+                <div class="eyebrow">Ludzie, z którymi współpracuję</div>
+                <h2 class="big-title" id="network-title">Sieć współpracy</h2>
+                <p class="network-intro">Dobieram specjalistów do potrzeb konkretnego projektu. Łączymy strategię, wiedzę naukową i praktykę technologiczną we wspólnej pracy nad rozwiązaniami.</p>
+                <div class="collaboration-network">
+                    <svg class="network-lines" aria-hidden="true" focusable="false"><path data-from="network-karol" data-to="network-sebastian"/><path data-from="network-sebastian" data-to="network-mikolaj"/><path data-from="network-sebastian" data-to="network-wiktor"/></svg>
+                <article class="single-profile-card network-node network-karol">
                     <div class="profile-media">
                         <img src="kk.jpg" alt="Karol Kiszło" class="base-photo" onerror="this.style.display='none'">
                         <img src="k2.jpg" alt="Karol Kiszło" class="hover-photo" onerror="this.style.display='none'">
@@ -859,7 +898,7 @@
                     </div>
                     
                     <div class="profile-content">
-                        <h2 class="profile-name">Karol Kiszło</h2>
+                        <h3 class="profile-name">Karol Kiszło</h3>
                         <div class="profile-role">Założyciel i Strateg Kreatywny</div>
                         <p class="profile-text">
                             Strateg, wizjoner i operator. Łączy świat kreatywnej komunikacji z najnowszymi technologiami 
@@ -875,8 +914,23 @@
                             <span class="tag">Rozwiązania Biznesowe</span>
                         </div>
                     </div>
-                </article>
-
+                </article><article class="network-node network-card network-sebastian">
+        <div class="profile-media"><img src="sk.jpg" alt="Sebastian Kraszewski" loading="lazy"></div>
+        <div class="profile-content"><h3 class="profile-name">dr hab. inż. Sebastian Kraszewski</h3>
+        <div class="profile-role">Nauka / R&D / MedTech</div><p class="profile-text">Współpraca przy projektach wymagających zaplecza naukowego i badawczego — szczególnie na styku medycyny, neurotechnologii i nowych technologii.</p>
+        <div class="tag-list"><span class="tag">Badania i rozwój</span><span class="tag">MedTech</span><span class="tag">Neurotechnologie</span></div></div>
+    </article><article class="network-node network-card network-mikolaj">
+        <div class="profile-media"><div class="network-placeholder" role="img" aria-label="Placeholder portretu — MK"><span aria-hidden="true">MK</span><small aria-hidden="true">Kiszlo.Studio / współpraca</small></div></div>
+        <div class="profile-content"><h3 class="profile-name">Mikołaj Kikolski</h3>
+        <div class="profile-role">Unity / VR / XR</div><p class="profile-text">Współpraca przy tworzeniu rozwiązań interaktywnych, środowisk VR/XR oraz prototypów doświadczeń immersyjnych. Specjalizacja: Unity i warstwa programistyczna projektów. </p>
+        <div class="tag-list"><span class="tag">Unity</span><span class="tag">VR / XR</span><span class="tag">Interakcja</span></div></div>
+    </article><article class="network-node network-card network-wiktor">
+        <div class="profile-media"><div class="network-placeholder" role="img" aria-label="Placeholder portretu — W"><span aria-hidden="true">W</span><small aria-hidden="true">Kiszlo.Studio / współpraca</small></div></div>
+        <div class="profile-content"><h3 class="profile-name">Wiktor</h3>
+        <div class="profile-role">Elektronika / Hardware / Prototypowanie</div><p class="profile-text">Współpraca przy projektowaniu i prototypowaniu urządzeń, sensoryce oraz integracji elektroniki z oprogramowaniem. Specjalizacja: niestandardowe rozwiązania sprzętowe.</p>
+        <div class="tag-list"><span class="tag">Elektronika</span><span class="tag">Sensoryka</span><span class="tag">Prototypowanie</span></div></div>
+    </article>
+                </div>
             </div>
         </section>
 
@@ -1150,6 +1204,60 @@
                 });
             });
         });
+    </script>
+
+    <script>
+    // Połączenia wynikają z rzeczywistych pozycji kart, także po zmianie rozmiaru.
+    window.addEventListener('load', () => {
+        const network = document.querySelector('.collaboration-network');
+        const svg = network.querySelector('.network-lines');
+        const paths = [...svg.querySelectorAll('path')];
+        const mobile = window.matchMedia('(max-width: 980px)');
+        const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+        function layoutConnections() {
+            const base = network.getBoundingClientRect();
+            svg.setAttribute('viewBox', `0 0 ${base.width} ${base.height}`);
+            paths.forEach((path, i) => {
+                const nodes = [...network.querySelectorAll('.network-node')];
+                const from = mobile.matches ? nodes[i] : network.querySelector('.' + path.dataset.from);
+                const to = mobile.matches ? nodes[i + 1] : network.querySelector('.' + path.dataset.to);
+                const rect = node => ({left: base.left + node.offsetLeft, top: base.top + node.offsetTop, width: node.offsetWidth, bottom: base.top + node.offsetTop + node.offsetHeight});
+                const a = rect(from), b = rect(to);
+                let d;
+                if (mobile.matches) {
+                    const x = a.left - base.left - 29;
+                    d = `M ${x} ${a.top - base.top + 47} L ${x} ${b.top - base.top + 47}`;
+                } else {
+                    const x1 = a.left - base.left + a.width / 2, y1 = a.bottom - base.top;
+                    const x2 = b.left - base.left + b.width / 2, y2 = b.top - base.top;
+                    const mid = (y1 + y2) / 2;
+                    d = `M ${x1} ${y1} C ${x1} ${mid}, ${x2} ${mid}, ${x2} ${y2}`;
+                }
+                path.setAttribute('d', d);
+            });
+        }
+        layoutConnections();
+        // pathLength utrzymuje postęp animacji po zmianie geometrii.
+        paths.forEach(path => path.setAttribute('pathLength', '1'));
+        if (window.gsap && window.ScrollTrigger && !reduced.matches) {
+            paths.forEach((path, i) => {
+                gsap.fromTo(path, {strokeDasharray: 1, strokeDashoffset: 1}, {
+                    strokeDashoffset: 0, duration: 1.3, ease: 'power2.inOut',
+                    scrollTrigger: { trigger: network.querySelectorAll('.network-node')[i + 1], start: 'top 92%', once: true }
+                });
+            });
+            network.querySelectorAll('.network-node').forEach(node => {
+                gsap.from(node, {opacity: 0, y: 24, duration: .85, ease: 'power3.out',
+                    scrollTrigger: {trigger: node, start: 'top 90%', once: true},
+                    onComplete: layoutConnections });
+            });
+            // Linie liczone bez przesunięcia animowanych kart.
+            ScrollTrigger.addEventListener('refreshInit', layoutConnections);
+        }
+        if (window.ResizeObserver) new ResizeObserver(layoutConnections).observe(network);
+        window.addEventListener('resize', layoutConnections);
+        document.fonts?.ready.then(layoutConnections);
+    });
     </script>
 </body>
 </html>
