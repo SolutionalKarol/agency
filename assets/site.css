@@ -132,6 +132,11 @@ html.no-js .vr-preview-toggle { display: none; }
 .avatar-film-stage { position: relative; aspect-ratio: 3 / 2; overflow: hidden; }
 .avatar-film-stage > img { width: 100%; height: 100%; object-fit: cover; }
 .avatar-film-stage video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #080808; opacity: 0; visibility: hidden; }
-.avatar-visual.is-film-visible .avatar-film-stage video { opacity: 1; visibility: visible; }
+.is-film-visible .avatar-film-stage video { opacity: 1; visibility: visible; }
 .avatar-visual.is-film-visible .avatar-flow-arrow { display: none; }
 .avatar-film-toggle { position: absolute; right: 10px; top: 10px; z-index: 2; padding: 8px 12px; border: 1px solid #00f3ff; border-radius: 999px; background: #080808e8; color: #00f3ff; cursor: pointer; font: 12px/1.3 sans-serif; }
+
+.bento-image-wrapper .avatar-film-stage { height: 100%; min-height: 250px; aspect-ratio: auto; }
+.inline-film-visual .avatar-film-stage > img { position: absolute; inset: 0; }
+.inline-film-visual .avatar-film-stage video { object-fit: cover; }
+.service-visual.inline-film-visual .avatar-film-stage { aspect-ratio: 4 / 3; }

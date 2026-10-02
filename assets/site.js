@@ -187,7 +187,8 @@
 })();
 
 // Avatar footage stays within the original illustration footprint.
-document.querySelectorAll('[data-avatar-film]').forEach(figure => {
+document.querySelectorAll('[data-avatar-film], [data-inline-film]').forEach(figure => {
+    const source = figure.dataset.inlineFilm || 'awatar.flow.mp4';
     const image = figure.querySelector('img');
     const stage = document.createElement('div');
     stage.className = 'avatar-film-stage';
@@ -195,7 +196,7 @@ document.querySelectorAll('[data-avatar-film]').forEach(figure => {
     const video = document.createElement('video');
     video.controls = true; video.playsInline = true; video.muted = true;
     video.loop = true; video.preload = 'none'; video.inert = true;
-    video.setAttribute('aria-label', 'Awatar AI, przykład prezentacji wideo');
+    video.setAttribute('aria-label', source === 'klisza.mp4' ? 'Wideo i postprodukcja, animowana klisza' : 'Awatar AI, przykład prezentacji wideo');
     stage.append(video);
     const button = document.createElement('button'); button.type = 'button';
     button.className = 'avatar-film-toggle';
@@ -205,7 +206,7 @@ document.querySelectorAll('[data-avatar-film]').forEach(figure => {
     let timer, visible = false, dismissed = false;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
     function stop() { clearTimeout(timer); video.pause(); video.inert = true; figure.classList.remove('is-film-visible'); button.textContent = labels[0]; }
-    function play() { clearTimeout(timer); if (!video.getAttribute('src')) video.src = 'awatar.flow.mp4'; video.inert = false; figure.classList.add('is-film-visible'); button.textContent = labels[1]; video.play().catch(() => {}); }
+    function play() { clearTimeout(timer); if (!video.getAttribute('src')) video.src = source; video.inert = false; figure.classList.add('is-film-visible'); button.textContent = labels[1]; video.play().catch(() => {}); }
     function schedule() { clearTimeout(timer); if (visible && !dismissed && !document.hidden && !reduced.matches && !navigator.connection?.saveData) timer = setTimeout(play, 2000); }
     button.addEventListener('click', () => { dismissed = true; if (figure.classList.contains('is-film-visible')) stop(); else play(); });
     video.addEventListener('error', () => { dismissed = true; stop(); button.hidden = true; });
