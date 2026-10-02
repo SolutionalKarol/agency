@@ -121,3 +121,7 @@ html.no-js .vr-preview-toggle { display: none; }
 /* Keep hero text within the same gutters as the page content. */
 .container.hero-inner { width: min(var(--container, 1280px), calc(100% - 48px)); }
 @media (max-width: 768px) { .container.hero-inner { width: min(var(--container, 1280px), calc(100% - 28px)); } }
+
+.portfolio-item.portfolio-film { flex-direction: column; }
+.portfolio-film video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; background: #020608; }
+.portfolio-film .portfolio-content { width: 100%; margin-top: 0; padding: clamp(24px, 4vw, 48px); }

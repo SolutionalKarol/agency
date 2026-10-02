@@ -60,3 +60,5 @@ available. If autoplay is blocked, the native play control can start it. Missing
 or undecodable footage keeps the illustrated preview. Reduced motion exposes a
 manual player without automatic playback. For broad browser compatibility,
 export MP4 with H.264 video. No real footage is included by this change.
+
+Portfolio includes `kosmos.mp4` with a local extracted poster, native controls and full-screen playback. Video downloads start on demand.
