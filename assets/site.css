@@ -128,3 +128,10 @@ html.no-js .vr-preview-toggle { display: none; }
 
 .portfolio-modeling { scroll-margin-top: 120px; }
 .modeling-project-link { display: inline-block; margin-top: 20px; color: var(--primary, #00f3ff); text-decoration: underline; text-underline-offset: 5px; }
+
+.avatar-film-stage { position: relative; aspect-ratio: 3 / 2; overflow: hidden; }
+.avatar-film-stage > img { width: 100%; height: 100%; object-fit: cover; }
+.avatar-film-stage video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #080808; opacity: 0; visibility: hidden; }
+.avatar-visual.is-film-visible .avatar-film-stage video { opacity: 1; visibility: visible; }
+.avatar-visual.is-film-visible .avatar-flow-arrow { display: none; }
+.avatar-film-toggle { position: absolute; right: 10px; top: 10px; z-index: 2; padding: 8px 12px; border: 1px solid #00f3ff; border-radius: 999px; background: #080808e8; color: #00f3ff; cursor: pointer; font: 12px/1.3 sans-serif; }
