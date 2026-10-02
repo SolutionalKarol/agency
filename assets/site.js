@@ -160,7 +160,8 @@
                     card.classList.add('show-vr-film');
                 } else schedule();
             }, {once: true});
-            video.addEventListener('error', () => {
+            if (once) video.addEventListener('volumechange', () => { if (!video.muted) video.muted = true; });
+    video.addEventListener('error', () => {
                 clearTimeout(timer);
                 card.classList.remove('has-vr-film', 'show-vr-film');
                 overlay.remove();
@@ -189,14 +190,16 @@
 // Avatar footage stays within the original illustration footprint.
 document.querySelectorAll('[data-avatar-film], [data-inline-film]').forEach(figure => {
     const source = figure.dataset.inlineFilm || 'awatar.flow.mp4';
+    const once = figure.hasAttribute('data-film-once');
+    let started = false;
     const image = figure.querySelector('img');
     const stage = document.createElement('div');
     stage.className = 'avatar-film-stage';
     image.before(stage); stage.append(image);
     const video = document.createElement('video');
-    video.controls = true; video.playsInline = true; video.muted = true;
-    video.loop = true; video.preload = 'none'; video.inert = true;
-    video.setAttribute('aria-label', source === 'klisza.mp4' ? 'Wideo i postprodukcja, animowana klisza' : 'Awatar AI, przykład prezentacji wideo');
+    video.controls = !once; video.playsInline = true; video.muted = true;
+    video.loop = !once; video.preload = 'none'; video.inert = true;
+    video.setAttribute('aria-label', source === 'kostka.mp4' ? 'Animowana kostka, nowoczesne strony WWW z AI' : source === 'klisza.mp4' ? 'Wideo i postprodukcja, animowana klisza' : 'Awatar AI, przykład prezentacji wideo');
     stage.append(video);
     const button = document.createElement('button'); button.type = 'button';
     button.className = 'avatar-film-toggle';
@@ -206,9 +209,10 @@ document.querySelectorAll('[data-avatar-film], [data-inline-film]').forEach(figu
     let timer, visible = false, dismissed = false;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
     function stop() { clearTimeout(timer); video.pause(); video.inert = true; figure.classList.remove('is-film-visible'); button.textContent = labels[0]; }
-    function play() { clearTimeout(timer); if (!video.getAttribute('src')) video.src = source; video.inert = false; figure.classList.add('is-film-visible'); button.textContent = labels[1]; video.play().catch(() => {}); }
-    function schedule() { clearTimeout(timer); if (visible && !dismissed && !document.hidden && !reduced.matches && !navigator.connection?.saveData) timer = setTimeout(play, 2000); }
+    function play() { started = true; video.muted = true; clearTimeout(timer); if (!video.getAttribute('src')) video.src = source; video.inert = false; figure.classList.add('is-film-visible'); button.textContent = labels[1]; video.play().catch(() => {}); }
+    function schedule() { clearTimeout(timer); if (visible && !dismissed && !(once && started) && !document.hidden && !reduced.matches && !navigator.connection?.saveData) timer = setTimeout(play, 2000); }
     button.addEventListener('click', () => { dismissed = true; if (figure.classList.contains('is-film-visible')) stop(); else play(); });
+    if (once) video.addEventListener('volumechange', () => { if (!video.muted) video.muted = true; });
     video.addEventListener('error', () => { dismissed = true; stop(); button.hidden = true; });
     if (window.IntersectionObserver) new IntersectionObserver(entries => { visible = entries[0].isIntersecting; if (visible) schedule(); else stop(); }, {threshold: .5}).observe(figure);
     document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); else schedule(); });
