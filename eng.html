@@ -4,16 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kiszlo Studio | AI, VR & MedTech in Wrocław</title>
-    
+
     <!-- Meta Descriptions Multi-Language & Geo Tags -->
     <meta name="description" content="Kiszlo Studio – Karol Kiszło. We combine marketing with technology from our base in Wrocław, Poland. Specializing in AI for business, MedTech, VR simulations, and premium media production. Contact: kiszlo.studio@gmail.com, +48 600 608 333.">
-    <meta name="description" lang="pl" content="Kiszlo Studio Wrocław — Tworzenie stron WWW opartych na AI, symulacje VR i produkcja mediów premium. Kontakt: kiszlo.studio@gmail.com">
-    <meta name="description" lang="de" content="Kiszlo Studio Breslau/Wrocław — KI-gestützte Webentwicklung, VR-Simulationen und Premium-Medienproduktion. Kontakt: kiszlo.studio@gmail.com">
-    
+
     <meta name="keywords" content="Kiszlo Studio, Karol Kiszło Wrocław, AI Agency Poland, MedTech Wrocław, VR Simulations, AI Business Automation, Strategic Marketing">
     <meta name="author" content="Karol Kiszło">
     <meta name="robots" content="index, follow">
-    
+
     <!-- Geo Location Tags -->
     <meta name="geo.region" content="PL-DS">
     <meta name="geo.placename" content="Wrocław, Dolnośląskie, Polska">
@@ -25,7 +23,7 @@
     <link rel="alternate" hreflang="pl" href="https://www.kiszlo.studio/" />
     <link rel="alternate" hreflang="en" href="https://www.kiszlo.studio/eng.html" />
     <link rel="alternate" hreflang="de" href="https://www.kiszlo.studio/de.html" />
-    <link rel="alternate" hreflang="x-default" href="https://www.kiszlo.studio/eng.html" />
+    <link rel="alternate" hreflang="x-default" href="https://www.kiszlo.studio/" />
 
     <!-- AI & Knowledge Graph Schema -->
     <script type="application/ld+json">
@@ -116,7 +114,7 @@
       ]
     }
     </script>
-    
+
     <!-- Font Preload -->
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -158,11 +156,11 @@
         }
 
         /* no-js fallback */
-        html.no-js body { overflow-x: visible; }
+        html.no-js body { overflow-x: hidden; }
         html.no-js .hero-title-line { transform: translateY(0) !important; opacity: 1 !important; }
         html.no-js .hero-text { opacity: 1 !important; }
         html.no-js .fade-up { opacity: 1 !important; transform: translateY(0) !important; }
-        
+
         ::selection { background: var(--primary); color: #000; }
 
         img { display: block; max-width: 100%; height: auto; }
@@ -199,7 +197,7 @@
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .nav-brand-block {
             display: flex;
             flex-direction: column;
@@ -335,7 +333,7 @@
             margin-bottom: 32px;
             overflow: hidden;
         }
-        
+
         .hero-title i { font-style: italic; color: var(--text); }
 
         .hero-title-line {
@@ -361,7 +359,7 @@
             grid-template-columns: repeat(12, 1fr);
             gap: 16px;
         }
-        
+
         .bento-item {
             background: var(--surface);
             border: 1px solid var(--border-soft);
@@ -487,7 +485,7 @@
             font-weight: 300;
             transition: var(--transition);
         }
-        
+
         .footer-links a:hover { color: var(--primary); }
 
         .footer-bottom {
@@ -511,7 +509,7 @@
             flex-direction: column;
             align-items: flex-end;
         }
-        
+
         #ai-chat-button {
             width: 56px;
             height: 56px;
@@ -526,7 +524,7 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.8);
             transition: var(--transition);
         }
-        
+
         #ai-chat-button:hover {
             border-color: var(--primary);
             box-shadow: var(--glow);
@@ -580,7 +578,7 @@
             color: var(--text);
             align-self: flex-start;
         }
-        
+
         .msg-user {
             background-color: var(--primary-soft);
             border: 1px solid rgba(0,243,255,0.2);
@@ -606,7 +604,7 @@
             outline: none;
             font-family: var(--font-body);
         }
-        
+
         .chat-input input::placeholder { color: var(--faint); }
 
         .chat-input button {
@@ -628,10 +626,10 @@
             .bento-large { grid-template-columns: 1fr; }
             .bento-medium, .bento-small { grid-column: span 12; }
             .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-            
+
             /* Ukrywamy tagline na mniejszych ekranach dla czystości */
             .logo-tagline { display: none; }
-            
+
             /* Mobile Menu Styles */
             .hamburger { display: flex; }
             .nav-menu-wrapper {
@@ -664,7 +662,7 @@
                 padding-left: 0;
                 justify-content: center;
             }
-            
+
             /* Hamburger Animation */
             .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
             .hamburger.open span:nth-child(2) { opacity: 0; }
@@ -676,9 +674,11 @@
             .footer-bottom { flex-direction: column; gap: 12px; }
         }
     </style>
+    <link rel="stylesheet" href="assets/site.css">
+    <script src="assets/site.js" defer></script>
 </head>
 <body>
-    <script>document.documentElement.classList.remove('no-js');</script>
+
     <div class="noise" aria-hidden="true"></div>
 
     <!-- Navigation -->
@@ -692,7 +692,7 @@
                     AI-DRIVEN CREATIVE & STRATEGIC STUDIO
                 </div>
             </a>
-            
+
             <button class="hamburger" id="mobile-toggle" aria-label="Menu">
                 <span></span>
                 <span></span>
@@ -702,9 +702,9 @@
             <div class="nav-menu-wrapper" id="mobile-menu">
                 <div class="nav-links">
                     <a href="eng.html" class="active">Home</a>
-                    <a href="onas.html">About</a>
+                    <a href="onas.html" lang="pl">About (PL)</a>
                     <a href="services.html">Services</a>
-                    <a href="portfolio.html">Portfolio</a>
+                    <a href="portfolio.html" lang="pl">Portfolio (PL)</a>
                 </div>
                 <div class="nav-langs">
                     <a href="index.html" style="color: var(--faint); font-size: 12px; text-decoration: none;">PL</a>
@@ -718,9 +718,7 @@
     <main>
         <!-- Hero Section -->
         <section class="hero">
-            <video autoplay loop muted playsinline class="hero-video">
-                <source src="https://cdn.pixabay.com/video/2020/05/25/40141-425251642_large.mp4" type="video/mp4">
-            </video>
+            <img src="assets/ai.webp" class="hero-artwork" alt="" width="1536" height="1024" fetchpriority="high">
             <div class="container hero-inner">
                 <div class="eyebrow">Strategic Advisory & Media</div>
                 <h1 class="hero-title">
@@ -741,7 +739,7 @@
                 <h2 class="hero-title fade-up" style="font-size: clamp(36px, 6vw, 64px); margin-bottom: 64px;"><i>Tech, AI & Web Solutions.</i></h2>
 
                 <div class="bento-grid">
-                    
+
                     <!-- Large Block: Production -->
                     <article class="bento-item bento-large fade-up">
                         <div>
@@ -756,7 +754,7 @@
                                 <span class="tag">Multimedia Scenography</span>
                             </div>
                         </div>
-                        <img src="https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=2071&auto=format&fit=crop" alt="Post-production" style="border-radius: 12px; filter: grayscale(80%) contrast(1.1);">
+                        <img src="assets/video.webp" width="1536" height="1024" loading="lazy" decoding="async" alt="Post-production" style="border-radius: 12px; filter: none;">
                     </article>
 
                     <!-- Medium Block: VR -->
@@ -821,9 +819,9 @@
                     <div class="footer-head">Navigation</div>
                     <div class="footer-links">
                         <a href="eng.html">Home</a>
-                        <a href="onas.html">About</a>
+                        <a href="onas.html" lang="pl">About (PL)</a>
                         <a href="services.html">Services</a>
-                        <a href="portfolio.html">Portfolio</a>
+                        <a href="portfolio.html" lang="pl">Portfolio (PL)</a>
                     </div>
                 </div>
                 <div>
@@ -847,124 +845,24 @@
         <div id="ai-chat-window">
             <div class="chat-header">
                 <div style="display: flex; align-items: center; gap: 10px;">
-                     <img src="https://via.placeholder.com/20x20/00f3ff/00f3ff?text=+" alt="AI Logo" style="border-radius:50%; width: 12px; height: 12px;">
-                    <span style="font-family: var(--font-body); font-weight: 600; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;">AI System</span>
+                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg>
+                    <span style="font-family: var(--font-body); font-weight: 600; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;">Help & contact</span>
                 </div>
-                <button id="close-chat" style="background: none; border: none; color: var(--faint); cursor: pointer; font-size: 20px;">×</button>
+                <button type="button" id="close-chat" style="background: none; border: none; color: var(--faint); cursor: pointer; font-size: 20px;">×</button>
             </div>
             <div class="chat-messages" id="chat-messages">
                 <div class="msg msg-ai">Good morning. I am the Kiszlo.Studio assistant. How may I assist you?</div>
             </div>
             <div class="chat-input">
                 <input type="text" id="chat-input-field" placeholder="Ask a question...">
-                <button id="send-msg">Send</button>
+                <button type="button" id="send-msg">Send</button>
             </div>
         </div>
-        <div id="ai-chat-button">
+        <button id="ai-chat-button" type="button">
             <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
-        </div>
+        </button>
     </div>
 
-    <script>
-        // --- MOBILE MENU LOGIC ---
-        const mobileToggle = document.getElementById('mobile-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        if (mobileToggle && mobileMenu) {
-            mobileToggle.addEventListener('click', () => {
-                mobileToggle.classList.toggle('open');
-                mobileMenu.classList.toggle('open');
-                document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
-            });
 
-            const mobileLinks = mobileMenu.querySelectorAll('a');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileToggle.classList.remove('open');
-                    mobileMenu.classList.remove('open');
-                    document.body.style.overflow = '';
-                });
-            });
-        }
-
-        // AI Chat Logic
-        const chatBtn = document.getElementById('ai-chat-button');
-        const chatWindow = document.getElementById('ai-chat-window');
-        const closeChatBtn = document.getElementById('close-chat');
-        const chatInput = document.getElementById('chat-input-field');
-        const sendMsgBtn = document.getElementById('send-msg');
-        const messagesContainer = document.getElementById('chat-messages');
-
-        function toggleChat() {
-            chatWindow.style.display = chatWindow.style.display === 'flex' ? 'none' : 'flex';
-        }
-
-        chatBtn.addEventListener('click', toggleChat);
-        closeChatBtn.addEventListener('click', toggleChat);
-
-        function handleSend() {
-            const text = chatInput.value.trim();
-            if(!text) return;
-            
-            messagesContainer.innerHTML += `<div class="msg msg-user">${text}</div>`;
-            chatInput.value = '';
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
-            setTimeout(() => {
-                messagesContainer.innerHTML += `<div class="msg msg-ai">Understood. To answer this question, my knowledge system requires authorization and an API key. Please contact the team directly.</div>`;
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            }, 1000);
-        }
-
-        sendMsgBtn.addEventListener('click', handleSend);
-        chatInput.addEventListener('keypress', (e) => {
-            if(e.key === 'Enter') handleSend();
-        });
-
-        // GSAP Animations
-        window.addEventListener('load', () => {
-            if (typeof gsap === 'undefined') return;
-            gsap.registerPlugin(ScrollTrigger);
-
-            const tl = gsap.timeline({ delay: 0.1 });
-            tl.to('.hero-title-line', {
-                y: '0%',
-                duration: 1.2,
-                stagger: 0.12,
-                ease: 'power4.out'
-            })
-            .to('.hero-text', {
-                opacity: 1,
-                duration: 1,
-                ease: 'power2.out'
-            }, '-=0.8');
-
-            gsap.utils.toArray('.fade-up').forEach(el => {
-                gsap.to(el, {
-                    scrollTrigger: {
-                        trigger: el,
-                        start: 'top 85%'
-                    },
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.8,
-                    ease: 'power3.out'
-                });
-            });
-
-            // Nav Hide/Show on Scroll
-            let lastScroll = 0;
-            const nav = document.getElementById('main-nav');
-            window.addEventListener('scroll', () => {
-                const currentScroll = window.pageYOffset;
-                if (currentScroll > 100 && currentScroll > lastScroll) {
-                    nav.style.transform = 'translateY(-100%)';
-                } else {
-                    nav.style.transform = 'translateY(0)';
-                }
-                lastScroll = currentScroll;
-            });
-        });
-    </script>
 </body>
 </html>

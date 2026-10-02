@@ -1,19 +1,17 @@
 <!DOCTYPE html>
-<html lang="pl" data-theme="dark">
+<html lang="pl" data-theme="dark" class="no-js">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>O nas | Kiszlo.Studio</title>  
-    
+
     <!-- Meta Descriptions Multi-Language & Geo Tags -->
     <meta name="description" content="Kiszlo Studio – Karol Kiszło. Łączymy marketing z technologią z naszej bazy we Wrocławiu. Specjalizujemy się w AI dla biznesu, MedTech, symulacjach VR oraz multimedialnej scenografii. Kontakt: kiszlo.studio@gmail.com, +48 600 608 333.">
-    <meta name="description" lang="en" content="Kiszlo Studio Wrocław — AI-powered web development, VR simulations, and premium media production. Contact: kiszlo.studio@gmail.com">
-    <meta name="description" lang="de" content="Kiszlo Studio Breslau/Wrocław — KI-gestützte Webentwicklung, VR-Simulationen und Premium-Medienproduktion. Kontakt: kiszlo.studio@gmail.com">
-    
+
     <meta name="keywords" content="Kiszlo Studio, Karol Kiszło Wrocław, Agencja AI Wrocław, MedTech Wrocław, Symulacje VR, Automatyzacja Biznesu AI, Marketing Strategiczny">
     <meta name="author" content="Karol Kiszło">
     <meta name="robots" content="index, follow">
-    
+
     <!-- Geo Location Tags -->
     <meta name="geo.region" content="PL-DS">
     <meta name="geo.placename" content="Wrocław, Dolnośląskie, Polska">
@@ -349,7 +347,7 @@
         }
 
         /* --- STREAMING_CHUNK:Stylowanie profilu Karola... --- */
-        
+
         /* Zmieniony układ na estetyczną wizytówkę w 1 kolumnie (zdjęcie obok tekstu) */
         .single-profile-card {
             display: grid;
@@ -703,7 +701,7 @@
             font-weight: 300;
             transition: var(--transition);
         }
-        
+
         .footer-links a:hover { color: var(--primary); transform: translateX(4px); }
 
         .footer-bottom {
@@ -751,7 +749,7 @@
             .sticky-col { position: static; }
             .hero-side { justify-content: flex-start; }
             .logo-tagline { display: none; }
-            
+
             /* Mobile Menu Styles */
             .hamburger { display: flex; }
             .nav-menu-wrapper {
@@ -764,7 +762,7 @@
             .nav-menu-wrapper.open { opacity: 1; pointer-events: auto; }
             .nav-links { display: flex; flex-direction: column; text-align: center; font-size: 18px; gap: 32px; }
             .nav-langs { border-left: none; padding-left: 0; justify-content: center; }
-            
+
             /* Hamburger Animation */
             .hamburger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
             .hamburger.open span:nth-child(2) { opacity: 0; }
@@ -821,6 +819,8 @@
             .collaboration-network .network-karol { padding: 24px; }
         }
     </style>
+    <link rel="stylesheet" href="assets/site.css">
+    <script src="assets/site.js" defer></script>
 </head>
 <body>
     <div class="noise" aria-hidden="true"></div>
@@ -835,7 +835,7 @@
                     AI-DRIVEN CREATIVE & STRATEGIC STUDIO
                 </div>
             </a>
-            
+
             <button class="hamburger" id="mobile-toggle" aria-label="Menu" aria-expanded="false">
                 <span></span>
                 <span></span>
@@ -896,7 +896,7 @@
                         <img src="k2.jpg" alt="Karol Kiszło" class="hover-photo" onerror="this.style.display='none'">
                         <div class="profile-tagline">Wrocław, PL</div>
                     </div>
-                    
+
                     <div class="profile-content">
                         <h3 class="profile-name">Karol Kiszło</h3>
                         <div class="profile-role">Założyciel i Strateg Kreatywny</div>
@@ -1023,7 +1023,7 @@
         <section class="section" style="padding-top: 0; border-top: none;">
             <div class="container">
                 <div class="fade-up" style="border-radius: 24px; overflow: hidden; border: 1px solid var(--border-soft); box-shadow: 0 20px 40px rgba(0,0,0,0.2);">
-                    <img src="logo.jpg" alt="Kiszlo.Studio - Sygnet i Logotyp" style="width: 100%; height: auto; display: block; filter: contrast(1.05) brightness(0.95); transition: transform 0.7s ease, filter 0.5s ease;" onmouseover="this.style.transform='scale(1.02)'; this.style.filter='contrast(1.1) brightness(1)'" onmouseout="this.style.transform='scale(1)'; this.style.filter='contrast(1.05) brightness(0.95)'">
+                    <img src="assets/brand-banner.svg" alt="Kiszlo.Studio — strategia, kreacja, technologia" width="1600" height="550" loading="lazy" style="width: 100%; height: auto; display: block; filter: contrast(1.05) brightness(0.95); transition: transform 0.7s ease, filter 0.5s ease;" onmouseover="this.style.transform='scale(1.02)'; this.style.filter='contrast(1.1) brightness(1)'" onmouseout="this.style.transform='scale(1)'; this.style.filter='contrast(1.05) brightness(0.95)'">
                 </div>
             </div>
         </section>
@@ -1099,112 +1099,7 @@
         </div>
     </footer>
 
-    <script>
-        // --- Automatyczna zmiana portretu co 2 sekundy ---
-        const profileMedia = document.querySelector('.profile-media');
-        const portraitPhotos = profileMedia?.querySelectorAll('img');
 
-        if (profileMedia && portraitPhotos?.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            window.setInterval(() => {
-                profileMedia.classList.toggle('is-second-photo-visible');
-            }, 2000);
-        }
-
-        // --- Zamykanie mobilnego menu ---
-        const mobileToggle = document.getElementById('mobile-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        if (mobileToggle && mobileMenu) {
-            mobileToggle.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const isOpen = mobileToggle.classList.toggle('open');
-                mobileMenu.classList.toggle('open');
-                mobileToggle.setAttribute('aria-expanded', isOpen);
-                document.body.style.overflow = isOpen ? 'hidden' : '';
-            });
-
-            const mobileLinks = mobileMenu.querySelectorAll('a');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileToggle.classList.remove('open');
-                    mobileMenu.classList.remove('open');
-                    mobileToggle.setAttribute('aria-expanded', 'false');
-                    document.body.style.overflow = '';
-                });
-            });
-
-            mobileMenu.addEventListener('click', (e) => {
-                if(e.target === mobileMenu) {
-                    mobileToggle.classList.remove('open');
-                    mobileMenu.classList.remove('open');
-                    mobileToggle.setAttribute('aria-expanded', 'false');
-                    document.body.style.overflow = '';
-                }
-            });
-        }
-
-        // --- Nav Hide/Show on Scroll ---
-        let lastScroll = 0;
-        const nav = document.getElementById('main-nav');
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            if (currentScroll > 100 && currentScroll > lastScroll) {
-                nav.style.transform = 'translateY(-100%)';
-            } else {
-                nav.style.transform = 'translateY(0)';
-            }
-            lastScroll = currentScroll;
-        });
-
-        // --- GSAP Animations ---
-        window.addEventListener('load', () => {
-            if (typeof gsap === 'undefined') return;
-            gsap.registerPlugin(ScrollTrigger);
-
-            const tl = gsap.timeline({ delay: 0.15 });
-            tl.to('.hero-title-line', {
-                y: '0%',
-                duration: 1.25,
-                stagger: 0.12,
-                ease: 'power4.out'
-            })
-            .to('.hero-text', {
-                opacity: 1,
-                duration: 1,
-                ease: 'power2.out'
-            }, '-=0.8')
-            .to('.hero-side', {
-                opacity: 1,
-                duration: 1,
-                ease: 'power2.out'
-            }, '-=0.9');
-
-            gsap.utils.toArray('.fade-up').forEach(el => {
-                gsap.to(el, {
-                    scrollTrigger: {
-                        trigger: el,
-                        start: 'top 86%'
-                    },
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.85,
-                    ease: 'power3.out'
-                });
-            });
-
-            gsap.utils.toArray('.fade-in').forEach(el => {
-                gsap.to(el, {
-                    scrollTrigger: {
-                        trigger: el,
-                        start: 'top 86%'
-                    },
-                    opacity: 1,
-                    duration: 1,
-                    ease: 'power2.out'
-                });
-            });
-        });
-    </script>
 
     <script>
     // Połączenia wynikają z rzeczywistych pozycji kart, także po zmianie rozmiaru.

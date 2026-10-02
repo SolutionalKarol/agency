@@ -4,16 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio | Kiszlo.Studio</title>
-    
+
     <!-- Meta Descriptions Multi-Language & Geo Tags -->
     <meta name="description" content="Portfolio Kiszlo Studio. Zobacz nasze wybrane realizacje: produkcje wideo klasy premium, symulacje VR (MedTech), wdrożenia AI oraz zyskowne strategie marketingowe.">
-    <meta name="description" lang="en" content="Kiszlo Studio Portfolio. Explore our selected case studies: premium video production, VR simulations (MedTech), AI implementations, and ROI-driven marketing strategies.">
-    <meta name="description" lang="de" content="Kiszlo Studio Portfolio. Entdecken Sie unsere ausgewählten Fallstudien: Premium-Videoproduktion, VR-Simulationen (MedTech), KI-Implementierungen und ROI-gesteuerte Marketingstrategien.">
-    
+
     <meta name="keywords" content="Portfolio Kiszlo Studio, Case Study Agencja AI, Realizacje VR Wrocław, Kampanie Wideo, MedTech VR, Przykłady wdrożeń AI, Sukcesy marketingowe">
     <meta name="author" content="Karol Kiszło">
     <meta name="robots" content="index, follow">
-    
+
     <!-- Geo Location Tags -->
     <meta name="geo.region" content="PL-DS">
     <meta name="geo.placename" content="Wrocław, Dolnośląskie, Polska">
@@ -59,7 +57,7 @@
       ]
     }
     </script>
-    
+
     <!-- Font Preload -->
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -101,11 +99,11 @@
         }
 
         /* no-js fallback */
-        html.no-js body { overflow-x: visible; }
+        html.no-js body { overflow-x: hidden; }
         html.no-js .hero-title-line { transform: translateY(0) !important; opacity: 1 !important; }
         html.no-js .hero-text { opacity: 1 !important; }
         html.no-js .fade-up { opacity: 1 !important; transform: translateY(0) !important; }
-        
+
         ::selection { background: var(--primary); color: #000; }
 
         img { display: block; max-width: 100%; height: auto; }
@@ -142,7 +140,7 @@
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .nav-brand-block {
             display: flex;
             flex-direction: column;
@@ -290,7 +288,7 @@
             margin-bottom: 32px;
             overflow: hidden;
         }
-        
+
         .hero-title i { font-style: italic; color: var(--text); }
 
         .hero-title-line {
@@ -316,7 +314,7 @@
             grid-template-columns: repeat(12, 1fr);
             gap: 16px;
         }
-        
+
         .portfolio-item {
             background: var(--surface);
             border: 1px solid var(--border-soft);
@@ -326,7 +324,6 @@
             transition: var(--transition);
             display: flex;
             flex-direction: column;
-            group: portfolio;
             text-decoration: none;
             color: inherit;
         }
@@ -340,7 +337,7 @@
             width: 100%;
             height: 380px;
             object-fit: cover;
-            filter: grayscale(80%) contrast(1.1);
+            filter: none;
             transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1), filter 0.5s ease;
         }
 
@@ -368,7 +365,7 @@
         .portfolio-large { grid-column: span 12; flex-direction: row; }
         .portfolio-large .portfolio-image { width: 60%; height: 500px; margin-top: 0; }
         .portfolio-large .portfolio-content { width: 40%; margin-top: 0; background: transparent; padding: 48px; justify-content: center; gap: 24px; }
-        
+
         .portfolio-medium { grid-column: span 6; }
 
         .portfolio-category {
@@ -460,7 +457,7 @@
             font-weight: 300;
             transition: var(--transition);
         }
-        
+
         .footer-links a:hover { color: var(--primary); }
 
         .footer-bottom {
@@ -484,7 +481,7 @@
             flex-direction: column;
             align-items: flex-end;
         }
-        
+
         #ai-chat-button {
             width: 56px;
             height: 56px;
@@ -499,7 +496,7 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.8);
             transition: var(--transition);
         }
-        
+
         #ai-chat-button:hover {
             border-color: var(--primary);
             box-shadow: var(--glow);
@@ -553,7 +550,7 @@
             color: var(--text);
             align-self: flex-start;
         }
-        
+
         .msg-user {
             background-color: var(--primary-soft);
             border: 1px solid rgba(0,243,255,0.2);
@@ -579,7 +576,7 @@
             outline: none;
             font-family: var(--font-body);
         }
-        
+
         .chat-input input::placeholder { color: var(--faint); }
 
         .chat-input button {
@@ -633,9 +630,11 @@
             .footer-bottom { flex-direction: column; gap: 12px; }
         }
     </style>
+    <link rel="stylesheet" href="assets/site.css">
+    <script src="assets/site.js" defer></script>
 </head>
 <body>
-    <script>document.documentElement.classList.remove('no-js');</script>
+
     <div class="noise" aria-hidden="true"></div>
 
     <!-- Navigation -->
@@ -649,7 +648,7 @@
                     AI-DRIVEN CREATIVE & STRATEGIC STUDIO
                 </div>
             </a>
-            
+
             <button class="hamburger" id="mobile-toggle" aria-label="Menu">
                 <span></span>
                 <span></span>
@@ -692,10 +691,10 @@
         <section class="section" style="padding-top: 40px;">
             <div class="container">
                 <div class="portfolio-grid">
-                    
+
                     <!-- Case Study 1 (Wyróżnione) -->
-                    <a href="#" class="portfolio-item portfolio-large fade-up">
-                        <img src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?q=80&w=2078&auto=format&fit=crop" alt="Symulacje Medyczne VR" class="portfolio-image">
+                    <article class="portfolio-item portfolio-large fade-up">
+                        <img src="assets/vr.webp" width="1536" height="1024" loading="lazy" decoding="async" alt="Symulacje Medyczne VR" class="portfolio-image">
                         <div class="portfolio-content">
                             <div>
                                 <div class="portfolio-category">VR & MedTech</div>
@@ -710,11 +709,11 @@
                                 <span class="tag">Unity 3D</span>
                             </div>
                         </div>
-                    </a>
+                    </article>
 
                     <!-- Case Study 2 -->
-                    <a href="#" class="portfolio-item portfolio-medium fade-up">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" alt="Kampania Premium Wideo" class="portfolio-image">
+                    <article class="portfolio-item portfolio-medium fade-up">
+                        <img src="assets/video.webp" width="1536" height="1024" loading="lazy" decoding="async" alt="Kampania Premium Wideo" class="portfolio-image">
                         <div class="portfolio-content">
                             <div>
                                 <div class="portfolio-category">Wideo & Produkcja</div>
@@ -729,11 +728,11 @@
                                 <span class="tag">VFX</span>
                             </div>
                         </div>
-                    </a>
+                    </article>
 
                     <!-- Case Study 3 -->
-                    <a href="#" class="portfolio-item portfolio-medium fade-up">
-                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1965&auto=format&fit=crop" alt="Rozwiązania AI Web" class="portfolio-image">
+                    <article class="portfolio-item portfolio-medium fade-up">
+                        <img src="assets/ai.webp" width="1536" height="1024" loading="lazy" decoding="async" alt="Rozwiązania AI Web" class="portfolio-image">
                         <div class="portfolio-content">
                             <div>
                                 <div class="portfolio-category">AI & Web Dev</div>
@@ -748,11 +747,11 @@
                                 <span class="tag">UX/UI Premium</span>
                             </div>
                         </div>
-                    </a>
+                    </article>
 
                     <!-- Case Study 4 -->
-                    <a href="#" class="portfolio-item portfolio-large fade-up">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop" alt="Strategia ROI" class="portfolio-image">
+                    <article class="portfolio-item portfolio-large fade-up">
+                        <img src="assets/strategy.webp" width="1536" height="1024" loading="lazy" decoding="async" alt="Strategia ROI" class="portfolio-image">
                         <div class="portfolio-content">
                             <div>
                                 <div class="portfolio-category">Strategia & Consulting</div>
@@ -767,7 +766,7 @@
                                 <span class="tag">Architektura marki</span>
                             </div>
                         </div>
-                    </a>
+                    </article>
 
                 </div>
             </div>
@@ -815,124 +814,24 @@
         <div id="ai-chat-window">
             <div class="chat-header">
                 <div style="display: flex; align-items: center; gap: 10px;">
-                     <img src="https://via.placeholder.com/20x20/00f3ff/00f3ff?text=+" alt="AI Logo" style="border-radius:50%; width: 12px; height: 12px;">
-                    <span style="font-family: var(--font-body); font-weight: 600; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;">System AI</span>
+                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg>
+                    <span style="font-family: var(--font-body); font-weight: 600; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;">Pomoc i kontakt</span>
                 </div>
-                <button id="close-chat" style="background: none; border: none; color: var(--faint); cursor: pointer; font-size: 20px;">×</button>
+                <button type="button" id="close-chat" style="background: none; border: none; color: var(--faint); cursor: pointer; font-size: 20px;">×</button>
             </div>
             <div class="chat-messages" id="chat-messages">
                 <div class="msg msg-ai">Dzień dobry. Jestem asystentem Kiszlo.Studio. W czym mogę pomóc?</div>
             </div>
             <div class="chat-input">
                 <input type="text" id="chat-input-field" placeholder="Zadaj pytanie...">
-                <button id="send-msg">Wyślij</button>
+                <button type="button" id="send-msg">Wyślij</button>
             </div>
         </div>
-        <div id="ai-chat-button">
+        <button id="ai-chat-button" type="button">
             <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
-        </div>
+        </button>
     </div>
 
-    <script>
-        // --- MOBILE MENU LOGIC ---
-        const mobileToggle = document.getElementById('mobile-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        if (mobileToggle && mobileMenu) {
-            mobileToggle.addEventListener('click', () => {
-                mobileToggle.classList.toggle('open');
-                mobileMenu.classList.toggle('open');
-                document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
-            });
 
-            const mobileLinks = mobileMenu.querySelectorAll('a');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileToggle.classList.remove('open');
-                    mobileMenu.classList.remove('open');
-                    document.body.style.overflow = '';
-                });
-            });
-        }
-
-        // AI Chat Logic
-        const chatBtn = document.getElementById('ai-chat-button');
-        const chatWindow = document.getElementById('ai-chat-window');
-        const closeChatBtn = document.getElementById('close-chat');
-        const chatInput = document.getElementById('chat-input-field');
-        const sendMsgBtn = document.getElementById('send-msg');
-        const messagesContainer = document.getElementById('chat-messages');
-
-        function toggleChat() {
-            chatWindow.style.display = chatWindow.style.display === 'flex' ? 'none' : 'flex';
-        }
-
-        chatBtn.addEventListener('click', toggleChat);
-        closeChatBtn.addEventListener('click', toggleChat);
-
-        function handleSend() {
-            const text = chatInput.value.trim();
-            if(!text) return;
-            
-            messagesContainer.innerHTML += `<div class="msg msg-user">${text}</div>`;
-            chatInput.value = '';
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
-            setTimeout(() => {
-                messagesContainer.innerHTML += `<div class="msg msg-ai">Przyjąłem. Aby odpowiedzieć na to pytanie, mój system wiedzy wymaga autoryzacji i klucza API. Skontaktuj się bezpośrednio z zespołem.</div>`;
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            }, 1000);
-        }
-
-        sendMsgBtn.addEventListener('click', handleSend);
-        chatInput.addEventListener('keypress', (e) => {
-            if(e.key === 'Enter') handleSend();
-        });
-
-        // GSAP Animations
-        window.addEventListener('load', () => {
-            if (typeof gsap === 'undefined') return;
-            gsap.registerPlugin(ScrollTrigger);
-
-            const tl = gsap.timeline({ delay: 0.1 });
-            tl.to('.hero-title-line', {
-                y: '0%',
-                duration: 1.2,
-                stagger: 0.12,
-                ease: 'power4.out'
-            })
-            .to('.hero-text', {
-                opacity: 1,
-                duration: 1,
-                ease: 'power2.out'
-            }, '-=0.8');
-
-            gsap.utils.toArray('.fade-up').forEach(el => {
-                gsap.to(el, {
-                    scrollTrigger: {
-                        trigger: el,
-                        start: 'top 85%'
-                    },
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.8,
-                    ease: 'power3.out'
-                });
-            });
-
-            // Nav Hide/Show on Scroll
-            let lastScroll = 0;
-            const nav = document.getElementById('main-nav');
-            window.addEventListener('scroll', () => {
-                const currentScroll = window.pageYOffset;
-                if (currentScroll > 100 && currentScroll > lastScroll) {
-                    nav.style.transform = 'translateY(-100%)';
-                } else {
-                    nav.style.transform = 'translateY(0)';
-                }
-                lastScroll = currentScroll;
-            });
-        });
-    </script>
 </body>
 </html>
