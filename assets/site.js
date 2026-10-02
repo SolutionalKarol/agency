@@ -96,7 +96,7 @@
         card.classList.add('vr-video-card');
         let inView = false, timer, video, overlay, dismissed = false, ready = false;
         const language = root.lang.split('-')[0];
-        const text = {pl: ['02 · Trening VR', 'Wróć do opisu'], en: ['02 · VR training', 'Back to description'], de: ['02 · VR-Training', 'Zur Beschreibung']}[language] || ['02 · VR training', 'Back to description'];
+        const text = {pl: ['02 · Arachnofobia — trening VR · NCNI', 'Wróć do opisu'], en: ['02 · Arachnophobia VR training · NCNI', 'Back to description'], de: ['02 · Arachnophobie-Training in VR · NCNI', 'Zur Beschreibung']}[language] || ['02 · Arachnophobia VR training · NCNI', 'Back to description'];
         function schedule() {
             clearTimeout(timer);
             if (!inView || !video || !ready || dismissed || reducedMotion.matches) return;
