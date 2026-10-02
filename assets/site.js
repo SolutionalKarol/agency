@@ -218,3 +218,19 @@ document.querySelectorAll('[data-avatar-film], [data-inline-film]').forEach(figu
     document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); else schedule(); });
     reduced.addEventListener('change', () => { if (reduced.matches) stop(); else schedule(); });
 });
+
+// Project inquiry opens the visitor's mail application; nothing is silently submitted.
+(() => {
+ const form=document.getElementById('project-contact'); if(!form)return;
+ const topic=document.getElementById('project-topic');
+ const requested=new URLSearchParams(window.location.search).get('temat');
+ if([...topic.options].some(option=>option.value===requested))topic.value=requested;
+ form.addEventListener('submit',event=>{
+  event.preventDefault(); if(!form.reportValidity())return;
+  const name=document.getElementById('project-name').value.trim();
+  const email=document.getElementById('project-email').value.trim();
+  const message=document.getElementById('project-message').value.trim();
+  const body=`Imię: ${name}\nE-mail: ${email}\nTemat: ${topic.value}\n\n${message}`;
+  window.location.href='mailto:kiszlo.studio@gmail.com?subject='+encodeURIComponent('Projekt: '+topic.value)+'&body='+encodeURIComponent(body);
+ });
+})();
