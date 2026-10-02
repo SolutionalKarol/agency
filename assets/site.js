@@ -1,16 +1,9 @@
-/* Shared navigation, progressive animation and local contact helper. */
+/* Shared navigation, progressive animation. */
 (() => {
     'use strict';
     const root = document.documentElement;
     root.classList.remove('no-js');
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const lang = root.lang.split('-')[0];
-    const labels = {
-        pl: {open: 'Otwórz pomoc i kontakt', close: 'Zamknij', input: 'Pytanie lub opis projektu', title: 'Pomoc i kontakt', greeting: 'Informacje o ofercie Kiszlo.Studio. Wpisz temat: AI, VR, wideo lub strategia. Możesz też przygotować e-mail z opisem projektu.', email: 'Przygotuj e-mail', contact: 'Porozmawiajmy o Twoim projekcie. Wiadomość nie została wysłana — poniższy link otworzy Twój program pocztowy.', ai: 'Studio projektuje strony i oprogramowanie oraz integracje AI, automatyzacje, chatboty i cyfrowe awatary.', vr: 'Współpracujemy przy rozwiązaniach VR/XR i symulacjach, w tym projektach MedTech wymagających zaplecza naukowego.', video: 'Oferta obejmuje produkcję wideo, montaż, postprodukcję i materiały wizualne.', strategy: 'Łączymy strategię marki, komunikację i dobór technologii do potrzeb biznesu.', subject: 'Zapytanie o współpracę — Kiszlo.Studio'},
-        en: {open: 'Open help and contact', close: 'Close', input: 'Question or project description', title: 'Help & contact', greeting: 'Kiszlo.Studio service information. Enter a topic: AI, VR, video or strategy. You can also prepare an email describing your project.', email: 'Prepare email', contact: 'Let’s discuss your project. Your message has not been sent — the link below opens your email app.', ai: 'The studio develops websites and software, AI integrations, automation, chatbots and digital avatars.', vr: 'We collaborate on VR/XR experiences and simulations, including MedTech projects requiring scientific expertise.', video: 'Services include video production, editing, post-production and visual content.', strategy: 'We combine brand strategy, communication and technology selected for business needs.', subject: 'Collaboration enquiry — Kiszlo.Studio'},
-        de: {open: 'Hilfe und Kontakt öffnen', close: 'Schließen', input: 'Frage oder Projektbeschreibung', title: 'Hilfe & Kontakt', greeting: 'Informationen zu Kiszlo.Studio. Gib ein Thema ein: KI, VR, Video oder Strategie. Du kannst auch eine E-Mail zu deinem Projekt vorbereiten.', email: 'E-Mail vorbereiten', contact: 'Sprechen wir über dein Projekt. Die Nachricht wurde nicht gesendet — der Link öffnet dein E-Mail-Programm.', ai: 'Das Studio entwickelt Websites, Software, KI-Integrationen, Automatisierungen, Chatbots und digitale Avatare.', vr: 'Wir arbeiten an VR/XR-Erlebnissen und Simulationen, auch an MedTech-Projekten mit wissenschaftlicher Expertise.', video: 'Das Angebot umfasst Videoproduktion, Schnitt, Postproduktion und visuelle Inhalte.', strategy: 'Wir verbinden Markenstrategie, Kommunikation und passende Technologien für Unternehmen.', subject: 'Anfrage zur Zusammenarbeit — Kiszlo.Studio'}
-    };
-    const copy = labels[lang] || labels.en;
     const nav = document.querySelector('nav');
     const toggle = document.getElementById('mobile-toggle');
     const menu = document.getElementById('mobile-menu');
@@ -63,72 +56,19 @@
         root.dataset.theme = theme;
         try { localStorage.setItem('theme', theme); } catch (_) { /* Storage is optional. */ }
     });
-    const portrait = document.querySelector('.network-karol .profile-media');
-    if (portrait && !reducedMotion.matches) {
-        const timer = setInterval(() => {
-            const photos = [...portrait.querySelectorAll('img')];
-            if (!document.hidden && !reducedMotion.matches && photos.every(image => image.complete && image.naturalWidth)) portrait.classList.toggle('is-second-photo-visible');
-        }, 2000);
-        window.addEventListener('pagehide', () => clearInterval(timer), {once: true});
-    }
-    const chatButton = document.getElementById('ai-chat-button');
-    const chat = document.getElementById('ai-chat-window');
-    if (chatButton && chat) {
-        const input = document.getElementById('chat-input-field');
-        const messages = document.getElementById('chat-messages');
-        const close = document.getElementById('close-chat');
-        const send = document.getElementById('send-msg');
-        chatButton.setAttribute('aria-label', copy.open);
-        chatButton.setAttribute('aria-controls', chat.id);
-        chatButton.setAttribute('aria-expanded', 'false');
-        chat.setAttribute('role', 'dialog');
-        chat.setAttribute('aria-label', copy.title);
-        close.setAttribute('aria-label', copy.close);
-        input.setAttribute('aria-label', copy.input);
-        input.maxLength = 2000;
-        messages.setAttribute('role', 'log');
-        messages.setAttribute('aria-live', 'polite');
-        messages.querySelector('.msg-ai').textContent = copy.greeting;
-        chat.querySelector('.chat-header span').textContent = copy.title;
-        function setChat(open) {
-            chat.style.display = open ? 'flex' : 'none';
-            chatButton.setAttribute('aria-expanded', String(open));
-            (open ? input : chatButton).focus();
-        }
-        chatButton.addEventListener('click', () => setChat(chat.style.display !== 'flex'));
-        close.addEventListener('click', () => setChat(false));
-        chat.addEventListener('keydown', event => { if (event.key === 'Escape') setChat(false); });
-        function append(text, type) {
-            const message = document.createElement('div');
-            message.className = `msg msg-${type}`;
-            message.textContent = text;
-            messages.append(message);
-            return message;
-        }
-        function sendMessage() {
-            const text = input.value.trim();
-            if (!text) return;
-            append(text, 'user');
-            input.value = '';
-            let answer = copy.contact;
-            if (/\b(ai|ki|chatbot|llm|web)\b|automat|awatar|avatar/i.test(text)) answer = copy.ai;
-            else if (/\b(vr|xr|medtech)\b|symul|simul/i.test(text)) answer = copy.vr;
-            else if (/wideo|video|film|monta|produkc|production/i.test(text)) answer = copy.video;
-            else if (/strateg|consult|marka|brand/i.test(text)) answer = copy.strategy;
-            const reply = append(answer, 'ai');
-            const link = document.createElement('a');
-            link.textContent = copy.email + ' ↗';
-            link.href = `mailto:kiszlo.studio@gmail.com?subject=${encodeURIComponent(copy.subject)}&body=${encodeURIComponent(text)}`;
-            link.className = 'contact-email-link';
-            reply.append(document.createElement('br'), link);
-            messages.scrollTop = messages.scrollHeight;
-            input.focus();
-        }
-        send.addEventListener('click', sendMessage);
-        input.addEventListener('keydown', event => {
-            if (event.key === 'Enter' && !event.isComposing) { event.preventDefault(); sendMessage(); }
+    // Upload mk.jpg / w.jpg at the repository root; keep the placeholder on failure.
+    document.querySelectorAll('[data-portrait]').forEach(media => {
+        const photo = new Image();
+        photo.alt = media.dataset.portraitAlt;
+        photo.className = 'network-optional-photo';
+        photo.addEventListener('load', () => {
+            media.classList.add('has-photo');
+            media.querySelector('.network-placeholder')?.setAttribute('aria-hidden', 'true');
         });
-    }
+        photo.addEventListener('error', () => photo.remove(), {once: true});
+        media.append(photo);
+        photo.src = media.dataset.portrait;
+    });
     window.addEventListener('load', () => {
         if (!window.gsap || !window.ScrollTrigger || reducedMotion.matches) return;
         gsap.registerPlugin(ScrollTrigger);

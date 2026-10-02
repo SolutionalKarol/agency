@@ -14,9 +14,7 @@
 
     <!-- Geo Location Tags -->
     <meta name="geo.region" content="PL-DS">
-    <meta name="geo.placename" content="Wrocław, Dolnośląskie, Polska">
-    <meta name="geo.position" content="51.1079;17.0385">
-    <meta name="ICBM" content="51.1079, 17.0385">
+    <meta name="geo.placename" content="Lutynia, Dolnośląskie, Polska">
 
     <!-- Canonical & Hreflang for SEO -->
     <link rel="canonical" href="https://www.kiszlo.studio/portfolio.html">
@@ -39,9 +37,9 @@
           },
           "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "+48-600-608-333",
+            "telephone": "+48-690-315-719",
             "contactType": "customer service",
-            "email": "kiszlo.studio@gmail.com"
+            "email": "karolkisz@gmail.com"
           }
         },
         {
@@ -471,127 +469,6 @@
             letter-spacing: .12em;
         }
 
-        /* AI Chat */
-        #ai-chat-widget {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            z-index: 10000;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-        }
-
-        #ai-chat-button {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background-color: var(--bg);
-            border: 1px solid var(--border);
-            color: var(--text);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            transition: var(--transition);
-        }
-
-        #ai-chat-button:hover {
-            border-color: var(--primary);
-            box-shadow: var(--glow);
-            color: var(--primary);
-        }
-
-        #ai-chat-window {
-            width: 340px;
-            height: 440px;
-            background-color: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            margin-bottom: 16px;
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
-            font-family: var(--font-body);
-        }
-
-        .chat-header {
-            background-color: var(--bg);
-            padding: 20px;
-            border-bottom: 1px solid var(--border-soft);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .chat-messages {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .msg {
-            padding: 12px 16px;
-            font-size: 14px;
-            line-height: 1.5;
-            font-weight: 300;
-            max-width: 85%;
-        }
-
-        .msg-ai {
-            background-color: var(--surface-2);
-            border: 1px solid var(--border-soft);
-            border-radius: 12px 12px 12px 0;
-            color: var(--text);
-            align-self: flex-start;
-        }
-
-        .msg-user {
-            background-color: var(--primary-soft);
-            border: 1px solid rgba(0,243,255,0.2);
-            color: var(--primary);
-            border-radius: 12px 12px 0 12px;
-            align-self: flex-end;
-        }
-
-        .chat-input {
-            padding: 16px;
-            background-color: var(--bg);
-            border-top: 1px solid var(--border-soft);
-            display: flex;
-            gap: 12px;
-        }
-
-        .chat-input input {
-            flex: 1;
-            background-color: transparent;
-            border: none;
-            color: var(--text);
-            font-size: 14px;
-            outline: none;
-            font-family: var(--font-body);
-        }
-
-        .chat-input input::placeholder { color: var(--faint); }
-
-        .chat-input button {
-            background: none;
-            border: none;
-            color: var(--primary);
-            font-weight: 600;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        .chat-input button:hover { color: var(--text); }
-
         .fade-up { opacity: 0; transform: translateY(24px); }
 
         @media (max-width: 980px) {
@@ -633,7 +510,7 @@
     <link rel="stylesheet" href="assets/site.css">
     <script src="assets/site.js" defer></script>
 </head>
-<body>
+<body data-page="portfolio">
 
     <div class="noise" aria-hidden="true"></div>
 
@@ -674,6 +551,7 @@
     <main>
         <!-- Hero Section -->
         <section class="hero">
+            <img src="assets/strategy.webp" class="hero-artwork" alt="" width="1536" height="1024" fetchpriority="high">
             <div class="container hero-inner">
                 <div class="eyebrow">Wybrane realizacje</div>
                 <h1 class="hero-title">
@@ -691,6 +569,19 @@
         <section class="section" style="padding-top: 40px;">
             <div class="container">
                 <div class="portfolio-grid">
+                    <article class="portfolio-item portfolio-large fade-up ncni-project">
+                        <a href="https://www.ncni.pl/" target="_blank" rel="noopener noreferrer" class="project-preview-link" aria-label="Zobacz stronę NCNI — otwiera się w nowej karcie">
+                            <img src="assets/ncni-site.png" alt="Rzeczywisty podgląd strony głównej Naukowego Centrum Neuroinnowacji" class="portfolio-image" width="1440" height="1000" loading="lazy">
+                        </a>
+                        <div class="portfolio-content">
+                            <div><div class="portfolio-category">Projektowanie i realizacja stron WWW</div>
+                            <h2 class="portfolio-title">NCNI — Naukowe Centrum Neuroinnowacji</h2>
+                            <p class="portfolio-desc">Wykonaliśmy stronę internetową Naukowego Centrum Neuroinnowacji. Serwis prezentuje ofertę centrum, specjalistów oraz projekty na styku nauki i technologii.</p>
+                            <a href="https://www.ncni.pl/" target="_blank" rel="noopener noreferrer" class="project-visit">Zobacz www.ncni.pl ↗</a></div>
+                            <div class="tag-list"><span class="tag">Strona WWW</span><span class="tag">NCNI</span><span class="tag">Projekt i realizacja</span></div>
+                        </div>
+                    </article>
+
 
                     <!-- Case Study 1 (Wyróżnione) -->
                     <article class="portfolio-item portfolio-large fade-up">
@@ -796,42 +687,19 @@
                 <div>
                     <div class="footer-head">Kontakt</div>
                     <div class="footer-links">
-                        <a href="mailto:kiszlo.studio@gmail.com">kiszlo.studio@gmail.com</a>
-                        <a href="tel:+48600608333">+48 600 608 333</a>
-                        <div>Wrocław, Polska</div>
+                        <div>Karol Kiszło</div>
+                        <div>ul. Porzeczkowa 10<br>55-330 Lutynia</div>
+                        <a href="mailto:karolkisz@gmail.com">karolkisz@gmail.com</a>
+                        <a href="tel:+48690315719">+48 690 315 719</a>
+                        <div>Lutynia, Polska</div>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
                 <span>Kiszlo.Studio Karol Kiszło © 2026</span>
-                <span>Wrocław, Polska</span>
+                <span>Lutynia, Polska</span>
             </div>
         </div>
     </footer>
-
-    <!-- Premium AI Chat Widget -->
-    <div id="ai-chat-widget">
-        <div id="ai-chat-window">
-            <div class="chat-header">
-                <div style="display: flex; align-items: center; gap: 10px;">
-                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg>
-                    <span style="font-family: var(--font-body); font-weight: 600; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;">Pomoc i kontakt</span>
-                </div>
-                <button type="button" id="close-chat" style="background: none; border: none; color: var(--faint); cursor: pointer; font-size: 20px;">×</button>
-            </div>
-            <div class="chat-messages" id="chat-messages">
-                <div class="msg msg-ai">Dzień dobry. Jestem asystentem Kiszlo.Studio. W czym mogę pomóc?</div>
-            </div>
-            <div class="chat-input">
-                <input type="text" id="chat-input-field" placeholder="Zadaj pytanie...">
-                <button type="button" id="send-msg">Wyślij</button>
-            </div>
-        </div>
-        <button id="ai-chat-button" type="button">
-            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
-        </button>
-    </div>
-
-
 </body>
 </html>

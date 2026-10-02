@@ -15,9 +15,7 @@
 
     <!-- Geo Location Tags -->
     <meta name="geo.region" content="PL-DS">
-    <meta name="geo.placename" content="Wrocław, Dolnośląskie, Polska">
-    <meta name="geo.position" content="51.1079;17.0385">
-    <meta name="ICBM" content="51.1079, 17.0385">
+    <meta name="geo.placename" content="Lutynia, Dolnośląskie, Polska">
 
     <!-- Canonical & Hreflang for SEO -->
     <link rel="canonical" href="https://www.kiszlo.studio/oferta.html">
@@ -42,9 +40,9 @@
           },
           "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "+48-600-608-333",
+            "telephone": "+48-690-315-719",
             "contactType": "customer service",
-            "email": "kiszlo.studio@gmail.com"
+            "email": "karolkisz@gmail.com"
           },
           "hasOfferCatalog": {
             "@type": "OfferCatalog",
@@ -716,153 +714,6 @@
             transition: border-color var(--transition), color var(--transition);
         }
 
-        #ai-chat-widget {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            z-index: 10000;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-        }
-
-        #ai-chat-button {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background-color: var(--bg);
-            border: 1px solid var(--border);
-            color: var(--text);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            transition: var(--transition);
-        }
-
-        html[data-theme="dark"] #ai-chat-button {
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-        }
-
-        #ai-chat-button:hover {
-            border-color: var(--primary);
-            box-shadow: var(--glow);
-            color: var(--primary);
-        }
-
-        #ai-chat-window {
-            width: 340px;
-            height: 440px;
-            background-color: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            margin-bottom: 16px;
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-            font-family: var(--font-body);
-            transition: background-color var(--transition), border-color var(--transition);
-        }
-
-        html[data-theme="dark"] #ai-chat-window {
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
-        }
-
-        .chat-header {
-            background-color: var(--bg);
-            padding: 20px;
-            border-bottom: 1px solid var(--border-soft);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: background-color var(--transition), border-color var(--transition);
-        }
-
-        .chat-header-text {
-            font-family: var(--font-body);
-            font-weight: 600;
-            font-size: 13px;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--text);
-            transition: color var(--transition);
-        }
-
-        .chat-messages {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .msg {
-            padding: 12px 16px;
-            font-size: 14px;
-            line-height: 1.5;
-            font-weight: 300;
-            max-width: 85%;
-            transition: background-color var(--transition), color var(--transition), border-color var(--transition);
-        }
-
-        .msg-ai {
-            background-color: var(--surface-2);
-            border: 1px solid var(--border-soft);
-            border-radius: 12px 12px 12px 0;
-            color: var(--text);
-            align-self: flex-start;
-        }
-
-        .msg-user {
-            background-color: var(--primary-soft);
-            border: 1px solid var(--primary-soft);
-            color: var(--primary);
-            border-radius: 12px 12px 0 12px;
-            align-self: flex-end;
-        }
-
-        html[data-theme="dark"] .msg-user {
-            border: 1px solid rgba(0,243,255,0.2);
-        }
-
-        .chat-input {
-            padding: 16px;
-            background-color: var(--bg);
-            border-top: 1px solid var(--border-soft);
-            display: flex;
-            gap: 12px;
-            transition: background-color var(--transition), border-color var(--transition);
-        }
-
-        .chat-input input {
-            flex: 1;
-            background-color: transparent;
-            border: none;
-            color: var(--text);
-            font-size: 14px;
-            outline: none;
-            font-family: var(--font-body);
-            transition: color var(--transition);
-        }
-
-        .chat-input input::placeholder { color: var(--faint); transition: color var(--transition); }
-
-        .chat-input button {
-            background: none;
-            border: none;
-            color: var(--primary);
-            font-weight: 600;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            cursor: pointer;
-            transition: color var(--transition);
-        }
-        .chat-input button:hover { color: var(--text); }
-
         .fade-up { opacity: 0; transform: translateY(24px); }
 
         @media (max-width: 980px) {
@@ -917,7 +768,7 @@
     <link rel="stylesheet" href="assets/site.css">
     <script src="assets/site.js" defer></script>
 </head>
-<body>
+<body data-page="oferta">
 
     <div class="noise" aria-hidden="true"></div>
 
@@ -975,6 +826,7 @@
     <main>
         <!-- Hero Section -->
         <section class="hero">
+            <img src="assets/video.webp" class="hero-artwork" alt="" width="1536" height="1024" fetchpriority="high">
             <div class="container hero-inner">
                 <div class="eyebrow fade-up" style="transform: translateY(0); opacity: 1;">Kompetencje</div>
                 <h1 class="hero-title">
@@ -1008,6 +860,7 @@
                                 <span class="tag">Scenografia</span>
                             </div>
                         </div>
+                    <figure class="service-visual"><img src="assets/video.webp" alt="" width="1536" height="1024" loading="lazy" decoding="async"></figure>
                     </article>
 
                     <!-- Service 2 -->
@@ -1025,6 +878,7 @@
                                 <span class="tag">Szkolenia VRET</span>
                             </div>
                         </div>
+                    <figure class="service-visual"><img src="assets/vr.webp" alt="" width="1536" height="1024" loading="lazy" decoding="async"></figure>
                     </article>
 
                     <!-- Service 3 -->
@@ -1042,6 +896,7 @@
                                 <span class="tag">Premium Frontend</span>
                             </div>
                         </div>
+                    <figure class="service-visual"><img src="assets/ai.webp" alt="" width="1536" height="1024" loading="lazy" decoding="async"></figure>
                     </article>
 
                     <!-- NEW Service 4: Automatyzacja & AI -->
@@ -1059,6 +914,7 @@
                                 <span class="tag">Automatyzacja Zadań</span>
                             </div>
                         </div>
+                    <figure class="service-visual"><img src="assets/ai.webp" alt="" width="1536" height="1024" loading="lazy" decoding="async"></figure>
                     </article>
 
                     <!-- Service 5 -->
@@ -1075,6 +931,7 @@
                                 <span class="tag">Consulting Technologiczny</span>
                             </div>
                         </div>
+                    <figure class="service-visual"><img src="assets/strategy.webp" alt="" width="1536" height="1024" loading="lazy" decoding="async"></figure>
                     </article>
 
                 </div>
@@ -1090,7 +947,7 @@
                     <p class="cta-text">
                         Niezależnie czy poszukujesz wsparcia w zakresie produkcji wideo, wdrożenia symulacji VR, czy integracji inteligentnych asystentów AI – jesteśmy gotowi podjąć wyzwanie. Opowiedz nam o swoim projekcie.
                     </p>
-                    <a href="mailto:kiszlo.studio@gmail.com" class="cta-btn">
+                    <a href="mailto:karolkisz@gmail.com" class="cta-btn">
                         Zacznijmy rozmowę
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                     </a>
@@ -1122,43 +979,19 @@
                 <div>
                     <div class="footer-head">Kontakt</div>
                     <div class="footer-links">
-                        <a href="mailto:kiszlo.studio@gmail.com">kiszlo.studio@gmail.com</a>
-                        <a href="tel:+48600608333">+48 600 608 333</a>
-                        <div>Wrocław, Polska</div>
+                        <div>Karol Kiszło</div>
+                        <div>ul. Porzeczkowa 10<br>55-330 Lutynia</div>
+                        <a href="mailto:karolkisz@gmail.com">karolkisz@gmail.com</a>
+                        <a href="tel:+48690315719">+48 690 315 719</a>
+                        <div>Lutynia, Polska</div>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
                 <span>Kiszlo.Studio Karol Kiszło © 2026</span>
-                <span>Wrocław, Polska</span>
+                <span>Lutynia, Polska</span>
             </div>
         </div>
     </footer>
-
-    <!-- Premium AI Chat Widget -->
-    <div id="ai-chat-widget">
-        <div id="ai-chat-window">
-            <div class="chat-header">
-                <div style="display: flex; align-items: center; gap: 10px;">
-                     <!-- Zaktualizowany kolor SVG dla ikony AI w nagłówku -->
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
-                    <span class="chat-header-text">Pomoc i kontakt</span>
-                </div>
-                <button type="button" id="close-chat" style="background: none; border: none; color: var(--faint); cursor: pointer; font-size: 20px; transition: color var(--transition);">&times;</button>
-            </div>
-            <div class="chat-messages" id="chat-messages">
-                <div class="msg msg-ai">Dzień dobry. Jestem wirtualnym asystentem Kiszlo.Studio. W czym mogę dzisiaj pomóc?</div>
-            </div>
-            <div class="chat-input">
-                <input type="text" id="chat-input-field" placeholder="Wpisz wiadomość...">
-                <button type="button" id="send-msg">Wyślij</button>
-            </div>
-        </div>
-        <button id="ai-chat-button" type="button">
-            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
-        </button>
-    </div>
-
-
 </body>
 </html>

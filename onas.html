@@ -6,7 +6,7 @@
     <title>O nas | Kiszlo.Studio</title>  
 
     <!-- Meta Descriptions Multi-Language & Geo Tags -->
-    <meta name="description" content="Kiszlo Studio – Karol Kiszło. Łączymy marketing z technologią z naszej bazy we Wrocławiu. Specjalizujemy się w AI dla biznesu, MedTech, symulacjach VR oraz multimedialnej scenografii. Kontakt: kiszlo.studio@gmail.com, +48 600 608 333.">
+    <meta name="description" content="Kiszlo Studio – Karol Kiszło. Łączymy marketing z technologią z naszej bazy w Lutyni. Specjalizujemy się w AI dla biznesu, MedTech, symulacjach VR oraz multimedialnej scenografii. Kontakt: karolkisz@gmail.com, +48 690 315 719.">
 
     <meta name="keywords" content="Kiszlo Studio, Karol Kiszło Wrocław, Agencja AI Wrocław, MedTech Wrocław, Symulacje VR, Automatyzacja Biznesu AI, Marketing Strategiczny">
     <meta name="author" content="Karol Kiszło">
@@ -14,9 +14,7 @@
 
     <!-- Geo Location Tags -->
     <meta name="geo.region" content="PL-DS">
-    <meta name="geo.placename" content="Wrocław, Dolnośląskie, Polska">
-    <meta name="geo.position" content="51.1079;17.0385">
-    <meta name="ICBM" content="51.1079, 17.0385">
+    <meta name="geo.placename" content="Lutynia, Dolnośląskie, Polska">
 
     <!-- Canonical & Hreflang for SEO -->
     <link rel="canonical" href="https://www.kiszlo.studio/onas.html">
@@ -45,17 +43,17 @@
           "description": "Butikowe studio technologiczno-kreatywne założone przez Karola Kiszło we Wrocławiu. Realizujemy projekty z zakresu sztucznej inteligencji, VR (wirtualna rzeczywistość) w medycynie oraz zaawansowanej postprodukcji wideo.",
           "address": {
             "@type": "PostalAddress",
-            "streetAddress": "ul. Stefana Żeromskiego 60/5a",
-            "addressLocality": "Wrocław",
+            "streetAddress": "ul. Porzeczkowa 10",
+            "addressLocality": "Lutynia",
             "addressRegion": "Dolnośląskie",
-            "postalCode": "50-312",
+            "postalCode": "55-330",
             "addressCountry": "PL"
           },
           "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "+48-600-608-333",
+            "telephone": "+48-690-315-719",
             "contactType": "customer service",
-            "email": "kiszlo.studio@gmail.com"
+            "email": "karolkisz@gmail.com"
           },
           "openingHoursSpecification": [
             {
@@ -389,9 +387,6 @@
             filter: grayscale(20%) contrast(1.02);
         }
 
-        .profile-media .hover-photo { opacity: 0; }
-        .profile-media.is-second-photo-visible .base-photo { opacity: 0; }
-        .profile-media.is-second-photo-visible .hover-photo { opacity: 1; }
         .single-profile-card:hover .profile-media img { transform: scale(1.04); filter: grayscale(0%) contrast(1); }
 
         @media (prefers-reduced-motion: reduce) {
@@ -822,7 +817,7 @@
     <link rel="stylesheet" href="assets/site.css">
     <script src="assets/site.js" defer></script>
 </head>
-<body>
+<body data-page="onas">
     <div class="noise" aria-hidden="true"></div>
 
     <nav class="nav" id="main-nav">
@@ -861,6 +856,7 @@
 
     <main>
         <section class="hero">
+            <img src="assets/vr.webp" class="hero-artwork" alt="" width="1536" height="1024" fetchpriority="high">
             <div class="container hero-inner">
                 <div class="eyebrow">O nas</div>
                 <h1 class="hero-title">
@@ -892,9 +888,8 @@
                     <svg class="network-lines" aria-hidden="true" focusable="false"><path data-from="network-karol" data-to="network-sebastian"/><path data-from="network-sebastian" data-to="network-mikolaj"/><path data-from="network-sebastian" data-to="network-wiktor"/></svg>
                 <article class="single-profile-card network-node network-karol">
                     <div class="profile-media">
-                        <img src="kk.jpg" alt="Karol Kiszło" class="base-photo" onerror="this.style.display='none'">
-                        <img src="k2.jpg" alt="Karol Kiszło" class="hover-photo" onerror="this.style.display='none'">
-                        <div class="profile-tagline">Wrocław, PL</div>
+                        <img src="k2.jpg" alt="Karol Kiszło — portret w futurystycznej kurtce" class="base-photo">
+                        <div class="profile-tagline">Lutynia, PL</div>
                     </div>
 
                     <div class="profile-content">
@@ -920,12 +915,12 @@
         <div class="profile-role">Nauka / R&D / MedTech</div><p class="profile-text">Współpraca przy projektach wymagających zaplecza naukowego i badawczego — szczególnie na styku medycyny, neurotechnologii i nowych technologii.</p>
         <div class="tag-list"><span class="tag">Badania i rozwój</span><span class="tag">MedTech</span><span class="tag">Neurotechnologie</span></div></div>
     </article><article class="network-node network-card network-mikolaj">
-        <div class="profile-media"><div class="network-placeholder" role="img" aria-label="Placeholder portretu — MK"><span aria-hidden="true">MK</span><small aria-hidden="true">Kiszlo.Studio / współpraca</small></div></div>
+        <div class="profile-media" data-portrait="mk.jpg" data-portrait-alt="Mikołaj Kikolski"><div class="network-placeholder" role="img" aria-label="Placeholder portretu — MK"><span aria-hidden="true">MK</span><small aria-hidden="true">Kiszlo.Studio / współpraca</small></div></div>
         <div class="profile-content"><h3 class="profile-name">Mikołaj Kikolski</h3>
         <div class="profile-role">Unity / VR / XR</div><p class="profile-text">Współpraca przy tworzeniu rozwiązań interaktywnych, środowisk VR/XR oraz prototypów doświadczeń immersyjnych. Specjalizacja: Unity i warstwa programistyczna projektów. </p>
         <div class="tag-list"><span class="tag">Unity</span><span class="tag">VR / XR</span><span class="tag">Interakcja</span></div></div>
     </article><article class="network-node network-card network-wiktor">
-        <div class="profile-media"><div class="network-placeholder" role="img" aria-label="Placeholder portretu — W"><span aria-hidden="true">W</span><small aria-hidden="true">Kiszlo.Studio / współpraca</small></div></div>
+        <div class="profile-media" data-portrait="w.jpg" data-portrait-alt="Wiktor"><div class="network-placeholder" role="img" aria-label="Placeholder portretu — W"><span aria-hidden="true">W</span><small aria-hidden="true">Kiszlo.Studio / współpraca</small></div></div>
         <div class="profile-content"><h3 class="profile-name">Wiktor</h3>
         <div class="profile-role">Elektronika / Hardware / Prototypowanie</div><p class="profile-text">Współpraca przy projektowaniu i prototypowaniu urządzeń, sensoryce oraz integracji elektroniki z oprogramowaniem. Specjalizacja: niestandardowe rozwiązania sprzętowe.</p>
         <div class="tag-list"><span class="tag">Elektronika</span><span class="tag">Sensoryka</span><span class="tag">Prototypowanie</span></div></div>
@@ -1037,7 +1032,7 @@
                         Szukasz partnera, który rozumie zarówno piksele, jak i strategie,
                         zarówno kod, jak i narrację? Jesteśmy gotowi na rozmowę.
                     </p>
-                    <a href="mailto:kiszlo.studio@gmail.com" class="cta-btn">
+                    <a href="mailto:karolkisz@gmail.com" class="cta-btn">
                         Napisz do nas
                         <span>↗</span>
                     </a>
@@ -1086,15 +1081,17 @@
                 <div>
                     <div class="footer-head">Kontakt</div>
                     <div class="footer-links">
-                        <a href="mailto:kiszlo.studio@gmail.com">kiszlo.studio@gmail.com</a>
-                        <a href="tel:+48600608333">+48 600 608 333</a>
-                        <div>Wrocław, Polska</div>
+                        <div>Karol Kiszło</div>
+                        <div>ul. Porzeczkowa 10<br>55-330 Lutynia</div>
+                        <a href="mailto:karolkisz@gmail.com">karolkisz@gmail.com</a>
+                        <a href="tel:+48690315719">+48 690 315 719</a>
+                        <div>Lutynia, Polska</div>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
                 <span>Kiszlo.Studio Karol Kiszło &copy; 2026</span>
-                <span>Wrocław, Polska</span>
+                <span>Lutynia, Polska</span>
             </div>
         </div>
     </footer>
