@@ -125,3 +125,12 @@ html.no-js .vr-preview-toggle { display: none; }
 .portfolio-item.portfolio-film { flex-direction: column; }
 .portfolio-film video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; background: #020608; }
 .portfolio-film .portfolio-content { width: 100%; margin-top: 0; padding: clamp(24px, 4vw, 48px); }
+
+.portfolio-modeling { scroll-margin-top: 120px; }
+.portfolio-modeling .modeling-preview { width: 60%; min-height: 360px; padding: clamp(24px, 4vw, 48px); display: flex; flex-direction: column; justify-content: center; gap: 32px; color: #eafcff; background: radial-gradient(ellipse at 20% 30%, #00f3ff20, transparent 65%), linear-gradient(135deg, #0b1c25, #080b10); }
+.modeling-preview-label { color: #00f3ff; font-size: 14px; letter-spacing: .2em; }
+.modeling-steps { display: flex; align-items: center; justify-content: space-between; gap: 12px; line-height: 2; color: #00f3ff; }
+.modeling-steps strong { color: #eafcff; font-size: clamp(12px, 1.3vw, 17px); }
+.modeling-preview p { margin: 0; color: #9ab2bc; }
+.modeling-project-link { display: inline-block; margin-top: 20px; color: var(--primary, #00f3ff); text-decoration: underline; text-underline-offset: 5px; }
+@media (max-width: 900px) { .portfolio-item.portfolio-modeling { flex-direction: column; } .portfolio-modeling .modeling-preview { width: 100%; min-height: 240px; } .portfolio-modeling .portfolio-content { width: 100%; margin-top: 0; background: var(--surface); padding: 28px; } }
