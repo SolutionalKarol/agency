@@ -59,6 +59,14 @@ three seconds in view. Native controls and a back-to-description button remain
 available. If autoplay is blocked, the native play control can start it. Missing
 or undecodable footage keeps the illustrated preview. Reduced motion exposes a
 manual player without automatic playback. For broad browser compatibility,
-export MP4 with H.264 video. No real footage is included by this change.
+export MP4 with H.264 video. The repository now includes local video files.
 
 Portfolio includes `kosmos.mp4` with a local extracted poster, native controls and full-screen playback. Video downloads start on demand.
+
+## Content and contact
+
+NCNI.Media is not shown until a public portal is available. Anonymous service examples are explicitly described as example scopes, not verified client results. The production domain is https://kiszlo.studio. Contact form prepares an email in the visitor’s mail application; it does not send or store submissions on a server. Collaborator photos are optional and use initials when absent.
+
+## Homepage and offer
+
+The Polish homepage includes the full offer in six sections: VR, websites with AI, AI agents, AI avatars, electronics and prototyping, and visual production. The old oferta.html address redirects to the homepage offer. The production layout combines film, two illustrative studio images and rozmowa.mp4. Inline films are muted and play once after a delay in view. The privacy page remains a clearly marked draft pending hosting and retention details.

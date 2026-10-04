@@ -16,7 +16,7 @@
             toggle.classList.toggle('open', menuOpen);
             menu.classList.toggle('open', menuOpen);
             toggle.setAttribute('aria-expanded', String(menuOpen));
-            menu.inert = mobileQuery.matches && !menuOpen;
+            menu.inert = mobileQuery.matches && !menuOpen && !document.querySelector('.studio-bottom-nav');
             document.body.style.overflow = menuOpen ? 'hidden' : '';
             if (nav) nav.style.transform = 'translateY(0)';
             if (returnFocus) toggle.focus();
