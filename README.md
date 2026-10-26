@@ -14,8 +14,7 @@ when deploying. Relative links require preserving this structure.
 
 - `k2.jpg` is the sole displayed Karol portrait; `sk.jpg` is Sebastian.
 - Upload `mk.jpg` (Mikołaj) and `w.jpg` (Wiktor) at the repository root. The
-  matching profile automatically shows the photo when it loads, with a designed
-  initials placeholder retained if the file is missing. No portrait rotation.
+  profile can use the photo after adding data-portrait and data-portrait-alt to its .profile-media element; initials are currently shown without requesting missing files.
 - `assets/video.webp`, `vr.webp`, `ai.webp` and `strategy.webp` are custom
   AI-generated conceptual brand illustrations. They do not document completed
   client projects. They replace the external stock images and unavailable video.
@@ -70,3 +69,26 @@ NCNI.Media is not shown until a public portal is available. Anonymous service ex
 ## Homepage and offer
 
 The Polish homepage includes the full offer in six sections: VR, websites with AI, AI agents, AI avatars, electronics and prototyping, and visual production. The old oferta.html address redirects to the homepage offer. The production layout combines film, two illustrative studio images and rozmowa.mp4. Inline films are muted and play once after a delay in view. The privacy page identifies the business using the supplied CEIDG application, Gmail for correspondence and Vercel for hosting. The target public address is https://www.kiszlo.studio. Before deployment, verify the actual Vercel project settings (including logs and any enabled analytics) and apply the stated retention criteria in practice.
+
+
+## Launch configuration
+
+`vercel.json` supplies permanent redirects from `/index.html` to `/` and from
+`/oferta.html` to `/#oferta`, plus canonical host redirects for www.kiszlo.studio,
+kiszlo.com, www.kiszlo.com, kiszlo.pl and www.kiszlo.pl. These host rules become
+effective only once the relevant domains are owned and attached to this project.
+Relative query parameters are preserved by Vercel redirects. No domain purchase
+or DNS change is performed by this configuration.
+
+The existing Vercel project is `agency`, linked to SolutionalKarol/agency.
+This is a static site: no install step, build command or environment variables
+are required. Keep the project root at the repository root.
+
+Before public launch:
+- Attach the purchased apex and www domains to agency; use Vercel's exact DNS instructions.
+- Check the commercial hosting plan, certificates and canonical redirects.
+- Check `/robots.txt`, `/sitemap.xml`, `/assets/social-card.png`, the contact flow and videos.
+- Verify kiszlo.studio in Search Console and submit its sitemap.
+
+The contact form deliberately prepares an email and does not send it from a server.
+Optional collaborator photographs are not requested until configured.

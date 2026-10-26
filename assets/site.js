@@ -160,8 +160,7 @@
                     card.classList.add('show-vr-film');
                 } else schedule();
             }, {once: true});
-            if (once) video.addEventListener('volumechange', () => { if (!video.muted) video.muted = true; });
-    video.addEventListener('error', () => {
+            video.addEventListener('error', () => {
                 clearTimeout(timer);
                 card.classList.remove('has-vr-film', 'show-vr-film');
                 overlay.remove();

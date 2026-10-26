@@ -163,3 +163,11 @@ html.no-js .vr-preview-toggle { display: none; }
 }
 
 .studio-orbit{display:inline-block;width:36px;height:36px;vertical-align:middle;margin-right:10px}.studio-example{margin-top:24px;padding:22px;border:1px solid var(--border-soft);border-radius:16px;background:rgba(0,243,255,.035)}.studio-example ol{padding-left:20px;line-height:1.8}.electronics-symbol{display:grid;place-items:center;min-height:240px;background:radial-gradient(circle,#073d40,#081316);border:1px solid #00f3ff33;border-radius:18px;color:#00f3ff}.electronics-symbol svg{width:150px;height:150px}.privacy-link{font-size:12px;color:inherit;text-decoration:underline;margin-left:12px}@media(max-width:480px){.studio-orbit{width:28px;height:28px;margin-right:6px}}
+/* The offer uses dark visual panels in both themes. Keep their text readable. */
+.concept-services .service-item { color: #f4f1ec; }
+.concept-services .service-title { color: #f4f1ec; }
+.concept-services .service-desc { color: #d4d8da; }
+.concept-services .studio-example { color: #d4d8da; border-color: #53656a; }
+.concept-services .vr-preview-caption { color: #d4d8da; }
+html[data-theme="light"] .hero-text { color: #414950; font-weight: 400; }
+html[data-theme="light"] .hero-artwork { opacity: .07; }
