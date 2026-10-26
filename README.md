@@ -68,7 +68,7 @@ NCNI.Media is not shown until a public portal is available. Anonymous service ex
 
 ## Homepage and offer
 
-The Polish homepage includes the full offer in six sections: VR, websites with AI, AI agents, AI avatars, electronics and prototyping, and visual production. The old oferta.html address redirects to the homepage offer. The production layout combines film, two illustrative studio images and rozmowa.mp4. Inline films are muted and play once after a delay in view. The privacy page identifies the business using the supplied CEIDG application, Gmail for correspondence and Vercel for hosting. The target public address is https://www.kiszlo.studio. Before deployment, verify the actual Vercel project settings (including logs and any enabled analytics) and apply the stated retention criteria in practice.
+The Polish homepage includes the full offer in six sections: VR, websites with AI, AI agents, AI avatars, electronics and prototyping, and visual production. The old oferta.html address redirects to the homepage offer. The production layout combines film, two illustrative studio images and rozmowa.mp4. Inline films are muted and play once after a delay in view. The privacy page identifies the business using the supplied CEIDG application, Gmail for correspondence and Vercel for hosting. The target public address is https://kiszlo.studio. Before deployment, verify the actual Vercel project settings (including logs and any enabled analytics) and apply the stated retention criteria in practice.
 
 
 ## Launch configuration
