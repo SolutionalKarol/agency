@@ -1,7 +1,7 @@
 // Google Analytics 4 behind a consent banner. Nothing is loaded from Google
 // until the visitor accepts. With an empty GA_ID the file does nothing.
 (() => {
- const GA_ID = '';
+ const GA_ID = 'G-CC0P4BFJKW';
  if (!/^G-[A-Z0-9]+$/.test(GA_ID)) return;
 
  const KEY = 'analytics-consent';
