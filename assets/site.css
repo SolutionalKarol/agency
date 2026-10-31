@@ -171,3 +171,7 @@ html.no-js .vr-preview-toggle { display: none; }
 .concept-services .vr-preview-caption { color: #d4d8da; }
 html[data-theme="light"] .hero-text { color: #414950; font-weight: 400; }
 html[data-theme="light"] .hero-artwork { opacity: .07; }
+
+/* Pricing: "from" prices on the PL/EN/DE home pages. */
+.pricing-lead{max-width:720px;margin-bottom:32px}.pricing-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.pricing-grid .process-number{font-size:1.4rem;color:var(--accent,#00f3ff)}.pricing-note{font-size:.9rem;opacity:.75;margin:28px 0 16px}@media(max-width:900px){.pricing-grid{grid-template-columns:minmax(0,1fr)}}
+html[data-theme="light"] .pricing-grid .process-number{color:#007e8b}
