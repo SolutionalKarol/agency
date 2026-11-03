@@ -806,62 +806,99 @@
 
 <section class="section studio-film" id="film" aria-labelledby="studio-film-title">
 <style>
-.studio-film-grid{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:56px;align-items:center}
+.studio-film-grid{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:48px;align-items:center}
 .studio-film h2{font:italic clamp(32px,5vw,56px)/1.25 "Instrument Serif",serif;margin:12px 0 20px}
 .studio-film p{color:var(--muted,#aaa);line-height:1.8;max-width:520px}
 .studio-film .tag-list{margin-top:20px}
-.iphone{position:relative;width:min(330px,82vw);padding:40px 12px 30px;border-radius:52px;background:linear-gradient(145deg,#2b2f36,#0b0d10 45%,#1d2026);box-shadow:0 0 0 2px #4a505a,0 30px 70px #000a,0 0 60px #00d6de22;box-sizing:border-box}
-.iphone::before{content:"";position:absolute;top:13px;left:50%;transform:translateX(-50%);width:84px;height:16px;border-radius:16px;background:#000;z-index:2}
-.iphone-screen{position:relative;width:100%;aspect-ratio:9/16;border-radius:26px;overflow:hidden;background:#000}
+.film-phones{display:flex;gap:28px;align-items:flex-start}
+.film-phone{display:flex;flex-direction:column;align-items:center}
+.film-phone-label{text-align:center;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#00f3ff;margin-bottom:14px}
+.film-phone-label small{display:block;margin-top:4px;letter-spacing:.04em;text-transform:none;color:#a5afb1;font-size:12px}
+.iphone{position:relative;width:min(290px,82vw);padding:38px 11px 28px;border-radius:48px;background:linear-gradient(145deg,#2b2f36,#0b0d10 45%,#1d2026);box-shadow:0 0 0 2px #4a505a,0 30px 70px #000a,0 0 60px #00d6de22;box-sizing:border-box}
+.iphone::before{content:"";position:absolute;top:12px;left:50%;transform:translateX(-50%);width:78px;height:15px;border-radius:15px;background:#000;z-index:2}
+.iphone-screen{position:relative;width:100%;aspect-ratio:9/16;border-radius:24px;overflow:hidden;background:#000}
 .iphone-screen video{display:block;width:100%;height:100%;object-fit:contain}
 .iphone-controls{display:flex;justify-content:center;gap:10px;margin-top:18px}
-.iphone-controls button{font:inherit;font-size:13px;color:#fff;background:#111c;border:1px solid #ffffff55;border-radius:999px;padding:9px 14px;cursor:pointer;backdrop-filter:blur(6px)}
-.iphone-controls button:hover{border-color:#00f3ff}
-.iphone-controls button:focus-visible{outline:2px solid #00f3ff;outline-offset:3px}
-@media(max-width:800px){.studio-film-grid{grid-template-columns:minmax(0,1fr);justify-items:center;gap:32px}.studio-film-text{justify-self:stretch}}
+.iphone-controls button,.film-tabs button{font:inherit;font-size:13px;color:#fff;background:#111c;border:1px solid #ffffff55;border-radius:999px;padding:9px 14px;cursor:pointer;backdrop-filter:blur(6px)}
+.iphone-controls button:hover,.film-tabs button:hover{border-color:#00f3ff}
+.iphone-controls button:focus-visible,.film-tabs button:focus-visible{outline:2px solid #00f3ff;outline-offset:3px}
+.film-tabs{display:none;justify-content:center;gap:8px;margin-bottom:18px}
+.film-tabs button[aria-selected="true"]{border-color:#00f3ff;color:#00f3ff}
+@media(max-width:1100px){.studio-film-grid{grid-template-columns:minmax(0,1fr);justify-items:center;gap:32px}.studio-film-text{justify-self:stretch}}
+@media(max-width:700px){.film-tabs{display:flex}.film-phones{display:block}.film-phone[hidden]{display:none}.film-phone-label{display:none}}
 </style>
 <div class="container studio-film-grid">
 <div class="studio-film-text">
-<div class="eyebrow">Film o studiu</div>
-<h2 id="studio-film-title">Od pomysłu do realizacji w 83 sekundy</h2>
-<p>Pusty plan zdjęciowy zmienia się w wirtualne studio, cyfrowy awatar przenosi się między scenografiami, a obok widać nasze prawdziwe realizacje: filmy, strony internetowe, modele 3D i aplikacje VR. Cały film powstał w Kiszlo.Studio.</p>
-<div class="tag-list"><span class="tag">Green screen</span><span class="tag">Awatar AI</span><span class="tag">Montaż</span><span class="tag">VR i 3D</span></div>
+<div class="eyebrow">Filmy o studiu</div>
+<h2 id="studio-film-title">Od pomysłu do realizacji</h2>
+<p>Dwa filmy, dwa spojrzenia na Kiszlo.Studio. Showreel w kilkadziesiąt sekund przeprowadza przez nasze usługi: film i media, strony i portale, aplikacje VR, aplikacje dla zdrowia i terapii oraz modelowanie 3D i inżynierię. Drugi film pokazuje, jak pracujemy: pusty plan zdjęciowy zmienia się w wirtualne studio, a cyfrowy awatar przenosi się między scenografiami. Oba filmy powstały w Kiszlo.Studio.</p>
+<div class="tag-list"><span class="tag">Showreel</span><span class="tag">Green screen</span><span class="tag">Awatar AI</span><span class="tag">VR i 3D</span></div>
 </div>
-<div class="iphone-wrap">
-<div class="iphone">
-<div class="iphone-screen">
-<video id="studio-film-video" muted loop playsinline preload="metadata" poster="assets/kiszlo-studio-film-poster.webp" width="720" height="1280" aria-label="Film promocyjny Kiszlo.Studio">
+<div class="film-phones-wrap">
+<div class="film-tabs" role="tablist" aria-label="Wybierz film">
+<button type="button" role="tab" aria-selected="true" aria-controls="film-phone-showreel" id="film-tab-showreel">Showreel</button>
+<button type="button" role="tab" aria-selected="false" aria-controls="film-phone-kulisy" id="film-tab-kulisy">Jak to robimy</button>
+</div>
+<div class="film-phones">
+<div class="film-phone" id="film-phone-showreel" role="tabpanel" aria-labelledby="film-tab-showreel">
+<div class="film-phone-label">Showreel<small>Nasze usługi w 83 sekundy</small></div>
+<div class="iphone"><div class="iphone-screen">
+<video muted loop playsinline preload="metadata" poster="assets/kiszlo-studio-showreel-poster.webp" width="720" height="1280" aria-label="Showreel Kiszlo.Studio">
+<source src="kiszlo-studio-showreel.mp4" type="video/mp4">
+Twoja przeglądarka nie obsługuje odtwarzacza. <a href="kiszlo-studio-showreel.mp4">Otwórz film</a>.
+</video>
+</div></div>
+<div class="iphone-controls"><button type="button" class="film-sound" aria-pressed="false">🔊 Włącz dźwięk</button><button type="button" class="film-play">⏸ Pauza</button></div>
+</div>
+<div class="film-phone" id="film-phone-kulisy" role="tabpanel" aria-labelledby="film-tab-kulisy">
+<div class="film-phone-label">Jak to robimy<small>Od zielonego tła do gotowej sceny</small></div>
+<div class="iphone"><div class="iphone-screen">
+<video muted loop playsinline preload="metadata" poster="assets/kiszlo-studio-film-poster.webp" width="720" height="1280" aria-label="Film Kiszlo.Studio: jak to robimy">
 <source src="kiszlo-studio-film.mp4" type="video/mp4">
 Twoja przeglądarka nie obsługuje odtwarzacza. <a href="kiszlo-studio-film.mp4">Otwórz film</a>.
 </video>
+</div></div>
+<div class="iphone-controls"><button type="button" class="film-sound" aria-pressed="false">🔊 Włącz dźwięk</button><button type="button" class="film-play">⏸ Pauza</button></div>
 </div>
-</div>
-<div class="iphone-controls">
-<button type="button" id="studio-film-sound" aria-pressed="false">🔊 Włącz dźwięk</button>
-<button type="button" id="studio-film-play">⏸ Pauza</button>
 </div>
 </div>
 </div>
 <script>
 (function(){
-var v=document.getElementById('studio-film-video');if(!v)return;
-var s=document.getElementById('studio-film-sound'),p=document.getElementById('studio-film-play');
+var phones=[].slice.call(document.querySelectorAll('#film .film-phone'));if(!phones.length)return;
 var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-var userPaused=reduce;
-function label(){p.textContent=v.paused?'▶ Odtwórz':'⏸ Pauza';}
-v.addEventListener('play',label);v.addEventListener('pause',label);label();
-p.addEventListener('click',function(){if(v.paused){userPaused=false;v.play().catch(function(){});}else{userPaused=true;v.pause();}});
-s.addEventListener('click',function(){
- if(v.muted){v.muted=false;v.loop=false;v.currentTime=0;userPaused=false;v.play().catch(function(){});s.textContent='🔇 Wycisz';s.setAttribute('aria-pressed','true');}
- else{v.muted=true;s.textContent='🔊 Włącz dźwięk';s.setAttribute('aria-pressed','false');}
+var narrow=window.matchMedia('(max-width:700px)');
+var players=phones.map(function(ph){
+ var v=ph.querySelector('video'),s=ph.querySelector('.film-sound'),p=ph.querySelector('.film-play');
+ var st={ph:ph,v:v,userPaused:reduce,visible:false};
+ function label(){p.textContent=v.paused?'▶ Odtwórz':'⏸ Pauza';}
+ v.addEventListener('play',label);v.addEventListener('pause',label);label();
+ function mute(){v.muted=true;s.textContent='🔊 Włącz dźwięk';s.setAttribute('aria-pressed','false');}
+ st.mute=mute;
+ p.addEventListener('click',function(){if(v.paused){st.userPaused=false;v.play().catch(function(){});}else{st.userPaused=true;v.pause();}});
+ s.addEventListener('click',function(){
+  if(v.muted){players.forEach(function(o){if(o!==st){o.mute();}});v.muted=false;v.loop=false;v.currentTime=0;st.userPaused=false;v.play().catch(function(){});s.textContent='🔇 Wycisz';s.setAttribute('aria-pressed','true');}
+  else{mute();}
+ });
+ v.addEventListener('ended',function(){mute();v.loop=true;v.play().catch(function(){});});
+ return st;
 });
-v.addEventListener('ended',function(){v.muted=true;v.loop=true;s.textContent='🔊 Włącz dźwięk';s.setAttribute('aria-pressed','false');v.play().catch(function(){});});
+function sync(){players.forEach(function(o){
+ if(o.visible&&!o.ph.hidden&&!o.userPaused){o.v.play().catch(function(){});}else if(!o.v.paused){o.v.pause();}
+});}
 if('IntersectionObserver' in window){
- new IntersectionObserver(function(es){es.forEach(function(e){
-  if(e.isIntersecting){if(!userPaused){v.play().catch(function(){});}}
-  else if(!v.paused){v.pause();}
- });},{threshold:.45}).observe(v);
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){
+  players.forEach(function(o){if(o.v===e.target){o.visible=e.isIntersecting;}});
+ });sync();},{threshold:.45});
+ players.forEach(function(o){io.observe(o.v);});
 }
+var tabs=[].slice.call(document.querySelectorAll('#film .film-tabs button'));
+function show(id){tabs.forEach(function(t){var on=t.getAttribute('aria-controls')===id;t.setAttribute('aria-selected',on?'true':'false');});
+ players.forEach(function(o){var on=!narrow.matches||o.ph.id===id;o.ph.hidden=!on;if(!on){o.mute();}});sync();}
+tabs.forEach(function(t){t.addEventListener('click',function(){show(t.getAttribute('aria-controls'));});});
+function current(){var t=tabs.filter(function(t){return t.getAttribute('aria-selected')==='true';})[0];return t?t.getAttribute('aria-controls'):'film-phone-showreel';}
+if(narrow.addEventListener){narrow.addEventListener('change',function(){show(current());});}
+show(current());
 })();
 </script>
 </section>
