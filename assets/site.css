@@ -149,7 +149,7 @@ html.no-js .vr-preview-toggle { display: none; }
 @media (max-width: 980px) {
  body { padding-bottom: calc(82px + env(safe-area-inset-bottom, 0px)); }
  html { scroll-padding-bottom: calc(92px + env(safe-area-inset-bottom, 0px)); }
- .studio-bottom-nav { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); position: fixed; inset: auto 0 0; z-index: 10000; padding: 8px max(8px, env(safe-area-inset-right, 0px)) calc(8px + env(safe-area-inset-bottom, 0px)) max(8px, env(safe-area-inset-left, 0px)); background: rgba(8, 12, 15, .94); border-top: 1px solid rgba(0,243,255,.18); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); transform: none !important; }
+ .studio-bottom-nav { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); position: fixed; inset: auto 0 0; z-index: 10000; padding: 8px max(8px, env(safe-area-inset-right, 0px)) calc(8px + env(safe-area-inset-bottom, 0px)) max(8px, env(safe-area-inset-left, 0px)); background: rgba(8, 12, 15, .94); border-top: 1px solid rgba(0,243,255,.18); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); transform: none !important; }
  .studio-bottom-nav a { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; min-height: 52px; padding: 4px 2px; border-radius: 10px; color: #a7b2ba; text-decoration: none; font: 500 10px/1.3 'DM Sans', sans-serif; letter-spacing: .02em; }
  .studio-bottom-nav svg { width: 22px; height: 22px; flex: none; }
  .studio-bottom-nav a[aria-current="page"] { color: #00f3ff; background: rgba(0,243,255,.075); }
@@ -172,5 +172,8 @@ html.no-js .vr-preview-toggle { display: none; }
 html[data-theme="light"] .hero-text { color: #414950; font-weight: 400; }
 html[data-theme="light"] .hero-artwork { opacity: .07; }
 
+/* Pricing: "from" prices on the PL/EN/DE home pages. */
+.pricing-lead{max-width:720px;margin-bottom:32px}.pricing-grid{grid-template-columns:repeat(4,minmax(0,1fr))}@media(max-width:1200px){.pricing-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}.pricing-grid .process-number{font-size:1.4rem;color:var(--accent,#00f3ff)}.pricing-note{font-size:.9rem;opacity:.75;margin:28px 0 16px}@media(max-width:900px){.pricing-grid{grid-template-columns:minmax(0,1fr)}}
+html[data-theme="light"] .pricing-grid .process-number{color:#007e8b}
 /* Approved brand artwork supplied by the studio; preserve original proportions. */
 .nav .nav-brand-block{display:flex;flex-direction:row;align-items:center;gap:12px;flex-shrink:0}.studio-brand-image{display:block;width:64px;height:64px;object-fit:contain;border-radius:8px}.studio-brand-copy{display:flex;flex-direction:column;gap:7px}.studio-footer-logo{display:block;width:220px;max-width:100%;height:auto;border-radius:12px}@media(max-width:600px){.studio-brand-image{width:44px;height:44px}.nav .nav-brand-block{gap:8px}.studio-brand-copy .logo-text-main{font-size:17px}}
