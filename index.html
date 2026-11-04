@@ -33,8 +33,7 @@
     {
       "@type": "ProfessionalService",
       "@id": "https://kiszlo.studio/#organization",
-      "name": "Kiszlo Studio",
-      "alternateName": "Kiszlo.Studio",
+      "name": "Kiszlo.Studio",
       "url": "https://kiszlo.studio",
       "founder": {
         "@type": "Person",
@@ -76,7 +75,17 @@
           "@type": "Country",
           "name": "Polska"
         }
-      ]
+      ],
+      "logo": "https://kiszlo.studio/assets/apple-touch-icon.png",
+      "image": "https://kiszlo.studio/assets/social-card.png",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Wrocław",
+        "addressRegion": "dolnośląskie",
+        "addressCountry": "PL"
+      },
+      "telephone": "+48600608333",
+      "email": "kiszlo.studio@gmail.com"
     }
   ]
 }
@@ -707,6 +716,7 @@
     </style>
     <link rel="stylesheet" href="assets/site.css">
     <script src="assets/site.js" defer></script>
+    <script src="assets/consent.js" defer></script>
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Kiszlo.Studio">
     <meta property="og:title" content="Strony WWW z AI, awatary i VR | Kiszlo.Studio Wrocław">
@@ -804,6 +814,105 @@
             </div>
         </section>
 
+<section class="section studio-film" id="film" aria-labelledby="studio-film-title">
+<style>
+.studio-film-grid{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:48px;align-items:center}
+.studio-film h2{font:italic clamp(32px,5vw,56px)/1.25 "Instrument Serif",serif;margin:12px 0 20px}
+.studio-film p{color:var(--muted,#aaa);line-height:1.8;max-width:520px}
+.studio-film .tag-list{margin-top:20px}
+.film-phones{display:flex;gap:28px;align-items:flex-start}
+.film-phone{display:flex;flex-direction:column;align-items:center}
+.film-phone-label{text-align:center;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#00f3ff;margin-bottom:14px}
+.film-phone-label small{display:block;margin-top:4px;letter-spacing:.04em;text-transform:none;color:#a5afb1;font-size:12px}
+.iphone{position:relative;width:min(290px,82vw);padding:38px 11px 28px;border-radius:48px;background:linear-gradient(145deg,#2b2f36,#0b0d10 45%,#1d2026);box-shadow:0 0 0 2px #4a505a,0 30px 70px #000a,0 0 60px #00d6de22;box-sizing:border-box}
+.iphone::before{content:"";position:absolute;top:12px;left:50%;transform:translateX(-50%);width:78px;height:15px;border-radius:15px;background:#000;z-index:2}
+.iphone-screen{position:relative;width:100%;aspect-ratio:9/16;border-radius:24px;overflow:hidden;background:#000}
+.iphone-screen video{display:block;width:100%;height:100%;object-fit:contain}
+.iphone-controls{display:flex;justify-content:center;gap:10px;margin-top:18px}
+.iphone-controls button,.film-tabs button{font:inherit;font-size:13px;color:#fff;background:#111c;border:1px solid #ffffff55;border-radius:999px;padding:9px 14px;cursor:pointer;backdrop-filter:blur(6px)}
+.iphone-controls button:hover,.film-tabs button:hover{border-color:#00f3ff}
+.iphone-controls button:focus-visible,.film-tabs button:focus-visible{outline:2px solid #00f3ff;outline-offset:3px}
+.film-tabs{display:none;justify-content:center;gap:8px;margin-bottom:18px}
+.film-tabs button[aria-selected="true"]{border-color:#00f3ff;color:#00f3ff}
+@media(max-width:1100px){.studio-film-grid{grid-template-columns:minmax(0,1fr);justify-items:center;gap:32px}.studio-film-text{justify-self:stretch}}
+@media(max-width:700px){.film-tabs{display:flex}.film-phones{display:block}.film-phone[hidden]{display:none}.film-phone-label{display:none}}
+</style>
+<div class="container studio-film-grid">
+<div class="studio-film-text">
+<div class="eyebrow">Filmy o studiu</div>
+<h2 id="studio-film-title">Od pomysłu do realizacji</h2>
+<p>Dwa filmy, dwa spojrzenia na Kiszlo.Studio. Showreel w kilkadziesiąt sekund przeprowadza przez nasze usługi: film i media, strony i portale, aplikacje VR, aplikacje dla zdrowia i terapii oraz modelowanie 3D i inżynierię. Drugi film, z lektorem i muzyką, opowiada, jak pracujemy: pusty plan zdjęciowy zmienia się w wirtualne studio, a cyfrowy awatar przenosi się między scenografiami. Włącz dźwięk, żeby go posłuchać. Oba filmy powstały w Kiszlo.Studio.</p>
+<div class="tag-list"><span class="tag">Showreel</span><span class="tag">Green screen</span><span class="tag">Awatar AI</span><span class="tag">VR i 3D</span></div>
+</div>
+<div class="film-phones-wrap">
+<div class="film-tabs" role="tablist" aria-label="Wybierz film">
+<button type="button" role="tab" aria-selected="true" aria-controls="film-phone-showreel" id="film-tab-showreel">Showreel</button>
+<button type="button" role="tab" aria-selected="false" aria-controls="film-phone-kulisy" id="film-tab-kulisy">Z lektorem</button>
+</div>
+<div class="film-phones">
+<div class="film-phone" id="film-phone-showreel" role="tabpanel" aria-labelledby="film-tab-showreel">
+<div class="film-phone-label">Showreel<small>Nasze usługi w 83 sekundy</small></div>
+<div class="iphone"><div class="iphone-screen">
+<video muted loop playsinline preload="metadata" poster="assets/kiszlo-studio-showreel-poster.webp" width="720" height="1280" aria-label="Showreel Kiszlo.Studio">
+<source src="kiszlo-studio-showreel.mp4" type="video/mp4">
+Twoja przeglądarka nie obsługuje odtwarzacza. <a href="kiszlo-studio-showreel.mp4">Otwórz film</a>.
+</video>
+</div></div>
+<div class="iphone-controls"><button type="button" class="film-sound" aria-pressed="false">🔊 Włącz dźwięk</button><button type="button" class="film-play">⏸ Pauza</button></div>
+</div>
+<div class="film-phone" id="film-phone-kulisy" role="tabpanel" aria-labelledby="film-tab-kulisy">
+<div class="film-phone-label">Z lektorem<small>Opowieść o studiu z głosem i muzyką</small></div>
+<div class="iphone"><div class="iphone-screen">
+<video muted loop playsinline preload="metadata" poster="assets/kiszlo-studio-film-lektor-poster.webp" width="720" height="1280" aria-label="Film Kiszlo.Studio z lektorem">
+<source src="kiszlo-studio-film-lektor.mp4" type="video/mp4">
+Twoja przeglądarka nie obsługuje odtwarzacza. <a href="kiszlo-studio-film-lektor.mp4">Otwórz film</a>.
+</video>
+</div></div>
+<div class="iphone-controls"><button type="button" class="film-sound" aria-pressed="false">🔊 Włącz dźwięk</button><button type="button" class="film-play">⏸ Pauza</button></div>
+</div>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var phones=[].slice.call(document.querySelectorAll('#film .film-phone'));if(!phones.length)return;
+var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var narrow=window.matchMedia('(max-width:700px)');
+var players=phones.map(function(ph){
+ var v=ph.querySelector('video'),s=ph.querySelector('.film-sound'),p=ph.querySelector('.film-play');
+ var st={ph:ph,v:v,userPaused:reduce,visible:false};
+ function label(){p.textContent=v.paused?'▶ Odtwórz':'⏸ Pauza';}
+ v.addEventListener('play',label);v.addEventListener('pause',label);label();
+ function mute(){v.muted=true;s.textContent='🔊 Włącz dźwięk';s.setAttribute('aria-pressed','false');}
+ st.mute=mute;
+ p.addEventListener('click',function(){if(v.paused){st.userPaused=false;v.play().catch(function(){});}else{st.userPaused=true;v.pause();}});
+ s.addEventListener('click',function(){
+  if(v.muted){players.forEach(function(o){if(o!==st){o.mute();}});v.muted=false;v.loop=false;v.currentTime=0;st.userPaused=false;v.play().catch(function(){});s.textContent='🔇 Wycisz';s.setAttribute('aria-pressed','true');}
+  else{mute();}
+ });
+ v.addEventListener('ended',function(){mute();v.loop=true;v.play().catch(function(){});});
+ return st;
+});
+function sync(){players.forEach(function(o){
+ if(o.visible&&!o.ph.hidden&&!o.userPaused){o.v.play().catch(function(){});}else if(!o.v.paused){o.v.pause();}
+});}
+if('IntersectionObserver' in window){
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){
+  players.forEach(function(o){if(o.v===e.target){o.visible=e.isIntersecting;}});
+ });sync();},{threshold:.45});
+ players.forEach(function(o){io.observe(o.v);});
+}
+var tabs=[].slice.call(document.querySelectorAll('#film .film-tabs button'));
+function show(id){tabs.forEach(function(t){var on=t.getAttribute('aria-controls')===id;t.setAttribute('aria-selected',on?'true':'false');});
+ players.forEach(function(o){var on=!narrow.matches||o.ph.id===id;o.ph.hidden=!on;if(!on){o.mute();}});sync();}
+tabs.forEach(function(t){t.addEventListener('click',function(){show(t.getAttribute('aria-controls'));});});
+function current(){var t=tabs.filter(function(t){return t.getAttribute('aria-selected')==='true';})[0];return t?t.getAttribute('aria-controls'):'film-phone-showreel';}
+if(narrow.addEventListener){narrow.addEventListener('change',function(){show(current());});}
+show(current());
+})();
+</script>
+</section>
+
 <section class="section" id="oferta"><div class="container"><div class="eyebrow">Pomysł. Technologia. Gotowy produkt.</div><h2 class="concept-heading">Co możemy dla Ciebie stworzyć</h2><div class="concept-services"><article class="service-item">
                         <div>
                             <div class="service-no">01</div>
@@ -884,7 +993,7 @@
                 <span>Polska</span>
             </div>
         </div>
-    <p style="text-align:center;"><a class="privacy-link" href="prywatnosc.html">Polityka prywatności</a></p></footer>
+    <p style="text-align:center;"><a class="privacy-link" href="prywatnosc.html">Polityka prywatności</a> <a class="privacy-link" href="#" data-cookie-settings hidden></a></p></footer>
 
 
 <nav class="studio-bottom-nav" aria-label="Nawigacja mobilna"><a href="index.html" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 9-7 9 7v10H3z"/><path d="M9 20v-7h6v7"/></svg><span>Start</span></a><a href="#oferta"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V3h8v4M3 12h18M10 12v3h4v-3"/></svg><span>Oferta</span></a><a href="portfolio.html"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>Portfolio</span></a><a href="onas.html"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3M17 4a3 3 0 0 1 0 6M18 13a5 5 0 0 1 3 5v3"/></svg><span>O nas</span></a><a href="index.html#kontakt"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></svg><span>Kontakt</span></a></nav>
