@@ -2,7 +2,7 @@
 <html lang="pl" data-theme="dark" class="no-js">
 <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/assets/icon-192.png" type="image/png" sizes="192x192">
     <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
     <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" sizes="180x180">
 
@@ -73,7 +73,7 @@
           "name": "Polska"
         }
       ],
-      "logo": "https://kiszlo.studio/assets/apple-touch-icon.png",
+      "logo": "https://kiszlo.studio/assets/logo.png",
       "image": "https://kiszlo.studio/assets/social-card.png",
       "address": {
         "@type": "PostalAddress",
@@ -170,10 +170,13 @@
             justify-content: space-between;
             align-items: center;
         }
+        .logo-mark { width: 38px; height: 38px; border-radius: 10px; display: block; flex: none; box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 4px 14px rgba(0,120,255,.18); }
+        .logo-text-wrap { display: flex; flex-direction: column; align-items: flex-start; }
         .nav-brand-block {
             display: flex;
-            flex-direction: column;
-            align-items: flex-start;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
             text-decoration: none;
             transition: var(--transition);
         }
@@ -857,12 +860,15 @@
     <nav class="nav" id="main-nav">
         <div class="container nav-inner">
             <a href="index.html" class="nav-brand-block">
+                <img class="logo-mark" src="assets/logo-mark.webp" alt="" width="38" height="38">
+                <span class="logo-text-wrap">
                 <div class="logo-text-main">
                     Kiszlo<span class="logo-text-dot">.</span>Studio
                 </div>
                 <div class="logo-tagline">
                     AI-DRIVEN CREATIVE & STRATEGIC STUDIO
                 </div>
+                </span>
             </a>
 
             <button class="hamburger" id="mobile-toggle" aria-label="Menu" aria-expanded="false">
