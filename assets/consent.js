@@ -59,7 +59,20 @@
   document.body.appendChild(bar);
  };
 
- const start = () => {
+ // Contact clicks and the project form as GA4 events (key events in GA4 admin).
+// Sent only when Analytics was loaded after consent.
+const track = (name, params) => { if (loaded && window.gtag) gtag('event', name, Object.assign({transport_type: 'beacon'}, params)); };
+document.addEventListener('click', event => {
+const link = event.target.closest && event.target.closest('a[href^="tel:"], a[href^="mailto:"]');
+if (!link) return;
+const tel = link.getAttribute('href').startsWith('tel:');
+track(tel ? 'contact_phone' : 'contact_email', {link_url: link.getAttribute('href'), page_location: location.href});
+}, true);
+document.addEventListener('submit', event => {
+if (event.target && event.target.id === 'project-contact') track('generate_lead', {form_id: 'project-contact'});
+}, true);
+
+const start = () => {
   document.querySelectorAll('[data-cookie-settings]').forEach(link => {
    link.hidden = false; link.textContent = t.settings;
    link.addEventListener('click', event => { event.preventDefault(); show(); });
