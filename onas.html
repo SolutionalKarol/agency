@@ -2,8 +2,8 @@
 <html lang="pl" data-theme="dark" class="no-js">
 <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/assets/icon-192.png" type="image/png" sizes="192x192">
-    <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
+    
+    
     <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" sizes="180x180">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -170,13 +170,10 @@
             justify-content: space-between;
             align-items: center;
         }
-        .logo-mark { width: 38px; height: 38px; border-radius: 10px; display: block; flex: none; box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 4px 14px rgba(0,120,255,.18); }
-        .logo-text-wrap { display: flex; flex-direction: column; align-items: flex-start; }
         .nav-brand-block {
             display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 10px;
+            flex-direction: column;
+            align-items: flex-start;
             text-decoration: none;
             transition: var(--transition);
         }
@@ -853,23 +850,21 @@
     <meta name="twitter:title" content="Karol Kiszło i sieć współpracy | Kiszlo.Studio Wrocław">
     <meta name="twitter:description" content="Poznaj Karola Kiszło i sieć współpracy Kiszlo.Studio. Łączymy kompetencje w AI, stronach WWW, produkcji wideo, VR, MedTech i prototypowaniu.">
     <meta name="twitter:image" content="https://kiszlo.studio/assets/social-card.png">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32"><link rel="icon" href="/assets/icon-192.png" type="image/png" sizes="192x192">
 </head>
 <body data-page="onas">
     <div class="noise" aria-hidden="true"></div>
 
     <nav class="nav" id="main-nav">
         <div class="container nav-inner">
-            <a href="index.html" class="nav-brand-block">
-                <img class="logo-mark" src="assets/logo-mark.webp" alt="" width="38" height="38">
-                <span class="logo-text-wrap">
+            <a href="index.html" class="nav-brand-block"><img class="studio-brand-image" src="assets/logo-mark.webp" alt="" width="64" height="64"><span class="studio-brand-copy">
                 <div class="logo-text-main">
                     Kiszlo<span class="logo-text-dot">.</span>Studio
                 </div>
                 <div class="logo-tagline">
                     AI-DRIVEN CREATIVE & STRATEGIC STUDIO
                 </div>
-                </span>
-            </a>
+            </span></a>
 
             <button class="hamburger" id="mobile-toggle" aria-label="Menu" aria-expanded="false">
                 <span></span>
@@ -1101,7 +1096,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div>
-                    <div class="footer-brand">Kiszlo.Studio</div>
+                    <div class="footer-brand"><img class="studio-footer-logo" src="assets/logo-footer.webp" alt="Kiszlo.Studio — Technologia · Nauka · Kreatywność" width="220" height="220" loading="lazy"></div>
                     <div class="footer-desc">
                         Butikowe studio strategiczno-technologiczne łączące AI, VR,
                         produkcję i komunikację dla nowoczesnego biznesu.

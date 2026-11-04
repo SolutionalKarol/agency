@@ -171,3 +171,6 @@ html.no-js .vr-preview-toggle { display: none; }
 .concept-services .vr-preview-caption { color: #d4d8da; }
 html[data-theme="light"] .hero-text { color: #414950; font-weight: 400; }
 html[data-theme="light"] .hero-artwork { opacity: .07; }
+
+/* Approved brand artwork supplied by the studio; preserve original proportions. */
+.nav .nav-brand-block{display:flex;flex-direction:row;align-items:center;gap:12px;flex-shrink:0}.studio-brand-image{display:block;width:64px;height:64px;object-fit:contain;border-radius:8px}.studio-brand-copy{display:flex;flex-direction:column;gap:7px}.studio-footer-logo{display:block;width:220px;max-width:100%;height:auto;border-radius:12px}@media(max-width:600px){.studio-brand-image{width:44px;height:44px}.nav .nav-brand-block{gap:8px}.studio-brand-copy .logo-text-main{font-size:17px}}
