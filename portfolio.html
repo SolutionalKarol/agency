@@ -615,7 +615,7 @@
                         <div class="portfolio-content">
                             <div><div class="portfolio-category">Projektowanie i realizacja stron WWW</div>
                             <h2 class="portfolio-title">NCNI, Naukowe Centrum Neuroinnowacji</h2>
-                            <p class="portfolio-desc">Wykonaliśmy stronę internetową Naukowego Centrum Neuroinnowacji we Wrocławiu. Celem było czytelne przedstawienie centrum, jego oferty, specjalistów i technologii. Zakres obejmuje projekt i realizację serwisu oraz prezentację materiałów multimedialnych.</p><div class="ncni-case-parts"><h3>Strona WWW</h3><p>Oferta, sylwetki specjalistów i opisy technologii w jednym serwisie, dostępnym na komputerze i telefonie.</p><h3>Aplikacje VR</h3><p>Niżej pokazujemy modele 3D oraz przykłady środowisk związanych z projektami VR dla NCNI.</p><h3>Materiały wideo</h3><p>Filmy prezentują koncepcje doświadczeń i technologii. Wizualizacje pomagają pokazać pomysł, nie stanowią zapisu sesji terapeutycznej.</p><a class="project-link" href="#modelowanie-3d">Zobacz modele 3D i filmy</a> <a class="project-link" href="index.html?temat=Inny%20projekt#kontakt">Porozmawiajmy o Twoim projekcie</a></div>
+                            <p class="portfolio-desc">Wykonaliśmy stronę internetową Naukowego Centrum Neuroinnowacji we Wrocławiu. Celem było czytelne przedstawienie centrum, jego oferty, specjalistów i technologii. Zakres obejmuje projekt i realizację serwisu oraz prezentację materiałów multimedialnych.</p><div class="ncni-case-parts"><h3>Strona WWW</h3><p>Oferta, sylwetki specjalistów i opisy technologii w jednym serwisie, dostępnym na komputerze i telefonie.</p><h3>Aplikacje VR</h3><p>Niżej pokazujemy modele 3D oraz przykłady środowisk związanych z projektami VR dla NCNI.</p><h3>Materiały wideo</h3><p>Filmy prezentują koncepcje doświadczeń i technologii. Wizualizacje pomagają pokazać pomysł, nie stanowią zapisu sesji terapeutycznej.</p><a class="project-link" href="#ncni-filmy">Zobacz filmy promocyjne</a> <a class="project-link" href="#modelowanie-3d">Zobacz modele 3D i filmy</a> <a class="project-link" href="index.html?temat=Inny%20projekt#kontakt">Porozmawiajmy o Twoim projekcie</a></div>
                             <a href="https://www.ncni.pl/" target="_blank" rel="noopener noreferrer" class="project-visit">Zobacz www.ncni.pl ↗</a></div>
                             <div class="tag-list"><span class="tag">Strona WWW</span><span class="tag">NCNI</span><span class="tag">Projekt i realizacja</span></div>
                         </div>
@@ -689,6 +689,70 @@
                                 <span class="tag">Architektura marki</span>
                             </div>
                         </div>
+                    </article>
+
+                    <!-- NCNI: filmy promocyjne w ramkach telefonu -->
+                    <article id="ncni-filmy" class="portfolio-item portfolio-large fade-up ncni-films">
+<style>
+.ncni-films .ncni-films-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px;justify-items:center;padding:32px 24px 8px}
+.ncni-films figure{margin:0;display:flex;flex-direction:column;align-items:center;max-width:330px}
+.ncni-films figcaption{margin-top:14px;text-align:center;font-size:14px;line-height:1.6;color:var(--muted,#888)}
+.ncni-films figcaption strong{display:block;color:inherit;font-size:16px}
+.pf-phone{position:relative;width:min(300px,78vw);padding:38px 11px 28px;border-radius:48px;background:linear-gradient(145deg,#2b2f36,#0b0d10 45%,#1d2026);box-shadow:0 0 0 2px #4a505a,0 26px 60px #0008;box-sizing:border-box}
+.pf-phone::before{content:"";position:absolute;top:12px;left:50%;transform:translateX(-50%);width:78px;height:15px;border-radius:12px;background:#000}
+.pf-phone-screen{width:100%;aspect-ratio:9/16;border-radius:24px;overflow:hidden;background:#000}
+.pf-phone-screen video{display:block;width:100%;height:100%;object-fit:contain}
+.pf-controls{display:flex;gap:10px;justify-content:center;margin-top:16px}
+.pf-controls button{font:inherit;font-size:13px;color:#fff;background:#111c;border:1px solid #ffffff55;border-radius:999px;padding:9px 14px;cursor:pointer}
+.pf-controls button:hover{border-color:#00f3ff}
+.pf-controls button:focus-visible{outline:2px solid #00f3ff;outline-offset:3px}
+.ncni-films .ncni-films-grid{flex:0 0 60%;box-sizing:border-box}
+.ncni-films .portfolio-content{margin-top:0!important}
+@media(max-width:800px){.ncni-films .ncni-films-grid{grid-template-columns:minmax(0,1fr);gap:48px;width:100%}}
+</style>
+                        <div class="ncni-films-grid">
+                            <figure>
+                                <div class="pf-phone"><div class="pf-phone-screen">
+                                    <video class="pf-video" muted loop playsinline preload="metadata" poster="assets/ncni-misja-kumam-poster.webp" width="720" height="1280" aria-label="MISJA: KUMAM! – animowany film o korepetycjach dla NCNI">
+                                        <source src="ncni-misja-kumam.mp4" type="video/mp4">
+                                        <a href="ncni-misja-kumam.mp4">Otwórz film</a>
+                                    </video>
+                                </div></div>
+                                <div class="pf-controls"><button type="button" class="pf-sound" aria-pressed="false">🔊 Włącz dźwięk</button><button type="button" class="pf-play">⏸ Pauza</button></div>
+                                <figcaption><strong>MISJA: KUMAM!</strong>Animowana bajka o korepetycjach z matematyki</figcaption>
+                            </figure>
+                            <figure>
+                                <div class="pf-phone"><div class="pf-phone-screen">
+                                    <video class="pf-video" muted loop playsinline preload="metadata" poster="assets/ncni-hitech-poster.webp" width="720" height="1280" aria-label="Film Hi-Tech o usługach NCNI">
+                                        <source src="ncni-hitech.mp4" type="video/mp4">
+                                        <a href="ncni-hitech.mp4">Otwórz film</a>
+                                    </video>
+                                </div></div>
+                                <div class="pf-controls"><button type="button" class="pf-sound" aria-pressed="false">🔊 Włącz dźwięk</button><button type="button" class="pf-play">⏸ Pauza</button></div>
+                                <figcaption><strong>NCNI Hi-Tech</strong>Dynamiczny Short o usługach centrum</figcaption>
+                            </figure>
+                        </div>
+                        <div class="portfolio-content">
+                            <div><div class="portfolio-category">Film / Animacja / Montaż</div>
+                            <h2 class="portfolio-title">NCNI, filmy promocyjne</h2>
+                            <p class="portfolio-desc">Dwa pionowe filmy na YouTube Shorts i social media, które zrobiliśmy dla Naukowego Centrum Neuroinnowacji: animowana opowieść o korepetycjach oraz dynamiczny przegląd usług. Od scenariusza i grafiki po muzykę, montaż i napisy.</p></div>
+                            <div class="tag-list"><span class="tag">Film</span><span class="tag">Animacja</span><span class="tag">NCNI</span><span class="tag">Shorts</span></div>
+                        </div>
+<script>
+(function(){
+var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.querySelectorAll('#ncni-filmy figure').forEach(function(f){
+var v=f.querySelector('video'),s=f.querySelector('.pf-sound'),p=f.querySelector('.pf-play'),manual=false;
+function upd(){p.textContent=v.paused?'▶ Odtwórz':'⏸ Pauza';s.textContent=v.muted?'🔊 Włącz dźwięk':'🔇 Wycisz';s.setAttribute('aria-pressed',String(!v.muted));}
+v.addEventListener('play',upd);v.addEventListener('pause',upd);v.addEventListener('volumechange',upd);
+v.addEventListener('ended',function(){v.muted=true;v.loop=true;v.play().catch(function(){});});
+s.addEventListener('click',function(){manual=true;if(v.muted){document.querySelectorAll('#ncni-filmy video').forEach(function(o){if(o!==v){o.muted=true;}});v.muted=false;v.loop=false;v.currentTime=0;v.play().catch(function(){});}else{v.muted=true;v.loop=true;}});
+p.addEventListener('click',function(){manual=true;if(v.paused){v.play().catch(function(){});}else{v.pause();}});
+if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){if(!reduce&&!manual)v.play().catch(function(){});}else if(!v.paused){v.pause();}});},{threshold:.45}).observe(v);}
+upd();
+});
+})();
+</script>
                     </article>
 
                 </div>
