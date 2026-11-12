@@ -82,6 +82,12 @@
 }
 .ads-scope-grid article { border-top: 1px solid var(--primary); padding-top: 18px; }
 .ads-scope-grid h3 { font-size: 1.13rem; margin-bottom: 8px; }
+.ads-section .ads-price {
+    color: var(--primary);
+    font: 400 clamp(2.6rem, 6vw, 4.5rem)/1.1 var(--font-display);
+    margin-bottom: 10px;
+}
+.ads-price-note { margin: 12px 0 20px; }
 .ads-start { background: var(--surface); }
 .ads-start h2 { margin: 0; }
 .ads-start p, .ads-contact p { max-width: 60ch; }
