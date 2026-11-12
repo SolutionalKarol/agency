@@ -1,6 +1,10 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    { "source": "/reklama-w-chatgpt", "destination": "/reklama-w-chatgpt.html" }
+  ],
   "redirects": [
+    { "source": "/reklama-w-chatgpt.html", "destination": "/reklama-w-chatgpt", "permanent": true },
     {
       "source": "/index.html",
       "destination": "/",
