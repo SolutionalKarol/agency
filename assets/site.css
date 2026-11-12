@@ -190,6 +190,7 @@ html[data-theme="light"] .pricing-grid .process-number{color:#007e8b}
 }
 
 /* Polish homepage pricing. */
+#ceny { scroll-margin-top: 104px; }
 #ceny .pricing-group { border-top: 1px solid var(--border); padding-top: 24px; margin-top: 32px; scroll-margin-top: 104px; }
 #ceny .pricing-group h3 { margin: 0 0 16px; font: 400 clamp(1.8rem, 3vw, 2.6rem)/1.15 var(--font-display); }
 #ceny .pricing-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
