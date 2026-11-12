@@ -49,6 +49,10 @@
     font-weight: 700;
 }
 .ads-button:hover { box-shadow: var(--glow); }
+.ads-hero-side { display: grid; gap: 18px; }
+.ads-hero-image { margin: 0; }
+.ads-hero-image img { width: 100%; height: auto; border-radius: 20px; }
+.ads-hero-image figcaption { color: var(--muted); font-size: .82rem; margin-top: 6px; }
 .ads-brief {
     border: 1px solid var(--border);
     border-radius: 20px;
