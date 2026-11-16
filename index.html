@@ -424,14 +424,16 @@
 
         .hero-text {
             font-size: clamp(18px, 2vw, 25px);
-            font-weight: 300;
-            color: var(--muted);
-            max-width: 760px;
+            font-weight: 400;
+            color: var(--text);
+            max-width: 640px;
             opacity: 0;
+            text-shadow: 0 1px 12px rgba(0,0,0,0.35);
             border-left: 1px solid var(--primary);
             padding-left: 24px;
             transition: color var(--transition), border-color var(--transition);
         }
+        html[data-theme="light"] .hero-text { text-shadow: none; }
         .hero-text strong { color: var(--text); font-weight: 500; transition: color var(--transition); }
 
         /* Wskaźnik przewijania */
@@ -805,7 +807,7 @@
                     <span class="hero-title-line"><i>Technologia AI.</i></span>
                 </h1>
                 <p class="hero-text">
-                    Kompleksowe doradztwo biznesowe, nowoczesny web development, automatyzacja pracy z użyciem AI oraz autorska produkcja filmowa. Wdrażamy innowacje na <strong>najwyższym poziomie wizualnym i technologicznym</strong>, dostarczając dedykowane oprogramowanie i wirtualnych agentów budujących realną przewagę.
+                    Strony internetowe, asystenci AI i&nbsp;produkcja wideo dla firm. <strong>Od pomysłu do gotowego wdrożenia.</strong>
                 </p>
             </div>
 
@@ -1081,7 +1083,7 @@ show(current());
     </section>
   </div>
 </section>
-<section class="section studio-process" id="jak-pracujemy"><div class="container"><div class="eyebrow">Współpraca</div><h2>Jak pracujemy</h2><div class="process-grid"><article><span class="process-number">01</span><h3>Rozmawiamy o pomyśle</h3><p>Ustalamy, co chcesz osiągnąć i dla kogo tworzymy projekt.</p></article><article><span class="process-number">02</span><h3>Ustalamy zakres i wycenę</h3><p>Wiesz, co obejmuje realizacja, ile kosztuje i jaki jest termin.</p></article><article><span class="process-number">03</span><h3>Tworzymy i pokazujemy postępy</h3><p>Oglądasz kolejne wersje i przekazujesz uwagi.</p></article><article><span class="process-number">04</span><h3>Oddajemy gotowy projekt</h3><p>Sprawdzamy działanie i ustalamy dalsze wsparcie.</p></article></div></div></section><section class="section studio-contact" id="kontakt"><div class="container"><div class="eyebrow">Twój projekt</div><h2>Porozmawiajmy</h2><div class="contact-grid"><form id="project-contact" action="mailto:kiszlo.studio@gmail.com" method="get"><label for="project-name">Imię</label><input id="project-name" name="name" autocomplete="given-name" required maxlength="100"><label for="project-email">E-mail</label><input id="project-email" name="email" type="email" autocomplete="email" required maxlength="200"><label for="project-topic">Temat</label><select id="project-topic" name="topic"><option>Strona WWW</option><option>Aplikacja VR</option><option>Awatar AI</option><option>Agent AI</option><option>Produkcja wideo</option><option>Elektronika i prototypowanie</option><option>Reklama w ChatGPT</option><option>Strategia i konsultacja</option><option>Inny projekt</option></select><label for="project-message">Co chcesz stworzyć?</label><textarea id="project-message" name="message" rows="5" required maxlength="5000"></textarea><button type="submit" class="project-link">Przygotuj e-mail</button><p class="contact-note">Przycisk otworzy przygotowaną wiadomość w Twoim programie pocztowym. Wyślesz ją stamtąd. Możesz też napisać lub zadzwonić bezpośrednio.</p><p class="contact-note">Informacje o przetwarzaniu danych znajdziesz w <a href="prywatnosc.html">polityce prywatności</a>.</p></form><div class="contact-direct"><h3>Karol Kiszło</h3><a href="https://kiszlo.studio">https://kiszlo.studio</a><a href="mailto:kiszlo.studio@gmail.com">kiszlo.studio@gmail.com</a><a href="tel:+48600608333">600 608 333</a><p>Opisz pomysł i zakres projektu. Jeśli masz materiały lub stronę, którą chcesz zmienić, dołącz je do wiadomości.</p></div></div></div></section>
+<section class="section studio-process" id="jak-pracujemy"><div class="container"><div class="eyebrow">Współpraca</div><h2>Jak pracujemy</h2><div class="process-grid"><article><span class="process-number">01</span><h3>Rozmawiamy o pomyśle</h3><p>Ustalamy, co chcesz osiągnąć i dla kogo tworzymy projekt.</p></article><article><span class="process-number">02</span><h3>Ustalamy zakres i wycenę</h3><p>Wiesz, co obejmuje realizacja, ile kosztuje i jaki jest termin.</p></article><article><span class="process-number">03</span><h3>Tworzymy i pokazujemy postępy</h3><p>Oglądasz kolejne wersje i przekazujesz uwagi.</p></article><article><span class="process-number">04</span><h3>Oddajemy gotowy projekt</h3><p>Sprawdzamy działanie i ustalamy dalsze wsparcie.</p></article></div></div></section><section class="section studio-contact" id="kontakt"><div class="container"><div class="eyebrow">Twój projekt</div><h2>Porozmawiajmy</h2><div class="contact-grid"><form id="project-contact" action="https://formspree.io/f/xwlolzjb" method="POST"><label for="project-name">Imię</label><input id="project-name" name="name" autocomplete="given-name" required maxlength="100"><label for="project-email">E-mail</label><input id="project-email" name="email" type="email" autocomplete="email" required maxlength="200"><label for="project-topic">Temat</label><select id="project-topic" name="topic"><option>Strona WWW</option><option>Aplikacja VR</option><option>Awatar AI</option><option>Agent AI</option><option>Produkcja wideo</option><option>Elektronika i prototypowanie</option><option>Reklama w ChatGPT</option><option>Strategia i konsultacja</option><option>Inny projekt</option></select><label for="project-message">Co chcesz stworzyć?</label><textarea id="project-message" name="message" rows="5" required maxlength="5000"></textarea><input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0"><button type="submit" class="project-link">Wyślij wiadomość</button><p class="contact-note form-status" role="status" aria-live="polite" style="color: var(--primary); font-weight: 500;"></p><p class="contact-note">Wiadomość trafi bezpośrednio na kiszlo.studio@gmail.com. Możesz też napisać lub zadzwonić bezpośrednio.</p><p class="contact-note">Informacje o przetwarzaniu danych znajdziesz w <a href="prywatnosc.html">polityce prywatności</a>.</p></form><div class="contact-direct"><h3>Karol Kiszło</h3><a href="https://kiszlo.studio">https://kiszlo.studio</a><a href="mailto:kiszlo.studio@gmail.com">kiszlo.studio@gmail.com</a><a href="tel:+48600608333">600 608 333</a><p>Opisz pomysł i zakres projektu. Jeśli masz materiały lub stronę, którą chcesz zmienić, dołącz je do wiadomości.</p></div></div></div></section>
 </main>
 
     <!-- Footer -->

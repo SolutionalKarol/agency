@@ -218,18 +218,33 @@ document.querySelectorAll('[data-avatar-film], [data-inline-film]').forEach(figu
     reduced.addEventListener('change', () => { if (reduced.matches) stop(); else schedule(); });
 });
 
-// Project inquiry opens the visitor's mail application; nothing is silently submitted.
+// Project inquiry is sent to kiszlo.studio@gmail.com through Formspree.
 (() => {
  const form=document.getElementById('project-contact'); if(!form)return;
  const topic=document.getElementById('project-topic');
  const requested=new URLSearchParams(window.location.search).get('temat');
  if([...topic.options].some(option=>option.value===requested))topic.value=requested;
- form.addEventListener('submit',event=>{
-  event.preventDefault(); if(!form.reportValidity())return;
-  const name=document.getElementById('project-name').value.trim();
-  const email=document.getElementById('project-email').value.trim();
-  const message=document.getElementById('project-message').value.trim();
-  const body=`Imię: ${name}\nE-mail: ${email}\nTemat: ${topic.value}\n\n${message}`;
-  window.location.href='mailto:kiszlo.studio@gmail.com?subject='+encodeURIComponent('Projekt: '+topic.value)+'&body='+encodeURIComponent(body);
+ const status=form.querySelector('.form-status');
+ const button=form.querySelector('button[type=submit]');
+ const fallback=' Napisz na <a href="mailto:kiszlo.studio@gmail.com">kiszlo.studio@gmail.com</a> lub zadzwoń: <a href="tel:+48600608333">600 608 333</a>.';
+ form.addEventListener('submit',async event=>{
+  event.preventDefault(); if(!form.reportValidity()||button.disabled)return;
+  button.disabled=true; status.textContent='Wysyłanie wiadomości…';
+  const controller=new AbortController(); const timer=setTimeout(()=>controller.abort(),20000);
+  try{
+   const fields=new FormData(form);
+   fields.append('_subject','Kiszlo.Studio: '+topic.value);
+   const response=await fetch(form.action,{method:'POST',body:fields,headers:{Accept:'application/json'},signal:controller.signal});
+   const result=await response.json().catch(()=>({}));
+   if(!response.ok||result.ok!==true){
+    status.innerHTML=(response.status===429?'Za dużo prób wysłania. Spróbuj później.':'Nie udało się wysłać wiadomości. Sprawdź wpisane dane.')+fallback;
+    return;
+   }
+   status.textContent='Dziękujemy, wiadomość dotarła. Odpowiemy na podany adres e-mail.';
+   form.reset();
+   form.dispatchEvent(new CustomEvent('lead-sent',{bubbles:true}));
+  }catch(error){
+   status.innerHTML='Nie udało się potwierdzić wysłania. Nie wysyłaj ponownie od razu.'+fallback;
+  }finally{clearTimeout(timer); button.disabled=false;}
  });
 })();

@@ -68,7 +68,7 @@ if (!link) return;
 const tel = link.getAttribute('href').startsWith('tel:');
 track(tel ? 'contact_phone' : 'contact_email', {link_url: link.getAttribute('href'), page_location: location.href});
 }, true);
-document.addEventListener('submit', event => {
+document.addEventListener('lead-sent', event => {
 if (event.target && event.target.id === 'project-contact') track('generate_lead', {form_id: 'project-contact'});
 }, true);
 
