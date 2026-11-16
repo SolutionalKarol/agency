@@ -424,14 +424,16 @@
 
         .hero-text {
             font-size: clamp(18px, 2vw, 25px);
-            font-weight: 300;
-            color: var(--muted);
-            max-width: 760px;
+            font-weight: 400;
+            color: var(--text);
+            max-width: 640px;
             opacity: 0;
+            text-shadow: 0 1px 12px rgba(0,0,0,0.35);
             border-left: 1px solid var(--primary);
             padding-left: 24px;
             transition: color var(--transition), border-color var(--transition);
         }
+        html[data-theme="light"] .hero-text { text-shadow: none; }
         .hero-text strong { color: var(--text); font-weight: 500; transition: color var(--transition); }
 
         /* Wskaźnik przewijania */
@@ -805,7 +807,7 @@
                     <span class="hero-title-line"><i>Technologia AI.</i></span>
                 </h1>
                 <p class="hero-text">
-                    Kompleksowe doradztwo biznesowe, nowoczesny web development, automatyzacja pracy z użyciem AI oraz autorska produkcja filmowa. Wdrażamy innowacje na <strong>najwyższym poziomie wizualnym i technologicznym</strong>, dostarczając dedykowane oprogramowanie i wirtualnych agentów budujących realną przewagę.
+                    Strony internetowe, asystenci AI i&nbsp;produkcja wideo dla firm. <strong>Od pomysłu do gotowego wdrożenia.</strong>
                 </p>
             </div>
 
