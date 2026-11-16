@@ -1,10 +1,17 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
-    { "source": "/reklama-w-chatgpt", "destination": "/reklama-w-chatgpt.html" }
+    {
+      "source": "/reklama-w-chatgpt",
+      "destination": "/reklama-w-chatgpt.html"
+    }
   ],
   "redirects": [
-    { "source": "/reklama-w-chatgpt.html", "destination": "/reklama-w-chatgpt", "permanent": true },
+    {
+      "source": "/reklama-w-chatgpt.html",
+      "destination": "/reklama-w-chatgpt",
+      "permanent": true
+    },
     {
       "source": "/index.html",
       "destination": "/",
@@ -65,6 +72,17 @@
         {
           "type": "host",
           "value": "www.kiszlo.pl"
+        }
+      ],
+      "destination": "https://kiszlo.studio/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "agency-woad-one-24.vercel.app"
         }
       ],
       "destination": "https://kiszlo.studio/:path*",
